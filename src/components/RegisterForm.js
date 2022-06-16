@@ -30,7 +30,7 @@ function RegisterForm() {
 
       <Form>
         <Form.Group className="my-3 mx-5 text-register">
-          <Form.Text>Sudah punya akun? </Form.Text><Link to="/"><Form.Text>Masuk di sini</Form.Text></Link>
+          <Form.Text>Sudah punya akun? </Form.Text><Link to="/login"><Form.Text>Masuk di sini</Form.Text></Link>
         </Form.Group>
       </Form>
     </div>
