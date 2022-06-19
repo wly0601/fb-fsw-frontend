@@ -1,28 +1,21 @@
 import React from 'react';
 import '@fontsource/poppins';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCamera, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import {
   Container,
   Form,
   Button
 } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../styles/Form.Module.css';
+import './Form.Module.css';
+import '../../styles/App.css';
 
 function Profile() {
   return (
     <>
       <Container className='profile'>
-        <Button variant="primary" type="submit" className='arrow'>
-          <FontAwesomeIcon icon={faArrowLeft} />
-        </Button>
-        <Button variant="primary" className='form-camera' type="submit">
-          <FontAwesomeIcon icon={faCamera} style={{ color: '#7126B5' }} />
-        </Button>
         <Form className='form-group'>
           <Form.Group className='mb-3' controlId="profileName">
-            <Form.Label>Nama*</Form.Label>
+            <Form.Label >Nama*</Form.Label>
             <Form.Control className='text-name' type="text" placeholder="Nama" />
           </Form.Group>
           <Form.Group className='mb-3'>

@@ -8,7 +8,7 @@ import {
   Button,
 } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../../styles/CardProduct.Module.css';
+import './CardProduct.Module.css';
 
 function Product() {
   return (

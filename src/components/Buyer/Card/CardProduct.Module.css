@@ -1,0 +1,27 @@
+* {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.card-product-buyer {
+    top: 10px;
+    width: 430px;
+    height: 200px;
+    border-radius: 16px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card-seller {
+    top: 30px;
+    width: 430px;
+    height: 85px;
+    border-radius: 16px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+}
+
+.seller {
+    width: 100%;
+}
