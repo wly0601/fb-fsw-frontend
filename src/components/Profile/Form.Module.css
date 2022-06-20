@@ -6,21 +6,49 @@
     max-height: 50%;
 }
 
+.upload-profile {
+    margin-left: 15px;
+    justify-content: center;
+    width: 96px;
+    height: 96px;
+    color: transparent;
+    background-color: #E2D4F0;
+    border-radius: 16px;
+    text-align: center;
+    opacity: 1;
+    z-index: 1;
+    position: relative;
+    margin-left: 520px;
+}
+
+.upload-profile:hover {
+    justify-content: center;
+    width: 96px;
+    height: 96px;
+    color: transparent;
+    background-color: #E2D4F0;
+    border-radius: 16px;
+    text-align: center;
+    opacity: 1;
+}
+
+.camera-icon {
+    color: #7126B5;
+    margin-top: 35px;
+    margin-left: 4px;
+    position: absolute;
+    z-index: 2;
+}
+
 .arrow {
-    background-color: transparent;
     color: black;
     border-color: transparent;
     text-align: left;
     padding-left: 20%;
+    margin-top: 30px;
 }
 
-.arrow:hover {
-    background-color: transparent;
-    color: black;
-    border-color: transparent;
-}
-
-.form-camera {
+/* .form-camera {
     background-color: #E2D4F0;
     border-radius: 12px;
     width: 96px;
@@ -33,7 +61,7 @@
     background-color: #E2D4F0;
     border-radius: 12px;
     border-color: #E2D4F0;
-}
+} */
 
 .form-button {
     justify-content: center;
