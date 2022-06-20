@@ -1,5 +1,6 @@
 import Carousel from "../components/Carousel";
 import Category from "../components/Category";
+import ItemCard from "../components/ItemCard";
 import { useEffect } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 
@@ -24,6 +25,62 @@ const Homepage = () => {
         </div>
         <div className="row mt-3 mx-5">
           <Category />
+        </div>
+        <div className="row mt-3 mx-5">
+          <div className="col-2">
+            <ItemCard
+              title="Jam Tangan Casio"
+              type="Aksesoris"
+              price="Rp 250.000"
+              image="https://placeimg.com/165/100/any"
+              imageAlt="Gambar jam tangan"
+            />
+          </div>
+          <div className="col-2">
+            <ItemCard
+              title="Jam Tangan Casio"
+              type="Aksesoris"
+              price="Rp 250.000"
+              image="https://placeimg.com/165/100/any"
+              imageAlt="Gambar jam tangan"
+            />
+          </div>
+          <div className="col-2">
+            <ItemCard
+              title="Jam Tangan Casio"
+              type="Aksesoris"
+              price="Rp 250.000"
+              image="https://placeimg.com/165/100/any"
+              imageAlt="Gambar jam tangan"
+            />
+          </div>
+          <div className="col-2">
+            <ItemCard
+              title="Jam Tangan Casio"
+              type="Aksesoris"
+              price="Rp 250.000"
+              image="https://placeimg.com/165/100/any"
+              imageAlt="Gambar jam tangan"
+            />
+          </div>
+          <div className="col-2">
+            <ItemCard
+              title="Jam Tangan Casio"
+              type="Aksesoris"
+              price="Rp 250.000"
+              image="https://placeimg.com/165/100/any"
+              imageAlt="Gambar jam tangan"
+            />
+          </div>
+          <div className="col-2">
+            <ItemCard
+              title="Jam Tangan Casio"
+              type="Aksesoris"
+              price="Rp 250.000"
+              image="https://placeimg.com/165/100/any"
+              imageAlt="Gambar jam tangan"
+            />
+          </div>
         </div>
 
 
