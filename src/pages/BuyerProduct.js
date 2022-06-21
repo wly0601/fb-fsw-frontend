@@ -6,7 +6,8 @@ import {
   Col,
 } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Carousel from '../components/Buyer/Carousel/Carousel'
+import NavbarLogIn from '../components/Navbar/NavbarLogIn';
+import Carousel from '../components/Buyer/Carousel/Carousel';
 
 function BuyerProduct() {
   useEffect(() => {
@@ -15,11 +16,14 @@ function BuyerProduct() {
   }, []);
 
   return (
+    <>
+    <NavbarLogIn />
     <Container>
       <Row>
         <Carousel />
       </Row>
     </Container>
+    </>
   )
 }
 
