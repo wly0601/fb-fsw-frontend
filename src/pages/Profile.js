@@ -24,6 +24,7 @@ function ProfileUser() {
   ]
 
   useEffect(() => {
+    // document.body.style.overflow = "hidden";
     window.scrollTo(0, 0)
     document.title = "Profile Detail";
   }, []);
@@ -37,7 +38,7 @@ function ProfileUser() {
           </Link>
         </div>
         <div className="App">
-          <AvatarImageCropper apply={setImage} actions={actions} />
+          <AvatarImageCropper apply={setImage} actions={actions} className='avatar-image' />
         </div>
         <FormProfile />
       </Container>

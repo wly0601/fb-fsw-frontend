@@ -1,9 +1,15 @@
 .App {
   text-align: center;
-  width: 150px;
-  height: 150px; 
-  margin: auto; 
+  width: 96px;
+  height: 96px;
+  margin: auto;
   border: 1px solid #ccc;
+}
+
+.avatar-image {
+  border-radius: 16px;
+  color: transparent;
+  opacity: 1;
 }
 
 .App-logo {
@@ -41,6 +47,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
