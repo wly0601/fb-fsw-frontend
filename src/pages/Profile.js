@@ -12,6 +12,7 @@ import FormProfile from '../components/Profile/Form'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../components/Profile/Form.Module.css';
 import '../styles/App.css';
+import NavbarProfile from '../components/Navbar/NavbarProfile';
 
 function ProfileUser() {
   const setImage = (file) => {
@@ -31,6 +32,7 @@ function ProfileUser() {
 
   return (
     <>
+    <NavbarProfile/>
       <Container>
         <div style={{ paddingTop: '30px' }}>
           <Link to="/register" style={{ color: 'black' }}>
