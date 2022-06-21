@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Homepage from "./pages/Homepage";
 import { Provider } from "react-redux";
 import Profile from './components/Profile/Form'
 import SellerProductPage from './components/Seller/Carousel/Carousel'
@@ -14,6 +15,7 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
+          <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path='/profile' element={<Profile />} />
