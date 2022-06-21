@@ -10,6 +10,7 @@ import Carousel from '../components/Seller/Carousel/Carousel'
 
 function BuyerProduct() {
   useEffect(() => {
+    window.scrollTo(0, 0)
     document.title = "Seller Product Page";
   }, []);
 

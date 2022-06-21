@@ -102,7 +102,7 @@ function Profile() {
         <Modal.Body>You must filled all the empty columns!!!</Modal.Body>
         <Modal.Footer>
           <Button variant='danger' onClick={handleClose}>
-            <Link to='/register' style={{ color: 'white', textDecoration: 'none' }}>
+            <Link to='/profile' style={{ color: 'white', textDecoration: 'none' }}>
               OK
             </Link>
           </Button>
