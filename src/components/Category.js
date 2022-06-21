@@ -13,26 +13,6 @@ const Category = (props) => {
       <Button variant="secondary" className="mx-2"><Search /> Elektronik</Button>
       <Button variant="secondary" className="mx-2"><Search /> Kesehatan</Button>
     </div>
-    // <div className="row">
-    //   <div className="col-2">
-    //     <Button variant="primary" style={{ backgroundColor: "#7126B5" }}>Semua</Button>
-    //   </div>
-    //   <div className="col-2">
-    //     <Button variant="secondary">Hobi</Button>
-    //   </div>
-    //   <div className="col-2">
-    //     <Button variant="secondary">Kendaraan</Button>
-    //   </div>
-    //   <div className="col-2">
-    //     <Button variant="secondary">Baju</Button>
-    //   </div>
-    //   <div className="col-2">
-    //     <Button variant="secondary">Elektronik</Button>
-    //   </div>
-    //   <div className="col-2">
-    //     <Button variant="secondary">Kesehatan</Button>
-    //   </div>
-    // </div>
   )
 }
 
