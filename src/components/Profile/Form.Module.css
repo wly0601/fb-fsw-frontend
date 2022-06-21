@@ -1,46 +1,56 @@
 .profile {
-    top: 20px;
+    top: 10px;
     justify-content: center;
-    position: relative;
+    position: sticky;
     max-width: 50%;
     max-height: 50%;
+    overflow-y: hidden;
 }
 
-.arrow {
-    background-color: transparent;
-    color: black;
-    border-color: transparent;
-}
-
-.arrow:hover {
-    background-color: transparent;
-    color: black;
-    border-color: transparent;
-}
-
-.form-camera {
-    background-color: #E2D4F0;
-    border-radius: 12px;
+.upload-profile {
+    margin-left: 15px;
+    justify-content: center;
     width: 96px;
     height: 96px;
-    justify-content: center;
-    border-color: #E2D4F0;
+    color: transparent;
+    background-color: #E2D4F0;
+    border-radius: 16px;
+    text-align: center;
+    opacity: 1;
+    z-index: 1;
+    position: relative;
+    margin-left: 520px;
 }
 
-.form-camera:hover {
+.upload-profile:hover {
+    justify-content: center;
+    width: 96px;
+    height: 96px;
+    color: transparent;
     background-color: #E2D4F0;
-    border-radius: 12px;
+    border-radius: 16px;
+    text-align: center;
+    opacity: 1;
+}
+
+.camera-icon {
+    color: #7126B5;
+    margin-top: 35px;
+    margin-left: 4px;
+    position: absolute;
+    z-index: 2;
 }
 
 .form-button {
     justify-content: center;
-    width: 98%;
+    width: 97%;
     height: 50px;
     margin: 10px;
     background-color: #7126B5;
     outline: #7126B5;
     color: white;
     border-radius: 16px;
+    text-align: center;
 }
 
 .form-button:hover {

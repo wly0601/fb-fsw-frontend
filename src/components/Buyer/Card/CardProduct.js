@@ -8,7 +8,7 @@ import {
 } from 'react-bootstrap';
 import VerticalModals from '../Modal/Modal'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../../styles/CardProduct.Module.css';
+import './CardProduct.Module.css';
 
 function Product() {
   const [modalShow, setModalShow] = React.useState(false);

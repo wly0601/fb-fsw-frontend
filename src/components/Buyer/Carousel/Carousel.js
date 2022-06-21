@@ -11,7 +11,7 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CardProduct from '../Card/CardProduct'
 import CardDescription from '../Card/CardDescription'
-import '../../../styles/Carousel.Module.css';
+import './Carousel.Module.css';
 
 function Carousel() {
   const options = {

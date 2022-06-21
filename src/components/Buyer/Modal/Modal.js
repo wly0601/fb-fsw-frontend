@@ -9,7 +9,7 @@ import {
   Container
 } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../../styles/Modal.Module.css';
+import './Modal.Module.css';
 
 function VerticalModals(props) {
   return (

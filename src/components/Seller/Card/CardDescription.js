@@ -7,7 +7,7 @@ import {
   Card
 } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../../styles/CardDescription.Module.css';
+import './CardDescription.Module.css';
 
 function Description() {
   return (

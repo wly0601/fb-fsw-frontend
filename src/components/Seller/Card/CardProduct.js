@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '@fontsource/poppins';
 import {
   Container,
@@ -8,7 +9,7 @@ import {
   Button,
 } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../../styles/CardProduct.Module.css';
+import './CardProduct.Module.css';
 
 function Product() {
   return (
@@ -22,10 +23,14 @@ function Product() {
                 <p style={{ color: 'grey' }}>Aksesoris</p>
                 <p>Rp.250.000</p>
                 <Row>
-                  <Button variant='primary' className='button-seller'>Terbitkan</Button>
+                  <Link to=''>
+                    <Button variant='primary' className='button-seller'>Terbitkan</Button>
+                  </Link>
                 </Row>
                 <Row>
-                  <Button variant="outline-primary" className='button-seller-outline'>Edit</Button>
+                  <Link to='/seller/sell'>
+                    <Button variant="outline-primary" className='button-seller-outline'>Edit</Button>
+                  </Link>
                 </Row>
               </Card.Body>
             </Card>

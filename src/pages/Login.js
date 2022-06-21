@@ -1,7 +1,12 @@
-import ImageLoginRegis from "../components/ImageLoginRegis";
-import LoginForm from "../components/LoginForm";
 import { useEffect } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import '@fontsource/poppins';
+import ImageLoginRegis from "../components/Login/ImageLoginRegis";
+import LoginForm from "../components/Login/LoginForm";
+import { 
+  Container, 
+  Row, 
+  Col 
+} from "react-bootstrap";
 
 const Login = () => {
   useEffect(() => {
