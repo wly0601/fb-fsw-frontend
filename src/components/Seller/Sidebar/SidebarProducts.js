@@ -22,7 +22,7 @@ function SidebarProducts (){
     return(
         <div className='card-test'>
             <div className='card-body'>
-                <h5 className='px-3 pt-1'>Kategory</h5>
+                <h5 className='px-3 pt-1'>Kategori</h5>
                 <ListGroup className='py-2 text-decoration' variant="flush">
      
                 <ListGroup.Item className='py-3'>

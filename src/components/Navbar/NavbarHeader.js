@@ -18,7 +18,7 @@ export default function NavbarHeader() {
                         <Form className="d-flex test">
                             <FormControl
                                 type="search"
-                                placeholder="Search"
+                                placeholder="Cari di sini..."
                                 className="me-2 searchBar"
                                 aria-label="Search"
                                 />
