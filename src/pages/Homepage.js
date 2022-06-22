@@ -1,7 +1,7 @@
-import Carousel from "../components/Carousel";
-import Category from "../components/Category";
-import ItemCard from "../components/ItemCard";
-import BtnAddProduct from "../components/BtnAddProduct";
+import Carousel from "../components/Homepage/Carousel";
+import Category from "../components/Homepage/Category";
+import ItemCard from "../components/Homepage/ItemCard";
+import BtnAddProduct from "../components/Homepage/BtnAddProduct";
 import { useEffect } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 
@@ -15,7 +15,7 @@ const Homepage = () => {
     <>
       <Container fluid>
         <div className="row mt-3">
-          <div className="col-12">
+          <div className="col">
             <Carousel images={IMAGES} />
           </div>
         </div>

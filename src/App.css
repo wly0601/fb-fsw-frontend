@@ -4,7 +4,7 @@
 
 html {
   box-sizing: border-box;
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 
 html body {
@@ -15,10 +15,10 @@ html body {
 
 .App {
   text-align: center;
-  width: 96px;
+  /* width: 96px;
   height: 96px;
   margin: auto;
-  border: 1px solid #ccc;
+  border: 1px solid #ccc; */
 }
 
 .avatar-image {
