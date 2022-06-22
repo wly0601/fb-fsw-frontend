@@ -5,7 +5,7 @@ import "./ImageLoginRegis.Module.css"
 
 const ImageLoginRegis = () => {
   return (
-    <Image src="./images/loginregis.png" className="img-fluid image-card" alt="" />
+    <Image fluid src="./images/loginregis.png" className="img-fluid image-card" alt="" />
   )
 };
 

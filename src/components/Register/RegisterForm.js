@@ -24,9 +24,13 @@ function RegisterForm() {
           <Form.Label>Password</Form.Label>
           <Form.Control type="password" placeholder="Masukkan password" />
         </Form.Group>
-        <Button className='mx-5' variant="primary" type="submit" style={{ backgroundColor: "#7126B5" }}>
-          Daftar
-        </Button>
+        <Form.Group className="mb-3 mx-5">
+          <Link to="/">
+            <Button className='btn-register' variant="custom" type="submit" style={{ backgroundColor: "#7126B5", color: "white" }}>
+              DAFTAR
+            </Button>
+          </Link>
+        </Form.Group>
       </Form>
 
       <Form>

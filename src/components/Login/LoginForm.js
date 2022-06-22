@@ -18,9 +18,19 @@ function LoginForm() {
           <Form.Label>Password</Form.Label>
           <Form.Control type="password" placeholder="Masukkan password" />
         </Form.Group>
-        <Button className='mx-5' variant="primary" type="submit" style={{ backgroundColor: "#7126B5" }}>
+
+        <Form.Group className="mb-3 mx-5">
+          <Link to="/">
+            <Button className='btn-login' variant="custom" type="submit" style={{ backgroundColor: "#7126B5", color: "white" }}>
+              MASUK
+            </Button>
+          </Link>
+        </Form.Group>
+
+        {/* <Button className='mx-5' variant="custom" type="submit" style={{ backgroundColor: "#7126B5", color: "white", minWidth:"100%", width:"100%" }}>
           MASUK
-        </Button>
+        </Button> */}
+        {/* <button className='btn btn-primary btn-login' type='submit'>MASUK</button> */}
       </Form>
 
       <Form>

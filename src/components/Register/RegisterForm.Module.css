@@ -24,6 +24,13 @@
   width: 600px;
 } */
 
+.btn-custom {
+  min-width: 100%;
+  width: 100%;
+  background-Color: "#7126B5";
+  color: "white"
+}
+
 .text-register {
   text-align: center;
 }
