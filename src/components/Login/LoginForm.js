@@ -12,26 +12,21 @@ function LoginForm() {
         <Form.Group className="mb-3 mx-5" controlId="formBasicEmail">
           <h1 className='title'>Masuk</h1>
           <Form.Label>Email</Form.Label>
-          <Form.Control type="email" placeholder="Contoh: johmdee@gmail.com" />
+          <Form.Control className='text-email' type="email" placeholder="Contoh: johmdee@gmail.com" style={{ borderRadius: "16px" }} />
         </Form.Group>
 
         <Form.Group className="mb-3 mx-5" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Masukkan password" />
+          <Form.Control className='text-password' type="password" placeholder="Masukkan password" style={{ borderRadius: "16px" }} />
         </Form.Group>
 
         <Form.Group className="mb-3 mx-5">
           <Link to="/">
-            <Button className='btn-login' variant="custom" type="submit" style={{ backgroundColor: "#7126B5", color: "white" }}>
+            <Button className='btn-login' variant="custom" type="submit" style={{ backgroundColor: "#7126B5", color: "white", borderRadius: "16px" }}>
               MASUK
             </Button>
           </Link>
         </Form.Group>
-
-        {/* <Button className='mx-5' variant="custom" type="submit" style={{ backgroundColor: "#7126B5", color: "white", minWidth:"100%", width:"100%" }}>
-          MASUK
-        </Button> */}
-        {/* <button className='btn btn-primary btn-login' type='submit'>MASUK</button> */}
       </Form>
 
       <Form>
