@@ -1,3 +1,11 @@
+* {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+}
+
 .login-form {
   margin: 0;
   position: relative;
@@ -16,6 +24,17 @@
   width: 600px;
 } */
 
+.btn-custom {
+  min-width: 100%;
+  width: 100%;
+  background-Color: "#7126B5";
+  color: "white"
+}
+
 .text-register {
   text-align: center;
+}
+
+h1.title {
+  font-weight: 1000;
 }

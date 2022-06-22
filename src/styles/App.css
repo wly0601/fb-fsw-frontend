@@ -1,24 +1,9 @@
-*, *::before, *::after {
-  box-sizing: inherit;
-}
-
-html {
-  box-sizing: border-box;
-  overflow-y: auto;
-}
-
-html body {
-  padding: 0;
-  margin: 0;
-  overflow-y: inherit;
-}
-
 .App {
   text-align: center;
-  /* width: 96px;
+  width: 96px;
   height: 96px;
   margin: auto;
-  border: 1px solid #ccc; */
+  border: 1px solid #ccc;
 }
 
 .avatar-image {
@@ -53,10 +38,16 @@ html body {
   color: #61dafb;
 }
 
+.register {
+  max-width: 100%;
+  max-height: 100%;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

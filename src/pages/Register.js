@@ -1,7 +1,12 @@
-import ImageLoginRegis from "../components/ImageLoginRegis";
-import RegisterForm from "../components/RegisterForm";
 import { useEffect } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import '@fontsource/poppins';
+import ImageLoginRegis from "../components/Login/ImageLoginRegis";
+import RegisterForm from "../components/Register/RegisterForm";
+import { 
+  Container, 
+  Row, 
+  Col 
+} from "react-bootstrap";
 
 const Register = () => {
   useEffect(() => {
@@ -10,7 +15,7 @@ const Register = () => {
 
   return (
     <>
-      <Container fluid style={{ paddingleft: 0, paddingright: 0}}>
+      <Container fluid className="p-0">
         <Row style={{ marginleft: 0}}>
           <Col style={{ paddingleft: 0}}><ImageLoginRegis /></Col>
           <Col><RegisterForm /></Col>
