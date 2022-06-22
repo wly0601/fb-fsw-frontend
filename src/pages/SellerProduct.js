@@ -6,7 +6,7 @@ import {
   Col,
 } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Carousel from '../components/Seller/Carousel/Carousel'
+import Carousel from '../components/Seller/Carousel/Carousel';
 
 function BuyerProduct() {
   useEffect(() => {
