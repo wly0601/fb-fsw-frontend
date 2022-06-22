@@ -1,7 +1,7 @@
 import React from 'react'
 import { Navbar, Container,Nav,NavDropdown, Form, FormControl,Button} from 'react-bootstrap'
 import {FaSearch} from 'react-icons/fa';
-import './Navbar.Module.css'
+import './Navigation.Module.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fontsource/poppins';
 import {FaSignInAlt} from 'react-icons/fa'
@@ -9,7 +9,7 @@ import {FaSignInAlt} from 'react-icons/fa'
 
 export default function NavbarHeader() {
        return (  
-                 <Navbar Navbar className="ms-auto navbar"bg="white" expand="lg">
+                 <Navbar className="ms-auto navbar"bg="white" expand="lg">
                     <Container fluid className='me-3'>
                     <Navbar.Brand href="#home" className='logo' ></Navbar.Brand>
                    
