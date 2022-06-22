@@ -10,7 +10,7 @@ function RegisterForm() {
     <div className='login-form'>
       <Form>
         <Form.Group className="mb-3 mx-5" controlId="formBasicEmail">
-          <h1>Daftar</h1>
+          <h1 className='title'>Daftar</h1>
           <Form.Label>Nama</Form.Label>
           <Form.Control type="email" placeholder="Nama Lengkap" />
         </Form.Group>

@@ -34,3 +34,7 @@
 .text-register {
   text-align: center;
 }
+
+h1.title {
+  font-weight: 1000;
+}

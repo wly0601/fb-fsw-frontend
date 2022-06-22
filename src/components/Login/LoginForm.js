@@ -1,6 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
+import '@fontsource/poppins';
 
 import './LoginForm.Module.css'
 
@@ -9,7 +10,7 @@ function LoginForm() {
     <div className='login-form'>
       <Form>
         <Form.Group className="mb-3 mx-5" controlId="formBasicEmail">
-          <h1>Masuk</h1>
+          <h1 className='title'>Masuk</h1>
           <Form.Label>Email</Form.Label>
           <Form.Control type="email" placeholder="Contoh: johmdee@gmail.com" />
         </Form.Group>
