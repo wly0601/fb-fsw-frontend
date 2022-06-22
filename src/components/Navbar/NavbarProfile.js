@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Navbar, Container,Nav,Offcanvas } from 'react-bootstrap'
-import "./Navbar.Module.css"
+import "./Navigation.Module.css"
 
 
 export default class NavbarProfile extends Component {

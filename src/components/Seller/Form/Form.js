@@ -101,7 +101,7 @@ function ProductInfo() {
                 </Link>
               </Col>
               <Col xs={6}>
-                <Link to=''>
+                <Link to='/side'>
                   <Button variant='primary' className='publish-button' type='submit'>
                     Terbitkan
                   </Button>

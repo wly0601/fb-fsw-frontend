@@ -2,6 +2,7 @@ import Carousel from "../components/Homepage/Carousel";
 import Category from "../components/Homepage/Category";
 import ItemCard from "../components/Homepage/ItemCard";
 import BtnAddProduct from "../components/Homepage/BtnAddProduct";
+import NavbarHeader from "../components/Navbar/NavbarHeader";
 import { useEffect } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 
@@ -13,6 +14,7 @@ const Homepage = () => {
 
   return (
     <>
+      <NavbarHeader />
       <Container fluid>
         <div className="row mt-3">
           <div className="col">

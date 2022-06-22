@@ -23,7 +23,7 @@ function Product() {
                 <p style={{ color: 'grey' }}>Aksesoris</p>
                 <p>Rp.250.000</p>
                 <Row>
-                  <Link to=''>
+                  <Link to='/side'>
                     <Button variant='primary' className='button-seller'>Terbitkan</Button>
                   </Link>
                 </Row>

@@ -6,7 +6,8 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import {
   Container
 } from 'react-bootstrap';
-import ProductInfo from '../components/Seller/Form/Form'
+import ProductInfo from '../components/Seller/Form/Form';
+import NavbarProduct from '../components/Navbar/NavbarProduct';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../components/Profile/Form.Module.css';
 import '../styles/App.css';
@@ -19,6 +20,7 @@ function ProfileUser() {
 
   return (
     <>
+      <NavbarProduct />
       <Container>
       <div style={{ paddingTop: '30px' }}>
         <Link to='/seller/product/:id' style={{ color: 'black' }}>
