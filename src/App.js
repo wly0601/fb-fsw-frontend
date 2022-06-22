@@ -11,6 +11,7 @@ import Profile from './pages/Profile'
 import ProductInfo from './pages/ProductInfo'
 import SellerProductPage from './pages/SellerProduct'
 import BuyerProductPage from './pages/BuyerProduct'
+import ListSell from './pages/ListSell';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
@@ -25,6 +26,7 @@ function App() {
           <Route path='/seller/sell' element={<ProductInfo />} />
           <Route path='/seller/product/:id' element={<SellerProductPage />} />
           <Route path='/buyer/product/:id' element={<BuyerProductPage />} />
+          <Route path="/side" element={<ListSell />} />
         </Routes>
       </BrowserRouter>
   );
