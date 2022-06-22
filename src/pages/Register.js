@@ -15,7 +15,7 @@ const Register = () => {
 
   return (
     <>
-      <Container fluid style={{ paddingleft: 0, paddingright: 0}}>
+      <Container fluid className="p-0">
         <Row style={{ marginleft: 0}}>
           <Col style={{ paddingleft: 0}}><ImageLoginRegis /></Col>
           <Col><RegisterForm /></Col>

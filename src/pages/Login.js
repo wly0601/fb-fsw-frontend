@@ -11,11 +11,12 @@ import {
 const Login = () => {
   useEffect(() => {
     document.title = "Masuk";
+    document.body.style.overflow = "hidden";
   }, []);
 
   return (
     <>
-      <Container fluid style={{ paddingleft: 0, paddingright: 0}}>
+      <Container fluid className="p-0">
         <div className="row">
           <div className="col-6">
             <ImageLoginRegis />
