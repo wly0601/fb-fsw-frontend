@@ -1,10 +1,10 @@
 import React from 'react'
-import { Navbar, Container,Nav, Form, FormControl} from 'react-bootstrap'
+import { Navbar, Container,Nav, Form} from 'react-bootstrap'
 import {FaSearch} from 'react-icons/fa';
-import './Navigation.Module.css'
+import './Navigation.Module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fontsource/poppins';
-import {FaSignInAlt} from 'react-icons/fa'
+import {FaSignInAlt} from 'react-icons/fa';
 import {FaBell} from 'react-icons/fa'
 import {FaRegUser} from 'react-icons/fa';
 import {FaListUl} from 'react-icons/fa';
@@ -18,10 +18,10 @@ export default function NavbarLogIn() {
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                         <Form className="d-flex test">
-                            <FormControl
+                            <input
                                 type="search"
                                 placeholder="Cari di sini..."
-                                className="me-2 searchBar"
+                                className="me-0 searchBar"
                                 aria-label="Search"
                                 />
                             <i className='searchIcon' type='button'><FaSearch/></i>
@@ -33,9 +33,7 @@ export default function NavbarLogIn() {
                             </Nav.Link>
                             <Nav.Link href="#link">
                                 <FaRegUser className='link'/>
-                                
-                            </Nav.Link>
-                            
+                            </Nav.Link>              
                         </Nav>
                     </Navbar.Collapse>
              </Container>
