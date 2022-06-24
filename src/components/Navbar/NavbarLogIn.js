@@ -8,7 +8,7 @@ import {FaBell} from 'react-icons/fa'
 import {FaRegUser} from 'react-icons/fa';
 import {FaListUl} from 'react-icons/fa';
 
-const options = ["Safira", "Bagus", "Ghifari"];
+const options = ["Profile", "Daftar Jual", "Log Out"];
 
 export default function NavbarLogIn() {
     const [isOpen, setIsOpen] = useState(false);
