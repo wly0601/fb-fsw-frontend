@@ -21,7 +21,6 @@ export default class NavbarProfile extends Component {
                         </Container>         
                     </Navbar>
                 </div>
-
         )
     }
 }

@@ -10,12 +10,9 @@ export default class NavbarProduct extends Component {
                     <Navbar className="ms-auto "bg="white" expand="lg">
                         <Container fluid className='mt-3 mb-3'>
                             <Navbar.Brand href="#home" className='logo' ></Navbar.Brand>
-                        </Container>
-                            
-                        
+                        </Container>            
                     </Navbar>
                 </div>
-
         )
     }
 }

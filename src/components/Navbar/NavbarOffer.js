@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Navbar, Container,Nav,Offcanvas } from 'react-bootstrap'
 import './Navigation.Module.css'
 
-
 export default class NavbarPenawaran extends Component {
     render() {
         return (
@@ -18,12 +17,9 @@ export default class NavbarPenawaran extends Component {
                                 </Nav>
                             </Offcanvas.Body>
                             </Navbar.Offcanvas>
-                        </Container>
-                            
-                        
+                        </Container> 
                     </Navbar>
                 </div>
-
         )
     }
 }
