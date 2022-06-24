@@ -72,3 +72,21 @@ p,
 .link:hover {
     color: #7126B5;
 }
+
+ul {
+    position:absolute;
+    background: #ffffff;
+    border: 2px solid #e5e5e5;
+    color: #3faffa;
+    left: 84.9%;
+}
+li {
+    list-style: none;  
+    margin-bottom: 0.8em;
+    justify-content: start;
+    
+}
+.button-fa{
+    background: #FFFFFF;
+    border-color: #FFFFFF;;
+}
