@@ -1,0 +1,14 @@
+.button-sell {
+    background-color: #7126B5;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    width: 10%;
+    height: 30%;
+    text-align: center;
+    margin-left: 550px;
+    margin-bottom: 10px;
+}
+
+.button-sell:hover {
+  background-color: #7126B5;
+}
