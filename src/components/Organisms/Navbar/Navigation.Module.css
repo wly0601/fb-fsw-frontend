@@ -52,6 +52,8 @@
     width: 105px;
     height: 35px;
     justify-content: space-around;
+    color:#FFFFFF;
+    border-color: #7126B5;
 }
 
 .NavLink {
@@ -70,4 +72,22 @@ p,
 
 .link:hover {
     color: #7126B5;
+}
+
+ul {
+    position:absolute;
+    background: #ffffff;
+    border: 2px solid #e5e5e5;
+    color: #3faffa;
+    left: 85.9%;
+}
+li {
+    list-style: none;  
+    margin-bottom: 0.8em;
+    justify-content: start;
+    
+}
+.button-fa{
+    background: #FFFFFF;
+    border-color: #FFFFFF;;
 }
