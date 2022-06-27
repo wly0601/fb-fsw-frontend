@@ -2,14 +2,12 @@ import React from 'react';
 import LoginInput from '../../Moleculs/Form/LoginInput';
 // import './Input.Module.css';
 
-const FormLogin = () => {
+function FormLogin() {
   return (
-    <>
-      <div className='form-list'>
-        <LoginInput />
-      </div>
-    </>
-  )
+    <div className="form-list">
+      <LoginInput />
+    </div>
+  );
 }
 
 export default FormLogin;

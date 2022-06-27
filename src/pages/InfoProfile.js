@@ -1,12 +1,12 @@
 import React from 'react';
 import TemplateProfile from '../components/Templates/Profile/TemplateProfile';
 
-const InfoProfile = () => {
+function InfoProfile() {
   return (
     <div>
       <TemplateProfile />
     </div>
-  )
+  );
 }
 
 export default InfoProfile;

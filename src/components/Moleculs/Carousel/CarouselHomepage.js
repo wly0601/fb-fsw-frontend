@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 // import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import './Carousel.Module.css';
 
-const ImageSlider = ({ images, slidesToShow = 3 }) => {
+function ImageSlider({ images, slidesToShow = 3 }) {
   const [imageIndex, setImageIndex] = useState(0);
 
   const settings = {
@@ -12,27 +12,27 @@ const ImageSlider = ({ images, slidesToShow = 3 }) => {
     infinite: true,
     dots: false,
     speed: 300,
-    slidesToShow: slidesToShow,
+    slidesToShow,
     centerPadding: '0',
     swipeToSlide: true,
     focusOnSelect: true,
-    beforeChange: (current, next) => setImageIndex(next),
+    beforeChange: (current, next) => { return setImageIndex(next); },
     responsive: [
       {
         breakpoint: 1490,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 1
-        }
+          slidesToScroll: 1,
+        },
       },
       {
         breakpoint: 820,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   const templateImages = images.map((image, idx) => {
@@ -42,7 +42,7 @@ const ImageSlider = ({ images, slidesToShow = 3 }) => {
           className={idx === imageIndex ? 'activeSlide' : 'slide'}
           key={image.id}
         >
-          <div className='slideWrapper'>
+          <div className="slideWrapper">
             {image.code ? image.code : <img src={image.src} alt={image.alt} />}
           </div>
         </div>
@@ -51,7 +51,8 @@ const ImageSlider = ({ images, slidesToShow = 3 }) => {
     return null;
   });
 
+  // eslint-disable-next-line react/jsx-props-no-spreading
   return <Slider {...settings}>{templateImages}</Slider>;
-};
+}
 
 export default ImageSlider;

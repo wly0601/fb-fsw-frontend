@@ -1,12 +1,12 @@
 import React from 'react';
 import TemplateProduct from '../components/Templates/Product/TemplateProduct';
 
-const InfoProduct = () => {
+function InfoProduct() {
   return (
     <div>
       <TemplateProduct />
     </div>
-  )
+  );
 }
 
 export default InfoProduct;

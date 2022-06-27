@@ -1,8 +1,8 @@
+import { Container } from 'react-bootstrap';
 import NavbarLogin from '../../Organisms/Navbar/NavbarLogin';
 import ListProduct from '../../Organisms/Seller/ListProduct';
-import { Container } from 'react-bootstrap';
 
-const TemplateListProduct = () => {
+function TemplateListProduct() {
   return (
     <>
       <NavbarLogin />
@@ -10,7 +10,7 @@ const TemplateListProduct = () => {
         <ListProduct />
       </Container>
     </>
-  )
-};
+  );
+}
 
 export default TemplateListProduct;

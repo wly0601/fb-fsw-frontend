@@ -1,8 +1,8 @@
+import { Container } from 'react-bootstrap';
 import NavbarHeader from '../../Organisms/Navbar/NavbarHeader';
 import Home from '../../Organisms/Homepage/Home';
-import { Container } from 'react-bootstrap';
 
-const TemplateHome = () => {
+function TemplateHome() {
   return (
     <>
       <NavbarHeader />
@@ -10,7 +10,7 @@ const TemplateHome = () => {
         <Home />
       </Container>
     </>
-  )
-};
+  );
+}
 
 export default TemplateHome;
