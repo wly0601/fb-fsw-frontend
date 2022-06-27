@@ -6,7 +6,7 @@ import LoginInput from '../../Moleculs/Form/LoginInput';
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 // import './TemplateRegister.Module.css';
 
-const FormRegister = () => {
+const TemplateLogin = () => {
   return (
     <>
       <div className='form-list'>
@@ -35,4 +35,4 @@ const FormRegister = () => {
   )
 }
 
-export default FormRegister;
+export default TemplateLogin;

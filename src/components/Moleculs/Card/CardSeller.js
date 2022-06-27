@@ -8,7 +8,7 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Card.Module.css';
 
-function Product() {
+function CardSeller() {
   return (
     <>
       <Container>
@@ -29,4 +29,4 @@ function Product() {
     </>
   )
 }
-export default Product;
+export default CardSeller;

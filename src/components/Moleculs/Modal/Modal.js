@@ -8,6 +8,7 @@ import {
   Container
 } from 'react-bootstrap';
 import TitleList from '../../Atoms/Title/Title'
+import InputList from '../../Atoms/Input/Input';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Modal.Module.css';
 
@@ -15,7 +16,7 @@ function VerticalModals(props) {
   return (
     <Modal
       {...props}
-      aria-labelledby="contained-modal-title-vcenter"
+      aria-labelledby='contained-modal-title-vcenter'
       centered
       dialogClassName='card-modal'
       style={{ borderRadius: '100px' }}
@@ -33,15 +34,15 @@ function VerticalModals(props) {
               <img src={process.env.PUBLIC_URL + '/images/first_watch.png'} className='seller' alt='' />
             </Col>
             <Col xs={8}>
-              <h5>Jam Tangan Casio</h5>
+              <p style={{ fontWeight: 'bold' }}>Jam Tangan Casio</p>
               <p>Rp.250.000</p>
             </Col>
           </Row>
         </Container>
         <Row>
-          <Form.Group className="mb-3" controlId="form">
+          <Form.Group className='mb-3' controlId='form'>
             <Form.Label className='label'>Harga Tawar</Form.Label>
-            <Form.Control type="text" placeholder="Rp 0,00" style={{ color: 'grey', fontSize: '14px' }} />
+            <InputList type='text' placeholder='Rp 0,00' />
           </Form.Group>
         </Row>
         <Row>

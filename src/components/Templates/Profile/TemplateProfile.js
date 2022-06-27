@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import AvatarImageCropper from 'react-avatar-image-cropper'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
-import NavbarProfile from '../../Organisms/Navbar/NavbarProfile'
+import AvatarImageCropper from 'react-avatar-image-cropper';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import NavbarProfile from '../../Organisms/Navbar/NavbarProfile';
 import ProfileInput from '../../Moleculs/Form/ProfileInput';
 // import ButtonList from '../../Atoms/Button/ButtonList';
 import {
@@ -15,7 +15,7 @@ import {
 } from 'react-bootstrap';
 import './TemplateProfile.Module.css';
 
-const FormRegister = () => {
+const TemplateProfile = () => {
 
   // Modal Pop Up (Error)
   const [show, setShow] = useState(false);
@@ -69,4 +69,4 @@ const FormRegister = () => {
   )
 }
 
-export default FormRegister;
+export default TemplateProfile;

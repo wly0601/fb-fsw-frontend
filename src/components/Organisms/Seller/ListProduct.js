@@ -1,5 +1,5 @@
 import React from 'react';
-import Title from '../../Atoms/Title/Title'
+import Title from '../../Atoms/Title/Title';
 import CardSellerBtn from '../../Moleculs/Card/CardSellerBtn';
 import Sidebar from '../../Moleculs/Sidebar/SidebarProduct';
 import ItemCard from '../../Moleculs/Card/ItemCard';
@@ -8,10 +8,10 @@ import {
   Row,
   Col
 } from 'react-bootstrap';
-import { FaPlus } from 'react-icons/fa'
+import { FaPlus } from 'react-icons/fa';
 import './Product.Module.css';
 
-const ProductPage = () => {
+const ListProduct = () => {
   return (
     <>
       <Container className='mt-5'>
@@ -47,4 +47,4 @@ const ProductPage = () => {
   )
 }
 
-export default ProductPage;
+export default ListProduct;

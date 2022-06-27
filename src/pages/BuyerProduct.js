@@ -1,7 +1,7 @@
 import React from 'react';
 import TemplateBuyerProduct from '../components/Templates/Buyer/TemplateBuyerProduct';
 
-const SellerProduct = () => {
+const BuyerProduct = () => {
   return (
     <div>
       <TemplateBuyerProduct />
@@ -9,4 +9,4 @@ const SellerProduct = () => {
   )
 }
 
-export default SellerProduct;
+export default BuyerProduct;

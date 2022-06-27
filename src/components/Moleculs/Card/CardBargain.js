@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import {
   Container,
   Row,
-  Card,
-  Button,
-  Modal
+  Card
 } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import VerticalModals from '../Modal/Modal'
+import VerticalModals from '../Modal/Modal';
 import './Card.Module.css';
 
-function Product() {
+function CardBargain() {
   const [modalShow, setModalShow] = React.useState(false);
   return (
     <>
@@ -33,4 +30,4 @@ function Product() {
     </>
   )
 }
-export default Product;
+export default CardBargain;

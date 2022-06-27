@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
-import NavbarProduct from '../../Organisms/Navbar/NavbarProduct'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import NavbarProduct from '../../Organisms/Navbar/NavbarProduct';
 import ProductInput from '../../Moleculs/Form/ProductInput';
 // import ButtonList from '../../Atoms/Button/ButtonList';
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import './TemplateProduct.Module.css';
 
-const FormRegister = () => {
+const TemplateProduct = () => {
   return (
     <>
       <div>
@@ -46,4 +46,4 @@ const FormRegister = () => {
   )
 }
 
-export default FormRegister;
+export default TemplateProduct;

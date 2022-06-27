@@ -1,8 +1,8 @@
-import NavbarLogin from '../../Organisms/Navbar/NavbarLogin'
+import NavbarLogin from '../../Organisms/Navbar/NavbarLogin';
 import ListProduct from '../../Organisms/Seller/ListProduct';
 import { Container } from 'react-bootstrap';
 
-const TemplateSellerProduct = () => {
+const TemplateListProduct = () => {
   return (
     <>
       <NavbarLogin />
@@ -13,4 +13,4 @@ const TemplateSellerProduct = () => {
   )
 };
 
-export default TemplateSellerProduct;
+export default TemplateListProduct;

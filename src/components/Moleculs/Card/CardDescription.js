@@ -8,7 +8,7 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Card.Module.css';
 
-function Description() {
+function CardDescription() {
   return (
     <>
       <Container>
@@ -30,4 +30,4 @@ function Description() {
     </>
   )
 }
-export default Description;
+export default CardDescription;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Form } from 'react-bootstrap';
 import './Input.Module.css';
 
-const InputCity = (props) => {
+const InputCategory = (props) => {
   const { city } = props;
 
   return (
@@ -23,4 +23,4 @@ const InputCity = (props) => {
   )
 }
 
-export default InputCity;
+export default InputCategory;

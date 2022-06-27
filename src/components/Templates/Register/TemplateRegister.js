@@ -6,7 +6,7 @@ import RegisterInput from '../../Moleculs/Form/RegisterInput';
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import './TemplateRegister.Module.css';
 
-const FormRegister = () => {
+const TemplateRegister = () => {
   return (
     <>
       <div className='form-list'>
@@ -35,4 +35,4 @@ const FormRegister = () => {
   )
 }
 
-export default FormRegister;
+export default TemplateRegister;

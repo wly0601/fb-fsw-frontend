@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
-import InputList from '../../Atoms/Input/Input'
+import InputList from '../../Atoms/Input/Input';
 import InputCity from '../../Atoms/Input/InputCity';
 import './FormInput.Module.css';
 

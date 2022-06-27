@@ -2,7 +2,7 @@ import React from 'react';
 import ProfileInput from '../../Moleculs/Form/ProfileInput';
 // import './Input.Module.css';
 
-const FormLogin = () => {
+const FormProfile = () => {
   return (
     <>
       <div className='form-list'>
@@ -12,4 +12,4 @@ const FormLogin = () => {
   )
 }
 
-export default FormLogin;
+export default FormProfile;

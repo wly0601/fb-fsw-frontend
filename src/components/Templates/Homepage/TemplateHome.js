@@ -1,5 +1,5 @@
-import NavbarHeader from '../../Organisms/Navbar/NavbarHeader'
-import Home from '../../Organisms/Homepage/Home'
+import NavbarHeader from '../../Organisms/Navbar/NavbarHeader';
+import Home from '../../Organisms/Homepage/Home';
 import { Container } from 'react-bootstrap';
 
 const TemplateHome = () => {

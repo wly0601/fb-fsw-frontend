@@ -2,7 +2,7 @@ import React from 'react';
 import { Navbar, Container, Nav, Offcanvas } from 'react-bootstrap';
 import './Navigation.Module.css';
 
-const NavbarProfile = () => {
+const NavbarOffering = () => {
   return (
     <div>
       <Navbar className='ms-auto' bg='white' expand='lg'>
@@ -11,8 +11,8 @@ const NavbarProfile = () => {
           <Navbar.Toggle aria-controls={`offcanvasNavbar-expand`} />
           <Navbar.Offcanvas>
             <Offcanvas.Body>
-              <Nav className='flex-grow-1 NavLink mt-3 justify-content-center'>
-                <p >Lengkapi Info Profile</p>
+              <Nav className='flex-grow-1 mt-3 NavLink justify-content-center'>
+                <p >Info Penawaran</p>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
@@ -22,4 +22,4 @@ const NavbarProfile = () => {
   )
 }
 
-export default NavbarProfile;
+export default NavbarOffering;
