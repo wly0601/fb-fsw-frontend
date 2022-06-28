@@ -1,28 +1,12 @@
-import { useEffect } from "react";
-import '@fontsource/poppins';
-import ImageLoginRegis from "../components/Login/ImageLoginRegis";
-import RegisterForm from "../components/Register/RegisterForm";
-import { 
-  Container, 
-  Row, 
-  Col 
-} from "react-bootstrap";
+import React from 'react';
+import TemplateRegister from '../components/Templates/Register/TemplateRegister';
 
-const Register = () => {
-  useEffect(() => {
-    document.title = "Daftar";
-  }, []);
-
+function Register() {
   return (
-    <>
-      <Container fluid className="p-0">
-        <Row style={{ marginleft: 0}}>
-          <Col style={{ paddingleft: 0}}><ImageLoginRegis /></Col>
-          <Col><RegisterForm /></Col>
-        </Row>
-      </Container>
-    </>
-  )
-};
+    <div>
+      <TemplateRegister />
+    </div>
+  );
+}
 
 export default Register;

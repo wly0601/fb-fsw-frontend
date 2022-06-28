@@ -1,31 +1,12 @@
-import { React, useEffect } from 'react';
-import "@fontsource/poppins";
-import {
-  Container,
-  Row,
-  Col,
-} from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import NavbarLogIn from '../components/Navbar/NavbarLogIn';
-import Carousel from '../components/Seller/Carousel/Carousel';
+import React from 'react';
+import TemplateSellerProduct from '../components/Templates/Seller/TemplateSellerProduct';
 
-function BuyerProduct() {
-  useEffect(() => {
-    window.scrollTo(0, 0)
-    document.title = "Seller Product Page";
-  }, []);
-
+function SellerProduct() {
   return (
-    <>
-      <NavbarLogIn />
-      <Container>
-        <Row>
-          <Carousel />
-        </Row>
-      </Container>
-    </>
-
-  )
+    <div>
+      <TemplateSellerProduct />
+    </div>
+  );
 }
 
-export default BuyerProduct;
+export default SellerProduct;

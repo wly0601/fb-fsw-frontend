@@ -1,0 +1,12 @@
+.btn-register {
+    background-color: #7126B5;
+    color: white;
+    border-radius: 16px;
+    width: 100%;
+}
+
+.btn-register:hover {
+    background-color: #7126B5;
+    color: white;
+    border-radius: 16px;
+}
