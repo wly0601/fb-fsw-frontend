@@ -1,0 +1,26 @@
+.card-test {
+  width: 268px;
+  height: 270px;
+  background: #FFFFFF;
+  /* Shadow/High */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+}
+
+.active {
+  color: #7126B5;
+}
+
+.text-decoration {
+  text-decoration: none;
+}
+
+.link {
+  color: black;
+
+}
+
+.li {
+  text-decoration: none;
+  list-style-type: none;
+}

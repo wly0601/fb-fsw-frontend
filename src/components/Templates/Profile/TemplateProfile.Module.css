@@ -1,0 +1,35 @@
+.profile {
+  top: 10px;
+  justify-content: center;
+  position: sticky;
+  max-width: 50%;
+  max-height: 50%;
+  overflow-y: hidden;
+}
+
+.avatar {
+    text-align: center;
+    width: 96px;
+    height: 96px;
+    margin: auto;
+    border: 1px solid #ccc;
+}
+
+.avatar-image {
+  border-radius: 16px;
+  color: transparent;
+  opacity: 1;
+}
+
+.btn-profile {
+    background-color: #7126B5;
+    color: white;
+    border-radius: 16px;
+    width: 100%;
+}
+
+.btn-profile:hover {
+    background-color: #7126B5;
+    color: white;
+    border-radius: 16px;
+}
