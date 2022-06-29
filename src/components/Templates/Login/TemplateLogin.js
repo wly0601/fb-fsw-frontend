@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import {
   Container, Row, Col, Button, Form,
 } from 'react-bootstrap';
+import CheckButton from 'react-validation/build/button';
 import ImageHome from '../../Atoms/Image/ImageHome';
 import LoginInput from '../../Moleculs/Form/LoginInput';
 // import ButtonList from '../../Atoms/Button/ButtonList';
@@ -18,11 +19,11 @@ function TemplateLogin() {
           </Col>
           <Col>
             <LoginInput />
-            <Link to="/">
+            {/* <Link to="/">
               <Button className="mb-3 mx-5 btn-register" variant="custom" type="submit">
                 Masuk
               </Button>
-            </Link>
+            </Link> */}
             <Form className="text-center">
               <Form.Group className="my-3 mx-5">
                 <Form.Text style={{ marginLeft: '50px' }}>Belum punya akun? </Form.Text>
