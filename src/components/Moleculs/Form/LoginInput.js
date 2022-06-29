@@ -45,6 +45,7 @@ function LoginInput(props) {
     e.preventDefault();
     setLoading(true);
     formLogin.current.validateAll();
+    console.log(checkBtn.current);
     // eslint-disable-next-line no-underscore-dangle
     if (checkBtn.current.context._errors.length === 0) {
       dispatch(login(email, password))
