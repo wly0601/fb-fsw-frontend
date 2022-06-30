@@ -8,9 +8,9 @@ import Input from 'react-validation/build/input';
 import CheckButton from 'react-validation/build/button';
 // import { Form } from 'react-bootstrap';
 import TitleList from '../../Atoms/Title/Title';
-import InputList from '../../Atoms/Input/Input';
+// import InputList from '../../Atoms/Input/Input';
 import './FormInput.Module.css';
-import { login } from '../../../actions/auth';
+import { login } from '../../../redux/actions/auth';
 
 // eslint-disable-next-line consistent-return
 const required = (value) => {

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import AvatarImageCropper from 'react-avatar-image-cropper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -12,6 +11,7 @@ import {
 } from 'react-bootstrap';
 import NavbarProfile from '../../Organisms/Navbar/NavbarProfile';
 import ProfileInput from '../../Moleculs/Form/ProfileInput';
+import ProfileImage from '../../Atoms/Image/ProfileImage';
 // import ButtonList from '../../Atoms/Button/ButtonList';
 import './TemplateProfile.Module.css';
 
@@ -43,7 +43,7 @@ function TemplateProfile() {
                 </Link>
               </div>
               <div className="avatar">
-                <AvatarImageCropper apply={setImage} actions={actions} className="avatar-image" />
+                <ProfileImage />
               </div>
               <ProfileInput />
               <Button className="mt-3 mb-3 mx-5 btn-profile" variant="custom" type="submit" onClick={handleShow} style={{ width: '85%' }}>

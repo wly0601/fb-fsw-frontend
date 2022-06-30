@@ -18,11 +18,11 @@ function TemplateRegister() {
           </Col>
           <Col>
             <RegisterInput />
-            <Link to="/">
+            {/* <Link to="/">
               <Button className="mb-3 mx-5 btn-register" variant="custom" type="submit">
                 Daftar
               </Button>
-            </Link>
+            </Link> */}
             <Form className="text-center">
               <Form.Group className="my-3 mx-5">
                 <Form.Text style={{ marginLeft: '50px' }}>Sudah punya akun? </Form.Text>
