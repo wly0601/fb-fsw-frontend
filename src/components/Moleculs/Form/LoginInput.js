@@ -37,10 +37,12 @@ function LoginInput(props) {
     const email = e.target.value;
     setEmail(email);
   };
+
   const onChangePassword = (e) => {
     const password = e.target.value;
     setPassword(password);
   };
+
   const handleLogin = (e) => {
     e.preventDefault();
     setLoading(true);

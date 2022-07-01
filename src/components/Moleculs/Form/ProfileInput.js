@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import InputList from '../../Atoms/Input/Input';
 import InputCity from '../../Atoms/Input/InputCity';
 import './FormInput.Module.css';
@@ -24,6 +24,9 @@ function ProfileInput() {
           <Form.Label>No Handphone</Form.Label>
           <InputList type="phone" placeholder="08121234569" />
         </Form.Group>
+        {/* <Button className="mt-3 mb-3 mx-5 btn-profile" variant="custom" type="submit" style={{ width: '85%' }}>
+          Simpan
+        </Button> */}
       </Form>
     </div>
   );
