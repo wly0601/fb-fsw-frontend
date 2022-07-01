@@ -1,15 +1,15 @@
 /* eslint-disable react/jsx-indent */
 /* eslint-disable react/prop-types */
-import React, { useState, Component } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { Form } from 'react-bootstrap';
 import Select from 'react-select';
 import './Input.Module.css';
 
-function InputCity(props) {
+function InputCity() {
   const [populate, setPopulate] = useState([]);
 
-  const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjksIm5hbWUiOiJLaW0gVGFlaHl1bmciLCJlbWFpbCI6InRodkBnbWFpbC5jb20iLCJpYXQiOjE2NTY1ODgyMDN9.V5uUzP0w1nIRKlkh8HR4KwQUHN7CqOzk35D3u-l0MsM';
+  const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkFobWFkIFl1bmVkYSBBbGZhanIiLCJlbWFpbCI6ImFobWFkYWxmYWpyQGdtYWlsLmNvbSIsImlhdCI6MTY1NjY1NDAyMn0.DR95ABFH0LS7A_Uzuo7HKDXSTZ3at4JtObj3799Pmfk';
   axios.get('https://second-hand-be.herokuapp.com/api/cities', {
     headers: {
       Authorization: `Bearer ${accessToken}`,
@@ -39,15 +39,6 @@ function InputCity(props) {
       };
     },
   };
-
-  // const options = [
-  //   { value: 'Jakarta', label: 'Jakarta' },
-  //   { value: 'Bandung', label: 'Bandung' },
-  //   { value: 'Semarang', label: 'Semarang' },
-  //   { value: 'Malang', label: 'Malang' },
-  //   { value: 'Medan', label: 'Medan' },
-  //   { value: 'Bali', label: 'Bali' },
-  // ];
 
   return (
     <div className="mb-3">

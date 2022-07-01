@@ -18,8 +18,6 @@ import './TemplateProfile.Module.css';
 function TemplateProfile() {
   // Modal Pop Up (Error)
   const [show, setShow] = useState(false);
-
-  // Upload Image
   const [image, setImage] = useState(null);
   const [uploadedFileURL, setUploadedFileURL] = useState(null);
 
@@ -33,7 +31,7 @@ function TemplateProfile() {
     form.append('picture', image);
 
     try {
-      const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkFobWFkIFl1bmVkYSBBbGZhanIiLCJlbWFpbCI6ImFobWFkYWxmYWpyQGdtYWlsLmNvbSIsImlhdCI6MTY1NjY1NDAyMn0.DR95ABFH0LS7A_Uzuo7HKDXSTZ3at4JtObj3799Pmfk';
+      const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsI…EyMH0.lEIWWzbETl04FP0ndkzaWgyjDT0VC6xR7NE9lvx0BEA';
 
       const user = await axios.get('https://second-hand-be.herokuapp.com/api/who-am-i', {
         headers: {
@@ -60,7 +58,7 @@ function TemplateProfile() {
       console.log(err?.responses?.data);
     }
   }
-  console.log(uploadedFileURL);
+  // console.log(uploadedFileURL);
 
   const handleChangeImage = (e) => {
     setImage(e.target.files[0]);
@@ -86,6 +84,14 @@ function TemplateProfile() {
       }
     };
   }, [image]);
+  // const setImage = (file) => {
+  //   console.log(file);
+  // };
+
+  // const actions = [
+  //   <Button variant="info" key={0}>Apply</Button>,
+  //   <Button variant="dark" key={1}>Cancel</Button>,
+  // ];
 
   return (
     <>
@@ -100,17 +106,18 @@ function TemplateProfile() {
                 </Link>
               </div>
               <form onSubmit={handleSubmit}>
-                {image && (
+                {/* {image && (
                   <img src={image} alt="" />
-                )}
+                )} */}
                 {uploadedFileURL
                   ? (
-                    <img src={uploadedFileURL} alt="preview" className="img-preview-wrapper" />
+                    <p>
+                      <img src={uploadedFileURL} alt="preview" className="img-preview-wrapper" />
+                    </p>
                   ) : null}
                 <div className="avatar">
                   <input
                     type="file"
-                    accept="image/*"
                     onChange={handleChangeImage}
                     className="avatar-image"
                   />

@@ -8,11 +8,12 @@
 }
 
 .avatar {
-    text-align: center;
-    width: 96px;
-    height: 96px;
-    margin: auto;
-    border: 1px solid #ccc;
+  text-align: center;
+  width: 96px;
+  height: 96px;
+  margin: auto;
+  border: 1px solid #ccc;
+  z-index: 1;
 }
 
 .avatar-image {
@@ -22,14 +23,27 @@
 }
 
 .btn-profile {
-    background-color: #7126B5;
-    color: white;
-    border-radius: 16px;
-    width: 100%;
+  background-color: #7126B5;
+  color: white;
+  border-radius: 16px;
+  width: 100%;
 }
 
 .btn-profile:hover {
-    background-color: #7126B5;
-    color: white;
-    border-radius: 16px;
+  background-color: #7126B5;
+  color: white;
+  border-radius: 16px;
+}
+
+.img-preview-wrapper {
+  text-align: center;
+  justify-content: center;
+  margin-left: 40%;
+  width: 150px;
+  height: 150px;
+  z-index: 2;
+  top: 100px;
+  position: relative;
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
 }
