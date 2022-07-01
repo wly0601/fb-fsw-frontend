@@ -41,9 +41,9 @@ export const register = (name, email, password) => {
   };
 };
 
-export const login = (username, password) => {
+export const login = (email, password) => {
   return (dispatch) => {
-    return AuthService.login(username, password).then(
+    return AuthService.login(email, password).then(
       (data) => {
         dispatch({
           type: LOGIN_SUCCESS,
