@@ -1,4 +1,6 @@
 /* eslint-disable import/prefer-default-export */
+/* eslint-disable arrow-body-style */
+/* eslint-disable import/prefer-default-export */
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -68,4 +70,11 @@ export const login = (email, password) => {
       },
     );
   };
+};
+
+export const logout = () => (dispatch) => {
+  AuthService.logout();
+  dispatch({
+    type: LOGOUT,
+  });
 };
