@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
@@ -10,63 +9,144 @@ import {
   Button,
   Modal,
 } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { getListUser } from '../../../redux/actions/getUser';
+import { getCloudinaryPicture } from '../../../redux/actions/cloudinary';
+import { updateProfile } from '../../../redux/actions/profile';
 import NavbarProfile from '../../Organisms/Navbar/NavbarProfile';
 import ProfileInput from '../../Moleculs/Form/ProfileInput';
 // import ProfileImage from '../../Atoms/Image/ProfileImage';
 import './TemplateProfile.Module.css';
 
-function TemplateProfile() {
+function TemplateProfile(props) {
   // Modal Pop Up (Error)
   const [show, setShow] = useState(false);
+  // Data Input Profile
+  const [inputName, setInputName] = useState('');
+  const [photo, setPhoto] = useState('');
+  const [cityId, setCityId] = useState('');
+  const [address, setAddress] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   // Upload Image
   const [image, setImage] = useState(null);
   const [uploadedFileURL, setUploadedFileURL] = useState(null);
+  const [submit, setSubmit] = useState(false);
 
   const handleClose = () => { return setShow(false); };
   const handleShow = () => { return setShow(true); };
 
+  const token = localStorage.getItem('token');
+
+  const dispatch = useDispatch();
+  const {
+    userLoading,
+    userResult,
+    userError,
+  } = useSelector((state) => { return state.getUserReducer; });
+
+  const {
+    cloudinaryLoading,
+    cloudinaryResult,
+    cloudinaryError,
+  } = useSelector((state) => { return state.getCloudinaryReducer; });
+
+  const {
+    profileLoading,
+    profileResult,
+    profileError,
+  } = useSelector((state) => { return state.getProfileReducer; });
+
   async function handleSubmit(e) {
     e.preventDefault();
+    setSubmit(true);
 
-    const form = new FormData();
-    form.append('picture', image);
+    dispatch(getListUser());
+    //   try {
 
-    try {
-      const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkFobWFkIFl1bmVkYSBBbGZhanIiLCJlbWFpbCI6ImFobWFkYWxmYWpyQGdtYWlsLmNvbSIsImlhdCI6MTY1NjY1NDAyMn0.DR95ABFH0LS7A_Uzuo7HKDXSTZ3at4JtObj3799Pmfk';
-
-      const user = await axios.get('https://second-hand-be.herokuapp.com/api/who-am-i', {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-
-      const getId = user.data.id;
-      console.log(user, getId);
-
-      const response = await axios.put(
-        `https://second-hand-be.herokuapp.com/api/user/picture/${getId.toString()}/cloudinary`,
-        form,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            Authorization: `Bearer ${accessToken}`,
-          },
-        },
-      );
-      setUploadedFileURL(response.data.url);
-    } catch (err) {
-      console.log(err);
-      console.log(err?.responses?.data);
-    }
+    //     const user = await axios.get('https://second-hand-be.herokuapp.com/api/who-am-i', {
+    //       headers: {
+    //         Authorization: `Bearer ${token}`,
+    //       },
+    //     });
+    //     const getId = user.data.id;
+    //     console.log(user.status)
+    //     if (user.status === 200) {
+    //       const response = await axios.put(
+    //         `https://second-hand-be.herokuapp.com/api/user/picture/${getId.toString()}/cloudinary`,
+    //         cloudinaryUpload,
+    //         {
+    //           headers: {
+    //             'Content-Type': 'multipart/form-data',
+    //             Authorization: `Bearer ${token}`,
+    //           },
+    //         },
+    //       );
+    //       console.log(response.status);
+    //       if (response.status === 201) {
+    //         const body = {
+    //           name: inputName,
+    //           photo: response.data.url,
+    //           phoneNumber,
+    //           address,
+    //           cityId: parseInt(cityId),
+    //         };
+    //         const updateRequest = await axios.put(
+    //           `https://second-hand-be.herokuapp.com/api/users/${getId.toString()}/detail`,
+    //           body,
+    //           {
+    //             headers: {
+    //               'Content-Type': 'application/json',
+    //               Authorization: `Bearer ${token}`,
+    //             },
+    //           },
+    //         );
+    //         console.log(updateRequest);
+    //       }
+    //     }
+    //   } catch (err) {
+    //     console.log(err);
+    //     console.log(err?.responses?.data);
+    //   }
   }
-  console.log(uploadedFileURL);
 
   const handleChangeImage = (e) => {
     setImage(e.target.files[0]);
   };
 
   useEffect(() => {
+    if (submit) {
+      if (userLoading) {
+        console.log('Loading...');
+      } else if (userResult) {
+        dispatch(getCloudinaryPicture(userResult.id, image));
+        if (cloudinaryLoading) {
+          console.log('Loading Cloudinary...');
+        } else if (cloudinaryResult) {
+          const body = {
+            name: inputName,
+            photo: cloudinaryResult.url,
+            phoneNumber,
+            address,
+            cityId: parseInt(cityId),
+          };
+          console.log(cloudinaryResult)
+          dispatch(updateProfile(userResult.id, body));
+          if (profileLoading) {
+            console.log('Profile is loading...');
+          } else if (profileResult) {
+            console.log(profileResult);
+          } else if (profileError) {
+            console.log(profileError);
+          }
+          setSubmit(false);
+        } else if (cloudinaryError) {
+          console.log(cloudinaryError);
+        }
+      } else if (userError) {
+        console.log(userError);
+      }
+    }
     let fileReader = false;
     let isCancel = false;
     if (image) {
@@ -85,7 +165,7 @@ function TemplateProfile() {
         fileReader.abort();
       }
     };
-  }, [image]);
+  });
 
   return (
     <>
@@ -115,7 +195,10 @@ function TemplateProfile() {
                     className="avatar-image"
                   />
                 </div>
-                <ProfileInput />
+                {/* <Button className="mt-3 mb-3 mx-5 btn-profile" variant="custom" type="submit" style={{ width: '85%' }}>
+                  Gambar
+                </Button> */}
+                <ProfileInput name={setInputName} city={setCityId} phoneNumber={setPhoneNumber} address={setAddress} />
                 <Button className="mt-3 mb-3 mx-5 btn-profile" variant="custom" type="submit" style={{ width: '85%' }}>
                   Simpan
                 </Button>
@@ -138,5 +221,4 @@ function TemplateProfile() {
     </>
   );
 }
-
 export default TemplateProfile;

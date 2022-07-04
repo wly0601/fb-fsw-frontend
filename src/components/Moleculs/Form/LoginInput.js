@@ -50,7 +50,8 @@ function LoginInput(props) {
     // eslint-disable-next-line no-underscore-dangle
     if (checkBtn.current.context._errors.length === 0) {
       dispatch(login(email, password))
-        .then(() => {
+        .then((res) => {
+          console.log(res);
           props.history.push('/');
           window.location.reload();
         })

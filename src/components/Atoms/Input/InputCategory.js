@@ -1,11 +1,64 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Form } from 'react-bootstrap';
 import Select from 'react-select';
 import './Input.Module.css';
 
-function InputCategory(props) {
-  const { city } = props;
+function InputCategory() {
+  const [category, setCategory] = useState([]);
+  const [user, setUser] = useState({});
+  const [data, setData] = useState([]);
+
+  const [errorResponse, setErrorResponse] = useState({
+    isError: false,
+    message: '',
+  });
+
+  const token = localStorage.getItem('token');
+
+  const getUsers = async () => {
+    try {
+      const responseUsers = await axios.get(
+        'https://second-hand-be.herokuapp.com/api/who-am-i',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      const dataUsers = await responseUsers;
+      setData(dataUsers);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  axios.get('https://second-hand-be.herokuapp.com/api/categories', {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((res) => {
+      const state = res.data.data.data.map((listCategory) => {
+        return {
+          value: listCategory.id,
+          label: listCategory.name,
+        };
+      });
+      setCategory(state);
+    })
+    .catch((err) => {
+      const response = err.response.data;
+      setErrorResponse({
+        isError: true,
+        message: response.message,
+      });
+    });
+
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   const categoryStyles = {
     control: (styles) => { return { ...styles }; },
@@ -20,19 +73,10 @@ function InputCategory(props) {
     },
   };
 
-  const options = [
-    { value: 'Baju', label: 'Baju' },
-    { value: 'Celana', label: 'Celana' },
-    { value: 'Topi', label: 'Topi' },
-    { value: 'Kesehatan', label: 'Kesehatan' },
-    { value: 'Teknologi', label: 'Teknologi' },
-    { value: 'Peralatan', label: 'Peralatan' },
-  ];
-
   return (
     <div className="mb-3">
       <Form styles={{ borderRadius: '16px' }}>
-        <Select options={options} styles={categoryStyles} />
+        <Select options={category} styles={categoryStyles} />
       </Form>
     </div>
   );

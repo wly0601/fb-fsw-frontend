@@ -20,6 +20,7 @@ const login = (email, password) => {
       email, password,
     })
     .then((response) => {
+      localStorage.setItem('token', response.data.token);
       console.log(response.data);
       if (response.data.accessToken) {
         localStorage.setItem('user', JSON.stringify(response.data));
@@ -27,6 +28,25 @@ const login = (email, password) => {
       return response.data;
     });
 };
+
+// const updateProfile = (photo, phoneNumber, address, cityId) => {
+//   const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkFobWFkIFl1bmVkYSBBbGZhanIiLCJlbWFpbCI6ImFobWFkYWxmYWpyQGdtYWlsLmNvbSIsImlhdCI6MTY1NjY1NDAyMn0.DR95ABFH0LS7A_Uzuo7HKDXSTZ3at4JtObj3799Pmfk';
+//   return axios
+//     // eslint-disable-next-line prefer-template
+//     .put(API_URL + 'users/:id/detail', {
+//       photo,
+//       phoneNumber,
+//       address,
+//       cityId,
+//       headers: {
+//         Authorization: `Bearer ${accessToken}`,
+//       },
+//     })
+//     .then((response) => {
+//       console.log(response.data);
+//       return response.data;
+//     });
+// };
 
 // const uploadImage = (id, picture) => {
 //   return axios
@@ -46,5 +66,6 @@ const login = (email, password) => {
 export default {
   register,
   login,
+  // updateProfile,
   // uploadImage,
 };

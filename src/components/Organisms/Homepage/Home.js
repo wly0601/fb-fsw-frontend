@@ -1,4 +1,9 @@
-import { Container, Row, Col } from 'react-bootstrap';
+/* eslint-disable array-callback-return */
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import { Container, Col } from 'react-bootstrap';
+import { useSelector, useDispatch } from 'react-redux';
+import { getListProducts } from '../../../redux/actions/product';
 import Carousel from '../../Moleculs/Carousel/CarouselHomepage';
 import TitleList from '../../Atoms/Title/Title';
 import ButtonCategory from '../../Atoms/Button/ButtonCategory';
@@ -9,6 +14,50 @@ import IMAGES from '../../../data/data';
 import './Home.Module.css';
 
 function Home() {
+  const [product, setProduct] = useState([]);
+  const dispatch = useDispatch();
+  const token = localStorage.getItem('token');
+
+  const {
+    productLoading,
+    productResult,
+    productError,
+  // eslint-disable-next-line arrow-body-style
+  } = useSelector((state) => state.getProductReducer);
+
+  // const getUsers = async () => {
+  //   try {
+  //     const responseUsers = await axios.get(
+  //       'https://second-hand-be.herokuapp.com/api/who-am-i',
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       },
+  //     );
+  //     const dataUsers = await responseUsers;
+  //     setData(dataUsers);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+
+  useEffect(() => {
+    // dispatch((e) => { return getListProducts(); });
+    // if (product) return;
+    dispatch(getListProducts());
+    // console.log(productLoading);
+    if (productLoading) {
+      console.log('Loading...');
+    } else if (productResult) {
+      setProduct(productResult);
+      console.log(productResult);
+    } else if (productError) {
+      console.log(productError);
+    }
+    // getUsers();
+  }, [product]);
+
   return (
     <Container fluid>
       <div className="row mt-3">
@@ -25,14 +74,16 @@ function Home() {
         <ButtonCategory />
       </div>
       <div className="row mt-3 mx-5">
-        {Array.from({ length: 6 }).map((_, idx) => {
+        {(product || []).map(({
+          id, name, description, price, image,
+        }) => {
           return (
-            <Col>
+            <Col key={id}>
               <ItemCard
-                title="Jam Tangan Casio"
-                type="Aksesoris"
-                price="Rp 250.000"
-                image="https://placeimg.com/165/100/any"
+                title={name}
+                type={description}
+                price={price}
+                image={image}
                 imageAlt="Gambar jam tangan"
               />
             </Col>
