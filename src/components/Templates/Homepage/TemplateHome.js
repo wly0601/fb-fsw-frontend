@@ -2,12 +2,12 @@ import { Container } from 'react-bootstrap';
 import NavbarHeader from '../../Organisms/Navbar/NavbarHeader';
 import Home from '../../Organisms/Homepage/Home';
 
-function TemplateHome() {
+function TemplateHome({product}) {
   return (
     <>
       <NavbarHeader />
       <Container fluid>
-        <Home />
+        <Home productAll={product} />
       </Container>
     </>
   );

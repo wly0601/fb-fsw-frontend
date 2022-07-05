@@ -11,6 +11,7 @@ const initialState = {
 export const getProfileReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'updateProfile':
+      console.log(action.payload)
       return {
         ...state,
         profileLoading: action.payload.loading,

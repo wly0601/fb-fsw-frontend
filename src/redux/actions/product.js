@@ -8,7 +8,7 @@ export const getListProducts = () => {
   return async (dispatch) => {
   // const dispatch = useDispatch();
   // Loading
-    dispatch({
+    await dispatch({
       type: setProducts,
       payload: {
         loading: true,
@@ -17,25 +17,24 @@ export const getListProducts = () => {
       },
     });
     // GET API
-    const token = localStorage.getItem('token');
+    const token = await localStorage.getItem('token');
     await axios.get('https://second-hand-be.herokuapp.com/api/products', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
-      .then((res) => {
-        localStorage.setItem("product", res.data.data.data )
-        dispatch({
-          type: setProducts,
+      .then(async (res) => {
+        await dispatch({
+          type: await setProducts,
           payload: {
             loading: false,
-            result: res.data.data.data,
+            result: await res.data,
             error: false,
           },
         });
       })
-      .catch((err) => {
-        dispatch({
+      .catch(async (err) => {
+        await dispatch({
           type: setProducts,
           payload: {
             loading: false,

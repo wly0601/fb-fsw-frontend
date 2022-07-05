@@ -9,13 +9,16 @@ const initialState = {
 };
 
 export const getProductReducer = async (state = initialState, action) => {
-  if (action.type === setProducts) {
-    return {
-      ...state,
-      productLoading: await action.payload.loading,
-      productResult: await action.payload.result,
-      productError: await action.payload.error,
-    };
+  switch (action.type) {
+    case 'setProducts':
+      console.log(action.payload)
+      return {
+        ...state,
+        productLoading: await action.payload.loading,
+        productResult: await action.payload.result,
+        productError: await action.payload.error,
+      };
+    default:
+      return state;
   }
-  return state;
 };

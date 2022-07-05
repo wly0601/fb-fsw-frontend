@@ -3,7 +3,8 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
-
+import { Provider } from 'react-redux';
+import store from './store';
 import Homepage from './pages';
 import Register from './pages/Register';
 import Login from './pages/Login';
@@ -16,7 +17,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    
+    <Provider store={store}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Homepage />} />
@@ -29,7 +30,7 @@ function App() {
           <Route path="/side" element={<ListProduct />} />
         </Routes>
       </BrowserRouter>
-
+    </Provider>
   );
 }
 

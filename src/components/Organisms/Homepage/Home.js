@@ -1,6 +1,7 @@
 /* eslint-disable array-callback-return */
 // import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Container, Col } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { getListProducts } from '../../../redux/actions/product';
@@ -12,9 +13,8 @@ import BtnAddProduct from '../../Atoms/Button/BtnAddProduct';
 import IMAGES from '../../../data/data';
 import './Home.Module.css';
 
-function Home() {
+function Home({ productAll }) {
   const [product, setProduct] = useState([]);
-  const [ttry, setTry] = useState(false);
   const dispatch = useDispatch();
   const {
     productLoading,
@@ -23,14 +23,27 @@ function Home() {
   // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getProductReducer);
 
-  useEffect(() => {
-      dispatch(getListProducts());
-      if (productLoading) {
-        console.log(productLoading)
-        setProduct(productResult);
-      }
-
+  const fetchData = useCallback(async () => {
+    dispatch(getListProducts());
+    // setProduct(res.data.data.data);
   }, []);
+
+  useEffect(() => {
+    fetchData()
+      .catch(console.error);
+  }, [fetchData]);
+
+  useEffect(() => {
+    dispatch(getListProducts());
+    if (productLoading) {
+      console.log('Loading...');
+    } else if (productResult) {
+      setProduct(productResult);
+      console.log(productResult);
+    } else if (productError) {
+      console.log(productError);
+    }
+  }, [product]);
 
   return (
     <Container fluid>
@@ -48,7 +61,8 @@ function Home() {
         <ButtonCategory />
       </div>
       <div className="row mt-3 mx-5">
-        {product.length > 0 && product.map(({
+        {/* {product.length === 0 && setProduct(productAll)} */}
+        {productAll && productAll.map(({
           id, name, description, price, image,
         }) => {
           return (
@@ -68,9 +82,9 @@ function Home() {
         <BtnAddProduct />
       </div>
       {/* <Row style={{ marginleft: 0}}>
-            <Col style={{ paddingleft: 0}}><ImageLoginRegis /></Col>
-            <Col><LoginForm /></Col>
-          </Row> */}
+          <Col style={{ paddingleft: 0}}><ImageLoginRegis /></Col>
+          <Col><LoginForm /></Col>
+        </Row> */}
     </Container>
   );
 }
