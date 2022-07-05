@@ -1,8 +1,14 @@
-.card-items {
+.card-items, 
+.card-items-offering {
   background: #FFFFFF;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
+  /* box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15); */
+  /* border-radius: 4px; */
   margin-bottom: 10%;
+}
+
+.card.items-offering {
+  border-bottom: 1 px solid #E5E5E5;
+  border: none;
 }
 
 .card-img-top {
@@ -39,6 +45,12 @@
 .seller-card {
   width: 430px;
   height: 85px;
+  border-radius: 16px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+}
+
+.seller-offering {
+  height: 100px;
   border-radius: 16px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
 }
@@ -98,4 +110,46 @@
   background-color: #7126B5;
   border-color: #7126B5;
   color: white;
+}
+
+.image-offering {
+  width: 100%;
+  border-radius: 16px;
+}
+
+.card-body-offering {
+  width: 50%;
+}
+
+.button-deny {
+  background-color: white;
+  border-color: #7126B5;
+  color: black;
+  border-radius: 16px;
+  margin-right: 10px;
+  width: 158px;
+}
+
+.button-deny:hover {
+  background-color: white;
+  color: black;
+}
+
+.button-accept {
+  background-color: #7126B5;
+  border-color: #7126B5;
+  color: white;
+  border-radius: 16px;
+  margin-right: 10px;
+  width: 158px;
+}
+
+.button-accept:hover {
+  background-color: #7126B5;
+  color: white;
+}
+
+.button-align {
+  text-align: right;
+  margin-bottom: 20px;
 }

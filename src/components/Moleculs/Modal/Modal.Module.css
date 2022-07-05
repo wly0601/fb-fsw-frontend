@@ -1,11 +1,10 @@
 .card-modal {
     width: 360px;
     height: 438px;
-    -webkit-border-radius: 16px !important;
-    -moz-border-radius: 16px !important;
+    /* -webkit-border-radius: 16px !important;
+    -moz-border-radius: 16px !important; */
     border-radius: 16px !important; 
-    overflow: hidden;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+    /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15); */
 }
 
 .modal-button {
@@ -58,6 +57,14 @@
     border-radius: 16px;
     width: 90%;
     margin-left: 5%;
+}
+
+.button-accept {
+    background-color: #7126B5;
+    color: white;
+    border-color: #7126B5;
+    border-radius: 16px;
+    width: 158px;
 }
 
 .button-product:hover {

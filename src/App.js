@@ -14,6 +14,8 @@ import BuyerProduct from './pages/BuyerProduct';
 import ListProduct from './pages/ListProduct';
 import HistorySeller from './pages/HistorySeller';
 import HistoryBuyer from './pages/HistoryBuyer';
+import OfferingInfo from './pages/OfferingInfo';
+import OfferingAccept from './pages/OfferingAccept';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import store from './store';
 
@@ -32,6 +34,8 @@ function App() {
           <Route path="/side" element={<ListProduct />} />
           <Route path="/history/seller" element={<HistorySeller />} />
           <Route path="/history/buyer" element={<HistoryBuyer />} />
+          <Route path="/offering/info" element={<OfferingInfo />} />
+          <Route path="/offering/accept" element={<OfferingAccept />} />
         </Routes>
       </BrowserRouter>
     </Provider>
