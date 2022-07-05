@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from 'redux';
+import { legacy_createStore as createStore, compose, applyMiddleware } from 'redux';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
@@ -6,7 +6,6 @@ import rootReducer from './redux/reducers';
 
 const middleware = [thunk];
 const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(...middleware)),
+  rootReducer, compose(composeWithDevTools(applyMiddleware(thunk))),
 );
 export default store;

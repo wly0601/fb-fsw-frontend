@@ -7,10 +7,12 @@ import { getCloudinaryReducer } from './cloudinary';
 import { getProfileReducer } from './profile';
 
 export default combineReducers({
-  auth,
-  message,
+  // auth,
+  // message,
   getProductReducer,
-  getUserReducer,
-  getCloudinaryReducer,
-  getProfileReducer,
+  // getUserReducer,
+  // getCloudinaryReducer,
+  // getProfileReducer,
 });
+
+// export default getProductReducer;

@@ -114,56 +114,7 @@ function TemplateProfile(props) {
   };
 
   useEffect(() => {
-    if (submit) {
-      if (userLoading) {
-        console.log('Loading...');
-      } else if (userResult) {
-        dispatch(getCloudinaryPicture(userResult.id, image));
-        if (cloudinaryLoading) {
-          console.log('Loading Cloudinary...');
-        } else if (cloudinaryResult) {
-          const body = {
-            name: inputName,
-            photo: cloudinaryResult.url,
-            phoneNumber,
-            address,
-            cityId: parseInt(cityId),
-          };
-          console.log(cloudinaryResult)
-          dispatch(updateProfile(userResult.id, body));
-          if (profileLoading) {
-            console.log('Profile is loading...');
-          } else if (profileResult) {
-            console.log(profileResult);
-          } else if (profileError) {
-            console.log(profileError);
-          }
-          setSubmit(false);
-        } else if (cloudinaryError) {
-          console.log(cloudinaryError);
-        }
-      } else if (userError) {
-        console.log(userError);
-      }
-    }
-    let fileReader = false;
-    let isCancel = false;
-    if (image) {
-      fileReader = new FileReader();
-      fileReader.onload = (e) => {
-        const { result } = e.target;
-        if (result && !isCancel) {
-          setUploadedFileURL(result);
-        }
-      };
-      fileReader.readAsDataURL(image);
-    }
-    return () => {
-      isCancel = true;
-      if (fileReader && fileReader.readyState === 1) {
-        fileReader.abort();
-      }
-    };
+
   });
 
   return (

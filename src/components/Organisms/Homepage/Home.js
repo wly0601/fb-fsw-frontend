@@ -14,6 +14,7 @@ import './Home.Module.css';
 
 function Home() {
   const [product, setProduct] = useState([]);
+  const [ttry, setTry] = useState(false);
   const dispatch = useDispatch();
   const {
     productLoading,
@@ -23,18 +24,13 @@ function Home() {
   } = useSelector((state) => state.getProductReducer);
 
   useEffect(() => {
-    dispatch(getListProducts());
-    if (productLoading) {
-      console.log('Loading...');
-    } else if (productResult) {
-      setProduct(productResult);
-      console.log(productResult);
-    } else if (productError) {
-      console.log(productError);
-    }
-    // getUsers();
-    window.localStorage.getItem('token');
-  }, [product]);
+      dispatch(getListProducts());
+      if (productLoading) {
+        console.log(productLoading)
+        setProduct(productResult);
+      }
+
+  }, []);
 
   return (
     <Container fluid>
@@ -52,7 +48,7 @@ function Home() {
         <ButtonCategory />
       </div>
       <div className="row mt-3 mx-5">
-        {product && product.map(({
+        {product.length > 0 && product.map(({
           id, name, description, price, image,
         }) => {
           return (
@@ -72,9 +68,9 @@ function Home() {
         <BtnAddProduct />
       </div>
       {/* <Row style={{ marginleft: 0}}>
-          <Col style={{ paddingleft: 0}}><ImageLoginRegis /></Col>
-          <Col><LoginForm /></Col>
-        </Row> */}
+            <Col style={{ paddingleft: 0}}><ImageLoginRegis /></Col>
+            <Col><LoginForm /></Col>
+          </Row> */}
     </Container>
   );
 }

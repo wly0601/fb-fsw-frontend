@@ -24,7 +24,7 @@ export const getListProducts = () => {
       },
     })
       .then((res) => {
-        console.log(res.data);
+        localStorage.setItem("product", res.data.data.data )
         dispatch({
           type: setProducts,
           payload: {

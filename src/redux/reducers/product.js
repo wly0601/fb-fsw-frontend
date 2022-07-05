@@ -8,18 +8,14 @@ const initialState = {
   productError: false,
 };
 
-export const getProductReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'setProducts':
-      console.log(action.payload)
-      return {
-
-        ...state,
-        productLoading: action.payload.loading,
-        productResult: action.payload.result,
-        productError: action.payload.error,
-      };
-    default:
-      return state;
+export const getProductReducer = async (state = initialState, action) => {
+  if (action.type === setProducts) {
+    return {
+      ...state,
+      productLoading: await action.payload.loading,
+      productResult: await action.payload.result,
+      productError: await action.payload.error,
+    };
   }
+  return state;
 };
