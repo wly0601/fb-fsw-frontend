@@ -12,6 +12,8 @@ import InfoProduct from './pages/InfoProduct';
 import SellerProduct from './pages/SellerProduct';
 import BuyerProduct from './pages/BuyerProduct';
 import ListProduct from './pages/ListProduct';
+import HistorySeller from './pages/HistorySeller';
+import HistoryBuyer from './pages/HistoryBuyer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import store from './store';
 
@@ -28,6 +30,8 @@ function App() {
           <Route path="/seller/product/:id" element={<SellerProduct />} />
           <Route path="/buyer/product/:id" element={<BuyerProduct />} />
           <Route path="/side" element={<ListProduct />} />
+          <Route path="/history/seller" element={<HistorySeller />} />
+          <Route path="/history/buyer" element={<HistoryBuyer />} />
         </Routes>
       </BrowserRouter>
     </Provider>

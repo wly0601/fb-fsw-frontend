@@ -2,7 +2,7 @@
     background-color: #4B1979;
     width: 105px;
     height: 35px;
-    margin-left: 136px;
+    margin-left: 116px;
 }
 
 .navbar {
@@ -52,7 +52,7 @@
     width: 105px;
     height: 35px;
     justify-content: space-around;
-    color:#FFFFFF;
+    color: #FFFFFF;
     border-color: #7126B5;
 }
 
@@ -75,19 +75,27 @@ p,
 }
 
 ul {
-    position:absolute;
+    position: absolute;
     background: #ffffff;
     border: 2px solid #e5e5e5;
     color: #3faffa;
     left: 85.9%;
 }
+
 li {
-    list-style: none;  
+    list-style: none;
     margin-bottom: 0.8em;
     justify-content: start;
-    
+
 }
-.button-fa{
+
+.button-fa {
     background: #FFFFFF;
-    border-color: #FFFFFF;;
+    border-color: #FFFFFF;
+    ;
+}
+
+.nav-history {
+    text-decoration: none;
+    color: black;
 }

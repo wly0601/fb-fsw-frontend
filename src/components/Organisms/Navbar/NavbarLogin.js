@@ -1,10 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Navbar,
   Container,
   Nav,
   Form,
+  NavDropdown,
 } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faList } from '@fortawesome/free-solid-svg-icons';
 import {
   FaSearch, FaBell, FaRegUser, FaListUl,
 } from 'react-icons/fa';
@@ -30,7 +34,21 @@ function NavbarLogin() {
             <i className="searchIcon" type="button"><FaSearch /></i>
           </Form>
           <Nav className="flex-grow-1 justify-content-end nav">
-            <Nav.Link href="#link"><FaListUl className="link" /></Nav.Link>
+            <Nav.Link>
+              <FontAwesomeIcon icon={faList} />
+            </Nav.Link>
+            <NavDropdown>
+              <NavDropdown.Item>
+                <Link to="../history/seller" className="nav-history">
+                  History Seller
+                </Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to="../history/buyer" className="nav-history">
+                  History Buyer
+                </Link>
+              </NavDropdown.Item>
+            </NavDropdown>
             <Nav.Link href="#home">
               <FaBell className="link" />
             </Nav.Link>
