@@ -21,11 +21,6 @@ const required = (value) => {
 function ProfileInput({
   name, city, phoneNumber, address,
 }) {
-  // const [name, setName] = useState('');
-  // const [photo, setPhoto] = useState('');
-  // const [cityId, setCityId] = useState('');
-  // const [address, setAddress] = useState('');
-  // const [phoneNumber, setPhoneNumber] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   // const [updateProfile, setUpdateProfile] = useState(null);
   const [user, setUser] = useState({});

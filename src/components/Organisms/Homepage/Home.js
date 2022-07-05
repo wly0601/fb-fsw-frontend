@@ -1,5 +1,5 @@
 /* eslint-disable array-callback-return */
-import axios from 'axios';
+// import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Container, Col } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
@@ -9,15 +9,12 @@ import TitleList from '../../Atoms/Title/Title';
 import ButtonCategory from '../../Atoms/Button/ButtonCategory';
 import ItemCard from '../../Moleculs/Card/ItemCard';
 import BtnAddProduct from '../../Atoms/Button/BtnAddProduct';
-// import ButtonList from '../../Atoms/Button/ButtonList';
 import IMAGES from '../../../data/data';
 import './Home.Module.css';
 
 function Home() {
   const [product, setProduct] = useState([]);
   const dispatch = useDispatch();
-  const token = localStorage.getItem('token');
-
   const {
     productLoading,
     productResult,
@@ -25,28 +22,8 @@ function Home() {
   // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getProductReducer);
 
-  // const getUsers = async () => {
-  //   try {
-  //     const responseUsers = await axios.get(
-  //       'https://second-hand-be.herokuapp.com/api/who-am-i',
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       },
-  //     );
-  //     const dataUsers = await responseUsers;
-  //     setData(dataUsers);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
   useEffect(() => {
-    // dispatch((e) => { return getListProducts(); });
-    // if (product) return;
     dispatch(getListProducts());
-    // console.log(productLoading);
     if (productLoading) {
       console.log('Loading...');
     } else if (productResult) {
@@ -56,6 +33,7 @@ function Home() {
       console.log(productError);
     }
     // getUsers();
+    window.localStorage.getItem('token');
   }, [product]);
 
   return (
@@ -74,7 +52,7 @@ function Home() {
         <ButtonCategory />
       </div>
       <div className="row mt-3 mx-5">
-        {(product || []).map(({
+        {product && product.map(({
           id, name, description, price, image,
         }) => {
           return (

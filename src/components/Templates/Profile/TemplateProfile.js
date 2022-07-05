@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -35,8 +36,6 @@ function TemplateProfile(props) {
 
   const handleClose = () => { return setShow(false); };
   const handleShow = () => { return setShow(true); };
-
-  const token = localStorage.getItem('token');
 
   const dispatch = useDispatch();
   const {

@@ -11,7 +11,9 @@ const initialState = {
 export const getProductReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'setProducts':
+      console.log(action.payload)
       return {
+
         ...state,
         productLoading: action.payload.loading,
         productResult: action.payload.result,
