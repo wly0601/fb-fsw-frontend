@@ -27,7 +27,7 @@ function App() {
           <Route path="/seller/sell" element={<InfoProduct />} />
           <Route path="/seller/product/:id" element={<SellerProduct />} />
           <Route path="/buyer/product/:id" element={<BuyerProduct />} />
-          <Route path="/side" element={<ListProduct />} />
+          <Route path="/list/products" element={<ListProduct />} />
         </Routes>
       </BrowserRouter>
     </Provider>

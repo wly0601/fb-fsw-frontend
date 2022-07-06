@@ -8,19 +8,14 @@ import {
   Row,
   Col,
   Button,
-  Modal,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
 import { updateListProfile } from '../../../redux/actions/profile';
 import NavbarProfile from '../../Organisms/Navbar/NavbarProfile';
 import ProfileInput from '../../Moleculs/Form/ProfileInput';
-// import ProfileImage from '../../Atoms/Image/ProfileImage';
 import './TemplateProfile.Module.css';
 
-function TemplateProfile(props) {
-  // Modal Pop Up (Error)
-  const [show, setShow] = useState(false);
+function TemplateProfile() {
   // Data Input Profile
   const [inputName, setInputName] = useState('');
   const [cityId, setCityId] = useState('');
@@ -39,8 +34,6 @@ function TemplateProfile(props) {
     profileError,
   } = useSelector((state) => { return state.getProfileReducer; });
 
-  const handleClose = () => { return setShow(false); };
-
   async function handleSubmit(e) {
     e.preventDefault();
     const body = {
@@ -49,7 +42,6 @@ function TemplateProfile(props) {
       address,
       cityId: parseInt(cityId),
     };
-    console.log(inputName);
     await dispatch(updateListProfile(image, body));
   }
 
@@ -94,7 +86,7 @@ function TemplateProfile(props) {
           <Row>
             <Col>
               <div style={{ paddingTop: '30px' }}>
-                <Link to="/register" style={{ color: 'black' }}>
+                <Link to="/" style={{ color: 'black' }}>
                   <FontAwesomeIcon icon={faArrowLeft} />
                 </Link>
               </div>
@@ -114,9 +106,6 @@ function TemplateProfile(props) {
                     className="avatar-image"
                   />
                 </div>
-                {/* <Button className="mt-3 mb-3 mx-5 btn-profile" variant="custom" type="submit" style={{ width: '85%' }}>
-                  Gambar
-                </Button> */}
                 <ProfileInput name={setInputName} city={setCityId} phoneNumber={setPhoneNumber} address={setAddress} />
                 <Button className="mt-3 mb-3 mx-5 btn-profile" variant="custom" type="submit" style={{ width: '85%' }}>
                   Simpan
@@ -129,17 +118,6 @@ function TemplateProfile(props) {
           </Row>
         </Container>
       </div>
-
-      <Modal show={show} onHide={handleClose} animation={false}>
-        <Modal.Body>You must filled all the empty columns!!!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="danger" onClick={handleClose}>
-            <Link to="/profile" style={{ color: 'white', textDecoration: 'none' }}>
-              OK
-            </Link>
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </>
   );
 }

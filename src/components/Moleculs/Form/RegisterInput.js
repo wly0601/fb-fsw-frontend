@@ -1,5 +1,11 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable arrow-body-style */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable consistent-return */
+//  eslint-disable-next-line arrow-parens
+//  eslint-disable-next-line arrow-body-style
+// eslint-disable-next-line no-underscore-dangle
+
 import React, { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Form from 'react-validation/build/form';
@@ -7,9 +13,7 @@ import Input from 'react-validation/build/input';
 import CheckButton from 'react-validation/build/button';
 import { isEmail } from 'validator';
 import { register } from '../../../redux/actions/auth';
-// import { Form } from 'react-bootstrap';
 import TitleList from '../../Atoms/Title/Title';
-import InputList from '../../Atoms/Input/Input';
 import './FormInput.Module.css';
 
 const required = (value) => {
@@ -48,8 +52,6 @@ function RegisterInput() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [successful, setSuccessful] = useState(false);
-  // eslint-disable-next-line arrow-parens
-  // eslint-disable-next-line arrow-body-style
   const { message } = useSelector((state) => state.message);
   const dispatch = useDispatch();
   const onChangeName = (e) => {
@@ -65,7 +67,6 @@ function RegisterInput() {
     e.preventDefault();
     setSuccessful(false);
     form.current.validateAll();
-    // eslint-disable-next-line no-underscore-dangle
     if (checkBtn.current.context._errors.length === 0) {
       dispatch(register(name, email, password))
         .then(() => {
@@ -90,6 +91,7 @@ function RegisterInput() {
                 type="text"
                 className="form-control"
                 name="name"
+                placeholder="Nama Lengkap"
                 value={name}
                 onChange={onChangeName}
                 validations={[required]}
@@ -101,6 +103,7 @@ function RegisterInput() {
                 type="text"
                 className="form-control"
                 name="email"
+                placeholder="team2@gmail.com"
                 value={email}
                 onChange={onChangeEmail}
                 validations={[required, validEmail]}
@@ -112,13 +115,14 @@ function RegisterInput() {
                 type="password"
                 className="form-control"
                 name="password"
+                placeholder="Masukkan Password"
                 value={password}
                 onChange={onChangePassword}
                 validations={[required, vpassword]}
               />
             </div>
             <div className="form-group">
-              <button className="btn btn-primary btn-block" type="submit">Daftar</button>
+              <button className="btn btn-primary btn-block btn-register mt-4" type="submit">Daftar</button>
             </div>
           </div>
         )}
@@ -130,18 +134,6 @@ function RegisterInput() {
           </div>
         )}
         <CheckButton style={{ display: 'none' }} ref={checkBtn} />
-        {/* <Form.Group>
-          <Form.Label>Nama</Form.Label>
-          <InputList type="name" placeholder="Nama Lengkap" />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Email</Form.Label>
-          <InputList type="email" placeholder="team2@gmail.com" />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Password</Form.Label>
-          <InputList type="password" placeholder="Masukkan Password" />
-        </Form.Group> */}
       </Form>
     </div>
   );

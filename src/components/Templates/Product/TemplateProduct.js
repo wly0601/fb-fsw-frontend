@@ -3,11 +3,10 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import {
-  Container, Row, Col, Button, Form,
+  Container, Row, Col, Button,
 } from 'react-bootstrap';
 import NavbarProduct from '../../Organisms/Navbar/NavbarProduct';
 import ProductInput from '../../Moleculs/Form/ProductInput';
-// import ButtonList from '../../Atoms/Button/ButtonList';
 import './TemplateProduct.Module.css';
 
 function TemplateProduct() {
@@ -18,7 +17,7 @@ function TemplateProduct() {
         <Row>
           <Col>
             <div style={{ paddingTop: '30px' }}>
-              <Link to="/register" style={{ color: 'black' }}>
+              <Link to="/" style={{ color: 'black' }}>
                 <FontAwesomeIcon icon={faArrowLeft} />
               </Link>
             </div>
@@ -34,7 +33,7 @@ function TemplateProduct() {
             </Link>
           </Col>
           <Col xs={6}>
-            <Link to="/side">
+            <Link to="/list/products">
               <Button variant="primary" className="publish-button" type="submit">
                 Terbitkan
               </Button>

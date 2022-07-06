@@ -94,7 +94,7 @@ function LoginInput(props) {
           />
         </div>
         <div className="form-group">
-          <button className="btn btn-primary btn-block" type="submit" disabled={loading}>
+          <button className="btn btn-primary btn-block btn-register mt-4" type="submit" disabled={loading}>
             {loading && (
               <span className="spinner-border spinner-border-sm" />
             )}
@@ -109,14 +109,6 @@ function LoginInput(props) {
           </div>
         )}
         <CheckButton style={{ display: 'none' }} ref={checkBtn} />
-        {/* <Form.Group>
-          <Form.Label>Email</Form.Label>
-          <InputList type="email" placeholder="team2@gmail.com" />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Password</Form.Label>
-          <InputList type="password" placeholder="Masukkan Password" />
-        </Form.Group> */}
       </Form>
     </div>
   );

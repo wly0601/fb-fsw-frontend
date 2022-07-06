@@ -18,7 +18,7 @@ function CardProduct() {
           <p style={{ color: 'grey' }}>Aksesoris</p>
           <p>Rp.250.000</p>
           <Row>
-            <Link to="/side">
+            <Link to="/list/products">
               <Button variant="primary" className="button-seller">Terbitkan</Button>
             </Link>
           </Row>

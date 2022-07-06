@@ -55,7 +55,7 @@ export const updateListProfile = (image, body) => {
               },
             )
               .then(async (result) => {
-                console.log(result)
+                console.log(result);
                 await dispatch({
                   type: updateProfile,
                   payload: {

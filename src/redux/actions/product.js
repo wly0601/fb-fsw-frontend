@@ -17,21 +17,38 @@ export const getListProducts = () => {
       },
     });
     // GET API
-    const token = await localStorage.getItem('token');
-    await axios.get('https://second-hand-be.herokuapp.com/api/products', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    await axios.get('https://second-hand-be.herokuapp.com/api/products')
       .then(async (res) => {
         await dispatch({
           type: await setProducts,
           payload: {
             loading: false,
-            result: await res.data,
+            result: await res.data.data.data,
             error: false,
           },
         });
+        await axios.get(`https://second-hand-be.herokuapp.com/api/category/${res.data.id.toString()}`)
+          .then(async (result) => {
+            console.log(result);
+            await dispatch({
+              type: setProducts,
+              payload: {
+                loading: false,
+                result: await result.data,
+                error: false,
+              },
+            });
+          })
+          .catch(async (err) => {
+            await dispatch({
+              type: setProducts,
+              payload: {
+                loading: false,
+                result: false,
+                error: await err.message,
+              },
+            });
+          });
       })
       .catch(async (err) => {
         await dispatch({
@@ -39,7 +56,7 @@ export const getListProducts = () => {
           payload: {
             loading: false,
             result: false,
-            error: err.message,
+            error: await err.message,
           },
         });
       });

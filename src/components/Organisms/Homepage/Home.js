@@ -1,10 +1,8 @@
 /* eslint-disable array-callback-return */
 // import axios from 'axios';
-import axios from 'axios';
-import React, { useState, useEffect, useCallback } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { Container, Col } from 'react-bootstrap';
-import { useSelector, useDispatch } from 'react-redux';
-import { getListProducts } from '../../../redux/actions/product';
 import Carousel from '../../Moleculs/Carousel/CarouselHomepage';
 import TitleList from '../../Atoms/Title/Title';
 import ButtonCategory from '../../Atoms/Button/ButtonCategory';
@@ -14,37 +12,26 @@ import IMAGES from '../../../data/data';
 import './Home.Module.css';
 
 function Home({ productAll }) {
-  const [product, setProduct] = useState([]);
-  const dispatch = useDispatch();
-  const {
-    productLoading,
-    productResult,
-    productError,
-  // eslint-disable-next-line arrow-body-style
-  } = useSelector((state) => state.getProductReducer);
+  const priceFormat = (data) => {
+    const priceStr = data.toString();
+    let i = priceStr.length;
+    let renderPrice = '';
+    let counter = 0;
 
-  const fetchData = useCallback(async () => {
-    dispatch(getListProducts());
-    // setProduct(res.data.data.data);
-  }, []);
-
-  useEffect(() => {
-    fetchData()
-      .catch(console.error);
-  }, [fetchData]);
-
-  useEffect(() => {
-    dispatch(getListProducts());
-    if (productLoading) {
-      console.log('Loading...');
-    } else if (productResult) {
-      setProduct(productResult);
-      console.log(productResult);
-    } else if (productError) {
-      console.log(productError);
+    while (i > 0) {
+      renderPrice = priceStr[i - 1] + renderPrice;
+      i -= 1;
+      counter += 1;
+      if (counter === 3 && i !== 0) {
+        renderPrice = `.${renderPrice}`;
+        counter = 0;
+      }
     }
-  }, [product]);
 
+    return `Rp ${renderPrice}`;
+  };
+
+  console.log(productAll);
   return (
     <Container fluid>
       <div className="row mt-3">
@@ -61,30 +48,28 @@ function Home({ productAll }) {
         <ButtonCategory />
       </div>
       <div className="row mt-3 mx-5">
-        {/* {product.length === 0 && setProduct(productAll)} */}
         {productAll && productAll.map(({
-          id, name, description, price, image,
+          id, name, description, price, images,
         }) => {
           return (
-            <Col key={id}>
-              <ItemCard
-                title={name}
-                type={description}
-                price={price}
-                image={image}
-                imageAlt="Gambar jam tangan"
-              />
+            <Col key={id} md={3}>
+              <Link to="buyer/product/:id" style={{ textDecoration: 'none', color: 'black' }}>
+                <ItemCard
+                  title={name}
+                  type={description}
+                  price={priceFormat(price)}
+                  image={images[0]}
+                  imageAlt="Category of Different Pics"
+                />
+              </Link>
             </Col>
           );
         })}
+        {/* {product.length === 0 && setProduct(productAll)} */}
       </div>
       <div className="row mt-3 mb-3 mx-5">
         <BtnAddProduct />
       </div>
-      {/* <Row style={{ marginleft: 0}}>
-          <Col style={{ paddingleft: 0}}><ImageLoginRegis /></Col>
-          <Col><LoginForm /></Col>
-        </Row> */}
     </Container>
   );
 }

@@ -3,6 +3,12 @@
     width: 100%;
 }
 
+.form-control {
+    border-radius: 16px;
+    height: 46px;
+    margin-bottom: 10px;
+}
+
 .profile-input {
     top: 10px;
     justify-content: center;

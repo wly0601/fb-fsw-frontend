@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { getListProducts } from '../redux/actions/product';
@@ -16,21 +16,25 @@ function Homepage() {
 
   useEffect(() => {
     dispatch(getListProducts());
-    if (productLoading) {
-      console.log('Loading...');
-    } else if (productResult) {
-      setProduct(productResult)
-    } else if (productError) {
-      console.log(productError);
-    }
   }, [dispatch]);
 
+  useEffect(() => {
+    if (productResult) {
+      setProduct(productResult);
+    }
+  }, [productResult]);
+
   return (
-    <div>
-      <Container fluid className="p-0">
-        <TemplateHome product={product} />
-      </Container>
-    </div>
+    <>
+      {product.length > 0 && (
+      <div>
+        <Container fluid className="p-0">
+          <TemplateHome product={product} />
+        </Container>
+      </div>
+      )}
+      {product.length === 0 && console.log('Masih Loading Bosq')}
+    </>
   );
 }
 

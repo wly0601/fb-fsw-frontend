@@ -19,6 +19,7 @@ function SidebarProduct() {
             <Link to="/" className="text-decoration">
               <i type="button" className="link">
                 <FaCube />
+                {' '}
                 Semua Product
               </i>
             </Link>
