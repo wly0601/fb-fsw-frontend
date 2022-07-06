@@ -1,22 +1,33 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, Navigate } from 'react-router-dom';
 import {
   Navbar,
   Container,
   Nav,
   Form,
-  NavDropdown,
 } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList } from '@fortawesome/free-solid-svg-icons';
 import {
-  FaSearch, FaBell, FaRegUser, FaListUl,
+  FaSearch, FaBell, FaRegUser, FaListUl, FaSignInAlt,
 } from 'react-icons/fa';
+import { logout } from '../../../actions/auth';
 
 import './Navigation.Module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function NavbarLogin() {
+  const userLogin = useSelector((state) => { return state.auth; });
+  const { user } = userLogin;
+  const dispatch = useDispatch();
+
+  const logOut = () => {
+    dispatch(logout());
+    window.location.href = '/';
+  };
   return (
     <Navbar className="ms-auto navbar" bg="white" expand="lg">
       <Container fluid className="me-3">
@@ -52,9 +63,26 @@ function NavbarLogin() {
             <Nav.Link href="#home">
               <FaBell className="link" />
             </Nav.Link>
-            <Nav.Link href="#link">
-              <FaRegUser className="link" />
-            </Nav.Link>
+            <NavLink>
+              <i type="button" className="button-fa">
+                <FaRegUser className="link" />
+              </i>
+            </NavLink>
+            <NavDropdown>
+              <Nav.Link>
+                <Link to="/profile">
+                  Profile
+                </Link>
+              </Nav.Link>
+              <Nav.Link>
+                <Link to="/seller/sell">
+                  Daftar Jual
+                </Link>
+              </Nav.Link>
+              <Nav.Link onClick={logOut}>
+                Logout
+              </Nav.Link>
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>
