@@ -67,6 +67,19 @@
     width: 158px;
 }
 
+.button-status {
+    background-color: white;
+    color: black;
+    border-color: #7126B5;
+    border-radius: 16px;
+    width: 158px;
+}
+
+.button-status:hover {
+    background-color: white;
+    color: black;
+}
+
 .button-product:hover {
   background-color: #7126B5;
   color: white;

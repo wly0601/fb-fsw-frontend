@@ -6,10 +6,12 @@ import {
 import {
   FaWhatsapp,
 } from 'react-icons/fa';
+import VerticalModals from '../Modal/ModalStatus';
 import Title from '../../Atoms/Title/Title';
 import './Card.Module.css';
 
 function CardHistory(props) {
+  const [modalShow, setModalShow] = React.useState(false);
   const {
     title, name, price, image, imageAlt, offering,
   } = props;
@@ -30,7 +32,10 @@ function CardHistory(props) {
               <Card.Text>{offering}</Card.Text>
             </Card.Body>
             <div className="justify-content-end button-align">
-              <Button variant="secondary" className="button-deny">Status</Button>
+              <VerticalModals
+                show={modalShow}
+                onHide={() => { return setModalShow(false); }}
+              />
               <Button variant="secondary" className="button-accept">
                 Hubungi di
                 {' '}
