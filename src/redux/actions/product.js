@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export const setProducts = 'setProducts';
 
-export const getListProducts = () => {
+export const getListProducts = (body) => {
   return async (dispatch) => {
   // const dispatch = useDispatch();
   // Loading
@@ -19,36 +19,15 @@ export const getListProducts = () => {
     // GET API
     await axios.get('https://second-hand-be.herokuapp.com/api/products')
       .then(async (res) => {
+        console.log(res.data.products);
         await dispatch({
           type: await setProducts,
           payload: {
             loading: false,
-            result: await res.data.data.data,
+            result: await res.data.products,
             error: false,
           },
         });
-        await axios.get(`https://second-hand-be.herokuapp.com/api/category/${res.data.id.toString()}`)
-          .then(async (result) => {
-            console.log(result);
-            await dispatch({
-              type: setProducts,
-              payload: {
-                loading: false,
-                result: await result.data,
-                error: false,
-              },
-            });
-          })
-          .catch(async (err) => {
-            await dispatch({
-              type: setProducts,
-              payload: {
-                loading: false,
-                result: false,
-                error: await err.message,
-              },
-            });
-          });
       })
       .catch(async (err) => {
         await dispatch({

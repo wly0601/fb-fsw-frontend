@@ -26,10 +26,6 @@ function ProfileInput({
   const [user, setUser] = useState({});
   const [data, setData] = useState([]);
 
-  // const onChangeName = (e) => {
-  //   setName(e.target.value);
-  // };
-
   const token = localStorage.getItem('token');
 
   async function handleSubmit(e) {
@@ -37,11 +33,6 @@ function ProfileInput({
 
     try {
       const userToUpdatePayload = new FormData();
-      // userToUpdatePayload.append('town', cityId.current.value);
-      // userToUpdatePayload.append('address', address.current.value);
-      // userToUpdatePayload.append('phone', phoneNumber.current.value);
-      // userToUpdatePayload.append('picture', photo);
-
       const updateRequest = await axios.put(
         `https://second-hand-be.herokuapp.com/api/users/${data.id.toString()}/detail`,
         userToUpdatePayload,
@@ -58,28 +49,6 @@ function ProfileInput({
       console.log(err);
     }
   }
-
-  // const handleChangePhoto = (e) => {
-  //   setPhoto(e.target.value);
-  // };
-
-  // const handleChangeName = (e) => {
-  //   e.preventDefault()
-  //   console.log(e.target.value)
-  //   name(e.target.value);
-  // };
-
-  // const handleChangePhone = (e) => {
-  //   phoneNumber(e.target.value);
-  // };
-
-  // const handleChangeCity = (e) => {
-  //   city(e.target.value);
-  // };
-
-  // const handleChangeAddress = (e) => {
-  //   address(e.target.value);
-  // };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -140,9 +109,6 @@ function ProfileInput({
             validations={[required]}
           />
         </Form.Group>
-        {/* <Button className="mt-3 mb-3 mx-5 btn-profile" variant="custom" style={{ width: '85%' }} onClick={handleSubmit}>
-          Simpan Profile
-        </Button> */}
       </Form>
     </div>
   ) : (

@@ -1,6 +1,7 @@
 /* eslint-disable array-callback-return */
 // import axios from 'axios';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Container, Col } from 'react-bootstrap';
 import Carousel from '../../Moleculs/Carousel/CarouselHomepage';
@@ -49,14 +50,14 @@ function Home({ productAll }) {
       </div>
       <div className="row mt-3 mx-5">
         {productAll && productAll.map(({
-          id, name, description, price, images,
+          id, name, category, price, images,
         }) => {
           return (
             <Col key={id} md={3}>
               <Link to="buyer/product/:id" style={{ textDecoration: 'none', color: 'black' }}>
                 <ItemCard
                   title={name}
-                  type={description}
+                  type={category.name}
                   price={priceFormat(price)}
                   image={images[0]}
                   imageAlt="Category of Different Pics"

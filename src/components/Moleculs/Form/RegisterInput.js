@@ -6,7 +6,8 @@
 //  eslint-disable-next-line arrow-body-style
 // eslint-disable-next-line no-underscore-dangle
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
@@ -45,40 +46,56 @@ const vpassword = (value) => {
   }
 };
 
-function RegisterInput() {
+function RegisterInput(props) {
   const form = useRef();
   const checkBtn = useRef();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const [successful, setSuccessful] = useState(false);
   const { message } = useSelector((state) => state.message);
+  const { isRegistered } = useSelector((state) => { return state.auth; });
   const dispatch = useDispatch();
+
   const onChangeName = (e) => {
     setName(e.target.value);
   };
+
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
   };
+
   const onChangePassword = (e) => {
     setPassword(e.target.value);
   };
+
   const handleRegister = (e) => {
     e.preventDefault();
+    setLoading(true);
     setSuccessful(false);
     form.current.validateAll();
+
     if (checkBtn.current.context._errors.length === 0) {
       dispatch(register(name, email, password))
         .then(() => {
           setSuccessful(true);
-          console.log(name, email, password);
-          console.log(checkBtn.current.context);
+          props.history.push('/login');
+          window.location.reload();
         })
         .catch(() => {
           setSuccessful(false);
+          setLoading(false);
         });
+    } else {
+      setLoading(false);
     }
   };
+
+  if (isRegistered) {
+    return <Navigate to="/login" />;
+  }
+
   return (
     <div className="mb-3 mx-5 form-input">
       <TitleList title="Daftar" />
@@ -122,7 +139,12 @@ function RegisterInput() {
               />
             </div>
             <div className="form-group">
-              <button className="btn btn-primary btn-block btn-register mt-4" type="submit">Daftar</button>
+              <button className="btn btn-primary btn-block btn-register mt-4" type="submit" disabled={loading}>
+                {loading && (
+                <span className="spinner-border spinner-border-sm" />
+                )}
+                <span>Daftar</span>
+              </button>
             </div>
           </div>
         )}

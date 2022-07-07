@@ -8,8 +8,6 @@ import './Input.Module.css';
 
 function InputCity({ inputCity }) {
   const [populate, setPopulate] = useState([]);
-  const [inputValue, setInputValue] = useState(null);
-  const [user, setUser] = useState({});
   const [data, setData] = useState([]);
 
   const [errorResponse, setErrorResponse] = useState({
