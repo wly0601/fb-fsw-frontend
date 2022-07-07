@@ -1,6 +1,6 @@
-<<<<<<< HEAD
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
@@ -8,11 +8,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList } from '@fortawesome/free-solid-svg-icons';
 import {
   Navbar, Container, Nav, Form, Row, Col, Toast, Button, ToastContainer, Dropdown,
-=======
-import React, { useState } from 'react';
-import {
-  Navbar, Container, Nav, Form,
->>>>>>> db66ce0e1b660b201c292bf02d6064a30dfa79bf
 } from 'react-bootstrap';
 import {
   FaSearch, FaBell, FaRegUser, FaListUl,
@@ -23,37 +18,21 @@ import './Navigation.Module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function NavbarLogin() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-  return (
-    <Navbar className="ms-auto navbar" bg="white" expand="lg">
-      <Container fluid className="me-3">
-        <Navbar.Brand href="../../" className="logo" />
-=======
   const [show, setShow] = useState(false);
   const userLogin = useSelector((state) => { return state.auth; });
   const { user } = userLogin;
   const dispatch = useDispatch();
->>>>>>> dev
 
   const logOut = () => {
     dispatch(logout());
     window.location.href = '/';
   };
-  return (
-    <>
-      <Navbar className="ms-auto navbar" bg="white" expand="lg">
-        <Container fluid className="me-3">
-          <Navbar.Brand href="#home" className="logo" />
-=======
-  const [show, setShow] = useState(false);
-
+  
   return (
     <div>
       <Navbar className="ms-auto navbar" bg="white" expand="lg">
         <Container fluid className="me-3">
           <Navbar.Brand href="../../" className="logo" />
->>>>>>> db66ce0e1b660b201c292bf02d6064a30dfa79bf
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Form className="d-flex test">
@@ -66,7 +45,6 @@ function NavbarLogin() {
               <i className="searchIcon" type="button"><FaSearch /></i>
             </Form>
             <Nav className="flex-grow-1 justify-content-end nav">
-<<<<<<< HEAD
               <Dropdown className="mt-1">
                 <Dropdown.Toggle
                   className="btn-toggle"
@@ -85,8 +63,8 @@ function NavbarLogin() {
                   />
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item href="../history/seller">History Seller</Dropdown.Item>
-                  <Dropdown.Item href="../history/buyer">History Buyer</Dropdown.Item>
+                  <Dropdown.Item href="../../history/seller">History Seller</Dropdown.Item>
+                  <Dropdown.Item href="../../history/buyer">History Buyer</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
               <Button
@@ -112,14 +90,10 @@ function NavbarLogin() {
                   <FaRegUser className="link" />
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item href="../history/seller">Profile</Dropdown.Item>
+                  <Dropdown.Item href="../profile">Profile</Dropdown.Item>
                   <Dropdown.Item onClick={logOut}>Logout</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
-              {/* <Nav.Link href="../../profile">
-                <FaRegUser className="link" />
-              </Nav.Link> */}
-=======
               <Nav.Link href="#link"><FaListUl className="link" /></Nav.Link>
               <Nav.Link href="#home">
                 <FaBell className="link" />
@@ -127,23 +101,22 @@ function NavbarLogin() {
               <Nav.Link href="../../profile">
                 <FaRegUser className="link" />
               </Nav.Link>
->>>>>>> db66ce0e1b660b201c292bf02d6064a30dfa79bf
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-<<<<<<< HEAD
       <Row>
         <Col xs={10}>
           <ToastContainer position="top-end" className="notification p-3">
-            <Toast position="top-end" onClose={() => { return setShow(false); }} show={show} delay={3000} autohide>
+            <Toast position="top-end d-flex justify-content-right" onClose={() => { return setShow(false); }} show={show} delay={3000} autohide>
               <Toast.Header>
                 <img
                   src="holder.js/20x20?text=%20"
-                  className="rounded me-2"
+                  className="rounded me-5 d-flex justify-content-right"
                   alt=""
+                  style={{ marginLeft: '220px', textAlign: 'right' }}
                 />
-                <small>08 Jul, 20.04</small>
+                {/* <small>08 Jul, 20.04</small> */}
               </Toast.Header>
               <Toast.Body>
                 {Array.from({ length: 4 }).map((_, idx) => {
@@ -166,9 +139,7 @@ function NavbarLogin() {
         </Col>
       </Row>
     </>
-=======
     </div>
->>>>>>> db66ce0e1b660b201c292bf02d6064a30dfa79bf
   );
 }
 

@@ -11,6 +11,7 @@ import ItemCard from '../../Moleculs/Card/ItemCard';
 import BtnAddProduct from '../../Atoms/Button/BtnAddProduct';
 import IMAGES from '../../../data/data';
 import './Home.Module.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Home({ productAll }) {
   const priceFormat = (data) => {
@@ -70,6 +71,7 @@ function Home({ productAll }) {
       </div>
       <div className="row mt-3 mb-3 mx-5">
         <BtnAddProduct />
+        <Pagination className="text-center">{items}</Pagination>
       </div>
     </Container>
   );
