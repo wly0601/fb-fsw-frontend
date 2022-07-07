@@ -1,4 +1,6 @@
-import { Container, Row, Col } from 'react-bootstrap';
+import {
+  Container, Pagination,
+} from 'react-bootstrap';
 import Carousel from '../../Moleculs/Carousel/CarouselHomepage';
 import ButtonCategory from '../../Atoms/Button/ButtonCategory';
 import ItemCard from '../../Moleculs/Card/ItemCard';
@@ -6,8 +8,19 @@ import BtnAddProduct from '../../Atoms/Button/BtnAddProduct';
 // import ButtonList from '../../Atoms/Button/ButtonList';
 import IMAGES from '../../../data/data';
 import './Home.Module.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Home() {
+  const active = 2;
+  const items = [];
+  // eslint-disable-next-line no-plusplus
+  for (let number = 1; number <= 10; number++) {
+    items.push(
+      <Pagination.Item key={number} active={number === active}>
+        {number}
+      </Pagination.Item>,
+    );
+  }
   return (
     <Container fluid>
       <div className="row mt-3">
@@ -81,12 +94,8 @@ function Home() {
       </div>
       <div className="row mt-3 mb-3 mx-5">
         <BtnAddProduct />
+        <Pagination className="text-center">{items}</Pagination>
       </div>
-
-      {/* <Row style={{ marginleft: 0}}>
-          <Col style={{ paddingleft: 0}}><ImageLoginRegis /></Col>
-          <Col><LoginForm /></Col>
-        </Row> */}
     </Container>
   );
 }
