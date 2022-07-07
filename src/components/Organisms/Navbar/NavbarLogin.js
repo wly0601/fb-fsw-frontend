@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, Navigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -7,17 +11,26 @@ import {
 import {
   FaSearch, FaBell, FaRegUser, FaListUl,
 } from 'react-icons/fa';
+import { logout } from '../../../actions/auth';
 import CardNotification from '../../Moleculs/Card/CardNotification';
 import './Navigation.Module.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function NavbarLogin() {
   const [show, setShow] = useState(false);
+  const userLogin = useSelector((state) => { return state.auth; });
+  const { user } = userLogin;
+  const dispatch = useDispatch();
 
+  const logOut = () => {
+    dispatch(logout());
+    window.location.href = '/';
+  };
   return (
     <>
       <Navbar className="ms-auto navbar" bg="white" expand="lg">
         <Container fluid className="me-3">
-          <Navbar.Brand href="../../" className="logo" />
+          <Navbar.Brand href="#home" className="logo" />
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Form className="d-flex test">
@@ -62,9 +75,26 @@ function NavbarLogin() {
               >
                 <FaBell className="link" />
               </Button>
-              <Nav.Link href="../../profile">
+              <Dropdown className="mt-1">
+                <Dropdown.Toggle
+                  className="btn-toggle"
+                  style={{
+                    backgroundColor: 'transparent',
+                    color: 'black',
+                    border: 'none',
+                    zIndex: '1',
+                  }}
+                >
+                  <FaRegUser className="link" />
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item href="../profile">Profile</Dropdown.Item>
+                  <Dropdown.Item onClick={logOut}>Logout</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+              {/* <Nav.Link href="../../profile">
                 <FaRegUser className="link" />
-              </Nav.Link>
+              </Nav.Link> */}
             </Nav>
           </Navbar.Collapse>
         </Container>
