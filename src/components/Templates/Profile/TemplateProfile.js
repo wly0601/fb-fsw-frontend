@@ -1,6 +1,6 @@
 /* eslint-disable radix */
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -15,7 +15,7 @@ import NavbarProfile from '../../Organisms/Navbar/NavbarProfile';
 import ProfileInput from '../../Moleculs/Form/ProfileInput';
 import './TemplateProfile.Module.css';
 
-function TemplateProfile() {
+function TemplateProfile(props) {
   // Data Input Profile
   const [inputName, setInputName] = useState('');
   const [cityId, setCityId] = useState('');
@@ -54,6 +54,7 @@ function TemplateProfile() {
       setLoading(true);
     } else if (profileResult) {
       setLoading(false);
+      window.location.reload();
       console.log(profileResult);
     } else if (profileError) {
       console.log(profileError);
@@ -77,6 +78,10 @@ function TemplateProfile() {
       }
     };
   });
+
+  if (profileResult) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <>

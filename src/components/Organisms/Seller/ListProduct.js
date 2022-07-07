@@ -45,9 +45,14 @@ function ListProduct({ dataProducts }) {
         </Col>
         <Col>
           <div className="card content" type="button">
-            <FaPlus />
-            {' '}
-            <p className="pt-2">Tambah Produk</p>
+            <Link
+              to="../../seller/sell"
+              style={{ textDecoration: 'none', color: 'grey', textAlign: 'center' }}
+            >
+              <FaPlus />
+              {' '}
+              <p className="pt-2">Tambah Produk</p>
+            </Link>
           </div>
         </Col>
         {dataProducts && dataProducts.map(({

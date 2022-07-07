@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '@fontsource/poppins';
 import {
@@ -10,6 +10,8 @@ import { FaCube, FaRegHeart, FaDollarSign } from 'react-icons/fa';
 import './SidebarProduct.Module.css';
 
 function SidebarProduct() {
+  const [show, setShow] = useState(false);
+
   return (
     <div className="card-test">
       <div className="card-body">

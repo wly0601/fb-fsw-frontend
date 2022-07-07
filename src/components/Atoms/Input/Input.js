@@ -7,7 +7,7 @@ function InputList(props) {
   const { type, placeholder, onChange } = props;
 
   const handleChangeName = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     // console.log(e.target.value)
     onChange(e.target.value);
   };

@@ -1,6 +1,6 @@
 /* eslint-disable default-param-last */
 /* eslint-disable import/prefer-default-export */
-import { updateProfile } from '../actions/profile';
+import { createProduct } from '../actions/createProduct';
 
 const initialState = {
   profileLoading: false,
@@ -8,9 +8,9 @@ const initialState = {
   profileError: false,
 };
 
-export const getProfileReducer = (state = initialState, action) => {
+export const getProductReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'updateProfile':
+    case 'createProduct':
       console.log(action.payload);
       return {
         ...state,
