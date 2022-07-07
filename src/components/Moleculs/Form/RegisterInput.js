@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable arrow-body-style */
 /* eslint-disable jsx-a11y/label-has-associated-control */
@@ -34,7 +35,6 @@ const validEmail = (value) => {
     );
   }
 };
-
 const vpassword = (value) => {
   if (value.length < 8) {
     return (
@@ -44,7 +44,6 @@ const vpassword = (value) => {
     );
   }
 };
-
 function RegisterInput() {
   const form = useRef();
   const checkBtn = useRef();
