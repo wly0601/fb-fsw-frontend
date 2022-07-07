@@ -48,8 +48,8 @@ function NavbarLogin() {
                   />
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item href="../history/seller">History Seller</Dropdown.Item>
-                  <Dropdown.Item href="../history/buyer">History Buyer</Dropdown.Item>
+                  <Dropdown.Item href="../../history/seller">History Seller</Dropdown.Item>
+                  <Dropdown.Item href="../../history/buyer">History Buyer</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
               <Button
@@ -72,14 +72,15 @@ function NavbarLogin() {
       <Row>
         <Col xs={10}>
           <ToastContainer position="top-end" className="notification p-3">
-            <Toast position="top-end" onClose={() => { return setShow(false); }} show={show} delay={3000} autohide>
+            <Toast position="top-end d-flex justify-content-right" onClose={() => { return setShow(false); }} show={show} delay={3000} autohide>
               <Toast.Header>
                 <img
                   src="holder.js/20x20?text=%20"
-                  className="rounded me-2"
+                  className="rounded me-5 d-flex justify-content-right"
                   alt=""
+                  style={{ marginLeft: '220px', textAlign: 'right' }}
                 />
-                <small>08 Jul, 20.04</small>
+                {/* <small>08 Jul, 20.04</small> */}
               </Toast.Header>
               <Toast.Body>
                 {Array.from({ length: 4 }).map((_, idx) => {

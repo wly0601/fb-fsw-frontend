@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Container, Card, Row, Col, Button,
 } from 'react-bootstrap';
@@ -9,9 +9,18 @@ import './Card.Module.css';
 
 function CardHistory(props) {
   const [modalShow, setModalShow] = React.useState(false);
+  const [hiddenButton, setHiddenButton] = React.useState(false);
   const {
     title, name, price, image, imageAlt, offering,
   } = props;
+
+  const handleHiddenButton = (e) => {
+    setHiddenButton(true);
+  };
+
+  useEffect(() => {
+    handleHiddenButton();
+  }, [hiddenButton]);
 
   return (
     <Container>
@@ -29,12 +38,15 @@ function CardHistory(props) {
               <Card.Text>{offering}</Card.Text>
             </Card.Body>
             <div className="justify-content-end button-align">
-              <Button variant="secondary" className="button-deny">Tolak</Button>
-              {/* <Button variant="secondary" className="button-accept">Terima</Button> */}
-              <VerticalModals
-                show={modalShow}
-                onHide={() => { return setModalShow(false); }}
-              />
+              {hiddenButton && (
+                <>
+                  <Button variant="secondary" className="button-deny" onClick={handleHiddenButton}>Tolak</Button>
+                  <VerticalModals
+                    show={modalShow}
+                    onHide={() => { return setModalShow(false); }}
+                  />
+                </>
+              )}
             </div>
           </Col>
         </Row>
