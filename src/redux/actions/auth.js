@@ -1,12 +1,12 @@
 /* eslint-disable import/prefer-default-export */
+/* eslint-disable arrow-body-style */
+/* eslint-disable import/prefer-default-export */
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
-  UPDATE_SUCCESS,
-  UPDATE_FAIL,
   SET_MESSAGE,
 } from './types';
 import AuthService from '../services/auth.service';
@@ -43,9 +43,9 @@ export const register = (name, email, password) => {
   };
 };
 
-export const login = (username, password) => {
+export const login = (email, password) => {
   return (dispatch) => {
-    return AuthService.login(username, password).then(
+    return AuthService.login(email, password).then(
       (data) => {
         dispatch({
           type: LOGIN_SUCCESS,
@@ -72,31 +72,9 @@ export const login = (username, password) => {
   };
 };
 
-export const updateProfile = (photo, phoneNumber, address, cityId) => {
-  return (dispatch) => {
-    return AuthService.updateProfile(photo, phoneNumber, address, cityId).then(
-      (data) => {
-        dispatch({
-          type: UPDATE_SUCCESS,
-          payload: { user: data },
-        });
-        return Promise.resolve();
-      },
-      (error) => {
-        const message = (error.response
-          && error.response.data
-          && error.response.data.message)
-        || error.message
-        || error.toString();
-        dispatch({
-          type: UPDATE_FAIL,
-        });
-        dispatch({
-          type: SET_MESSAGE,
-          payload: message,
-        });
-        return Promise.reject();
-      },
-    );
-  };
+export const logout = () => (dispatch) => {
+  AuthService.logout();
+  dispatch({
+    type: LOGOUT,
+  });
 };

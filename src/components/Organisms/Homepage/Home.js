@@ -1,7 +1,6 @@
 /* eslint-disable array-callback-return */
 // import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Col } from 'react-bootstrap';
 import Carousel from '../../Moleculs/Carousel/CarouselHomepage';
@@ -11,6 +10,7 @@ import ItemCard from '../../Moleculs/Card/ItemCard';
 import BtnAddProduct from '../../Atoms/Button/BtnAddProduct';
 import IMAGES from '../../../data/data';
 import './Home.Module.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Home({ productAll }) {
   const priceFormat = (data) => {

@@ -35,7 +35,6 @@ const validEmail = (value) => {
     );
   }
 };
-
 const vpassword = (value) => {
   if (value.length < 8) {
     return (
