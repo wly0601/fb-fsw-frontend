@@ -17,6 +17,9 @@ import './Card.Module.css';
 
 function CardProduct({ productById, categoryName }) {
   const priceFormat = (data) => {
+    if (typeof data === 'undefined') {
+      return '';
+    }
     const priceStr = data.toString();
     let i = priceStr.length;
     let renderPrice = '';

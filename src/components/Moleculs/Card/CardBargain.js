@@ -10,6 +10,9 @@ import './Card.Module.css';
 
 function CardBargain({ productById, categoryName }) {
   const priceFormat = (data) => {
+    if (typeof data === 'undefined') {
+      return '';
+    }
     const priceStr = data.toString();
     let i = priceStr.length;
     let renderPrice = '';
@@ -25,6 +28,7 @@ function CardBargain({ productById, categoryName }) {
       }
     }
 
+    // eslint-disable-next-line consistent-return
     return `Rp ${renderPrice}`;
   };
   const [modalShow, setModalShow] = React.useState(false);
