@@ -15,7 +15,7 @@ function Category() {
       </Button>
       <Button variant="secondary" className="button-category">
         <Search className="me-2" />
-        Kendaraan
+        Otomotif
       </Button>
       <Button variant="secondary" className="button-category">
         <Search className="me-2" />

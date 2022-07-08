@@ -30,7 +30,7 @@ function NavbarLogin() {
     <>
       <Navbar className="ms-auto navbar" bg="white" expand="lg">
         <Container fluid className="me-3">
-          <Navbar.Brand href="#home" className="logo" />
+          <Navbar.Brand href="../../" className="logo" />
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Form className="d-flex test">

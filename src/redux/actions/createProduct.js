@@ -1,9 +1,13 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable no-loop-func */
+/* eslint-disable no-await-in-loop */
 /* eslint-disable no-undef */
 import axios from 'axios';
 
 export const createProduct = 'createProduct';
 
 export const createListProduct = (image, body) => {
+  const url = [];
   return async (dispatch) => {
     // Loading
     dispatch({
@@ -22,62 +26,80 @@ export const createListProduct = (image, body) => {
       },
     })
       .then(async (resultUser) => {
-        const cloudinaryUpload = new FormData();
-        cloudinaryUpload.append('picture', image);
-        await axios.put(
-          `https://second-hand-be.herokuapp.com/api/product/picture/${resultUser.data.id.toString()}/cloudinary`,
-          cloudinaryUpload,
-
+        console.log(resultUser);
+        console.log(image, 'lewat sini');
+        // eslint-disable-next-line no-plusplus
+        let cloudinaryUpload;
+        for (let i = 0; i < image.length; i++) {
+          cloudinaryUpload = new FormData();
+          cloudinaryUpload.append('picture', image[i]);
+          console.log(image[i]);
+          const response = await axios.put(
+            `https://second-hand-be.herokuapp.com/api/product/picture/${resultUser.data.id.toString()}/cloudinary`,
+            cloudinaryUpload,
+            {
+              headers: {
+                'Content-Type': 'multipart/form-data',
+                Authorization: `Bearer ${token}`,
+              },
+            },
+          );
+          // console.log(response.data.url);
+          url.push(response.data.url);
+          // setUploadedFileURL = uploadedFileURL.push(response.data.url);
+          console.log(url);
+          // eslint-disable-next-line no-loop-func
+          //   .then(async (resultCloudinary) => {
+          //     setUploadedFileURL(uploadedFileURL.push(resultCloudinary.data.url));
+          //     console.log(resultCloudinary.data.url);
+          //     console.log('woi');
+          //   })
+          //   .catch((err) => {
+          //     dispatch({
+          //       type: createProduct,
+          //       payload: {
+          //         loading: false,
+          //         result: false,
+          //         error: err.message,
+          //       },
+          //     });
+          //   });
+          // console.log('line 62');
+        }
+        console.log('line 64');
+        console.log(url);
+        const bodyProduct = {
+          name: body.name,
+          images: url,
+          price: body.price,
+          description: body.description,
+          categoryId: body.categoryId,
+        };
+        console.log(bodyProduct);
+        await axios.post(
+          'https://second-hand-be.herokuapp.com/api/products',
+          bodyProduct,
           {
             headers: {
-              'Content-Type': 'multipart/form-data',
+              'Content-Type': 'application/json',
               Authorization: `Bearer ${token}`,
             },
           },
         )
-          .then(async (resultCloudinary) => {
-            const bodyProduct = {
-              name: body.name,
-              photo: resultCloudinary.data.url,
-              price: body.price,
-              description: body.description,
-              categoryId: body.categoryId,
-            };
-            await axios.post(
-              'https://second-hand-be.herokuapp.com/api/products',
-              bodyProduct,
-              {
-                headers: {
-                  'Content-Type': 'application/json',
-                  Authorization: `Bearer ${token}`,
-                },
+          .then(async (result) => {
+            console.log(result.data);
+            await dispatch({
+              type: createProduct,
+              payload: {
+                loading: false,
+                result: await result.data,
+                error: false,
               },
-            )
-              .then(async (result) => {
-                console.log(result);
-                await dispatch({
-                  type: createProduct,
-                  payload: {
-                    loading: false,
-                    result: await result.data,
-                    error: false,
-                  },
-                });
-              })
-              .catch((err) => {
-                dispatch({
-                  type: createProduct,
-                  payload: {
-                    loading: false,
-                    result: false,
-                    error: err.message,
-                  },
-                });
-              });
+            });
           })
           .catch((err) => {
             dispatch({
-              type: getCloudinary,
+              type: createProduct,
               payload: {
                 loading: false,
                 result: false,
@@ -88,7 +110,7 @@ export const createListProduct = (image, body) => {
       })
       .catch((err) => {
         dispatch({
-          type: getProductId,
+          type: createProduct,
           payload: {
             loading: false,
             result: false,
@@ -96,5 +118,6 @@ export const createListProduct = (image, body) => {
           },
         });
       });
+    console.log('line 112');
   };
 };

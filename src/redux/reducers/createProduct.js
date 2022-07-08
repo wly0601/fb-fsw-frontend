@@ -3,9 +3,9 @@
 import { createProduct } from '../actions/createProduct';
 
 const initialState = {
-  profileLoading: false,
-  profileResult: false,
-  profileError: false,
+  productLoading: false,
+  productResult: false,
+  productError: false,
 };
 
 export const getProductReducer = (state = initialState, action) => {
@@ -14,9 +14,9 @@ export const getProductReducer = (state = initialState, action) => {
       console.log(action.payload);
       return {
         ...state,
-        profileLoading: action.payload.loading,
-        profileResult: action.payload.result,
-        profileError: action.payload.error,
+        productLoading: action.payload.loading,
+        productResult: action.payload.result,
+        productError: action.payload.error,
       };
     default:
       return state;

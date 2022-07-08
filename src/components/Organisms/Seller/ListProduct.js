@@ -60,7 +60,7 @@ function ListProduct({ dataProducts }) {
         }) => {
           return (
             <Col key={id} md={3}>
-              <Link to="../seller/product/:id" style={{ textDecoration: 'none', color: 'black' }}>
+              <Link to={`../seller/product/${id}`} style={{ textDecoration: 'none', color: 'black' }}>
                 <ItemCard
                   title={name}
                   type={description}

@@ -19,7 +19,7 @@ const required = (value) => {
 };
 
 function ProductInput({
-  name, price, category, description,
+  name, price, categoryId, description,
 }) {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [user, setUser] = useState({});
@@ -32,7 +32,7 @@ function ProductInput({
 
     try {
       const userToUpdatePayload = new FormData();
-      const updateRequest = await axios.post(
+      const createRequest = await axios.post(
         'https://second-hand-be.herokuapp.com/api/products',
         userToUpdatePayload,
         {
@@ -41,8 +41,8 @@ function ProductInput({
           },
         },
       );
-      console.log(updateRequest.data.data.data);
-      const updateResponse = updateRequest.data.data.data;
+      console.log(createRequest.data.data.data);
+      const updateResponse = createRequest.data.data.data;
       if (updateResponse.status) Navigate('/login');
     } catch (err) {
       console.log(err);
@@ -96,7 +96,7 @@ function ProductInput({
         </Form.Group>
         <Form.Group>
           <Form.Label>Kategori</Form.Label>
-          <InputCategory InputCategory={category} />
+          <InputCategory inputCategory={categoryId} />
         </Form.Group>
         <Form.Group>
           <Form.Label>Deskripsi</Form.Label>
@@ -107,14 +107,6 @@ function ProductInput({
             onChange={description}
             validations={[required]}
           />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="productPhoto">
-          <Row>
-            <Form.Label>Foto Produk</Form.Label>
-          </Row>
-          <Row>
-            <Form.Control type="file" className="upload-button" />
-          </Row>
         </Form.Group>
       </Form>
     </div>

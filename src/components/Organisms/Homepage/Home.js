@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable array-callback-return */
 // import axios from 'axios';
 import React from 'react';
@@ -32,46 +33,47 @@ function Home({ productAll }) {
     return `Rp ${renderPrice}`;
   };
 
-  console.log(productAll);
   return (
-    <Container fluid>
-      <div className="row mt-3">
-        <div className="col">
-          <Carousel images={IMAGES} />
+    <>
+      <Container fluid>
+        <div className="row mt-3">
+          <div className="col">
+            <Carousel images={IMAGES} />
+          </div>
         </div>
-      </div>
-      <div className="row mt-5 mx-5">
-        <div className="col-12">
-          <TitleList title="Telusuri Kategori" />
+        <div className="row mt-5 mx-5">
+          <div className="col-12">
+            <TitleList title="Telusuri Kategori" />
+          </div>
         </div>
-      </div>
-      <div className="row mt-3 mx-5">
-        <ButtonCategory />
-      </div>
-      <div className="row mt-3 mx-5">
-        {productAll && productAll.map(({
-          id, name, category, price, images,
-        }) => {
-          return (
-            <Col key={id} md={3}>
-              <Link to="buyer/product/:id" style={{ textDecoration: 'none', color: 'black' }}>
-                <ItemCard
-                  title={name}
-                  type={category.name}
-                  price={priceFormat(price)}
-                  image={images[0]}
-                  imageAlt="Category of Different Pics"
-                />
-              </Link>
-            </Col>
-          );
-        })}
-        {/* {product.length === 0 && setProduct(productAll)} */}
-      </div>
-      <div className="row mt-3 mb-3 mx-5">
-        <BtnAddProduct />
-      </div>
-    </Container>
+        <div className="row mt-3 mx-5">
+          <ButtonCategory />
+        </div>
+        <div className="row mt-3 mx-5">
+          {productAll && productAll.map(({
+            id, name, category, price, images,
+          }) => {
+            return (
+              <Col key={id} md={3}>
+                <Link to={`buyer/product/${id}`} style={{ textDecoration: 'none', color: 'black' }}>
+                  <ItemCard
+                    title={name}
+                    type={category.name}
+                    price={priceFormat(price)}
+                    image={images[0]}
+                    imageAlt="Category of Different Pics"
+                  />
+                </Link>
+              </Col>
+            );
+          })}
+          {/* {product.length === 0 && setProduct(productAll)} */}
+        </div>
+        <div className="row mt-3 mb-3 mx-5">
+          <BtnAddProduct />
+        </div>
+      </Container>
+    </>
   );
 }
 

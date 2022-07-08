@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -5,8 +6,8 @@ import { Form } from 'react-bootstrap';
 import Select from 'react-select';
 import './Input.Module.css';
 
-function InputCategory() {
-  const [category, setCategory] = useState([]);
+function InputCategory({ inputCategory }) {
+  const [categoryId, setCategoryId] = useState([]);
   const [user, setUser] = useState({});
   const [data, setData] = useState([]);
 
@@ -34,11 +35,14 @@ function InputCategory() {
     }
   };
 
-  axios.get('https://second-hand-be.herokuapp.com/api/categories', {
-    headers: {
-      Authorization: `Bearer ${token}`,
+  axios.get(
+    'https://second-hand-be.herokuapp.com/api/categories',
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     },
-  })
+  )
     .then((res) => {
       const state = res.data.data.data.map((listCategory) => {
         return {
@@ -46,7 +50,7 @@ function InputCategory() {
           label: listCategory.name,
         };
       });
-      setCategory(state);
+      setCategoryId(state);
     })
     .catch((err) => {
       const response = err.response.data;
@@ -58,7 +62,7 @@ function InputCategory() {
 
   useEffect(() => {
     getUsers();
-  }, []);
+  }, [categoryId]);
 
   const categoryStyles = {
     control: (styles) => { return { ...styles }; },
@@ -73,10 +77,14 @@ function InputCategory() {
     },
   };
 
+  const handleGetValue = (e) => {
+    inputCategory(e.value);
+  };
+
   return (
     <div className="mb-3">
       <Form styles={{ borderRadius: '16px' }}>
-        <Select options={category} styles={categoryStyles} />
+        <Select options={categoryId} onChange={handleGetValue} styles={categoryStyles} />
       </Form>
     </div>
   );
