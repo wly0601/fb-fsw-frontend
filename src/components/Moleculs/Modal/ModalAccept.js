@@ -11,7 +11,6 @@ import {
 import {
   FaWhatsapp,
 } from 'react-icons/fa';
-import InputList from '../../Atoms/Input/Input';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Modal.Module.css';
 
@@ -52,7 +51,7 @@ function VerticalModals(props) {
             <Col xs={8}>
               <p style={{ fontWeight: 'bold' }}>Jam Tangan Casio</p>
               <p style={{ textDecoration: 'line-through' }}>Rp.250.000</p>
-              <p>Rp.200.000</p>
+              <p>Ditawar Rp.200.000</p>
             </Col>
           </Row>
         </Container>
