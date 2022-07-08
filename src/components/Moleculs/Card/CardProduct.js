@@ -1,5 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+/* eslint-disable react/jsx-closing-tag-location */
+/* eslint-disable no-mixed-spaces-and-tabs */
+/* eslint-disable no-tabs */
+/* eslint-disable react/jsx-indent */
+/* eslint-disable array-callback-return */
+import React, { useEffect, useState, useCallback } from 'react';
+import axios from 'axios';
+import { Link, useParams } from 'react-router-dom';
 import {
   Container,
   Row,
@@ -9,16 +15,40 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Card.Module.css';
 
-function CardProduct() {
+function CardProduct({ productById, categoryName }) {
+  const priceFormat = (data) => {
+    if (typeof data === 'undefined') {
+      return '';
+    }
+    const priceStr = data.toString();
+    let i = priceStr.length;
+    let renderPrice = '';
+    let counter = 0;
+
+    while (i > 0) {
+      renderPrice = priceStr[i - 1] + renderPrice;
+      i -= 1;
+      counter += 1;
+      if (counter === 3 && i !== 0) {
+        renderPrice = `.${renderPrice}`;
+        counter = 0;
+      }
+    }
+
+    return `Rp ${renderPrice}`;
+  };
+
   return (
     <Container>
       <Card className="card-product">
         <Card.Body>
-          <h5 style={{ fontWeight: 'bold' }}>Jam Tangan Casio</h5>
-          <p style={{ color: 'grey' }}>Aksesoris</p>
-          <p>Rp.250.000</p>
+					<h5 style={{ fontWeight: 'bold' }}>
+            {productById.name}
+          </h5>
+          <p style={{ color: 'grey' }}>{categoryName.name}</p>
+          <p>{priceFormat(productById.price)}</p>
           <Row>
-            <Link to="/side">
+            <Link to="/list/products">
               <Button variant="primary" className="button-seller">Terbitkan</Button>
             </Link>
           </Row>

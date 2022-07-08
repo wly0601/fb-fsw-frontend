@@ -8,9 +8,9 @@ import Input from 'react-validation/build/input';
 import CheckButton from 'react-validation/build/button';
 // import { Form } from 'react-bootstrap';
 import TitleList from '../../Atoms/Title/Title';
-import InputList from '../../Atoms/Input/Input';
+// import InputList from '../../Atoms/Input/Input';
 import './FormInput.Module.css';
-import { login } from '../../../actions/auth';
+import { login } from '../../../redux/actions/auth';
 
 // eslint-disable-next-line consistent-return
 const required = (value) => {
@@ -37,10 +37,12 @@ function LoginInput(props) {
     const email = e.target.value;
     setEmail(email);
   };
+
   const onChangePassword = (e) => {
     const password = e.target.value;
     setPassword(password);
   };
+
   const handleLogin = (e) => {
     e.preventDefault();
     setLoading(true);
@@ -48,7 +50,8 @@ function LoginInput(props) {
     // eslint-disable-next-line no-underscore-dangle
     if (checkBtn.current.context._errors.length === 0) {
       dispatch(login(email, password))
-        .then(() => {
+        .then((res) => {
+          console.log(res);
           props.history.push('/');
           window.location.reload();
         })
@@ -91,7 +94,7 @@ function LoginInput(props) {
           />
         </div>
         <div className="form-group">
-          <button className="btn btn-primary btn-block" type="submit" disabled={loading}>
+          <button className="btn btn-primary btn-block btn-register mt-4" type="submit" disabled={loading}>
             {loading && (
               <span className="spinner-border spinner-border-sm" />
             )}
@@ -106,14 +109,6 @@ function LoginInput(props) {
           </div>
         )}
         <CheckButton style={{ display: 'none' }} ref={checkBtn} />
-        {/* <Form.Group>
-          <Form.Label>Email</Form.Label>
-          <InputList type="email" placeholder="team2@gmail.com" />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Password</Form.Label>
-          <InputList type="password" placeholder="Masukkan Password" />
-        </Form.Group> */}
       </Form>
     </div>
   );

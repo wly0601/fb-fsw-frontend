@@ -1,26 +1,38 @@
-import {
-  Container, Pagination,
-} from 'react-bootstrap';
+/* eslint-disable array-callback-return */
+// import axios from 'axios';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Container, Col } from 'react-bootstrap';
 import Carousel from '../../Moleculs/Carousel/CarouselHomepage';
+import TitleList from '../../Atoms/Title/Title';
 import ButtonCategory from '../../Atoms/Button/ButtonCategory';
 import ItemCard from '../../Moleculs/Card/ItemCard';
 import BtnAddProduct from '../../Atoms/Button/BtnAddProduct';
-// import ButtonList from '../../Atoms/Button/ButtonList';
 import IMAGES from '../../../data/data';
 import './Home.Module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function Home() {
-  const active = 2;
-  const items = [];
-  // eslint-disable-next-line no-plusplus
-  for (let number = 1; number <= 10; number++) {
-    items.push(
-      <Pagination.Item key={number} active={number === active}>
-        {number}
-      </Pagination.Item>,
-    );
-  }
+function Home({ productAll }) {
+  const priceFormat = (data) => {
+    const priceStr = data.toString();
+    let i = priceStr.length;
+    let renderPrice = '';
+    let counter = 0;
+
+    while (i > 0) {
+      renderPrice = priceStr[i - 1] + renderPrice;
+      i -= 1;
+      counter += 1;
+      if (counter === 3 && i !== 0) {
+        renderPrice = `.${renderPrice}`;
+        counter = 0;
+      }
+    }
+
+    return `Rp ${renderPrice}`;
+  };
+
+  console.log(productAll);
   return (
     <Container fluid>
       <div className="row mt-3">
@@ -30,71 +42,34 @@ function Home() {
       </div>
       <div className="row mt-5 mx-5">
         <div className="col-12">
-          <h5 style={{ textAlign: 'left' }}>Telusuri Kategori</h5>
+          <TitleList title="Telusuri Kategori" />
         </div>
       </div>
       <div className="row mt-3 mx-5">
         <ButtonCategory />
       </div>
       <div className="row mt-3 mx-5">
-        <div className="col-2">
-          <ItemCard
-            title="Jam Tangan Casio"
-            type="Aksesoris"
-            price="Rp 250.000"
-            image="https://placeimg.com/165/100/any"
-            imageAlt="Gambar jam tangan"
-          />
-        </div>
-        <div className="col-2">
-          <ItemCard
-            title="Jam Tangan Casio"
-            type="Aksesoris"
-            price="Rp 250.000"
-            image="https://placeimg.com/165/100/any"
-            imageAlt="Gambar jam tangan"
-          />
-        </div>
-        <div className="col-2">
-          <ItemCard
-            title="Jam Tangan Casio"
-            type="Aksesoris"
-            price="Rp 250.000"
-            image="https://placeimg.com/165/100/any"
-            imageAlt="Gambar jam tangan"
-          />
-        </div>
-        <div className="col-2">
-          <ItemCard
-            title="Jam Tangan Casio"
-            type="Aksesoris"
-            price="Rp 250.000"
-            image="https://placeimg.com/165/100/any"
-            imageAlt="Gambar jam tangan"
-          />
-        </div>
-        <div className="col-2">
-          <ItemCard
-            title="Jam Tangan Casio"
-            type="Aksesoris"
-            price="Rp 250.000"
-            image="https://placeimg.com/165/100/any"
-            imageAlt="Gambar jam tangan"
-          />
-        </div>
-        <div className="col-2">
-          <ItemCard
-            title="Jam Tangan Casio"
-            type="Aksesoris"
-            price="Rp 250.000"
-            image="https://placeimg.com/165/100/any"
-            imageAlt="Gambar jam tangan"
-          />
-        </div>
+        {productAll && productAll.map(({
+          id, name, category, price, images,
+        }) => {
+          return (
+            <Col key={id} md={3}>
+              <Link to="buyer/product/:id" style={{ textDecoration: 'none', color: 'black' }}>
+                <ItemCard
+                  title={name}
+                  type={category.name}
+                  price={priceFormat(price)}
+                  image={images[0]}
+                  imageAlt="Category of Different Pics"
+                />
+              </Link>
+            </Col>
+          );
+        })}
+        {/* {product.length === 0 && setProduct(productAll)} */}
       </div>
       <div className="row mt-3 mb-3 mx-5">
         <BtnAddProduct />
-        <Pagination className="text-center">{items}</Pagination>
       </div>
     </Container>
   );

@@ -2,10 +2,15 @@ import axios from 'axios';
 
 const API_URL = 'https://second-hand-be.herokuapp.com/api/';
 const register = (name, email, password) => {
+  return axios
   // eslint-disable-next-line prefer-template
-  return axios.post(API_URL + 'register', {
-    name, email, password,
-  });
+    .post(API_URL + 'register', {
+      name, email, password,
+    })
+    .then((response) => {
+      console.log(response.data);
+      return response.data;
+    });
 };
 
 const login = (email, password) => {
@@ -15,7 +20,9 @@ const login = (email, password) => {
       email, password,
     })
     .then((response) => {
-      if (response.data.token) {
+      localStorage.setItem('token', response.data.token);
+      console.log(response.data);
+      if (response.data.accessToken) {
         localStorage.setItem('user', JSON.stringify(response.data));
       }
       return response.data;

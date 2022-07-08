@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Container,
   Row,
@@ -11,7 +12,25 @@ import Sidebar from '../../Moleculs/Sidebar/SidebarProduct';
 import ItemCard from '../../Moleculs/Card/ItemCard';
 import './Product.Module.css';
 
-function ListProduct() {
+function ListProduct({ dataProducts }) {
+  const priceFormat = (data) => {
+    const priceStr = data.toString();
+    let i = priceStr.length;
+    let renderPrice = '';
+    let counter = 0;
+
+    while (i > 0) {
+      renderPrice = priceStr[i - 1] + renderPrice;
+      i -= 1;
+      counter += 1;
+      if (counter === 3 && i !== 0) {
+        renderPrice = `.${renderPrice}`;
+        counter = 0;
+      }
+    }
+
+    return `Rp ${renderPrice}`;
+  };
   return (
     <Container className="mt-5">
       <Row>
@@ -26,21 +45,30 @@ function ListProduct() {
         </Col>
         <Col>
           <div className="card content" type="button">
-            <FaPlus />
-            {' '}
-            <p className="pt-2">Tambah Produk</p>
+            <Link
+              to="../../seller/sell"
+              style={{ textDecoration: 'none', color: 'grey', textAlign: 'center' }}
+            >
+              <FaPlus />
+              {' '}
+              <p className="pt-2">Tambah Produk</p>
+            </Link>
           </div>
         </Col>
-        {Array.from({ length: 2 }).map((_, idx) => {
+        {dataProducts && dataProducts.map(({
+          id, name, description, price, images,
+        }) => {
           return (
-            <Col>
-              <ItemCard
-                title="Jam Tangan Casio"
-                type="Aksesoris"
-                price="Rp 250.000"
-                image="https://placeimg.com/165/100/any"
-                imageAlt="Gambar jam tangan"
-              />
+            <Col key={id} md={3}>
+              <Link to="../seller/product/:id" style={{ textDecoration: 'none', color: 'black' }}>
+                <ItemCard
+                  title={name}
+                  type={description}
+                  price={priceFormat(price)}
+                  image={images[0]}
+                  imageAlt="Category of Different Pics"
+                />
+              </Link>
             </Col>
           );
         })}

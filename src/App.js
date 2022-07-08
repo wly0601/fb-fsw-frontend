@@ -4,6 +4,7 @@ import {
   Route,
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import store from './store';
 import Homepage from './pages';
 import Register from './pages/Register';
 import Login from './pages/Login';
@@ -18,7 +19,6 @@ import OfferingInfo from './pages/OfferingInfo';
 import OfferingAccept from './pages/OfferingAccept';
 import ProductInterest from './pages/ProductInterest';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import store from './store';
 
 function App() {
   return (

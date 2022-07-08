@@ -31,7 +31,7 @@ import '@fontsource/poppins';
 
 import './Navigation.Module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { logout } from '../../../actions/auth';
+import { logout } from '../../../redux/actions/auth';
 
 function NavbarHeader(props) {
   const userLogin = useSelector((state) => { return state.auth; });
@@ -45,7 +45,7 @@ function NavbarHeader(props) {
   return (
     <Navbar className="ms-auto navbar" bg="white" expand="lg">
       <Container fluid className="me-3">
-        <Navbar.Brand href="#home" className="logo" />
+        <Navbar.Brand href="../../" className="logo" />
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Form className="d-flex test">

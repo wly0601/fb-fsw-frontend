@@ -1,15 +1,20 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable arrow-body-style */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable consistent-return */
-import React, { useState, useRef } from 'react';
+//  eslint-disable-next-line arrow-parens
+//  eslint-disable-next-line arrow-body-style
+// eslint-disable-next-line no-underscore-dangle
+
+import React, { useState, useRef, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import CheckButton from 'react-validation/build/button';
 import { isEmail } from 'validator';
-import { register } from '../../../actions/auth';
-// import { Form } from 'react-bootstrap';
+import { register } from '../../../redux/actions/auth';
 import TitleList from '../../Atoms/Title/Title';
-import InputList from '../../Atoms/Input/Input';
 import './FormInput.Module.css';
 
 const required = (value) => {
@@ -30,15 +35,6 @@ const validEmail = (value) => {
     );
   }
 };
-// const vusername = (value) => {
-//   if (value.length < 3 || value.length > 20) {
-//     return (
-//       <div className="alert alert-danger" role="alert">
-//         The username must be between 3 and 20 characters.
-//       </div>
-//     );
-//   }
-// };
 const vpassword = (value) => {
   if (value.length < 8) {
     return (
@@ -48,44 +44,57 @@ const vpassword = (value) => {
     );
   }
 };
-function RegisterInput() {
+
+function RegisterInput(props) {
   const form = useRef();
   const checkBtn = useRef();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const [successful, setSuccessful] = useState(false);
-  // eslint-disable-next-line arrow-parens
-  // eslint-disable-next-line arrow-body-style
   const { message } = useSelector((state) => state.message);
+  const { isRegistered } = useSelector((state) => { return state.auth; });
   const dispatch = useDispatch();
+
   const onChangeName = (e) => {
     setName(e.target.value);
   };
+
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
   };
+
   const onChangePassword = (e) => {
     setPassword(e.target.value);
   };
+
   const handleRegister = (e) => {
     e.preventDefault();
+    setLoading(true);
     setSuccessful(false);
     form.current.validateAll();
-    console.log(checkBtn.current);
-    // eslint-disable-next-line no-underscore-dangle
+
     if (checkBtn.current.context._errors.length === 0) {
       dispatch(register(name, email, password))
         .then(() => {
           setSuccessful(true);
-          console.log(name, email, password);
-          console.log(checkBtn.current.context);
+          props.history.push('/login');
+          window.location.reload();
         })
         .catch(() => {
           setSuccessful(false);
+          setLoading(false);
         });
+    } else {
+      setLoading(false);
     }
   };
+
+  if (isRegistered) {
+    return <Navigate to="/login" />;
+  }
+
   return (
     <div className="mb-3 mx-5 form-input">
       <TitleList title="Daftar" />
@@ -98,6 +107,7 @@ function RegisterInput() {
                 type="text"
                 className="form-control"
                 name="name"
+                placeholder="Nama Lengkap"
                 value={name}
                 onChange={onChangeName}
                 validations={[required]}
@@ -109,6 +119,7 @@ function RegisterInput() {
                 type="text"
                 className="form-control"
                 name="email"
+                placeholder="team2@gmail.com"
                 value={email}
                 onChange={onChangeEmail}
                 validations={[required, validEmail]}
@@ -120,13 +131,19 @@ function RegisterInput() {
                 type="password"
                 className="form-control"
                 name="password"
+                placeholder="Masukkan Password"
                 value={password}
                 onChange={onChangePassword}
                 validations={[required, vpassword]}
               />
             </div>
             <div className="form-group">
-              <button className="btn btn-primary btn-block" type="submit">Daftar</button>
+              <button className="btn btn-primary btn-block btn-register mt-4" type="submit" disabled={loading}>
+                {loading && (
+                <span className="spinner-border spinner-border-sm" />
+                )}
+                <span>Daftar</span>
+              </button>
             </div>
           </div>
         )}
@@ -138,18 +155,6 @@ function RegisterInput() {
           </div>
         )}
         <CheckButton style={{ display: 'none' }} ref={checkBtn} />
-        {/* <Form.Group>
-          <Form.Label>Nama</Form.Label>
-          <InputList type="name" placeholder="Nama Lengkap" />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Email</Form.Label>
-          <InputList type="email" placeholder="team2@gmail.com" />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Password</Form.Label>
-          <InputList type="password" placeholder="Masukkan Password" />
-        </Form.Group> */}
       </Form>
     </div>
   );

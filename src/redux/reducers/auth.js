@@ -9,8 +9,8 @@ import {
 
 const user = JSON.parse(localStorage.getItem('user'));
 const initialState = user
-  ? { isLoggedIn: true, user }
-  : { isLoggedIn: false, user: null };
+  ? { isLoggedIn: true, isRegistered: true, user }
+  : { isLoggedIn: false, isRegistered: false, user: null };
 // eslint-disable-next-line default-param-last
 export default function (state = initialState, action) {
   const { type, payload } = action;
@@ -19,11 +19,13 @@ export default function (state = initialState, action) {
       return {
         ...state,
         isLoggedIn: false,
+        isRegistered: true,
       };
     case REGISTER_FAIL:
       return {
         ...state,
         isLoggedIn: false,
+        isRegistered: false,
       };
     case LOGIN_SUCCESS:
       return {
