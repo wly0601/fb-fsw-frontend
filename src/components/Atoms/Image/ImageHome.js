@@ -4,7 +4,7 @@ import './ImageHome.Module.css';
 
 function ImageHome() {
   return (
-    <Image fluid src="./images/loginregis.png" className="img-fluid image-card" alt="" />
+    <Image fluid src="./images/loginregis.png" className="image-home" alt="" />
   );
 }
 
