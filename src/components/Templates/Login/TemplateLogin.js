@@ -26,7 +26,7 @@ function TemplateLogin() {
           <div className="col-6 image-home">
             <ImageHome />
           </div>
-          <div className={`${isMobile ? 'col-10' : 'col-5'}`}>
+          <div className={`${isMobile ? 'col-9' : 'col-5'}`}>
             <LoginInput />
             <Form className={`${isMobile ? 'text-center fixed-bottom mb-5' : 'text-center'}`}>
               <Form.Group className="my-3 mx-5">
