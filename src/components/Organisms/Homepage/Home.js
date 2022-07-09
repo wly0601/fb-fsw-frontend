@@ -71,7 +71,6 @@ function Home({ productAll }) {
       </div>
       <div className="row mt-3 mb-3 mx-5">
         <BtnAddProduct />
-        <Pagination className="text-center">{items}</Pagination>
       </div>
     </Container>
   );

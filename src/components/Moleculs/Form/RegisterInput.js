@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable arrow-body-style */
 /* eslint-disable jsx-a11y/label-has-associated-control */
@@ -45,12 +44,8 @@ const vpassword = (value) => {
     );
   }
 };
-<<<<<<< HEAD
-function RegisterInput() {
-=======
 
 function RegisterInput(props) {
->>>>>>> db66ce0e1b660b201c292bf02d6064a30dfa79bf
   const form = useRef();
   const checkBtn = useRef();
   const [name, setName] = useState('');

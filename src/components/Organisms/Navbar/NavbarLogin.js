@@ -12,7 +12,7 @@ import {
 import {
   FaSearch, FaBell, FaRegUser, FaListUl,
 } from 'react-icons/fa';
-import { logout } from '../../../actions/auth';
+import { logout } from '../../../redux/actions/auth';
 import CardNotification from '../../Moleculs/Card/CardNotification';
 import './Navigation.Module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
