@@ -32,7 +32,6 @@ function CardBargain({ productById, categoryName }) {
     return `Rp ${renderPrice}`;
   };
   const [modalShow, setModalShow] = React.useState(false);
-
   return (
     <Container>
       <Card className="card-bargain">
@@ -42,6 +41,7 @@ function CardBargain({ productById, categoryName }) {
           <p>{priceFormat(productById.price)}</p>
           <Row>
             <VerticalModals
+              productById={productById}
               show={modalShow}
               onHide={() => { return setModalShow(false); }}
             />

@@ -7,7 +7,7 @@ import CardSellerOffering from '../../Moleculs/Card/CardSellerOffering';
 import CardOffering from '../../Moleculs/Card/CardOffering';
 // import './Input.Module.css';
 
-function OfferingInfo() {
+function OfferingInfo({ buyerInfo, buyerCity }) {
   return (
     <Container>
       <Row>
@@ -19,7 +19,10 @@ function OfferingInfo() {
           </div>
         </Col>
         <Col xs={10}>
-          <CardSellerOffering />
+          <CardSellerOffering
+            buyerInfo={buyerInfo}
+            buyerCity={buyerCity}
+          />
           <CardOffering
             title="Penawaran Produk"
             name="Jam Tangan Casio"
