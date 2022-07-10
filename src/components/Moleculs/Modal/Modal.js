@@ -14,6 +14,29 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Modal.Module.css';
 
 function VerticalModals(props) {
+  console.log(props.productById);
+  const priceFormat = (data) => {
+    if (typeof data === 'undefined') {
+      return '';
+    }
+    const priceStr = data.toString();
+    let i = priceStr.length;
+    let renderPrice = '';
+    let counter = 0;
+
+    while (i > 0) {
+      renderPrice = priceStr[i - 1] + renderPrice;
+      i -= 1;
+      counter += 1;
+      if (counter === 3 && i !== 0) {
+        renderPrice = `.${renderPrice}`;
+        counter = 0;
+      }
+    }
+
+    // eslint-disable-next-line consistent-return
+    return `Rp ${renderPrice}`;
+  };
   return (
     <Modal
       {...props}
@@ -34,8 +57,8 @@ function VerticalModals(props) {
               <img src={`${process.env.PUBLIC_URL}/images/first_watch.png`} className="seller" alt="" />
             </Col>
             <Col xs={8}>
-              <p style={{ fontWeight: 'bold' }}>Jam Tangan Casio</p>
-              <p>Rp.250.000</p>
+              <p style={{ fontWeight: 'bold' }}>{props.productById.name}</p>
+              <p>{priceFormat(props.productById.price)}</p>
             </Col>
           </Row>
         </Container>
@@ -46,15 +69,16 @@ function VerticalModals(props) {
           </Form.Group>
         </Row>
         <Row>
-          <Button onClick={props.onHide} className="modal-button">Kirim</Button>
+          <Button onClick={props.onClick} className="modal-button">Kirim</Button>
         </Row>
       </Modal.Body>
     </Modal>
   );
 }
 
-function Modals() {
+function Modals({ productById }) {
   const [modalShow, setModalShow] = React.useState(false);
+  console.log({ productById });
 
   return (
     <>
@@ -62,6 +86,7 @@ function Modals() {
         Saya Tertarik dan Ingin Nego
       </Button>
       <VerticalModals
+        productById={productById}
         show={modalShow}
         onHide={() => { return setModalShow(false); }}
       />

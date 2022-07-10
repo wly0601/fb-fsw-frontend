@@ -38,3 +38,29 @@
     border-color: #7126B5;
     color: white;
 }
+
+::-webkit-file-upload-button {
+    display: none;
+ }
+
+.upload-button {
+    justify-content: center;
+    width: 96px;
+    height: 96px;
+    color: transparent;
+    background-color: white;
+    border-radius: 16px;
+    text-align: center;
+    position: relative;
+    z-index: 0;
+}
+
+.upload-button:hover {
+    justify-content: center;
+    width: 96px;
+    height: 96px;
+    color: transparent;
+    background-color: white;
+    border-radius: 16px;
+    text-align: center;
+}

@@ -10,7 +10,9 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import InfoProfile from './pages/InfoProfile';
 import InfoProduct from './pages/InfoProduct';
+import UpdateProduct from './pages/UpdateProduct';
 import SellerProduct from './pages/SellerProduct';
+import SellerProductEdit from './pages/SellerProductEdit';
 import BuyerProduct from './pages/BuyerProduct';
 import ListProduct from './pages/ListProduct';
 import HistorySeller from './pages/HistorySeller';
@@ -30,7 +32,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<InfoProfile />} />
           <Route path="/seller/sell" element={<InfoProduct />} />
+          <Route path="/seller/product/:id/update" element={<UpdateProduct />} />
           <Route path="/seller/product/:id" element={<SellerProduct />} />
+          <Route path="/seller/product/:id/preview" element={<SellerProductEdit />} />
           <Route path="/buyer/product/:id" element={<BuyerProduct />} />
           <Route path="/list/products" element={<ListProduct />} />
           <Route path="/list/interest" element={<ProductInterest />} />

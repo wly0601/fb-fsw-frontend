@@ -6,6 +6,7 @@ import TemplateHome from '../components/Templates/Homepage/TemplateHome';
 
 function Homepage() {
   const dispatch = useDispatch();
+  const [data, setData] = useState('');
   const [product, setProduct] = useState([]);
   const {
     productLoading,
@@ -29,7 +30,7 @@ function Homepage() {
       {product.length > 0 && (
       <div>
         <Container fluid className="p-0">
-          <TemplateHome product={product} />
+          <TemplateHome product={product} data={data} />
         </Container>
       </div>
       )}

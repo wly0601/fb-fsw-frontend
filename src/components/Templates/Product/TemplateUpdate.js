@@ -2,6 +2,7 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable radix */
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
@@ -9,12 +10,12 @@ import {
   Container, Row, Col, Button, Form,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { createListProduct } from '../../../redux/actions/createProduct';
+import { updateListProduct } from '../../../redux/actions/updateProduct';
 import NavbarProduct from '../../Organisms/Navbar/NavbarProduct';
-import ProductInput from '../../Moleculs/Form/ProductInput';
+import UpdateProduct from '../../Moleculs/Form/updateProduct';
 import './TemplateProduct.Module.css';
 
-function TemplateProduct() {
+function TemplateUpdate() {
   // Data Input Product
   const [inputName, setInputName] = useState('');
   const [price, setPrice] = useState('');
@@ -27,6 +28,7 @@ function TemplateProduct() {
   const [image, setImage] = useState([]);
   const [uploadedFileURL, setUploadedFileURL] = useState([]);
   const dispatch = useDispatch();
+  const params = useParams();
 
   let fileObj = [];
 
@@ -34,7 +36,34 @@ function TemplateProduct() {
     productLoading,
     productResult,
     productError,
-  } = useSelector((state) => { return state.getProductReducer; });
+  } = useSelector((state) => { return state.updateProductReducer; });
+
+  const getProduct = async () => {
+    try {
+      console.log(inputName);
+      const token = localStorage.getItem('token');
+      const getResponse = await axios.get(
+        `https://second-hand-be.herokuapp.com/api/product/${params.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      console.log(getResponse.data);
+      setInputName(getResponse.data.name);
+      setPrice(getResponse.data.price);
+      setCategoryId(getResponse.data.category.name);
+      setDescription(getResponse.data.description);
+      console.log(inputName);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getProduct();
+  }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -44,7 +73,7 @@ function TemplateProduct() {
       description,
       categoryId: parseInt(categoryId),
     };
-    await dispatch(createListProduct(image, body));
+    await dispatch(updateListProduct(image, body, params.id));
   }
 
   const handleChangeImage = (e) => {
@@ -124,7 +153,7 @@ function TemplateProduct() {
                     <FontAwesomeIcon icon={faArrowLeft} />
                   </Link>
                 </div>
-                <ProductInput
+                <UpdateProduct
                   name={setInputName}
                   price={setPrice}
                   categoryId={setCategoryId}
@@ -171,4 +200,4 @@ function TemplateProduct() {
   );
 }
 
-export default TemplateProduct;
+export default TemplateUpdate;
