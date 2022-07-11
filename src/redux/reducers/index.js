@@ -4,6 +4,8 @@ import message from './message';
 import { getProductReducer } from './product';
 import { getProfileReducer } from './profile';
 import { updateProductReducer } from './updateProduct';
+import { getSellerProductReducer } from './sellerProduct';
+import { getTransactionProductReducer } from './createTransaction';
 
 export default combineReducers({
   auth,
@@ -11,4 +13,6 @@ export default combineReducers({
   getProductReducer,
   getProfileReducer,
   updateProductReducer,
+  getSellerProductReducer,
+  getTransactionProductReducer,
 });

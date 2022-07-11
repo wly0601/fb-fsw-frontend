@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable consistent-return */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 import { Form, Row } from 'react-bootstrap';
@@ -24,6 +24,7 @@ function ProductInput({
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [user, setUser] = useState({});
   const [data, setData] = useState([]);
+  const checkBtn = useRef();
 
   const token = localStorage.getItem('token');
 

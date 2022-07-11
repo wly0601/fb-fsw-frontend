@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
 /* eslint-disable radix */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
@@ -15,6 +15,8 @@ import ProductInput from '../../Moleculs/Form/ProductInput';
 import './TemplateProduct.Module.css';
 
 function TemplateProduct() {
+  const params = useParams();
+  console.log(`${params.id}`);
   // Data Input Product
   const [inputName, setInputName] = useState('');
   const [price, setPrice] = useState('');
@@ -82,24 +84,6 @@ function TemplateProduct() {
     } else if (productError) {
       console.log(productError);
     }
-    // let fileReader = false;
-    // let isCancel = false;
-    // if (image) {
-    //   fileReader = new FileReader();
-    //   fileReader.onload = (e) => {
-    //     const { result } = e.target;
-    //     if (result && !isCancel) {
-    //       setUploadedFileURL(result);
-    //     }
-    //   };
-    //   fileReader.readAsDataURL(image);
-    // }
-    // return () => {
-    //   isCancel = true;
-    //   if (fileReader && fileReader.readyState === 1) {
-    //     fileReader.abort();
-    //   }
-    // };
   });
 
   if (productResult) {
@@ -107,7 +91,7 @@ function TemplateProduct() {
   }
 
   return (
-    <div>
+    <>
       <NavbarProduct />
       {message && (
         <div className="alert alert-danger" role="alert">
@@ -139,7 +123,7 @@ function TemplateProduct() {
                   })}
                   <Form.Control
                     type="file"
-                    accept=""
+                    accept="image/*"
                     onChange={handleChangeImage}
                     className="upload-button"
                     multiple
@@ -149,7 +133,7 @@ function TemplateProduct() {
             </Row>
             <Row className="mx-5 mb-5">
               <Col xs={6}>
-                <Link to="/seller/product/:id">
+                <Link to={`/seller/product/${params.id}`}>
                   <Button variant="primary" className="preview-button" type="submit">
                     Preview
                   </Button>
@@ -159,7 +143,7 @@ function TemplateProduct() {
                 <Button variant="primary" className="publish-button" type="submit">
                   Terbitkan
                   {loading && (
-                    <span className="spinner-border spinner-border-sm" />
+                    <span className="spinner-border spinner-border-sm me-5" />
                   )}
                 </Button>
               </Col>
@@ -167,7 +151,7 @@ function TemplateProduct() {
           </form>
         </Container>
       </div>
-    </div>
+    </>
   );
 }
 

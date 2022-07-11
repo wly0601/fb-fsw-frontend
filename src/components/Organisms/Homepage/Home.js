@@ -94,7 +94,7 @@ function Home({ productAll }) {
             }
             console.log(userData);
             return (
-              <Col key={result.id} md={3}>
+              <Col key={result.id} md={2}>
                 <Link to={`${user}/product/${result.id}${preview}`} style={{ textDecoration: 'none', color: 'black' }}>
                   <ItemCard
                     title={result.name}

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import {
   Container,
@@ -13,6 +14,8 @@ import ItemCard from '../../Moleculs/Card/ItemCard';
 import './Product.Module.css';
 
 function ListProduct({ dataProducts }) {
+  const [userData, setUserData] = useState('');
+
   const priceFormat = (data) => {
     const priceStr = data.toString();
     let i = priceStr.length;
@@ -31,6 +34,31 @@ function ListProduct({ dataProducts }) {
 
     return `Rp ${renderPrice}`;
   };
+
+  const token = localStorage.getItem('token');
+
+  const getUsers = async () => {
+    try {
+      const responseUsers = await axios.get(
+        'https://second-hand-be.herokuapp.com/api/who-am-i',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      const dataUsers = await responseUsers;
+      setUserData(dataUsers);
+      console.log(dataUsers.data.id, 'line 55');
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
+
   return (
     <Container className="mt-5">
       <Row>
@@ -55,17 +83,15 @@ function ListProduct({ dataProducts }) {
             </Link>
           </div>
         </Col>
-        {dataProducts && dataProducts.map(({
-          id, name, description, price, images,
-        }) => {
+        {(dataProducts && dataProducts).map((result) => {
+          console.log(result.name);
           return (
-            <Col key={id} md={3}>
-              <Link to={`../seller/product/${id}`} style={{ textDecoration: 'none', color: 'black' }}>
+            <Col key={result.id} md={3}>
+              <Link to={`../seller/product/${result.id}`} style={{ textDecoration: 'none', color: 'black' }}>
                 <ItemCard
-                  title={name}
-                  type={description}
-                  price={priceFormat(price)}
-                  image={images[0]}
+                  title={result.name}
+                  price={priceFormat(result.price)}
+                  image={result.images[0]}
                   imageAlt="Category of Different Pics"
                 />
               </Link>

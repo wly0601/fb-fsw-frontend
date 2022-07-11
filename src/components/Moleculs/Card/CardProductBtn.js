@@ -59,7 +59,7 @@ function CardProductBtn({ productById, categoryName }) {
 
   return (
     <Container>
-      <Card className="card-product">
+      <Card className="card-product-btn">
         <Card.Body>
 					<h5 style={{ fontWeight: 'bold' }}>
             {productById.name}

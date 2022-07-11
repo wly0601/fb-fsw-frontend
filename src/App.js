@@ -20,6 +20,7 @@ import HistoryBuyer from './pages/HistoryBuyer';
 import OfferingInfo from './pages/OfferingInfo';
 import OfferingAccept from './pages/OfferingAccept';
 import ProductInterest from './pages/ProductInterest';
+import Notification from './pages/Notification';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
           <Route path="/buyer/product/:id" element={<BuyerProduct />} />
           <Route path="/list/products" element={<ListProduct />} />
           <Route path="/list/interest" element={<ProductInterest />} />
+          <Route path="/list/notifications" element={<Notification />} />
           <Route path="/history/seller" element={<HistorySeller />} />
           <Route path="/history/buyer" element={<HistoryBuyer />} />
           <Route path="/offering/info" element={<OfferingInfo />} />
