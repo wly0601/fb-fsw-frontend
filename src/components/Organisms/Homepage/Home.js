@@ -86,8 +86,6 @@ function Home({ productAll }) {
           {(productAll && productAll).map((result) => {
             let user = 'buyer';
             let preview = '';
-            console.log('line 87 dulu');
-            console.log(userData);
             if (!!userData && (userData.data.id.toString() === result.sellerId.toString())) {
               user = 'seller';
               preview = '/preview';

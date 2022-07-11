@@ -7,7 +7,7 @@ function TemplateNotification({ notif }) {
     <>
       <NavbarLogin notif={notif} />
       <Container fluid>
-        <UserNotification />
+        <UserNotification notif={notif} />
       </Container>
     </>
   );

@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 /* eslint-disable array-callback-return */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useEffect } from 'react';
@@ -25,6 +26,14 @@ function VerticalModals(props) {
     productResult,
     productError,
   } = useSelector((state) => { return state.getTransactionProductReducer; });
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const body = {
+      inputBargain: parseInt(inputBargain),
+    };
+    await dispatch(createTransaction(body));
+  }
 
   const priceFormat = (data) => {
     if (typeof data === 'undefined') {

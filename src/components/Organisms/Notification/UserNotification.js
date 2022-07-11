@@ -9,6 +9,7 @@ import CardNotification from '../../Moleculs/Card/CardNotification';
 // import './Input.Module.css';
 
 function UserNotification({ notif }) {
+  console.log(notif);
   return (
     <Container>
       <Row className="mt-5">
@@ -18,7 +19,7 @@ function UserNotification({ notif }) {
         {/* <CardSeller /> */}
       </Row>
       <Row md={3} className="g-2">
-        {notif && notif.slice(0, 3).map((result) => {
+        {notif && notif.map((result) => {
           let result2;
           if (result.msg === 'Berhasil Diterbitkan') {
             result2 = (

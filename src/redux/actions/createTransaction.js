@@ -17,17 +17,40 @@ export const getTransactionProducts = () => {
       },
     });
     // GET API
-    await axios.post('https://second-hand-be.herokuapp.com/api/transaction')
-      .then(async (res) => {
-        console.log(res.data);
-        await dispatch({
-          type: await createTransaction,
-          payload: {
-            loading: false,
-            result: await res.data,
-            error: false,
+    const token = localStorage.getItem('token');
+    await axios.get('https://second-hand-be.herokuapp.com/api/who-am-i', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then(async (resultUser) => {
+        console.log(resultUser);
+        await axios.post('https://second-hand-be.herokuapp.com/api/transaction', {
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-        });
+        })
+          .then(async (res) => {
+            console.log(res.data);
+            await dispatch({
+              type: await createTransaction,
+              payload: {
+                loading: false,
+                result: await res.data,
+                error: false,
+              },
+            });
+          })
+          .catch(async (err) => {
+            await dispatch({
+              type: createTransaction,
+              payload: {
+                loading: false,
+                result: false,
+                error: await err.message,
+              },
+            });
+          });
       })
       .catch(async (err) => {
         await dispatch({

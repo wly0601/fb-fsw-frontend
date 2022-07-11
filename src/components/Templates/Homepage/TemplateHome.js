@@ -3,6 +3,7 @@ import NavbarHeader from '../../Organisms/Navbar/NavbarHeader';
 import Home from '../../Organisms/Homepage/Home';
 
 function TemplateHome({ product, notif, data }) {
+  console.log(product, notif, data);
   return (
     <>
       <NavbarHeader notif={notif} />
