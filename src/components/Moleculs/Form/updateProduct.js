@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-import { Form, Row } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import InputList from '../../Atoms/Input/Input';
 import InputDesc from '../../Atoms/Input/InputDesc';
 import InputCategory from '../../Atoms/Input/InputCategory';
