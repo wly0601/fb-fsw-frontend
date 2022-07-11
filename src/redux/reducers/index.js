@@ -6,6 +6,7 @@ import { getProfileReducer } from './profile';
 import { updateProductReducer } from './updateProduct';
 import { getSellerProductReducer } from './sellerProduct';
 import { getTransactionProductReducer } from './createTransaction';
+import { getListNotifications } from './getNotif';
 
 export default combineReducers({
   auth,
@@ -15,4 +16,5 @@ export default combineReducers({
   updateProductReducer,
   getSellerProductReducer,
   getTransactionProductReducer,
+  getListNotifications,
 });

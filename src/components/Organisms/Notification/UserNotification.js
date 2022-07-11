@@ -8,7 +8,7 @@ import CardSeller from '../../Moleculs/Card/CardSeller';
 import CardNotification from '../../Moleculs/Card/CardNotification';
 // import './Input.Module.css';
 
-function OfferingInfo() {
+function UserNotification({ notif }) {
   return (
     <Container>
       <Row className="mt-5">
@@ -18,23 +18,39 @@ function OfferingInfo() {
         {/* <CardSeller /> */}
       </Row>
       <Row md={3} className="g-2">
-        {Array.from({ length: 6 }).map((_, idx) => {
-          return (
-            <Col>
-              <CardNotification
-                title="Penawaran Produk"
-                name="Jam Tangan Casio"
-                price="Rp 250.000"
-                offering="Ditawar Rp.200.000"
-                image="https://placeimg.com/165/100/any"
-                imageAlt="Gambar jam tangan"
-              />
-            </Col>
-          );
+        {notif && notif.slice(0, 3).map((result) => {
+          let result2;
+          if (result.msg === 'Berhasil Diterbitkan') {
+            result2 = (
+              <Col xs={12}>
+                <CardNotification
+                  title={result.msg}
+                  name={result.name}
+                  price={result.price}
+                  image={result.image}
+                  imageAlt="Gambar jam tangan"
+                />
+              </Col>
+            );
+          } else if (result.msg === 'Penawaran Produk') {
+            result2 = (
+              <Col xs={12}>
+                <CardNotification
+                  title={result.msg}
+                  name={result.name}
+                  price={result.price}
+                  offering={`Ditawar ${result.bargainPrice}`}
+                  image={result.image}
+                  imageAlt="Gambar jam tangan"
+                />
+              </Col>
+            );
+          }
+          return result2;
         })}
       </Row>
     </Container>
   );
 }
 
-export default OfferingInfo;
+export default UserNotification;

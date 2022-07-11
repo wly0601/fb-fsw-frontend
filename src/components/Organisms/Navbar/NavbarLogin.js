@@ -1,5 +1,8 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-unused-expressions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
@@ -16,7 +19,7 @@ import CardNotification from '../../Moleculs/Card/CardNotification';
 import './Navigation.Module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function NavbarLogin() {
+function NavbarLogin({ notif }) {
   const [show, setShow] = useState(false);
   const userLogin = useSelector((state) => { return state.auth; });
   const { user } = userLogin;
@@ -26,6 +29,7 @@ function NavbarLogin() {
     dispatch(logout());
     window.location.href = '/';
   };
+
   return (
     <>
       <Navbar className="ms-auto navbar" bg="white" expand="lg">
@@ -92,9 +96,6 @@ function NavbarLogin() {
                   <Dropdown.Item onClick={logOut}>Logout</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
-              {/* <Nav.Link href="../../profile">
-                <FaRegUser className="link" />
-              </Nav.Link> */}
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -113,20 +114,43 @@ function NavbarLogin() {
                 {/* <small>08 Jul, 20.04</small> */}
               </Toast.Header>
               <Toast.Body>
-                {Array.from({ length: 5, limit: 3 }).map((_, idx) => {
-                  return (
-                    <Col xs={12}>
-                      <CardNotification
-                        title="Penawaran Produk"
-                        name="Jam Tangan Casio"
-                        price="Rp.250.000"
-                        offering="Ditawar 200.000"
-                        image="https://placeimg.com/165/100/any"
-                        imageAlt="Gambar jam tangan"
-                      />
-                    </Col>
-                  );
+                {notif && notif.slice(0, 3).map((result) => {
+                  let result2;
+                  if (result.msg === 'Berhasil Diterbitkan') {
+                    result2 = (
+                      <Col xs={12}>
+                        <CardNotification
+                          title={result.msg}
+                          name={result.name}
+                          price={result.price}
+                          image={result.image}
+                          imageAlt="Gambar jam tangan"
+                        />
+                      </Col>
+                    );
+                  } else if (result.msg === 'Penawaran Produk') {
+                    result2 = (
+                      <Col xs={12}>
+                        <CardNotification
+                          title={result.msg}
+                          name={result.name}
+                          price={result.price}
+                          offering={`Ditawar ${result.bargainPrice}`}
+                          image={result.image}
+                          imageAlt="Gambar jam tangan"
+                        />
+                      </Col>
+                    );
+                  }
+                  return result2;
                 })}
+                <Link to="/list/notifications" style={{ textDecoration: 'none' }}>
+                  <div className="d-grid gap-2">
+                    <Button variant="outline-success" size="lg" style={{ color: 'black' }}>
+                      Lihat Semua
+                    </Button>
+                  </div>
+                </Link>
               </Toast.Body>
             </Toast>
           </ToastContainer>

@@ -94,6 +94,7 @@ function VerticalModals(props) {
 function Modals({ productById }) {
   const [modalShow, setModalShow] = React.useState(false);
   console.log({ productById });
+  console.log(productById.images);
 
   return (
     <>

@@ -2,10 +2,10 @@ import { Container } from 'react-bootstrap';
 import NavbarLogin from '../../Organisms/Navbar/NavbarLogin';
 import UserNotification from '../../Organisms/Notification/UserNotification';
 
-function TemplateNotification() {
+function TemplateNotification({ notif }) {
   return (
     <>
-      <NavbarLogin />
+      <NavbarLogin notif={notif} />
       <Container fluid>
         <UserNotification />
       </Container>

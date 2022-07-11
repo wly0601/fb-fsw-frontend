@@ -32,7 +32,6 @@ function CardBargain({ productById, categoryName }) {
     return `Rp ${renderPrice}`;
   };
   const [modalShow, setModalShow] = React.useState(false);
-  console.log(productById);
   return (
     <Container>
       <Card className="card-bargain">
