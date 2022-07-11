@@ -5,6 +5,7 @@ import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 import { Form, Button } from 'react-bootstrap';
 import InputList from '../../Atoms/Input/Input';
+import InputDesc from '../../Atoms/Input/InputDesc';
 import InputCity from '../../Atoms/Input/InputCity';
 import './FormInput.Module.css';
 
@@ -91,7 +92,7 @@ function ProfileInput({
         </Form.Group>
         <Form.Group>
           <Form.Label>Alamat</Form.Label>
-          <InputList
+          <InputDesc
             type="address"
             placeholder="Contoh: Jl. Medan Merdeka"
             value={address}

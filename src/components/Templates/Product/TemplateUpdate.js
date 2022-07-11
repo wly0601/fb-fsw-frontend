@@ -12,7 +12,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { updateListProduct } from '../../../redux/actions/updateProduct';
 import NavbarProduct from '../../Organisms/Navbar/NavbarProduct';
-import UpdateProduct from '../../Moleculs/Form/updateProduct';
+import UpdateProduct from '../../Moleculs/Form/UpdateProduct';
 import './TemplateProduct.Module.css';
 
 function TemplateUpdate() {
@@ -111,24 +111,6 @@ function TemplateUpdate() {
     } else if (productError) {
       console.log(productError);
     }
-    // let fileReader = false;
-    // let isCancel = false;
-    // if (image) {
-    //   fileReader = new FileReader();
-    //   fileReader.onload = (e) => {
-    //     const { result } = e.target;
-    //     if (result && !isCancel) {
-    //       setUploadedFileURL(result);
-    //     }
-    //   };
-    //   fileReader.readAsDataURL(image);
-    // }
-    // return () => {
-    //   isCancel = true;
-    //   if (fileReader && fileReader.readyState === 1) {
-    //     fileReader.abort();
-    //   }
-    // };
   });
 
   if (productResult) {
@@ -138,11 +120,6 @@ function TemplateUpdate() {
   return (
     <div>
       <NavbarProduct />
-      {message && (
-        <div className="alert alert-danger" role="alert">
-          You can upload maximum 4 images!
-        </div>
-      )}
       <div>
         <Container className="form-products">
           <form onSubmit={handleSubmit}>
@@ -173,6 +150,11 @@ function TemplateUpdate() {
                     className="upload-button"
                     multiple
                   />
+                  {message && (
+                  <div className="alert alert-danger" role="alert">
+                    You can upload maximum 4 images!
+                  </div>
+                  )}
                 </Form.Group>
               </Col>
             </Row>

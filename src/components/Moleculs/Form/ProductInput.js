@@ -5,6 +5,7 @@ import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 import { Form, Row } from 'react-bootstrap';
 import InputList from '../../Atoms/Input/Input';
+import InputDesc from '../../Atoms/Input/InputDesc';
 import InputCategory from '../../Atoms/Input/InputCategory';
 import './FormInput.Module.css';
 
@@ -23,7 +24,6 @@ function ProductInput({
 }) {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [user, setUser] = useState({});
-  const [data, setData] = useState([]);
   const checkBtn = useRef();
 
   const token = localStorage.getItem('token');
@@ -101,7 +101,7 @@ function ProductInput({
         </Form.Group>
         <Form.Group>
           <Form.Label>Deskripsi</Form.Label>
-          <InputList
+          <InputDesc
             type="description"
             placeholder="Contoh: Produk ini merupakan..."
             value={description}

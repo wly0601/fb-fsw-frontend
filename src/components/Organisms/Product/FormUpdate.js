@@ -1,11 +1,18 @@
 import React from 'react';
-import UpdateProduct from '../../Moleculs/Form/updateProduct';
+import UpdateProduct from '../../Moleculs/Form/UpdateProduct';
 // import './Input.Module.css';
 
-function FormUpdate() {
+function FormUpdate({
+  name, price, categoryId, description,
+}) {
   return (
     <div className="form-list">
-      <UpdateProduct />
+      <UpdateProduct
+        name={name}
+        price={price}
+        categoryId={categoryId}
+        description={description}
+      />
     </div>
   );
 }

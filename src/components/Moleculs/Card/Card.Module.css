@@ -3,7 +3,8 @@
   background: #FFFFFF;
   /* box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15); */
   border-radius: 10px;
-  margin-bottom: 10%;
+  margin-bottom: 15%;
+  max-height: 300px;
 }
 
 .card.items-offering {
@@ -177,4 +178,15 @@
 .button-align {
   text-align: right;
   margin-bottom: 20px;
+}
+
+.button-edit-preview {
+  justify-content: center;
+  width: 95%;
+  height: 50px;
+  margin: 10px;
+  background-color: #7126B5;
+  border-color: #7126B5;
+  color: black;
+  border-radius: 16px;
 }

@@ -83,7 +83,7 @@ function InputCategory({ inputCategory }) {
 
   return (
     <div className="mb-3">
-      <Form styles={{ borderRadius: '16px' }}>
+      <Form styles={{ borderRadius: '16px', zIndex: '2' }}>
         <Select options={categoryId} onChange={handleGetValue} styles={categoryStyles} />
       </Form>
     </div>

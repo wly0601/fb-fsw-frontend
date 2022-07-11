@@ -68,7 +68,18 @@ function CardProductBtn({ productById, categoryName }) {
           <p>{priceFormat(productById.price)}</p>
           <Row>
             <Link to={`/seller/product/${params.id}/update`}>
-              <Button variant="outline-primary" className="button-seller-outline">Edit</Button>
+              <Button
+                variant="outline-primary"
+                className="button-edit-preview"
+                style={{
+                  color: 'white',
+                  backgroundColor: '#7126B5',
+                  borderColor: '#7126B5',
+                  borderRadius: '16px',
+                }}
+              >
+                Edit
+              </Button>
             </Link>
           </Row>
         </Card.Body>

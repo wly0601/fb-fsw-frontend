@@ -93,11 +93,6 @@ function TemplateProduct() {
   return (
     <>
       <NavbarProduct />
-      {message && (
-        <div className="alert alert-danger" role="alert">
-          You can upload maximum 4 images!
-        </div>
-      )}
       <div>
         <Container className="form-products">
           <form onSubmit={handleSubmit}>
@@ -128,6 +123,11 @@ function TemplateProduct() {
                     className="upload-button"
                     multiple
                   />
+                  {message && (
+                  <div className="alert alert-danger" role="alert">
+                    Upload Maximum 4 Images!
+                  </div>
+                  )}
                 </Form.Group>
               </Col>
             </Row>
