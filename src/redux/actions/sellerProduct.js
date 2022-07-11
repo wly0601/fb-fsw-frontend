@@ -36,7 +36,7 @@ export const getSellerListProducts = () => {
               type: await sellerProducts,
               payload: {
                 loading: false,
-                result: await res.data,
+                result: await res.data.products,
                 error: false,
               },
             });
