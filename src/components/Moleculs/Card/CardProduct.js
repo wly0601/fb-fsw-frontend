@@ -1,5 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+/* eslint-disable react/jsx-closing-tag-location */
+/* eslint-disable no-mixed-spaces-and-tabs */
+/* eslint-disable no-tabs */
+/* eslint-disable react/jsx-indent */
+/* eslint-disable array-callback-return */
+import React, { useEffect, useState, useCallback } from 'react';
+import axios from 'axios';
+import { Link, useParams } from 'react-router-dom';
 import {
   Container,
   Row,
@@ -9,14 +15,31 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Card.Module.css';
 
-function CardProduct() {
+function CardProduct(props) {
+  const params = useParams();
+
+  const [productById, setProductById] = useState([]);
+
+  const fetchData = useCallback(async () => {
+    const productId = `https://second-hand-be.herokuapp.com/api/product/${params.id}`;
+
+    const response = await axios.get(productId);
+    console.log(response.data.category);
+    setProductById(response.data);
+  });
+  useEffect(() => {
+    fetchData();
+    document.title = 'Produk Pembeli';
+  }, []);
+
   return (
     <Container>
       <Card className="card-product">
         <Card.Body>
-          <h5 style={{ fontWeight: 'bold' }}>Jam Tangan Casio</h5>
-          <p style={{ color: 'grey' }}>Aksesoris</p>
-          <p>Rp.250.000</p>
+					<h5 style={{ fontWeight: 'bold' }}>
+            {productById.name}
+          </h5>
+          <p>{productById.price}</p>
           <Row>
             <Link to="/list/products">
               <Button variant="primary" className="button-seller">Terbitkan</Button>
