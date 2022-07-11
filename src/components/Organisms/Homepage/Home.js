@@ -15,6 +15,7 @@ import './Home.Module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Home({ productAll }) {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
   const priceFormat = (data) => {
     const priceStr = data.toString();
     let i = priceStr.length;
@@ -34,6 +35,15 @@ function Home({ productAll }) {
     return `Rp ${renderPrice}`;
   };
 
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      const mobile = window.innerWidth < 600;
+      if (mobile !== isMobile) {
+        setIsMobile(mobile);
+      }
+    }, false);
+  }, [isMobile]);
+
   return (
     <>
       <Container fluid>
@@ -42,12 +52,12 @@ function Home({ productAll }) {
             <Carousel images={IMAGES} />
           </div>
         </div>
-        <div className="row mt-5 mx-5">
+        <div className={`${isMobile ? 'row mt-2' : 'row mt-5 mx-5'}`}>
           <div className="col-12">
             <TitleList title="Telusuri Kategori" />
           </div>
         </div>
-        <div className="row mt-3 mx-5">
+        <div className={`${isMobile ? 'row mt-1' : 'row mt-1 mx-5'}`}>
           <ButtonCategory />
         </div>
         <div className="row mt-3 mx-5">
