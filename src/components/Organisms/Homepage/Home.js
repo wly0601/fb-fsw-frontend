@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable array-callback-return */
 // import axios from 'axios';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Container, Col } from 'react-bootstrap';
 import Carousel from '../../Moleculs/Carousel/CarouselHomepage';

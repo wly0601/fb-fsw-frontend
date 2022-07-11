@@ -15,28 +15,22 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Card.Module.css';
 
-function CardProduct({ productById, categoryName }) {
-  const priceFormat = (data) => {
-    if (typeof data === 'undefined') {
-      return '';
-    }
-    const priceStr = data.toString();
-    let i = priceStr.length;
-    let renderPrice = '';
-    let counter = 0;
+function CardProduct(props) {
+  const params = useParams();
 
-    while (i > 0) {
-      renderPrice = priceStr[i - 1] + renderPrice;
-      i -= 1;
-      counter += 1;
-      if (counter === 3 && i !== 0) {
-        renderPrice = `.${renderPrice}`;
-        counter = 0;
-      }
-    }
+  const [productById, setProductById] = useState([]);
 
-    return `Rp ${renderPrice}`;
-  };
+  const fetchData = useCallback(async () => {
+    const productId = `https://second-hand-be.herokuapp.com/api/product/${params.id}`;
+
+    const response = await axios.get(productId);
+    console.log(response.data.category);
+    setProductById(response.data);
+  });
+  useEffect(() => {
+    fetchData();
+    document.title = 'Produk Pembeli';
+  }, []);
 
   return (
     <Container>
@@ -45,8 +39,7 @@ function CardProduct({ productById, categoryName }) {
 					<h5 style={{ fontWeight: 'bold' }}>
             {productById.name}
           </h5>
-          <p style={{ color: 'grey' }}>{categoryName.name}</p>
-          <p>{priceFormat(productById.price)}</p>
+          <p>{productById.price}</p>
           <Row>
             <Link to="/list/products">
               <Button variant="primary" className="button-seller">Terbitkan</Button>

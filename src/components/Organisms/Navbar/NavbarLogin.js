@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
@@ -28,6 +29,7 @@ function NavbarLogin({ notif }) {
     dispatch(logout());
     window.location.href = '/';
   };
+
   return (
     <>
       <Navbar className="ms-auto navbar" bg="white" expand="lg">
@@ -94,9 +96,13 @@ function NavbarLogin({ notif }) {
                   <Dropdown.Item onClick={logOut}>Logout</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
-              {/* <Nav.Link href="../../profile">
+              <Nav.Link href="#link"><FaListUl className="link" /></Nav.Link>
+              <Nav.Link href="#home">
+                <FaBell className="link" />
+              </Nav.Link>
+              <Nav.Link href="../../profile">
                 <FaRegUser className="link" />
-              </Nav.Link> */}
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
