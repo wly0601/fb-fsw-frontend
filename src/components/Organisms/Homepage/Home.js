@@ -60,12 +60,12 @@ function Home({ productAll }) {
         <div className={`${isMobile ? 'row mt-1' : 'row mt-1 mx-5'}`}>
           <ButtonCategory />
         </div>
-        <div className="row mt-3 mx-5">
+        <div className={`${isMobile ? 'row mt-3' : 'row mt-3 mx-5'}`}>
           {productAll && productAll.map(({
             id, name, category, price, images,
           }) => {
             return (
-              <Col key={id} md={3}>
+              <Col key={id} md={2} xs={6}>
                 <Link to={`buyer/product/${id}`} style={{ textDecoration: 'none', color: 'black' }}>
                   <ItemCard
                     title={name}
