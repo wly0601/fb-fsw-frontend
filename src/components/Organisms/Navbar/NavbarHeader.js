@@ -31,7 +31,7 @@ import '@fontsource/poppins';
 
 import './Navigation.Module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { logout } from '../../../actions/auth';
+import { logout } from '../../../redux/actions/auth';
 
 function NavbarHeader(props) {
   const userLogin = useSelector((state) => { return state.auth; });

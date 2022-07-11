@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '@fontsource/poppins';
 import {
-  ListGroup,
+  ListGroup, Row, Col,
 } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { FaCube, FaRegHeart, FaDollarSign } from 'react-icons/fa';
+import {
+  FaCube, FaRegHeart, FaDollarSign, FaAngleRight,
+} from 'react-icons/fa';
 
 import './SidebarProduct.Module.css';
 
@@ -18,29 +20,56 @@ function SidebarProduct() {
         <h5 className="px-3 pt-1">Kategori</h5>
         <ListGroup className="py-2 text-decoration" variant="flush">
           <ListGroup.Item className="py-3">
-            <Link to="/" className="text-decoration">
+            <Link to="/list/products" className="text-decoration">
               <i type="button" className="link">
-                <FaCube />
-                {' '}
-                Semua Product
+                <Row>
+                  <Col xs={10}>
+                    <FaCube />
+                    {' '}
+                    Semua Product
+                  </Col>
+                  <Col xs={2}>
+                    <div className="justify-content-end d-flex flex-row-reverse">
+                      <FaAngleRight />
+                    </div>
+                  </Col>
+                </Row>
               </i>
             </Link>
           </ListGroup.Item>
           <ListGroup.Item className="py-3">
-            <Link to="/" className="text-decoration">
+            <Link to="/list/interest" className="text-decoration">
               <i type="button" className="link">
-                <FaRegHeart style={{ color: '#8A8A8A' }} />
-                {' '}
-                Diminati
+                <Row>
+                  <Col xs={10}>
+                    <FaRegHeart style={{ color: '#8A8A8A' }} />
+                    {' '}
+                    Diminati
+                  </Col>
+                  <Col xs={1}>
+                    <div className="justify-content-end">
+                      <FaAngleRight />
+                    </div>
+                  </Col>
+                </Row>
               </i>
             </Link>
           </ListGroup.Item>
           <ListGroup.Item className="py-3">
-            <Link to="/" className="text-decoration">
+            <Link to="/history/seller" className="text-decoration">
               <i type="button" className="link">
-                <FaDollarSign style={{ color: '#8A8A8A' }} />
-                {' '}
-                Terjual
+                <Row>
+                  <Col xs={10}>
+                    <FaDollarSign style={{ color: '#8A8A8A' }} />
+                    {' '}
+                    Terjual
+                  </Col>
+                  <Col xs={1}>
+                    <div className="justify-content-end me-5">
+                      <FaAngleRight />
+                    </div>
+                  </Col>
+                </Row>
               </i>
             </Link>
           </ListGroup.Item>

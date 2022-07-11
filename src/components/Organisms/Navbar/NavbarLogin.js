@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
@@ -28,7 +29,7 @@ function NavbarLogin() {
   };
 
   return (
-    <div>
+    <>
       <Navbar className="ms-auto navbar" bg="white" expand="lg">
         <Container fluid className="me-3">
           <Navbar.Brand href="../../" className="logo" />
@@ -62,8 +63,8 @@ function NavbarLogin() {
                   />
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item href="../history/seller">History Seller</Dropdown.Item>
-                  <Dropdown.Item href="../history/buyer">History Buyer</Dropdown.Item>
+                  <Dropdown.Item href="../../history/seller">History Seller</Dropdown.Item>
+                  <Dropdown.Item href="../../history/buyer">History Buyer</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
               <Button
@@ -89,13 +90,17 @@ function NavbarLogin() {
                   <FaRegUser className="link" />
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item href="../history/seller">Profile</Dropdown.Item>
+                  <Dropdown.Item href="../profile">Profile</Dropdown.Item>
                   <Dropdown.Item onClick={logOut}>Logout</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
-              {/* <Nav.Link href="../../profile">
+              <Nav.Link href="#link"><FaListUl className="link" /></Nav.Link>
+              <Nav.Link href="#home">
+                <FaBell className="link" />
+              </Nav.Link>
+              <Nav.Link href="../../profile">
                 <FaRegUser className="link" />
-              </Nav.Link> */}
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -103,14 +108,15 @@ function NavbarLogin() {
       <Row>
         <Col xs={10}>
           <ToastContainer position="top-end" className="notification p-3">
-            <Toast position="top-end" onClose={() => { return setShow(false); }} show={show} delay={3000} autohide>
+            <Toast position="top-end d-flex justify-content-right" onClose={() => { return setShow(false); }} show={show} delay={3000} autohide>
               <Toast.Header>
                 <img
                   src="holder.js/20x20?text=%20"
-                  className="rounded me-2"
+                  className="rounded me-5 d-flex justify-content-right"
                   alt=""
+                  style={{ marginLeft: '220px', textAlign: 'right' }}
                 />
-                <small>08 Jul, 20.04</small>
+                {/* <small>08 Jul, 20.04</small> */}
               </Toast.Header>
               <Toast.Body>
                 {Array.from({ length: 4 }).map((_, idx) => {
@@ -132,7 +138,7 @@ function NavbarLogin() {
           </ToastContainer>
         </Col>
       </Row>
-    </div>
+    </>
   );
 }
 
