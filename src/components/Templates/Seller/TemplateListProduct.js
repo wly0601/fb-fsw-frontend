@@ -2,10 +2,10 @@ import { Container } from 'react-bootstrap';
 import NavbarLogin from '../../Organisms/Navbar/NavbarLogin';
 import ListProduct from '../../Organisms/Seller/ListProduct';
 
-function TemplateListProduct({ product }) {
+function TemplateListProduct({ product, notif }) {
   return (
     <>
-      <NavbarLogin />
+      <NavbarLogin notif={notif} />
       <Container fluid>
         <ListProduct dataProducts={product} />
       </Container>

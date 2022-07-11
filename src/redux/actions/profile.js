@@ -25,10 +25,10 @@ export const updateListProfile = (image, body) => {
       .then(async (resultUser) => {
         const cloudinaryUpload = new FormData();
         cloudinaryUpload.append('picture', image);
+        console.log(cloudinaryUpload, image);
         await axios.put(
           `https://second-hand-be.herokuapp.com/api/user/picture/${resultUser.data.id.toString()}/cloudinary`,
           cloudinaryUpload,
-
           {
             headers: {
               'Content-Type': 'multipart/form-data',

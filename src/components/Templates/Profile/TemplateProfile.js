@@ -4,10 +4,7 @@ import { Link, Navigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import {
-  Container,
-  Row,
-  Col,
-  Button,
+  Container, Row, Col, Button,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateListProfile } from '../../../redux/actions/profile';
@@ -15,7 +12,7 @@ import NavbarProfile from '../../Organisms/Navbar/NavbarProfile';
 import ProfileInput from '../../Moleculs/Form/ProfileInput';
 import './TemplateProfile.Module.css';
 
-function TemplateProfile(props) {
+function TemplateProfile() {
   // Data Input Profile
   const [inputName, setInputName] = useState('');
   const [cityId, setCityId] = useState('');
@@ -111,7 +108,12 @@ function TemplateProfile(props) {
                     className="avatar-image"
                   />
                 </div>
-                <ProfileInput name={setInputName} city={setCityId} phoneNumber={setPhoneNumber} address={setAddress} />
+                <ProfileInput
+                  name={setInputName}
+                  city={setCityId}
+                  phoneNumber={setPhoneNumber}
+                  address={setAddress}
+                />
                 <Button className="mt-3 mb-3 mx-5 btn-profile" variant="custom" type="submit" style={{ width: '85%' }}>
                   Simpan
                   {loading && (

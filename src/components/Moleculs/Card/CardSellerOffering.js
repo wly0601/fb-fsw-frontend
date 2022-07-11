@@ -8,7 +8,7 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Card.Module.css';
 
-function CardSeller() {
+function CardSeller({ buyerInfo, buyerCity }) {
   return (
     <Container>
       <Card className="mt-4 mb-5 seller-offering">
