@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import {
   Container, Form,
 } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import ImageHome from '../../Atoms/Image/ImageHome';
 import LoginInput from '../../Moleculs/Form/LoginInput';
+import BtnBackToHome from '../../Atoms/Button/BtnBackToHome';
 // import ButtonList from '../../Atoms/Button/ButtonList';
-// import './TemplateRegister.Module.css';
 
 function TemplateLogin() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
@@ -23,10 +25,11 @@ function TemplateLogin() {
     <div className="form-list">
       <Container fluid className="p-0">
         <div className="row">
-          <div className="col-6 image-home">
+          <div className="col-6 is-desktop">
             <ImageHome />
           </div>
           <div className={`${isMobile ? 'col-9' : 'col-5'}`}>
+            <BtnBackToHome />
             <LoginInput />
             <Form className={`${isMobile ? 'text-center fixed-bottom mb-5' : 'text-center'}`}>
               <Form.Group className="my-3 mx-5">

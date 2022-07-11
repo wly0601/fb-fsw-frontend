@@ -5,6 +5,7 @@ import {
 } from 'react-bootstrap';
 import ImageHome from '../../Atoms/Image/ImageHome';
 import RegisterInput from '../../Moleculs/Form/RegisterInput';
+import BtnBackToHome from '../../Atoms/Button/BtnBackToHome';
 import './TemplateRegister.Module.css';
 
 function TemplateRegister() {
@@ -26,6 +27,7 @@ function TemplateRegister() {
             <ImageHome />
           </div>
           <div className={`${isMobile ? 'col-9' : 'col-5'}`}>
+            <BtnBackToHome />
             <RegisterInput />
             <Form className={`${isMobile ? 'text-center fixed-bottom mb-5' : 'text-center'}`}>
               <Form.Group className="my-3 mx-5">
