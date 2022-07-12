@@ -31,9 +31,6 @@ export const getListNotifications = () => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-          params: {
-            _limit: 3,
-          },
         })
           .then(async (dataNotif) => {
             console.log(dataNotif.data.data);

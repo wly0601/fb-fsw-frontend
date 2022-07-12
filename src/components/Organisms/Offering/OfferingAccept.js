@@ -13,7 +13,7 @@ function OfferingInfo() {
       <Row>
         <Col xs={2}>
           <div style={{ paddingTop: '30px' }}>
-            <Link to="/side" style={{ color: 'black' }}>
+            <Link to="/" style={{ color: 'black' }}>
               <FontAwesomeIcon icon={faArrowLeft} />
             </Link>
           </div>

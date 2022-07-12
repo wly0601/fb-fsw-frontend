@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getListProducts } from '../redux/actions/product';
 import { getListNotifications } from '../redux/actions/getNotif';
 import TemplateHome from '../components/Templates/Homepage/TemplateHome';
+import PaginatedItems from '../components/Moleculs/Pagination/Pagination';
 
 function Homepage() {
   const dispatch = useDispatch();
@@ -49,6 +50,7 @@ function Homepage() {
       <div>
         <Container fluid className="p-0">
           <TemplateHome product={product} notif={notif} />
+          {/* <PaginatedItems /> */}
         </Container>
       </div>
       )}

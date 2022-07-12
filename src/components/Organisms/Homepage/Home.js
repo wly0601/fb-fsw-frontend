@@ -12,6 +12,7 @@ import ButtonCategory from '../../Atoms/Button/ButtonCategory';
 import ItemCard from '../../Moleculs/Card/ItemCard';
 import BtnAddProduct from '../../Atoms/Button/BtnAddProduct';
 import IMAGES from '../../../data/data';
+import PaginatedItems from '../../Moleculs/Pagination/Pagination';
 import './Home.Module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -77,13 +78,14 @@ function Home({ productAll }) {
         <div className="row mt-5 mx-5">
           <div className="col-12">
             <TitleList title="Telusuri Kategori" />
+            <PaginatedItems />
           </div>
         </div>
         <div className="row mt-3 mx-5">
           <ButtonCategory />
         </div>
         <div className="row mt-3 mx-5">
-          {(productAll && productAll).map((result) => {
+          {/* {(productAll && productAll).map((result) => {
             let user = 'buyer';
             let preview = '';
             if (!!userData && (userData.data.id.toString() === result.sellerId.toString())) {
@@ -104,11 +106,12 @@ function Home({ productAll }) {
                 </Link>
               </Col>
             );
-          })}
+          })} */}
           {/* {product.length === 0 && setProduct(productAll)} */}
         </div>
         <div className="row mt-3 mb-3 mx-5">
-          <BtnAddProduct />
+          {/* <BtnAddProduct /> */}
+          <PaginatedItems />
         </div>
       </Container>
     </>
