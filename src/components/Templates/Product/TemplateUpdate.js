@@ -12,7 +12,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { updateListProduct } from '../../../redux/actions/updateProduct';
 import NavbarProduct from '../../Organisms/Navbar/NavbarProduct';
-import UpdateProduct from '../../Moleculs/Form/UpdateProduct';
+import UpdateProduct from '../../Moleculs/Form/updateProduct';
 import './TemplateProduct.Module.css';
 
 function TemplateUpdate() {
