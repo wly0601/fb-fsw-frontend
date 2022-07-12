@@ -2,7 +2,8 @@
 /* eslint-disable react/jsx-no-bind */
 import React, { useState, useCallback, useEffect } from 'react';
 import axios from 'axios';
-import ReactPaginate from 'react-paginate';
+// import ReactPaginate from 'react-paginate';
+import Paginator from 'react-js-paginator';
 import { Pagination } from 'react-bootstrap';
 // import JsonData from './MOCK_DATA.json';
 import './Pagination.Module.css';
@@ -20,25 +21,18 @@ function PaginatedItems() {
     setData(response.data);
   });
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <div>
-      <Pagination className="paginate">
-        <Pagination.First />
-        <Pagination.Prev />
-        <Pagination.Item>{1}</Pagination.Item>
-        <Pagination.Ellipsis />
-
-        <Pagination.Item>{10}</Pagination.Item>
-        <Pagination.Item>{11}</Pagination.Item>
-        <Pagination.Item active>{12}</Pagination.Item>
-        <Pagination.Item>{13}</Pagination.Item>
-        <Pagination.Item disabled>{14}</Pagination.Item>
-
-        <Pagination.Ellipsis />
-        <Pagination.Item>{20}</Pagination.Item>
-        <Pagination.Next />
-        <Pagination.Last />
-      </Pagination>
+      <Paginator
+        pageSize={10}
+        totalElements={64}
+        className="paginate"
+        // onPageChangeCallback={(e) => { this.pageChange(e); }}
+      />
     </div>
   );
 }

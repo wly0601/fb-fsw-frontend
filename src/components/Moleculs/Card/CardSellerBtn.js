@@ -10,22 +10,33 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Card.Module.css';
 
-function CardSellerBtn() {
+function CardSellerBtn({ sellerName, sellerCity, sellerPhoto }) {
   return (
     <Container>
       <Card className="mt-3 mb-5 card-seller">
         <Card.Body>
           <Row>
             <Col xs={2}>
-              <img src={`${process.env.PUBLIC_URL}/images/seller_pic.png`} style={{ width: '35%' }} alt="" />
+              <img src={sellerPhoto} style={{ width: '30%', borderRadius: '10px' }} alt="" />
             </Col>
             <Col xs={8}>
-              <h5 style={{ fontWeight: 'bold' }}>Safira</h5>
-              <p>Jakarta</p>
+              <h5 style={{ fontWeight: 'bold' }}>{sellerName}</h5>
+              <p>{sellerCity}</p>
             </Col>
             <Col xs={2}>
               <Link to="/profile">
-                <Button className="seller-btn" variant="primary">Edit</Button>
+                <Button
+                  variant="primary"
+                  style={{
+                    backgroundColor: 'white',
+                    borderColor: '7126B5',
+                    color: 'black',
+                    borderRadius: '12px',
+                    marginTop: '10px',
+                  }}
+                >
+                  Edit
+                </Button>
               </Link>
             </Col>
           </Row>

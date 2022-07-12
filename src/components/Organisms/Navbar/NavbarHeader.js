@@ -13,7 +13,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { faList } from '@fortawesome/free-solid-svg-icons';
 import {
   Navbar,
@@ -112,7 +112,7 @@ function NavbarHeader({ notif }) {
                   <FaRegUser className="link" />
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item href="../profile">Profile</Dropdown.Item>
+                  <Dropdown.Item href="../../profile">Profile</Dropdown.Item>
                   <Dropdown.Item onClick={logOut}>Logout</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>

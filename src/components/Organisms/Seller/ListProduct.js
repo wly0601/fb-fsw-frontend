@@ -12,7 +12,9 @@ import Sidebar from '../../Moleculs/Sidebar/SidebarProduct';
 import ItemCard from '../../Moleculs/Card/ItemCard';
 import './Product.Module.css';
 
-function ListProduct({ dataProducts }) {
+function ListProduct({
+  dataProducts, sellerName, sellerCity, sellerPhoto,
+}) {
   const priceFormat = (data) => {
     const priceStr = data.toString();
     let i = priceStr.length;
@@ -37,7 +39,11 @@ function ListProduct({ dataProducts }) {
         <Title title="Daftar Jual Saya" />
       </Row>
       <Row>
-        <CardSellerBtn />
+        <CardSellerBtn
+          sellerName={sellerName}
+          sellerCity={sellerCity}
+          sellerPhoto={sellerPhoto}
+        />
       </Row>
       <Row>
         <Col>
