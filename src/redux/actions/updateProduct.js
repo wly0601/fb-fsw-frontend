@@ -1,17 +1,19 @@
+/* eslint-disable radix */
 /* eslint-disable no-plusplus */
 /* eslint-disable no-loop-func */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-undef */
 import axios from 'axios';
 
-export const createProduct = 'createProduct';
+export const updateProduct = 'updateProduct';
 
-export const createListProduct = (image, body) => {
+export const updateListProduct = (image, body, id) => {
   const url = [];
+
   return async (dispatch) => {
     // Loading
     dispatch({
-      type: createProduct,
+      type: updateProduct,
       payload: {
         loading: true,
         result: false,
@@ -49,35 +51,49 @@ export const createListProduct = (image, body) => {
         const bodyProduct = {
           name: body.name,
           images: url,
-          price: body.price,
+          price: parseInt(body.price),
           description: body.description,
           categoryId: body.categoryId,
         };
         console.log(bodyProduct);
-        await axios.post(
-          'https://second-hand-be.herokuapp.com/api/products',
-          bodyProduct,
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${token}`,
-            },
-          },
-        )
-          .then(async (result) => {
-            console.log(result.data.name);
-            await dispatch({
-              type: createProduct,
-              payload: {
-                loading: false,
-                result: await result.data,
-                error: false,
+        await axios.get(`https://second-hand-be.herokuapp.com/api/product/${id}`)
+          .then(async (test) => {
+            console.log(test.data);
+            await axios.put(
+              `https://second-hand-be.herokuapp.com/api/product/${test.data.id}`,
+              bodyProduct,
+              {
+                headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: `Bearer ${token}`,
+                },
               },
-            });
+            )
+              .then(async (result) => {
+                console.log(result.data);
+                await dispatch({
+                  type: updateProduct,
+                  payload: {
+                    loading: false,
+                    result: await result.data,
+                    error: false,
+                  },
+                });
+              })
+              .catch((err) => {
+                dispatch({
+                  type: updateProduct,
+                  payload: {
+                    loading: false,
+                    result: false,
+                    error: err.message,
+                  },
+                });
+              });
           })
           .catch((err) => {
             dispatch({
-              type: createProduct,
+              type: updateProduct,
               payload: {
                 loading: false,
                 result: false,
@@ -88,7 +104,7 @@ export const createListProduct = (image, body) => {
       })
       .catch((err) => {
         dispatch({
-          type: createProduct,
+          type: updateProduct,
           payload: {
             loading: false,
             result: false,

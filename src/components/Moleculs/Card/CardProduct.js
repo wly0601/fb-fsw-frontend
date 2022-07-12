@@ -42,7 +42,7 @@ function CardProduct(props) {
           <p>{productById.price}</p>
           <Row>
             <Link to="/list/products">
-              <Button variant="primary" className="button-seller">Terbitkan</Button>
+              <Button variant="primary" className="button-seller" style={{ backgroundColor: '#7126B5' }}>Terbitkan</Button>
             </Link>
           </Row>
           <Row>

@@ -3,6 +3,9 @@ import auth from './auth';
 import message from './message';
 import { getProductReducer } from './product';
 import { getProfileReducer } from './profile';
+import { updateProductReducer } from './updateProduct';
+import { getSellerProductReducer } from './sellerProduct';
+import { getTransactionProductReducer } from './createTransaction';
 import { getListNotifications } from './getNotif';
 
 export default combineReducers({
@@ -10,5 +13,8 @@ export default combineReducers({
   message,
   getProductReducer,
   getProfileReducer,
+  updateProductReducer,
+  getSellerProductReducer,
+  getTransactionProductReducer,
   getListNotifications,
 });

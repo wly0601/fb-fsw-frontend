@@ -1,13 +1,13 @@
 import React from 'react';
-import ProductInput from '../../Moleculs/Form/ProductInput';
+import UpdateProduct from '../../Moleculs/Form/UpdateProduct';
 // import './Input.Module.css';
 
-function FormProduct({
+function FormUpdate({
   name, price, categoryId, description,
 }) {
   return (
     <div className="form-list">
-      <ProductInput
+      <UpdateProduct
         name={name}
         price={price}
         categoryId={categoryId}
@@ -17,4 +17,4 @@ function FormProduct({
   );
 }
 
-export default FormProduct;
+export default FormUpdate;

@@ -9,7 +9,7 @@ function NavbarProduct() {
     <div>
       <Navbar className="ms-auto" bg="white" expand="lg">
         <Container fluid className="mt-3 mb-3">
-          <Navbar.Brand href="../../" className="logo" />
+          <Navbar.Brand href="../../../" className="logo" />
         </Container>
       </Navbar>
     </div>

@@ -19,11 +19,11 @@ function CardNotification(props) {
               src={image}
               className="mt-4 mx-3 card-img-top"
               alt={imageAlt}
-              style={{ width: '100%' }}
+              style={{ width: '100%', height: '100px' }}
             />
           </Col>
           <Col xs={8}>
-            <Card.Body>
+            <Card.Body style={{ height: '140px' }}>
               <Card.Title style={{ fontSize: '10px', color: 'grey' }}>{title}</Card.Title>
               <Card.Title style={{ fontSize: '12px' }}>{name}</Card.Title>
               <Card.Text style={{ fontSize: '12px' }}>{price}</Card.Text>
