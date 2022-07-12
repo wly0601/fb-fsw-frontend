@@ -154,12 +154,11 @@ function NavbarHeader({ notif }) {
                     name={result.name}
                     price={result.price}
                     image={result.image}
-                    imageAlt="Gambar jam tangan"
                   />
                 </Col>
               );
             })}
-            <Link to="/offering/info" style={{ textDecoration: 'none' }}>
+            <Link to="/list/notifications" style={{ textDecoration: 'none' }}>
               <div className="d-grid gap-2">
                 <Button variant="outline-success" size="lg" style={{ color: 'black' }}>
                   Lihat Semua

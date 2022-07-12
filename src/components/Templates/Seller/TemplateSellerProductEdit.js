@@ -3,11 +3,11 @@ import NavbarLogin from '../../Organisms/Navbar/NavbarLogin';
 import ProductPageSeller from '../../Organisms/Seller/ProductPageSeller';
 
 function TemplateSellerProductEdit({
-  productById, categoryName, productImage, seller, city,
+  productById, categoryName, productImage, seller, city, notif,
 }) {
   return (
     <>
-      <NavbarLogin />
+      <NavbarLogin notif={notif} />
       <Container fluid>
         <ProductPageSeller
           productById={productById}
@@ -15,6 +15,7 @@ function TemplateSellerProductEdit({
           productImage={productImage}
           city={city}
           seller={seller}
+          notif={notif}
         />
       </Container>
     </>

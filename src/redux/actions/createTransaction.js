@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export const createTransaction = 'createTransaction';
 
-export const getTransactionProducts = () => {
+export const getTransactionProducts = (body) => {
   return async (dispatch) => {
   // const dispatch = useDispatch();
   // Loading
@@ -25,11 +25,19 @@ export const getTransactionProducts = () => {
     })
       .then(async (resultUser) => {
         console.log(resultUser);
-        await axios.post('https://second-hand-be.herokuapp.com/api/transaction', {
-          headers: {
-            Authorization: `Bearer ${token}`,
+        const bodyInput = {
+          productId: body.productId,
+          bargainPrice: body.inputBargain,
+        };
+        await axios.post(
+          'https://second-hand-be.herokuapp.com/api/transaction',
+          bodyInput,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           },
-        })
+        )
           .then(async (res) => {
             console.log(res.data);
             await dispatch({

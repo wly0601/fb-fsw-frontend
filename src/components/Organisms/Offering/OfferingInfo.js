@@ -7,7 +7,11 @@ import CardSellerOffering from '../../Moleculs/Card/CardSellerOffering';
 import CardOffering from '../../Moleculs/Card/CardOffering';
 // import './Input.Module.css';
 
-function OfferingInfo({ buyerInfo, buyerCity }) {
+function OfferingInfo({
+  buyerInfo, buyerCity, buyerImg, buyerOrder,
+}) {
+  console.log(buyerOrder);
+  const msg = 'Penawaran Produk';
   return (
     <Container>
       <Row>
@@ -22,15 +26,19 @@ function OfferingInfo({ buyerInfo, buyerCity }) {
           <CardSellerOffering
             buyerInfo={buyerInfo}
             buyerCity={buyerCity}
+            buyerImg={buyerImg}
           />
-          <CardOffering
-            title="Penawaran Produk"
-            name="Jam Tangan Casio"
-            price="Rp 250.000"
-            offering="Ditawar Rp.200.000"
-            image="https://placeimg.com/165/100/any"
-            imageAlt="Gambar jam tangan"
-          />
+          {buyerOrder && buyerOrder.map((order) => {
+            return (
+              <CardOffering
+                title={msg}
+                name={order.product.name}
+                price={order.product.price}
+                offering={`Ditawar ${order.bargainPrice}`}
+                image={order.product.images[0]}
+              />
+            );
+          })}
         </Col>
       </Row>
     </Container>

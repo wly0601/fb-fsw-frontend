@@ -42,7 +42,7 @@ function App() {
           <Route path="/list/notifications" element={<Notification />} />
           <Route path="/history/seller" element={<HistorySeller />} />
           <Route path="/history/buyer" element={<HistoryBuyer />} />
-          <Route path="/offering/info" element={<OfferingInfo />} />
+          <Route path="/offering/:buyerId/info" element={<OfferingInfo />} />
           <Route path="/offering/accept" element={<OfferingAccept />} />
         </Routes>
       </BrowserRouter>

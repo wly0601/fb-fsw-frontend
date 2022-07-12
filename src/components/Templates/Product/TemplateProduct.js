@@ -46,6 +46,7 @@ function TemplateProduct() {
       description,
       categoryId: parseInt(categoryId),
     };
+    console.log(body);
     await dispatch(createListProduct(image, body));
   }
 
