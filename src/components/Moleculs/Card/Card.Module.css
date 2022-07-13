@@ -124,6 +124,10 @@
   border-color: #7126B5;
 }
 
+.seller-picture {
+  width: 35%;
+}
+
 .seller-btn {
   background-color: white;
   border-color: #7126B5;
@@ -189,4 +193,10 @@
   border-color: #7126B5;
   color: black;
   border-radius: 16px;
+}
+
+@media (max-width: 445px){
+  .seller-picture {
+    width: 150%
+  }
 }

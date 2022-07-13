@@ -7,6 +7,7 @@ import {
 } from 'react-bootstrap';
 import { FaPlus } from 'react-icons/fa';
 import Title from '../../Atoms/Title/Title';
+import BtnProductStatus from '../../Atoms/Button/BtnProductStatus';
 import CardSellerBtn from '../../Moleculs/Card/CardSellerBtn';
 import Sidebar from '../../Moleculs/Sidebar/SidebarProduct';
 import ItemCard from '../../Moleculs/Card/ItemCard';
@@ -40,7 +41,10 @@ function ListProduct({ dataProducts }) {
         <CardSellerBtn />
       </Row>
       <Row>
-        <Col>
+        <BtnProductStatus />
+      </Row>
+      <Row>
+        <Col className="card-sidebar">
           <Sidebar />
         </Col>
         <Col>
@@ -59,7 +63,7 @@ function ListProduct({ dataProducts }) {
           id, name, description, price, images,
         }) => {
           return (
-            <Col key={id} md={3}>
+            <Col key={id} md={3} xs={6}>
               <Link to={`../seller/product/${id}`} style={{ textDecoration: 'none', color: 'black' }}>
                 <ItemCard
                   title={name}
