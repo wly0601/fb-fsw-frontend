@@ -30,15 +30,11 @@ function OfferingInfo() {
             },
           },
         ).then(async (res) => {
-          console.log(orderBuyer);
-          console.log(res.data);
           setBuyerName(res.data.buyer.name);
           setBuyerCity(res.data.buyer.city.name);
           setBuyerPhoto(res.data.buyer.photo);
-          console.log(res.data.order);
           const getOrder = res.data.order;
           setOrderBuyer(getOrder);
-          console.log(orderBuyer);
         });
         console.log(response.data);
       });

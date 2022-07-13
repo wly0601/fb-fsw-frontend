@@ -33,6 +33,7 @@ function ListProduct({
 
     return `Rp ${renderPrice}`;
   };
+
   return (
     <Container className="mt-5">
       <Row>
@@ -61,6 +62,11 @@ function ListProduct({
             </Link>
           </div>
         </Col>
+        {dataProducts.length <= 0 && (
+        <Col>
+          <p> </p>
+        </Col>
+        )}
         {dataProducts && dataProducts.map(({
           id, name, description, price, images,
         }) => {

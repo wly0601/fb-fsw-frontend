@@ -6,15 +6,17 @@ import NavbarLogin from '../../Organisms/Navbar/NavbarLogin';
 import Home from '../../Organisms/Homepage/Home';
 import PaginatedItems from '../../Moleculs/Pagination/Pagination';
 
-function TemplateHome({ product, notif, data }) {
-  console.log(product, notif, data);
+function TemplateHome({
+  product, notif, data, currentPage,
+}) {
+  console.log(currentPage, 'line12');
   const { isLoggedIn } = useSelector((state) => { return state.auth; });
 
   return isLoggedIn ? (
     <>
       <NavbarLogin notif={notif} />
       <Container fluid>
-        <Home productAll={product} data={data} />
+        <Home productAll={product} data={data} currentPage={currentPage} />
         {/* <PaginatedItems /> */}
       </Container>
     </>
@@ -22,7 +24,7 @@ function TemplateHome({ product, notif, data }) {
     <>
       <NavbarHeader notif={notif} />
       <Container fluid>
-        <Home productAll={product} data={data} />
+        <Home productAll={product} data={data} currentPage={currentPage} />
         {/* <PaginatedItems /> */}
       </Container>
     </>

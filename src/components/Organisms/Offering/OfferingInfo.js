@@ -28,6 +28,13 @@ function OfferingInfo({
             buyerCity={buyerCity}
             buyerImg={buyerImg}
           />
+          {buyerOrder.length <= 0 && (
+          <img
+            src={`${process.env.PUBLIC_URL}/images/best_interest.png`}
+            style={{ width: '50%', justifyContent: 'center', marginLeft: '30%' }}
+            alt=""
+          />
+          )}
           {buyerOrder && buyerOrder.map((order) => {
             return (
               <CardOffering

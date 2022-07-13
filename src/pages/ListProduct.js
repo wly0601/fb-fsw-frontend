@@ -71,7 +71,7 @@ function ListProduct() {
 
   return (
     <>
-      {product.length > 0 && (
+      {!!product && (
         <div>
           <Container fluid className="p-0">
             <TemplateListProduct

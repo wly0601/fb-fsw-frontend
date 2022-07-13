@@ -8,6 +8,7 @@ import PaginatedItems from '../components/Moleculs/Pagination/Pagination';
 
 function Homepage() {
   const dispatch = useDispatch();
+  const [currentPage, setCurrentPage] = useState(5);
   const [data, setData] = useState('');
   const [product, setProduct] = useState([]);
   const [notif, setNotif] = useState([]);
@@ -17,6 +18,7 @@ function Homepage() {
     notifError,
   // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getListNotifications);
+
   const {
     productLoading,
     productResult,
@@ -25,7 +27,8 @@ function Homepage() {
   } = useSelector((state) => state.getProductReducer);
 
   useEffect(() => {
-    dispatch(getListProducts());
+    dispatch(getListProducts(currentPage));
+    dispatch(getListNotifications());
   }, [dispatch]);
 
   useEffect(() => {
@@ -35,10 +38,6 @@ function Homepage() {
   }, [productResult]);
 
   useEffect(() => {
-    dispatch(getListNotifications());
-  }, [dispatch]);
-
-  useEffect(() => {
     if (notifResult) {
       setNotif(notifResult);
     }
@@ -46,10 +45,10 @@ function Homepage() {
 
   return (
     <>
-      {product.length > 0 && (
+      {product.length >= 0 && (
       <div>
         <Container fluid className="p-0">
-          <TemplateHome product={product} notif={notif} />
+          <TemplateHome product={product} notif={notif} currentPage={currentPage} />
           {/* <PaginatedItems /> */}
         </Container>
       </div>

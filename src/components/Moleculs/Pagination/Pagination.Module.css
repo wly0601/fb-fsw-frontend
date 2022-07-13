@@ -1,8 +1,11 @@
 .paginate {
     width: 100%;
     list-style: outside none none;
-    padding-right: 100px;
-    position: absolute;
+    /* position: absolute; */
     display: flex;
+}
+
+.pagination-position{
     justify-content: center;
+    padding: 0px 450px;
 }

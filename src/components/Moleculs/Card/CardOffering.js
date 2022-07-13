@@ -40,7 +40,20 @@ function CardHistory(props) {
             <div className="justify-content-end button-align">
               {hiddenButton && (
                 <>
-                  <Button variant="secondary" className="button-deny" onClick={handleHiddenButton}>Tolak</Button>
+                  <Button
+                    variant="secondary"
+                    className="button-deny"
+                    onClick={handleHiddenButton}
+                    style={{
+                      backgroundColor: 'white',
+                      borderColor: '7126B5',
+                      color: 'black',
+                      borderRadius: '16px',
+                    }}
+                  >
+                    Tolak
+
+                  </Button>
                   <VerticalModals
                     show={modalShow}
                     onHide={() => { return setModalShow(false); }}

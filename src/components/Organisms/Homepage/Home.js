@@ -16,7 +16,7 @@ import PaginatedItems from '../../Moleculs/Pagination/Pagination';
 import './Home.Module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function Home({ productAll }) {
+function Home({ productAll, currentPage }) {
   // const [user, setUser] = useState('');
   const [userData, setUserData] = useState('');
 
@@ -92,7 +92,7 @@ function Home({ productAll }) {
               user = 'seller';
               preview = '/preview';
             }
-            console.log(userData);
+            // console.log(userData);
             return (
               <Col key={result.id} md={2}>
                 <Link to={`${user}/product/${result.id}${preview}`} style={{ textDecoration: 'none', color: 'black' }}>
@@ -109,11 +109,11 @@ function Home({ productAll }) {
           })}
           {/* {product.length === 0 && setProduct(productAll)} */}
         </div>
-        <div className="row mt-3 mb-3 mx-5">
+        <div className="row mb-5 mx-5">
           {/* <BtnAddProduct /> */}
-          <PaginatedItems />
+          <PaginatedItems currentPage={currentPage} />
         </div>
-        <div className="row mt-3 mb-3 mx-5">
+        <div className="row mt-5 mb-3 mx-5 button-sell">
           <BtnAddProduct />
         </div>
       </Container>
