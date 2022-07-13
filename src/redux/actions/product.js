@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export const setProducts = 'setProducts';
 
-export const getListProducts = (body) => {
+export const getListProducts = () => {
   return async (dispatch) => {
   // const dispatch = useDispatch();
   // Loading

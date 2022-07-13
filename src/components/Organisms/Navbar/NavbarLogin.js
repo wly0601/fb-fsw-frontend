@@ -34,7 +34,7 @@ function NavbarLogin({ notif }) {
     <>
       <Navbar className="ms-auto navbar" bg="white" expand="lg">
         <Container fluid className="me-3">
-          <Navbar.Brand href="../../" className="logo" />
+          <Navbar.Brand href="../../../" className="logo" />
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Form className="d-flex test">
@@ -96,20 +96,13 @@ function NavbarLogin({ notif }) {
                   <Dropdown.Item onClick={logOut}>Logout</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
-              <Nav.Link href="#link"><FaListUl className="link" /></Nav.Link>
-              <Nav.Link href="#home">
-                <FaBell className="link" />
-              </Nav.Link>
-              <Nav.Link href="../../profile">
-                <FaRegUser className="link" />
-              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
       <Row>
         <Col xs={10}>
-          <ToastContainer position="top-end" className="notification p-3">
+          <ToastContainer position="top-end" className="notification p-3" limit={3}>
             <Toast position="top-end d-flex justify-content-right" onClose={() => { return setShow(false); }} show={show} delay={3000} autohide>
               <Toast.Header>
                 <img
@@ -151,7 +144,7 @@ function NavbarLogin({ notif }) {
                   }
                   return result2;
                 })}
-                <Link to="/offering/info" style={{ textDecoration: 'none' }}>
+                <Link to="/list/notifications" style={{ textDecoration: 'none' }}>
                   <div className="d-grid gap-2">
                     <Button variant="outline-success" size="lg" style={{ color: 'black' }}>
                       Lihat Semua

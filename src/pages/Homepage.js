@@ -7,6 +7,7 @@ import TemplateHome from '../components/Templates/Homepage/TemplateHome';
 
 function Homepage() {
   const dispatch = useDispatch();
+  const [data, setData] = useState('');
   const [product, setProduct] = useState([]);
   const [notif, setNotif] = useState([]);
   const {
@@ -31,6 +32,7 @@ function Homepage() {
       setProduct(productResult);
     }
   }, [productResult]);
+
   useEffect(() => {
     dispatch(getListNotifications());
   }, [dispatch]);

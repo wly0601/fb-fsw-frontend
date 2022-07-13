@@ -1,7 +1,8 @@
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
 /* eslint-disable radix */
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
@@ -9,14 +10,12 @@ import {
   Container, Row, Col, Button, Form,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { createListProduct } from '../../../redux/actions/createProduct';
+import { updateListProduct } from '../../../redux/actions/updateProduct';
 import NavbarProduct from '../../Organisms/Navbar/NavbarProduct';
-import ProductInput from '../../Moleculs/Form/ProductInput';
+import UpdateProduct from '../../Moleculs/Form/updateProduct';
 import './TemplateProduct.Module.css';
 
-function TemplateProduct() {
-  const params = useParams();
-  console.log(`${params.id}`);
+function TemplateUpdate() {
   // Data Input Product
   const [inputName, setInputName] = useState('');
   const [price, setPrice] = useState('');
@@ -29,6 +28,7 @@ function TemplateProduct() {
   const [image, setImage] = useState([]);
   const [uploadedFileURL, setUploadedFileURL] = useState([]);
   const dispatch = useDispatch();
+  const params = useParams();
 
   let fileObj = [];
 
@@ -36,7 +36,34 @@ function TemplateProduct() {
     productLoading,
     productResult,
     productError,
-  } = useSelector((state) => { return state.getProductReducer; });
+  } = useSelector((state) => { return state.updateProductReducer; });
+
+  const getProduct = async () => {
+    try {
+      console.log(inputName);
+      const token = localStorage.getItem('token');
+      const getResponse = await axios.get(
+        `https://second-hand-be.herokuapp.com/api/product/${params.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      console.log(getResponse.data);
+      setInputName(getResponse.data.name);
+      setPrice(getResponse.data.price);
+      setCategoryId(getResponse.data.category.name);
+      setDescription(getResponse.data.description);
+      console.log(inputName);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getProduct();
+  }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -46,7 +73,7 @@ function TemplateProduct() {
       description,
       categoryId: parseInt(categoryId),
     };
-    await dispatch(createListProduct(image, body));
+    await dispatch(updateListProduct(image, body, params.id));
   }
 
   const handleChangeImage = (e) => {
@@ -91,10 +118,10 @@ function TemplateProduct() {
   }
 
   return (
-    <>
+    <div>
       <NavbarProduct />
       <div>
-        <Container fluid className="form-products p-0">
+        <Container className="form-products">
           <form onSubmit={handleSubmit}>
             <Row>
               <Col>
@@ -103,13 +130,13 @@ function TemplateProduct() {
                     <FontAwesomeIcon icon={faArrowLeft} />
                   </Link>
                 </div>
-                <ProductInput
+                <UpdateProduct
                   name={setInputName}
                   price={setPrice}
                   categoryId={setCategoryId}
                   description={setDescription}
                 />
-                <Form.Group className="mb-3" controlId="productPhoto">
+                <Form.Group className="mx-5 mb-3" controlId="productPhoto">
                   <Form.Label>Foto Produk</Form.Label>
                   {image && image.map(({ images, index }) => {
                     return (
@@ -118,22 +145,22 @@ function TemplateProduct() {
                   })}
                   <Form.Control
                     type="file"
-                    accept="image/*"
+                    accept=""
                     onChange={handleChangeImage}
                     className="upload-button"
                     multiple
                   />
                   {message && (
                   <div className="alert alert-danger" role="alert">
-                    Upload Maximum 4 Images!
+                    You can upload maximum 4 images!
                   </div>
                   )}
                 </Form.Group>
               </Col>
             </Row>
-            <Row className="mb-5">
+            <Row className="mx-5 mb-5">
               <Col xs={6}>
-                <Link to={`/seller/product/${params.id}`}>
+                <Link to="/seller/product/:id">
                   <Button variant="primary" className="preview-button" type="submit">
                     Preview
                   </Button>
@@ -143,7 +170,7 @@ function TemplateProduct() {
                 <Button variant="primary" className="publish-button" type="submit">
                   Terbitkan
                   {loading && (
-                    <span className="spinner-border spinner-border-sm me-5" />
+                    <span className="spinner-border spinner-border-sm" />
                   )}
                 </Button>
               </Col>
@@ -151,8 +178,8 @@ function TemplateProduct() {
           </form>
         </Container>
       </div>
-    </>
+    </div>
   );
 }
 
-export default TemplateProduct;
+export default TemplateUpdate;

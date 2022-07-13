@@ -1,29 +1,30 @@
-/* eslint-disable consistent-return */
 /* eslint-disable react/jsx-no-bind */
+/* eslint-disable consistent-return */
 import React, { useState, useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-import { Form, Button } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import InputList from '../../Atoms/Input/Input';
 import InputDesc from '../../Atoms/Input/InputDesc';
-import InputCity from '../../Atoms/Input/InputCity';
+import InputCategory from '../../Atoms/Input/InputCategory';
 import './FormInput.Module.css';
 
 const required = (value) => {
   if (!value) {
     return (
       <div className="alert alert-danger" role="alert">
-        This field is required!
+        This field is required!!!
       </div>
     );
   }
 };
 
-function ProfileInput({
-  name, city, phoneNumber, address,
+function UpdateProduct({
+  id, name, price, categoryId, description,
 }) {
+  const params = useParams();
+  console.log(`${params.id}`);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
-  // const [updateProfile, setUpdateProfile] = useState(null);
   const [user, setUser] = useState({});
   const [data, setData] = useState([]);
 
@@ -35,7 +36,7 @@ function ProfileInput({
     try {
       const userToUpdatePayload = new FormData();
       const updateRequest = await axios.put(
-        `https://second-hand-be.herokuapp.com/api/users/${data.id.toString()}/detail`,
+        `https://second-hand-be.herokuapp.com/api/product/${params.id}`,
         userToUpdatePayload,
         {
           headers: {
@@ -45,7 +46,8 @@ function ProfileInput({
       );
       console.log(updateRequest.data.data.data);
       const updateResponse = updateRequest.data.data.data;
-      if (updateResponse.status) Navigate('/login');
+      // name(updateResponse.name);
+      // if (updateResponse.status) Navigate('/login');
     } catch (err) {
       console.log(err);
     }
@@ -74,10 +76,10 @@ function ProfileInput({
   }, []);
 
   return isLoggedIn ? (
-    <div className="mt-5 mb-3 profile-input">
+    <div className="mt-5 mb-3 mx-5 profile-input">
       <Form onSubmit={handleSubmit}>
         <Form.Group>
-          <Form.Label>Nama</Form.Label>
+          <Form.Label>Nama Produk</Form.Label>
           <InputList
             type="name"
             placeholder="Nama"
@@ -87,26 +89,26 @@ function ProfileInput({
           />
         </Form.Group>
         <Form.Group>
-          <Form.Label>Kota</Form.Label>
-          <InputCity inputCity={city} />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Alamat</Form.Label>
-          <InputDesc
-            type="address"
-            placeholder="Contoh: Jl. Medan Merdeka"
-            value={address}
-            onChange={address}
+          <Form.Label>Harga Produk</Form.Label>
+          <InputList
+            type="price"
+            placeholder="Rp, 00"
+            value={price}
+            onChange={price}
             validations={[required]}
           />
         </Form.Group>
         <Form.Group>
-          <Form.Label>No Handphone</Form.Label>
-          <InputList
-            type="phone"
-            placeholder="08121234569"
-            value={phoneNumber}
-            onChange={phoneNumber}
+          <Form.Label>Kategori</Form.Label>
+          <InputCategory inputCategory={categoryId} />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Deskripsi</Form.Label>
+          <InputDesc
+            type="description"
+            placeholder="Contoh: Produk ini merupakan..."
+            value={description}
+            onChange={description}
             validations={[required]}
           />
         </Form.Group>
@@ -117,4 +119,4 @@ function ProfileInput({
   );
 }
 
-export default ProfileInput;
+export default UpdateProduct;

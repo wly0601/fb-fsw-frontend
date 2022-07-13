@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { getListProducts } from '../redux/actions/product';
+import { getSellerListProducts } from '../redux/actions/sellerProduct';
 import { getListNotifications } from '../redux/actions/getNotif';
 import TemplateListProduct from '../components/Templates/Seller/TemplateListProduct';
 
@@ -20,10 +20,10 @@ function ListProduct() {
     productResult,
     productError,
   // eslint-disable-next-line arrow-body-style
-  } = useSelector((state) => state.getProductReducer);
+  } = useSelector((state) => state.getSellerProductReducer);
 
   useEffect(() => {
-    dispatch(getListProducts());
+    dispatch(getSellerListProducts());
   }, [dispatch]);
 
   useEffect(() => {

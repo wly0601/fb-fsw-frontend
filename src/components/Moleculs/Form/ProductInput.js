@@ -1,10 +1,11 @@
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable consistent-return */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 import { Form, Row } from 'react-bootstrap';
 import InputList from '../../Atoms/Input/Input';
+import InputDesc from '../../Atoms/Input/InputDesc';
 import InputCategory from '../../Atoms/Input/InputCategory';
 import './FormInput.Module.css';
 
@@ -23,7 +24,7 @@ function ProductInput({
 }) {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [user, setUser] = useState({});
-  const [data, setData] = useState([]);
+  const checkBtn = useRef();
 
   const token = localStorage.getItem('token');
 
@@ -72,7 +73,7 @@ function ProductInput({
   }, []);
 
   return isLoggedIn ? (
-    <div className="mt-5 mb-3 mx-5 profile-input">
+    <div className="mt-5 mb-3 profile-input">
       <Form onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Label>Nama Produk</Form.Label>
@@ -100,7 +101,7 @@ function ProductInput({
         </Form.Group>
         <Form.Group>
           <Form.Label>Deskripsi</Form.Label>
-          <InputList
+          <InputDesc
             type="description"
             placeholder="Contoh: Produk ini merupakan..."
             value={description}

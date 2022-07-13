@@ -23,16 +23,16 @@ function SidebarProduct() {
             <Link to="/list/products" className="text-decoration">
               <i type="button" className="link">
                 <Row>
-                  <Col xs={10}>
+                  <Col>
                     <FaCube />
                     {' '}
                     Semua Product
                   </Col>
-                  <Col xs={2}>
+                  {/* <Col xs={2}>
                     <div className="justify-content-end d-flex flex-row-reverse">
                       <FaAngleRight />
                     </div>
-                  </Col>
+                  </Col> */}
                 </Row>
               </i>
             </Link>
@@ -41,16 +41,16 @@ function SidebarProduct() {
             <Link to="/list/interest" className="text-decoration">
               <i type="button" className="link">
                 <Row>
-                  <Col xs={10}>
+                  <Col>
                     <FaRegHeart style={{ color: '#8A8A8A' }} />
                     {' '}
                     Diminati
                   </Col>
-                  <Col xs={1}>
+                  {/* <Col xs={1}>
                     <div className="justify-content-end">
                       <FaAngleRight />
                     </div>
-                  </Col>
+                  </Col> */}
                 </Row>
               </i>
             </Link>
@@ -59,16 +59,16 @@ function SidebarProduct() {
             <Link to="/history/seller" className="text-decoration">
               <i type="button" className="link">
                 <Row>
-                  <Col xs={10}>
+                  <Col>
                     <FaDollarSign style={{ color: '#8A8A8A' }} />
                     {' '}
                     Terjual
                   </Col>
-                  <Col xs={1}>
+                  {/* <Col xs={1}>
                     <div className="justify-content-end me-5">
                       <FaAngleRight />
                     </div>
-                  </Col>
+                  </Col> */}
                 </Row>
               </i>
             </Link>

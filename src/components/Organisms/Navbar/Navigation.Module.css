@@ -108,6 +108,10 @@ li {
 
 .notification {
     z-index: 2;
+    overflow: hidden;
+    display: inline-block;
+    overflow-y: scroll;
+    /* height: 500px; */
 }
 
 .dropdown-toggle::after {

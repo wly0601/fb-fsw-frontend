@@ -1,7 +1,8 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable array-callback-return */
 // import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Container, Col } from 'react-bootstrap';
@@ -16,6 +17,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Home({ productAll }) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
+  // const [user, setUser] = useState('');
+  const [userData, setUserData] = useState('');
+  
   const priceFormat = (data) => {
     const priceStr = data.toString();
     let i = priceStr.length;
@@ -43,6 +47,33 @@ function Home({ productAll }) {
       }
     }, false);
   }, [isMobile]);
+  const token = localStorage.getItem('token');
+
+  const getUsers = async () => {
+    try {
+      const responseUsers = await axios.get(
+        'https://second-hand-be.herokuapp.com/api/who-am-i',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      const dataUsers = await responseUsers;
+      setUserData(dataUsers);
+      console.log(dataUsers.data.id, 'line 55');
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // for (let i = 0; i < userData.data.length; i++) {
+  //   console.log(userData.data[i].id);
+  // }
+
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   return (
     <>
@@ -61,17 +92,22 @@ function Home({ productAll }) {
           <ButtonCategory />
         </div>
         <div className={`${isMobile ? 'row mt-3' : 'row mt-3 mx-5'}`}>
-          {productAll && productAll.map(({
-            id, name, category, price, images,
-          }) => {
+          {(productAll && productAll).map((result) => {
+            let user = 'buyer';
+            let preview = '';
+            if (!!userData && (userData.data.id.toString() === result.sellerId.toString())) {
+              user = 'seller';
+              preview = '/preview';
+            }
+            console.log(userData);
             return (
-              <Col key={id} md={2} xs={6}>
-                <Link to={`buyer/product/${id}`} style={{ textDecoration: 'none', color: 'black' }}>
+              <Col key={result.id} md={2} xs={6}>
+                <Link to={`${user}/product/${result.id}${preview}`} style={{ textDecoration: 'none', color: 'black' }}>
                   <ItemCard
-                    title={name}
-                    type={category.name}
-                    price={priceFormat(price)}
-                    image={images[0]}
+                    title={result.name}
+                    type={result.category.name}
+                    price={priceFormat(result.price)}
+                    image={result.images[0]}
                     imageAlt="Category of Different Pics"
                   />
                 </Link>
