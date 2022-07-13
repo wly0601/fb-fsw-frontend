@@ -19,7 +19,6 @@ function Home({ productAll }) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
   // const [user, setUser] = useState('');
   const [userData, setUserData] = useState('');
-  
   const priceFormat = (data) => {
     const priceStr = data.toString();
     let i = priceStr.length;
