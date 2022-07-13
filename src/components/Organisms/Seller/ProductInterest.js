@@ -6,6 +6,7 @@ import {
 } from 'react-bootstrap';
 import { FaPlus } from 'react-icons/fa';
 import Title from '../../Atoms/Title/Title';
+import BtnProductStatus from '../../Atoms/Button/BtnProductStatus';
 import CardSellerBtn from '../../Moleculs/Card/CardSellerBtn';
 import Sidebar from '../../Moleculs/Sidebar/SidebarProduct';
 import ItemCard from '../../Moleculs/Card/ItemCard';
@@ -21,7 +22,10 @@ function ProductInterest() {
         <CardSellerBtn />
       </Row>
       <Row>
-        <Col>
+        <BtnProductStatus />
+      </Row>
+      <Row>
+        <Col className="card-sidebar">
           <Sidebar />
         </Col>
         {/* {Array.from({ length: 2 }).map((_, idx) => {
@@ -38,7 +42,7 @@ function ProductInterest() {
           );
         })} */}
         <Col>
-          <img src={`${process.env.PUBLIC_URL}/images/best_interest.png`} style={{ width: '50%' }} alt="" />
+          <img src={`${process.env.PUBLIC_URL}/images/best_interest.png`} className="image-best-interest" alt="" />
         </Col>
       </Row>
     </Container>

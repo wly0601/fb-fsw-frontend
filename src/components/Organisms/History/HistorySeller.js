@@ -5,6 +5,7 @@ import {
   Col,
 } from 'react-bootstrap';
 import Title from '../../Atoms/Title/Title';
+import BtnProductStatus from '../../Atoms/Button/BtnProductStatus';
 import CardSellerBtn from '../../Moleculs/Card/CardSellerBtn';
 import CardHistory from '../../Moleculs/Card/CardHistory';
 // import './Product.Module.css';
@@ -17,6 +18,9 @@ function HistorySeller() {
       </Row>
       <Row>
         <CardSellerBtn />
+      </Row>
+      <Row>
+        <BtnProductStatus />
       </Row>
       <Row>
         {Array.from({ length: 4 }).map((_, idx) => {
