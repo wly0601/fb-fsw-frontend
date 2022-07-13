@@ -8,6 +8,7 @@ import { getSellerProductReducer } from './sellerProduct';
 import { getTransactionProductReducer } from './createTransaction';
 import { getListNotifications } from './getNotif';
 import { getProductInterestReducer } from './productInterest';
+import { getProductMetaReducer } from './productMeta';
 
 export default combineReducers({
   auth,
@@ -19,4 +20,5 @@ export default combineReducers({
   getTransactionProductReducer,
   getListNotifications,
   getProductInterestReducer,
+  getProductMetaReducer,
 });

@@ -3,8 +3,10 @@ import axios from 'axios';
 // import { useDispatch } from 'react-redux';
 
 export const setProducts = 'setProducts';
+export const setProductsMeta = 'setProductsMeta';
 
 export const getListProducts = ({ page }) => {
+  console.log({ page });
   return async (dispatch) => {
   // const dispatch = useDispatch();
   // Loading
@@ -25,6 +27,14 @@ export const getListProducts = ({ page }) => {
           payload: {
             loading: false,
             result: await res.data.products,
+            error: false,
+          },
+        });
+        await dispatch({
+          type: await setProductsMeta,
+          payload: {
+            loading: false,
+            result: await res.data.meta,
             error: false,
           },
         });

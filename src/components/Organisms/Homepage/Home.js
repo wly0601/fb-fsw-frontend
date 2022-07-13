@@ -16,7 +16,8 @@ import PaginatedItems from '../../Moleculs/Pagination/Pagination';
 import './Home.Module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function Home({ productAll, currentPage }) {
+function Home({ productAll, currentPage, meta }) {
+  console.log(meta);
   // const [user, setUser] = useState('');
   const [userData, setUserData] = useState('');
 
@@ -111,7 +112,7 @@ function Home({ productAll, currentPage }) {
         </div>
         <div className="row mb-5 mx-5">
           {/* <BtnAddProduct /> */}
-          <PaginatedItems currentPage={currentPage} />
+          <PaginatedItems currentPage={currentPage} meta={meta} />
         </div>
         <div className="row mt-5 mb-3 mx-5 button-sell">
           <BtnAddProduct />

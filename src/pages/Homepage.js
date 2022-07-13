@@ -4,14 +4,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getListProducts } from '../redux/actions/product';
 import { getListNotifications } from '../redux/actions/getNotif';
 import TemplateHome from '../components/Templates/Homepage/TemplateHome';
-import PaginatedItems from '../components/Moleculs/Pagination/Pagination';
+// import PaginatedItems from '../components/Moleculs/Pagination/Pagination';
 
 function Homepage() {
   const dispatch = useDispatch();
-  const [currentPage, setCurrentPage] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState('');
   const [product, setProduct] = useState([]);
   const [notif, setNotif] = useState([]);
+  const [meta, setMeta] = useState({});
   const {
     notifLoading,
     notifResult,
@@ -26,8 +27,15 @@ function Homepage() {
   // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getProductReducer);
 
+  const {
+    productMetaLoading,
+    productMetaResult,
+    productMetaError,
+  // eslint-disable-next-line arrow-body-style
+  } = useSelector((state) => state.getProductMetaReducer);
+
   useEffect(() => {
-    dispatch(getListProducts(currentPage));
+    dispatch(getListProducts(2));
     dispatch(getListNotifications());
   }, [dispatch]);
 
@@ -43,12 +51,24 @@ function Homepage() {
     }
   }, [notifResult]);
 
+  useEffect(() => {
+    if (productMetaResult) {
+      setMeta(productMetaResult);
+      console.log(meta);
+    }
+  });
+
   return (
     <>
       {product.length >= 0 && (
       <div>
         <Container fluid className="p-0">
-          <TemplateHome product={product} notif={notif} currentPage={currentPage} />
+          <TemplateHome
+            product={product}
+            notif={notif}
+            currentPage={currentPage}
+            meta={meta}
+          />
           {/* <PaginatedItems /> */}
         </Container>
       </div>

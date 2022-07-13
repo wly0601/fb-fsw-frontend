@@ -10,9 +10,9 @@ import { getListProducts } from '../../../redux/actions/product';
 import './Pagination.Module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function PaginatedItems({ currentPage }) {
+function PaginatedItems({ currentPage, meta }) {
   const dispatch = useDispatch();
-  const [page, setPage] = useState(currentPage);
+  const [product, setProduct] = useState([]);
 
   const {
     productLoading,
@@ -21,23 +21,36 @@ function PaginatedItems({ currentPage }) {
   // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getProductReducer);
 
-  useEffect(() => {
-    dispatch(getListProducts(currentPage));
-  }, [dispatch]);
+  const {
+    productMetaLoading,
+    productMetaResult,
+    productMetaError,
+  // eslint-disable-next-line arrow-body-style
+  } = useSelector((state) => state.getProductMetaReducer);
+
+  const handleChangePage = (e) => {
+    dispatch(getListProducts({ page: e }));
+  };
 
   useEffect(() => {
     if (productResult) {
-      // setProduct(productResult);
+      setProduct(productResult);
+      console.log(product);
     }
   }, [productResult]);
 
+  let totalElements = 1;
+  if (Object.keys(meta).length !== 0) {
+    totalElements = meta.pagination.count;
+  }
+  console.log(totalElements);
   return (
     <div className="pagination-position">
       <Paginator
-        pageSize={10}
-        totalElements={97}
+        pageSize={18}
+        totalElements={totalElements}
         className="paginate"
-        onPageChangeCallback={(e) => { console.log(e); }}
+        onPageChangeCallback={(e) => { console.log(e); handleChangePage(e); }}
       />
     </div>
   );
