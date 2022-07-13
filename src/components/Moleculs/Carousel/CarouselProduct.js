@@ -21,9 +21,9 @@ import {
 function CarouselProduct({ productImage }) {
   const carouselImage = (productImage || []).map((images) => {
     return (
-      <SwiperSlide>
+      <SwiperSlide style={{ width: '100%' }}>
         <div className="card-carousel">
-          <img src={images} style={{ width: '100%', borderRadius: '16px' }} alt="" />
+          <img src={images} style={{ width: '100%', borderRadius: '16px' }} className="image-fluid" alt="" />
         </div>
       </SwiperSlide>
       // console.log(images)
