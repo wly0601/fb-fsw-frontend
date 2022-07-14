@@ -191,6 +191,11 @@
   border-radius: 16px;
 }
 
+.seller-picture {
+  width: 100%;
+  border-radius: 10px;
+}
+
 @media (max-width:600px) {
   .card-product{
     margin: auto;
@@ -214,5 +219,14 @@
     height: 98%;
     margin: auto;
     /* margin-left: 0%; */
+  }
+
+  .card-product-btn {
+    margin: auto;
+    width: 100%;
+    height: auto;
+    align-content: center;
+    z-index: 1;
+    top: -30px;
   }
 }
