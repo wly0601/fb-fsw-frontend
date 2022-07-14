@@ -1,4 +1,4 @@
-.card-items, 
+.card-items,
 .card-items-offering {
   background: #FFFFFF;
   /* box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15); */
@@ -153,7 +153,9 @@
   color: black;
   border-radius: 16px;
   margin-right: 10px;
+  margin-top: 16px;
   width: 158px;
+  height: fit-content;
 }
 
 .button-deny:hover {
@@ -176,8 +178,10 @@
 }
 
 .button-align {
-  text-align: right;
-  margin-bottom: 20px;
+  display: flex;
+  text-align: center;
+  margin-bottom: 10px;
+  margin-right: 5%;
 }
 
 .button-edit-preview {
@@ -192,17 +196,18 @@
 }
 
 @media (max-width:600px) {
-  .card-product{
+  .card-product {
     margin: auto;
     width: 100%;
     height: auto;
     align-content: center;
     top: -40px;
   }
+
   .seller-card {
     width: 100%;
     height: auto;
-    top:-40px;
+    top: -40px;
     margin: auto;
     /* margin-left: -4%; */
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
@@ -214,5 +219,14 @@
     height: 98%;
     margin: auto;
     /* margin-left: 0%; */
+  }
+
+  .seller-offering {
+    border-radius: 16px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  }
+
+  .button-deny {
+    margin-left: 5%;
   }
 }
