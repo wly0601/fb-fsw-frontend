@@ -3,11 +3,11 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Paginator from 'react-js-paginator';
-import { getListProducts } from '../../../redux/actions/product';
+import { getSellerListProducts } from '../../../redux/actions/sellerProduct';
 import './Pagination.Module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function PaginatedItems({ currentPage, meta }) {
+function PaginatedSeller({ currentPage, meta }) {
   const dispatch = useDispatch();
   const [product, setProduct] = useState([]);
 
@@ -26,7 +26,7 @@ function PaginatedItems({ currentPage, meta }) {
   } = useSelector((state) => state.getProductMetaReducer);
 
   const handleChangePage = (e) => {
-    dispatch(getListProducts({ page: e }));
+    dispatch(getSellerListProducts({ page: e }));
   };
 
   useEffect(() => {
@@ -62,4 +62,4 @@ function PaginatedItems({ currentPage, meta }) {
   );
 }
 
-export default PaginatedItems;
+export default PaginatedSeller;

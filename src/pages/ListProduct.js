@@ -14,6 +14,8 @@ function ListProduct() {
   const [sellerName, setSellerName] = useState('');
   const [sellerPhoto, setSellerPhoto] = useState('');
   const [sellerCity, setSellerCity] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [meta, setMeta] = useState({});
 
   const {
     notifLoading,
@@ -28,6 +30,13 @@ function ListProduct() {
     productError,
   // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getSellerProductReducer);
+
+  const {
+    productMetaLoading,
+    productMetaResult,
+    productMetaError,
+  // eslint-disable-next-line arrow-body-style
+  } = useSelector((state) => state.getProductMetaReducer);
 
   const fetchData = useCallback(async () => {
     await axios.get(
@@ -50,7 +59,7 @@ function ListProduct() {
   }, []);
 
   useEffect(() => {
-    dispatch(getSellerListProducts());
+    dispatch(getSellerListProducts(2));
   }, [dispatch]);
 
   useEffect(() => {
@@ -69,6 +78,13 @@ function ListProduct() {
     }
   }, [notifResult]);
 
+  useEffect(() => {
+    if (productMetaResult) {
+      setMeta(productMetaResult);
+      console.log(meta);
+    }
+  });
+
   return (
     <>
       {!!product && (
@@ -80,6 +96,8 @@ function ListProduct() {
               sellerName={sellerName}
               sellerCity={sellerCity}
               sellerPhoto={sellerPhoto}
+              currentPage={currentPage}
+              meta={meta}
             />
           </Container>
         </div>

@@ -93,7 +93,7 @@ function NavbarLogin({ notif }) {
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <Dropdown.Item href="../../profile">Profile</Dropdown.Item>
-                  <Dropdown.Item href="../../list/products">Daftar Jual Saya</Dropdown.Item>
+                  <Dropdown.Item href="../../../list/products">Daftar Jual Saya</Dropdown.Item>
                   <Dropdown.Item onClick={logOut}>Logout</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>

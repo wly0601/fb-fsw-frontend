@@ -8,11 +8,11 @@ import TemplateHome from '../components/Templates/Homepage/TemplateHome';
 
 function Homepage() {
   const dispatch = useDispatch();
-  const [currentPage, setCurrentPage] = useState(1);
-  const [data, setData] = useState('');
   const [product, setProduct] = useState([]);
   const [notif, setNotif] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
   const [meta, setMeta] = useState({});
+
   const {
     notifLoading,
     notifResult,

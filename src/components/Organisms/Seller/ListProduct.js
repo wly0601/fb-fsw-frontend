@@ -10,10 +10,11 @@ import Title from '../../Atoms/Title/Title';
 import CardSellerBtn from '../../Moleculs/Card/CardSellerBtn';
 import Sidebar from '../../Moleculs/Sidebar/SidebarProduct';
 import ItemCard from '../../Moleculs/Card/ItemCard';
+import PaginatedSeller from '../../Moleculs/Pagination/PaginationSeller';
 import './Product.Module.css';
 
 function ListProduct({
-  dataProducts, sellerName, sellerCity, sellerPhoto,
+  dataProducts, sellerName, sellerCity, sellerPhoto, currentPage, meta,
 }) {
   const priceFormat = (data) => {
     const priceStr = data.toString();
@@ -85,6 +86,7 @@ function ListProduct({
           );
         })}
       </Row>
+      <PaginatedSeller currentPage={currentPage} meta={meta} />
     </Container>
   );
 }

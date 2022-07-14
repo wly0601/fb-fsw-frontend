@@ -3,7 +3,7 @@ import NavbarLogin from '../../Organisms/Navbar/NavbarLogin';
 import ListProduct from '../../Organisms/Seller/ListProduct';
 
 function TemplateListProduct({
-  product, notif, sellerName, sellerCity, sellerPhoto,
+  product, notif, sellerName, sellerCity, sellerPhoto, currentPage, meta,
 }) {
   return (
     <>
@@ -14,6 +14,8 @@ function TemplateListProduct({
           sellerName={sellerName}
           sellerCity={sellerCity}
           sellerPhoto={sellerPhoto}
+          currentPage={currentPage}
+          meta={meta}
         />
       </Container>
     </>
