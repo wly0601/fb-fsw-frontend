@@ -1,101 +1,45 @@
-/* eslint-disable no-undef */
-import axios from 'axios';
-// import { useRoute } from '@react-navigation/native';
-
-export const updateProfile = 'updateProfile';
+/* eslint-disable import/prefer-default-export */
+import getUser from '../services/getUser';
+import updateUserCloudinary from '../services/updateUserCloudinary';
+import updateUserDetail from '../services/updateUserDetail';
+import { UPDATE_PROFILE } from './types';
 
 export const updateListProfile = (image, body) => {
-  return async (dispatch) => {
-  // Loading
-    dispatch({
-      type: updateProfile,
-      payload: {
-        loading: true,
-        result: false,
-        error: false,
-      },
-    });
-    // GET API USER
-    const token = localStorage.getItem('token');
-    await axios.get('https://second-hand-be.herokuapp.com/api/who-am-i', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then(async (resultUser) => {
-        const cloudinaryUpload = new FormData();
-        cloudinaryUpload.append('picture', image);
-        console.log(cloudinaryUpload, image);
-        await axios.put(
-          `https://second-hand-be.herokuapp.com/api/user/picture/${resultUser.data.id.toString()}/cloudinary`,
-          cloudinaryUpload,
-          {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-              Authorization: `Bearer ${token}`,
-            },
-          },
-        )
-          .then(async (resultCloudinary) => {
-            const bodyUser = {
-              name: body.name,
-              photo: resultCloudinary.data.url,
-              phoneNumber: body.phoneNumber,
-              address: body.address,
-              cityId: body.cityId,
-            };
-            await axios.put(
-              `https://second-hand-be.herokuapp.com/api/users/${resultUser.data.id.toString()}/detail`,
-              bodyUser,
-              {
-                headers: {
-                  'Content-Type': 'application/json',
-                  Authorization: `Bearer ${token}`,
-                },
-              },
-            )
-              .then(async (result) => {
-                console.log(result);
-                await dispatch({
-                  type: updateProfile,
-                  payload: {
-                    loading: false,
-                    result: await result.data,
-                    error: false,
-                  },
-                });
-              })
-              .catch((err) => {
-                dispatch({
-                  type: updateProfile,
-                  payload: {
-                    loading: false,
-                    result: false,
-                    error: err.message,
-                  },
-                });
-              });
-          })
-          .catch((err) => {
-            dispatch({
-              type: getCloudinary,
-              payload: {
-                loading: false,
-                result: false,
-                error: err.message,
-              },
-            });
-          });
-      })
-      .catch((err) => {
-        dispatch({
-          type: getUserId,
-          payload: {
-            loading: false,
-            result: false,
-            error: err.message,
-          },
-        });
+  return async (
+    dispatch,
+  ) => {
+    try {
+      // GET API USER
+      const getUserById = await getUser();
+      const cloudinaryUpload = new FormData();
+      cloudinaryUpload.append('picture', image);
+      const resultCloudinary = await updateUserCloudinary(getUserById.data.id, cloudinaryUpload);
+      const bodyUser = {
+        name: body.name,
+        photo: resultCloudinary.data.url,
+        phoneNumber: body.phoneNumber,
+        address: body.address,
+        cityId: body.cityId,
+      };
+      const getUserProfile = await updateUserDetail(getUserById.data.id, bodyUser);
+      console.log(getUser.data);
+      await dispatch({
+        type: UPDATE_PROFILE,
+        payload: {
+          loading: false,
+          result: await getUserProfile.data,
+          error: false,
+        },
       });
+    } catch (err) {
+      dispatch({
+        type: UPDATE_PROFILE,
+        payload: {
+          loading: false,
+          result: false,
+          error: err.message,
+        },
+      });
+    }
   };
 };

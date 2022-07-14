@@ -1,100 +1,56 @@
-/* eslint-disable no-plusplus */
-/* eslint-disable no-loop-func */
-/* eslint-disable no-await-in-loop */
 /* eslint-disable no-undef */
-import axios from 'axios';
+/* eslint-disable import/prefer-default-export */
+import getUser from '../services/getUser';
+import updateProductCloudinary from '../services/updateProductCloudinary';
+import createProduct from '../services/createProduct';
+import { CREATE_PRODUCTS } from './types';
 
-export const createProduct = 'createProduct';
+const url = [];
+let cloudinaryUpload;
+let updateProductPhoto;
 
 export const createListProduct = (image, body) => {
-  const url = [];
-  return async (dispatch) => {
-    // Loading
-    dispatch({
-      type: createProduct,
-      payload: {
-        loading: true,
-        result: false,
-        error: false,
-      },
-    });
-    // GET API USER
-    const token = localStorage.getItem('token');
-    await axios.get('https://second-hand-be.herokuapp.com/api/who-am-i', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then(async (resultUser) => {
-        // eslint-disable-next-line no-plusplus
-        let cloudinaryUpload;
-        for (let i = 0; i < image.length; i++) {
-          cloudinaryUpload = new FormData();
-          cloudinaryUpload.append('picture', image[i]);
-          console.log(image[i]);
-          const response = await axios.put(
-            `https://second-hand-be.herokuapp.com/api/product/picture/${resultUser.data.id.toString()}/cloudinary`,
-            cloudinaryUpload,
-            {
-              headers: {
-                'Content-Type': 'multipart/form-data',
-                Authorization: `Bearer ${token}`,
-              },
-            },
-          );
-          // console.log(response.data.url);
-          url.push(response.data.url);
-          // setUploadedFileURL = uploadedFileURL.push(response.data.url);
-        }
-        const bodyProduct = {
-          name: body.name,
-          images: url,
-          price: body.price,
-          description: body.description,
-          categoryId: body.categoryId,
-        };
-        console.log(bodyProduct);
-        await axios.post(
-          'https://second-hand-be.herokuapp.com/api/products',
-          bodyProduct,
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${token}`,
-            },
-          },
-        )
-          .then(async (result) => {
-            console.log(result.data.name);
-            await dispatch({
-              type: createProduct,
-              payload: {
-                loading: false,
-                result: await result.data,
-                error: false,
-              },
-            });
-          })
-          .catch((err) => {
-            dispatch({
-              type: createProduct,
-              payload: {
-                loading: false,
-                result: false,
-                error: err.message,
-              },
-            });
-          });
-      })
-      .catch((err) => {
-        dispatch({
-          type: createProduct,
-          payload: {
-            loading: false,
-            result: false,
-            error: err.message,
-          },
-        });
+  return async (
+    dispatch,
+  ) => {
+    try {
+      const getUserById = await getUser();
+      console.log(getUserById.data.id);
+      // eslint-disable-next-line no-plusplus
+      for (let i = 0; i < image.length; i++) {
+        cloudinaryUpload = new FormData();
+        cloudinaryUpload.append('picture', image[i]);
+        console.log(image[i]);
+        // eslint-disable-next-line no-await-in-loop
+        updateProductPhoto = await updateProductCloudinary(getUserById.data.id, cloudinaryUpload);
+        url.push(updateProductPhoto.data.url);
+      }
+      console.log(url);
+      const bodyProduct = {
+        name: body.name,
+        images: url,
+        price: body.price,
+        description: body.description,
+        categoryId: body.categoryId,
+      };
+      const createProducts = await createProduct(bodyProduct);
+      await dispatch({
+        type: CREATE_PRODUCTS,
+        payload: {
+          loading: false,
+          result: await createProducts.data,
+          error: false,
+        },
       });
+    } catch (err) {
+      dispatch({
+        type: CREATE_PRODUCTS,
+        payload: {
+          loading: false,
+          result: false,
+          error: err.message,
+        },
+      });
+    }
   };
 };

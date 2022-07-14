@@ -1,6 +1,6 @@
 /* eslint-disable default-param-last */
 /* eslint-disable import/prefer-default-export */
-import { updateProfile } from '../actions/profile';
+import { UPDATE_PROFILE } from '../actions/types';
 
 const initialState = {
   profileLoading: false,
@@ -10,7 +10,7 @@ const initialState = {
 
 export const getProfileReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'updateProfile':
+    case 'UPDATE_PROFILE':
       console.log(action.payload);
       return {
         ...state,

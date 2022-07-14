@@ -1,43 +1,32 @@
-/* eslint-disable no-undef */
-import axios from 'axios';
-// import { useDispatch } from 'react-redux';
-
-export const setProducts = 'setProducts';
+/* eslint-disable import/prefer-default-export */
+import { SET_PRODUCTS } from './types';
+import getAllProduct from '../services/getProduct';
 
 export const getListProducts = () => {
-  return async (dispatch) => {
-  // const dispatch = useDispatch();
-  // Loading
-    await dispatch({
-      type: setProducts,
-      payload: {
-        loading: true,
-        result: false,
-        error: false,
-      },
-    });
-    // GET API
-    await axios.get('https://second-hand-be.herokuapp.com/api/products')
-      .then(async (res) => {
-        console.log(res.data.products);
-        await dispatch({
-          type: await setProducts,
-          payload: {
-            loading: false,
-            result: await res.data.products,
-            error: false,
-          },
-        });
-      })
-      .catch(async (err) => {
-        await dispatch({
-          type: setProducts,
-          payload: {
-            loading: false,
-            result: false,
-            error: await err.message,
-          },
-        });
+  return async (
+    dispatch,
+  ) => {
+    try {
+      // GET API USER
+      const getProducts = await getAllProduct();
+      console.log(getProducts.data.products);
+      await dispatch({
+        type: SET_PRODUCTS,
+        payload: {
+          loading: false,
+          result: await getProducts.data.products,
+          error: false,
+        },
       });
+    } catch (err) {
+      dispatch({
+        type: SET_PRODUCTS,
+        payload: {
+          loading: false,
+          result: false,
+          error: err.message,
+        },
+      });
+    }
   };
 };
