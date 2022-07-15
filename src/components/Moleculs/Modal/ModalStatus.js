@@ -18,9 +18,10 @@ function ModalStatus(props) {
     confirmationError,
   } = useSelector((state) => { return state.updateTransactionConfirmationReducer; });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(e.target);
+  const handleSubmit = async (e) => {
+    console.log(confirmation);
+    console.log(props.buyerOrder);
+    await dispatch(updateConfirmation(props.buyerOrder.id, confirmation));
   };
 
   return (
@@ -39,16 +40,38 @@ function ModalStatus(props) {
         <Form onSubmit={handleSubmit}>
           <div className="mb-3">
             <Form.Group>
-              <Form.Check id="radio1" value={1} label="Sold" name="sold-radio" checked="sold" onChange={() => { setConfirmation('sold'); console.log('awkoakowoak'); }}>
+              <Form.Check
+                inline
+                label="Berhasil Terjual"
+                name="group1"
+                type="radio"
+                id="inline-radio-1"
+                value={confirmation}
+                onChange={() => { setConfirmation(false); }}
+                isValid
+              />
+              <p style={{ marginLeft: '25px' }}>Kamu telah sepakat menjual produk ini kepada pembeli</p>
+              <Form.Check
+                inline
+                label="Batalkan Transaksi"
+                name="group1"
+                type="radio"
+                id="inline-radio-2"
+                value={confirmation}
+                onChange={() => { setConfirmation(true); }}
+                isInvalid
+              />
+              <p style={{ marginLeft: '25px' }}>Kamu membatalkan transaksi produk ini dengan pembeli</p>
+              {/* <Form.Check id="radio1" value={1} label="Sold" name="sold-radio" checked="sold" onChange={() => { setConfirmation('sold'); console.log('awkoakowoak'); }}>
                 <Form.Check.Input type="radio" label="sold" isValid />
-                <Form.Check.Label>Berhasil Terjual</Form.Check.Label>
-                <p>Kamu telah sepakat menjual produk ini kepada pembeli</p>
+                <Form.Check.Label>Berhasil Terjual</Form.Check.Label> */}
+              {/* <p>Kamu telah sepakat menjual produk ini kepada pembeli</p>
               </Form.Check>
               <Form.Check id="radio2" value={2} label="Cancel" name="cancel-radio" checked="cancel" onChange={() => { setConfirmation('cancel'); console.log('akwoakwo'); }}>
                 <Form.Check.Input type="radio" label="canceled" isInvalid />
-                <Form.Check.Label>Batalkan Transaksi</Form.Check.Label>
-                <p>Kamu membatalkan transaksi produk ini dengan pembeli</p>
-              </Form.Check>
+                {/* <Form.Check.Label>Batalkan Transaksi</Form.Check.Label> */}
+              {/* <p>Kamu membatalkan transaksi produk ini dengan pembeli</p> */}
+              {/* </Form.Check> */}
             </Form.Group>
           </div>
           <Row>
@@ -62,7 +85,8 @@ function ModalStatus(props) {
   );
 }
 
-function Modals() {
+function Modals(props) {
+  console.log(props.buyerOrder);
   const [modalShow, setModalShow] = useState(false);
 
   return (
@@ -71,6 +95,8 @@ function Modals() {
         Status
       </Button>
       <ModalStatus
+        buyerNumber={props.buyerNumber}
+        buyerOrder={props.buyerOrder}
         show={modalShow}
         onHide={() => { return setModalShow(false); }}
       />

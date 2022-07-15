@@ -15,10 +15,8 @@ function offeringCardLayout(buyerOrder) {
     result.btnStatus = false;
   }
 
-  if (buyerOrder.isCanceled === true) {
+  if (buyerOrder.isCanceled !== null) {
     result.btnStatus = false;
-  } else if (buyerOrder.isCanceled === false) {
-    result.btnStatus = true;
   }
   console.log(result);
   return result;

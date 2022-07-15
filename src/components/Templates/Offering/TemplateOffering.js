@@ -3,7 +3,7 @@ import NavbarOffering from '../../Organisms/Navbar/NavbarOffering';
 import OfferingInfo from '../../Organisms/Offering/OfferingInfo';
 
 function TemplateOfferingInfo({
-  buyerInfo, buyerCity, buyerImg, buyerOrder,
+  buyerInfo, buyerCity, buyerImg, buyerOrder, buyerNumber,
 }) {
   console.log(buyerOrder);
   return (
@@ -15,6 +15,7 @@ function TemplateOfferingInfo({
           buyerCity={buyerCity}
           buyerImg={buyerImg}
           buyerOrder={buyerOrder}
+          buyerNumber={buyerNumber}
         />
       </Container>
     </>

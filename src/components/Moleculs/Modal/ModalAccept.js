@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Modal, Button, Row, Col, Container, Form,
@@ -75,7 +75,7 @@ function VerticalModals(props) {
         </Container>
         <Row>
           <Form onSubmit={handleSubmit}>
-            <Button onClick={props.onHide} className="modal-button">
+            <Button href={`https://wa.me/${props.buyerNumber}`} onClick={props.onHide} className="modal-button">
               Hubungi via Whatsapp
               {' '}
               <FaWhatsapp />
@@ -104,6 +104,7 @@ function Modals(props) {
         buyerCity={props.buyerCity}
         buyerImg={props.buyerImg}
         buyerOrder={props.buyerOrder}
+        buyerNumber={props.buyerNumber}
         show={modalShow}
         onHide={() => { return setModalShow(false); }}
       />

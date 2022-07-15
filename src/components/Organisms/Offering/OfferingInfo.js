@@ -10,7 +10,7 @@ import priceFormat from '../../../utils/priceFormat';
 // import './Input.Module.css';
 
 function OfferingInfo({
-  buyerInfo, buyerCity, buyerImg, buyerOrder,
+  buyerInfo, buyerCity, buyerImg, buyerOrder, buyerNumber,
 }) {
   console.log(buyerOrder);
   const msg = 'Penawaran Produk';
@@ -50,6 +50,7 @@ function OfferingInfo({
                 buyerInfo={buyerInfo}
                 buyerCity={buyerCity}
                 buyerImg={buyerImg}
+                buyerNumber={buyerNumber}
               />
             );
           })}

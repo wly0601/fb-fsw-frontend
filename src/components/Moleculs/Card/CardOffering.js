@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import {
   Container, Card, Row, Col, Button,
 } from 'react-bootstrap';
@@ -30,8 +31,9 @@ function CardHistory(props) {
     transactionError,
   } = useSelector((state) => { return state.updateTransactionReducer; });
 
-  const handleRejected = (e) => {
-    dispatch(updateTransactionByID(props.buyerOrder.id, false));
+  const handleRejected = async (e) => {
+    await dispatch(updateTransactionByID(props.buyerOrder.id, false));
+    window.location.reload();
   };
 
   const offeringCardBtnHandler = () => {
@@ -85,6 +87,7 @@ function CardHistory(props) {
                     buyerInfo={props.buyerInfo}
                     buyerCity={props.buyerCity}
                     buyerImg={props.buyerImg}
+                    buyerNumber={props.buyerNumber}
                     show={modalShow}
                     onHide={() => { return setModalShow(false); }}
                   />
@@ -96,8 +99,10 @@ function CardHistory(props) {
               <ModalStatus
                 show={modalShow}
                 onHide={(e) => { return setModalShow(false); }}
+                buyerOrder={props.buyerOrder}
+                buyerNumber={props.buyerNumber}
               />
-              <Button variant="secondary" className="button-accept">
+              <Button href={`https://wa.me/${props.buyerNumber}`} variant="secondary" className="button-accept">
                 Hubungi di
                 {' '}
                 <FaWhatsapp />

@@ -10,6 +10,7 @@ function OfferingInfo() {
   const [buyerPhoto, setBuyerPhoto] = useState('');
   const [buyerCity, setBuyerCity] = useState('');
   const [orderBuyer, setOrderBuyer] = useState([]);
+  const [buyerNumber, setBuyerNumber] = useState('');
   const params = useParams();
 
   const getTransaction = useCallback(async () => {
@@ -30,11 +31,13 @@ function OfferingInfo() {
             },
           },
         ).then(async (res) => {
+          console.log(res.data);
           setBuyerName(res.data.buyer.name);
           setBuyerCity(res.data.buyer.city.name);
           setBuyerPhoto(res.data.buyer.photo);
           const getOrder = res.data.order;
           setOrderBuyer(getOrder);
+          setBuyerNumber(res.data.buyer.phoneNumber);
         });
         console.log(response.data);
       });
@@ -57,6 +60,7 @@ function OfferingInfo() {
         buyerCity={buyerCity}
         buyerImg={buyerPhoto}
         buyerOrder={orderBuyer}
+        buyerNumber={buyerNumber}
       />
     </div>
   );
