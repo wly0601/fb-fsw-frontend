@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateListProduct } from '../../../redux/actions/updateProduct';
 import NavbarProduct from '../../Organisms/Navbar/NavbarProduct';
 import UpdateProduct from '../../Moleculs/Form/updateProduct';
+import IsMobile from '../../../styles/IsMobile';
 import './TemplateProduct.Module.css';
 
 function TemplateUpdate() {
@@ -117,16 +118,6 @@ function TemplateUpdate() {
     return <Navigate to="/" />;
   }
 
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
-  useEffect(() => {
-    window.addEventListener('resize', () => {
-      const mobile = window.innerWidth < 600;
-      if (mobile !== isMobile) {
-        setIsMobile(mobile);
-      }
-    }, false);
-  }, [isMobile]);
-
   return (
     <div>
       <NavbarProduct />
@@ -168,7 +159,7 @@ function TemplateUpdate() {
                 </Form.Group>
               </Col>
             </Row>
-            <Row className={`${isMobile ? 'mb-1' : 'mx-5 mb-5'}`}>
+            <Row className={`${IsMobile ? 'mb-1' : 'mx-5 mb-5'}`}>
               <Col xs={6}>
                 <Link to="/seller/product/:id">
                   <Button variant="primary" className="preview-button" type="submit">
