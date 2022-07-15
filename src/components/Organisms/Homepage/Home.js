@@ -13,6 +13,7 @@ import ItemCard from '../../Moleculs/Card/ItemCard';
 import BtnAddProduct from '../../Atoms/Button/BtnAddProduct';
 import IMAGES from '../../../data/data';
 import PaginatedItems from '../../Moleculs/Pagination/Pagination';
+import priceFormat from '../../../utils/priceFormat';
 import './Home.Module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -20,25 +21,6 @@ function Home({ productAll, currentPage, meta }) {
   console.log(meta);
   // const [user, setUser] = useState('');
   const [userData, setUserData] = useState('');
-
-  const priceFormat = (data) => {
-    const priceStr = data.toString();
-    let i = priceStr.length;
-    let renderPrice = '';
-    let counter = 0;
-
-    while (i > 0) {
-      renderPrice = priceStr[i - 1] + renderPrice;
-      i -= 1;
-      counter += 1;
-      if (counter === 3 && i !== 0) {
-        renderPrice = `.${renderPrice}`;
-        counter = 0;
-      }
-    }
-
-    return `Rp ${renderPrice}`;
-  };
 
   const token = localStorage.getItem('token');
 

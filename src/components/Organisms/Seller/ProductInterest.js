@@ -29,7 +29,7 @@ function ProductInterest({
         />
       </Row>
       <Row>
-        <Col>
+        <Col xs={3}>
           <Sidebar />
         </Col>
         {!interest && (
@@ -40,7 +40,7 @@ function ProductInterest({
         {interest && interest.map((product) => {
           console.log(product);
           return (
-            <Col>
+            <Col xs={3}>
               <ItemCard
                 title={product.name}
                 type={product.description}

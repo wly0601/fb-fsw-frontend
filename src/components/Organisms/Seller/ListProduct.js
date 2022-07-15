@@ -11,30 +11,12 @@ import CardSellerBtn from '../../Moleculs/Card/CardSellerBtn';
 import Sidebar from '../../Moleculs/Sidebar/SidebarProduct';
 import ItemCard from '../../Moleculs/Card/ItemCard';
 import PaginatedSeller from '../../Moleculs/Pagination/PaginationSeller';
+import priceFormat from '../../../utils/priceFormat';
 import './Product.Module.css';
 
 function ListProduct({
   dataProducts, sellerName, sellerCity, sellerPhoto, currentPage, meta,
 }) {
-  const priceFormat = (data) => {
-    const priceStr = data.toString();
-    let i = priceStr.length;
-    let renderPrice = '';
-    let counter = 0;
-
-    while (i > 0) {
-      renderPrice = priceStr[i - 1] + renderPrice;
-      i -= 1;
-      counter += 1;
-      if (counter === 3 && i !== 0) {
-        renderPrice = `.${renderPrice}`;
-        counter = 0;
-      }
-    }
-
-    return `Rp ${renderPrice}`;
-  };
-
   return (
     <Container className="mt-5">
       <Row>

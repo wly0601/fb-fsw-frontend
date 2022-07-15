@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { Container, Row, Col } from 'react-bootstrap';
+import Title from '../../Atoms/Title/Title';
 import CardSellerOffering from '../../Moleculs/Card/CardSellerOffering';
 import CardOffering from '../../Moleculs/Card/CardOffering';
+import priceFormat from '../../../utils/priceFormat';
 // import './Input.Module.css';
 
 function OfferingInfo({
@@ -28,6 +30,7 @@ function OfferingInfo({
             buyerCity={buyerCity}
             buyerImg={buyerImg}
           />
+          <Title title="Daftar Produkmu Yang Ditawar" />
           {buyerOrder.length <= 0 && (
           <img
             src={`${process.env.PUBLIC_URL}/images/best_interest.png`}
@@ -40,9 +43,13 @@ function OfferingInfo({
               <CardOffering
                 title={msg}
                 name={order.product.name}
-                price={order.product.price}
-                offering={`Ditawar ${order.bargainPrice}`}
+                price={priceFormat(order.product.price)}
+                offering={`Ditawar ${priceFormat(order.bargainPrice)}`}
                 image={order.product.images[0]}
+                buyerOrder={order}
+                buyerInfo={buyerInfo}
+                buyerCity={buyerCity}
+                buyerImg={buyerImg}
               />
             );
           })}

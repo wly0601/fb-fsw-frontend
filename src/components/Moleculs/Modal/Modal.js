@@ -4,18 +4,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useEffect } from 'react';
 import {
-  Modal,
-  Button,
-  Row,
-  Col,
-  Form,
-  Container,
+  Modal, Button, Row, Col, Form, Container,
 } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTransactionProducts } from '../../../redux/actions/createTransaction';
 import TitleList from '../../Atoms/Title/Title';
 import InputList from '../../Atoms/Input/Input';
+import priceFormat from '../../../utils/priceFormat';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Modal.Module.css';
 
@@ -44,29 +40,6 @@ function VerticalModals(props) {
 
   const handleChangeBargain = (e) => {
     setInputBargain(parseInt(e));
-  };
-
-  const priceFormat = (data) => {
-    if (typeof data === 'undefined') {
-      return '';
-    }
-    const priceStr = data.toString();
-    let i = priceStr.length;
-    let renderPrice = '';
-    let counter = 0;
-
-    while (i > 0) {
-      renderPrice = priceStr[i - 1] + renderPrice;
-      i -= 1;
-      counter += 1;
-      if (counter === 3 && i !== 0) {
-        renderPrice = `.${renderPrice}`;
-        counter = 0;
-      }
-    }
-
-    // eslint-disable-next-line consistent-return
-    return `Rp ${renderPrice}`;
   };
 
   useEffect(() => {

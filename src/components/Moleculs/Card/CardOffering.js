@@ -1,30 +1,56 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Container, Card, Row, Col, Button,
 } from 'react-bootstrap';
+import {
+  FaWhatsapp,
+} from 'react-icons/fa';
 import Title from '../../Atoms/Title/Title';
 import VerticalModals from '../Modal/ModalAccept';
+import ModalStatus from '../Modal/ModalStatus';
 import './Card.Module.css';
+import { updateTransactionByID } from '../../../redux/actions/updateTransaction';
+import offeringCardLayout from '../../../utils/offeringCardLayout';
 
 function CardHistory(props) {
-  const [modalShow, setModalShow] = React.useState(false);
-  const [hiddenButton, setHiddenButton] = React.useState(false);
+  const [modalShow, setModalShow] = useState(false);
+  const [btnAccReject, setBtnAccReject] = useState(false);
+  const [btnStatus, setBtnStatus] = useState(false);
+
   const {
     title, name, price, image, imageAlt, offering,
   } = props;
+  const dispatch = useDispatch();
 
-  const handleHiddenButton = (e) => {
-    setHiddenButton(true);
+  const {
+    transactionLoading,
+    transactionResult,
+    transactionError,
+  } = useSelector((state) => { return state.updateTransactionReducer; });
+
+  const handleRejected = (e) => {
+    dispatch(updateTransactionByID(props.buyerOrder.id, false));
+  };
+
+  const offeringCardBtnHandler = () => {
+    const setBtn = offeringCardLayout(props.buyerOrder);
+    if (setBtn.btnAccReject) {
+      setBtnAccReject(true);
+    }
+
+    if (setBtn.btnStatus) {
+      setBtnStatus(true);
+    }
   };
 
   useEffect(() => {
-    handleHiddenButton();
-  }, [hiddenButton]);
+    offeringCardBtnHandler();
+  }, []);
 
   return (
     <Container>
-      <Title title="Daftar Produkmu Yang Ditawar" />
       <Card className="card-items-offering" style={{ borderRadius: '16px' }}>
         <Row>
           <Col xs={2}>
@@ -34,16 +60,16 @@ function CardHistory(props) {
             <Card.Body>
               <Card.Title style={{ fontSize: '10px', color: 'grey' }}>{title}</Card.Title>
               <Card.Title>{name}</Card.Title>
-              <Card.Text>{price}</Card.Text>
+              <Card.Text className="mb-2">{price}</Card.Text>
               <Card.Text>{offering}</Card.Text>
             </Card.Body>
             <div className="justify-content-end button-align">
-              {hiddenButton && (
+              {btnAccReject && (
                 <>
                   <Button
                     variant="secondary"
                     className="button-deny"
-                    onClick={handleHiddenButton}
+                    onClick={handleRejected}
                     style={{
                       backgroundColor: 'white',
                       borderColor: '7126B5',
@@ -55,12 +81,29 @@ function CardHistory(props) {
 
                   </Button>
                   <VerticalModals
+                    buyerOrder={props.buyerOrder}
+                    buyerInfo={props.buyerInfo}
+                    buyerCity={props.buyerCity}
+                    buyerImg={props.buyerImg}
                     show={modalShow}
                     onHide={() => { return setModalShow(false); }}
                   />
                 </>
               )}
             </div>
+            {btnStatus && (
+            <div className="justify-content-end button-align">
+              <ModalStatus
+                show={modalShow}
+                onHide={(e) => { return setModalShow(false); }}
+              />
+              <Button variant="secondary" className="button-accept">
+                Hubungi di
+                {' '}
+                <FaWhatsapp />
+              </Button>
+            </div>
+            )}
           </Col>
         </Row>
       </Card>

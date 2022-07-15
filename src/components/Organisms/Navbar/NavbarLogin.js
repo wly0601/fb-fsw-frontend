@@ -65,8 +65,8 @@ function NavbarLogin({ notif }) {
                   />
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item href="../../history/seller">History Seller</Dropdown.Item>
-                  <Dropdown.Item href="../../history/buyer">History Buyer</Dropdown.Item>
+                  <Dropdown.Item href="../../../history/seller">History Seller</Dropdown.Item>
+                  <Dropdown.Item href="../../../history/buyer">History Buyer</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
               <Button

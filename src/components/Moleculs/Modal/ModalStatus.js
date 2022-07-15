@@ -1,21 +1,28 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
-  Modal,
-  Button,
-  Row,
-  Col,
-  Form,
-  Container,
+  Modal, Button, Row, Form,
 } from 'react-bootstrap';
-import {
-  FaWhatsapp,
-} from 'react-icons/fa';
-import InputList from '../../Atoms/Input/Input';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { updateConfirmation } from '../../../redux/actions/updateTransactionConfirmation';
 import './Modal.Module.css';
 
-function VerticalModals(props) {
+function ModalStatus(props) {
+  const [confirmation, setConfirmation] = useState();
+  const dispatch = useDispatch();
+
+  const {
+    confirmationLoading,
+    confirmationResult,
+    confirmationError,
+  } = useSelector((state) => { return state.updateTransactionConfirmationReducer; });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(e.target);
+  };
+
   return (
     <Modal
       {...props}
@@ -29,39 +36,41 @@ function VerticalModals(props) {
         <p style={{ fontWeight: 'bold' }}>
           Perbarui status penjualan produkmu
         </p>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <Form.Check inline id="inline" type="radio">
-              <Form.Check.Input type="radio" isValid />
-              <Form.Check.Label>Berhasil Terjual</Form.Check.Label>
-              <p>Kamu telah sepakat menjual produk ini kepada pembeli</p>
-            </Form.Check>
-            <Form.Check inline id="inline">
-              <Form.Check.Input type="radio" isInvalid />
-              <Form.Check.Label>Batalkan Transaksi</Form.Check.Label>
-              <p>Kamu membatalkan transaksi produk ini dengan pembeli</p>
-            </Form.Check>
+            <Form.Group>
+              <Form.Check id="radio1" value={1} label="Sold" name="sold-radio" checked="sold" onChange={() => { setConfirmation('sold'); console.log('awkoakowoak'); }}>
+                <Form.Check.Input type="radio" label="sold" isValid />
+                <Form.Check.Label>Berhasil Terjual</Form.Check.Label>
+                <p>Kamu telah sepakat menjual produk ini kepada pembeli</p>
+              </Form.Check>
+              <Form.Check id="radio2" value={2} label="Cancel" name="cancel-radio" checked="cancel" onChange={() => { setConfirmation('cancel'); console.log('akwoakwo'); }}>
+                <Form.Check.Input type="radio" label="canceled" isInvalid />
+                <Form.Check.Label>Batalkan Transaksi</Form.Check.Label>
+                <p>Kamu membatalkan transaksi produk ini dengan pembeli</p>
+              </Form.Check>
+            </Form.Group>
           </div>
+          <Row>
+            <Button onClick={props.onHide} className="modal-button" type="submit">
+              Kirim
+            </Button>
+          </Row>
         </Form>
-        <Row>
-          <Button onClick={props.onHide} className="modal-button">
-            Kirim
-          </Button>
-        </Row>
       </Modal.Body>
     </Modal>
   );
 }
 
 function Modals() {
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalShow, setModalShow] = useState(false);
 
   return (
     <>
       <Button variant="primary" className="mt-3 mb-3 me-2 button-status" onClick={() => { return setModalShow(true); }}>
-        Terima
+        Status
       </Button>
-      <VerticalModals
+      <ModalStatus
         show={modalShow}
         onHide={() => { return setModalShow(false); }}
       />

@@ -44,10 +44,10 @@ function OfferingInfo() {
   });
 
   console.log(orderBuyer);
+  console.log(buyerName);
 
   useEffect(() => {
     getTransaction();
-    document.title = 'Produk Pembeli';
   }, []);
 
   return (
