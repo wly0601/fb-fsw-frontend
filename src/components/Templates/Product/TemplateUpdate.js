@@ -117,11 +117,21 @@ function TemplateUpdate() {
     return <Navigate to="/" />;
   }
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      const mobile = window.innerWidth < 600;
+      if (mobile !== isMobile) {
+        setIsMobile(mobile);
+      }
+    }, false);
+  }, [isMobile]);
+
   return (
     <div>
       <NavbarProduct />
       <div>
-        <Container className="form-products">
+        <Container fluid className="form-products p-0">
           <form onSubmit={handleSubmit}>
             <Row>
               <Col>
@@ -136,7 +146,7 @@ function TemplateUpdate() {
                   categoryId={setCategoryId}
                   description={setDescription}
                 />
-                <Form.Group className="mx-5 mb-3" controlId="productPhoto">
+                <Form.Group className="mb-3" controlId="productPhoto">
                   <Form.Label>Foto Produk</Form.Label>
                   {image && image.map(({ images, index }) => {
                     return (
@@ -151,14 +161,14 @@ function TemplateUpdate() {
                     multiple
                   />
                   {message && (
-                  <div className="alert alert-danger" role="alert">
-                    You can upload maximum 4 images!
-                  </div>
+                    <div className="alert alert-danger" role="alert">
+                      You can upload maximum 4 images!
+                    </div>
                   )}
                 </Form.Group>
               </Col>
             </Row>
-            <Row className="mx-5 mb-5">
+            <Row className={`${isMobile ? 'mb-1' : 'mx-5 mb-5'}`}>
               <Col xs={6}>
                 <Link to="/seller/product/:id">
                   <Button variant="primary" className="preview-button" type="submit">
