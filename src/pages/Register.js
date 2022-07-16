@@ -4,7 +4,7 @@ import TemplateRegister from '../components/Templates/Register/TemplateRegister'
 function Register() {
   useEffect(() => {
     document.title = 'Daftar';
-    document.body.style.overflow = 'hidden';
+    // document.body.style.overflow = 'hidden';
   }, []);
 
   return (

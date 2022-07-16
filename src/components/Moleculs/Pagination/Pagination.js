@@ -18,13 +18,6 @@ function PaginatedItems({ currentPage, meta }) {
   // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getProductReducer);
 
-  const {
-    productMetaLoading,
-    productMetaResult,
-    productMetaError,
-  // eslint-disable-next-line arrow-body-style
-  } = useSelector((state) => state.getProductMetaReducer);
-
   const handleChangePage = (e) => {
     dispatch(getListProducts({ page: e }));
   };

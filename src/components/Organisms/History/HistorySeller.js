@@ -10,7 +10,10 @@ import Sidebar from '../../Moleculs/Sidebar/SidebarProduct';
 import CardHistory from '../../Moleculs/Card/CardHistory';
 // import './Product.Module.css';
 
-function HistorySeller({ sellerName, sellerCity, sellerPhoto }) {
+function HistorySeller({
+  sellerName, sellerCity, sellerPhoto, soldProductSeller,
+}) {
+  console.log(soldProductSeller);
   return (
     <Container className="mt-5">
       <Row>

@@ -11,7 +11,6 @@
 /* eslint-disable react/jsx-no-undef */
 /* eslint-disable arrow-body-style */
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { faList } from '@fortawesome/free-solid-svg-icons';
@@ -37,9 +36,11 @@ import CardNotification from '../../Moleculs/Card/CardNotification';
 import './Navigation.Module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { logout } from '../../../redux/actions/auth';
+import { getListProducts } from '../../../redux/actions/product';
 
 function NavbarHeader({ notif }) {
   const [show, setShow] = useState(false);
+  const [input, setInput] = useState('');
   const userLogin = useSelector((state) => { return state.auth; });
   const { user } = userLogin;
   const dispatch = useDispatch();
@@ -48,6 +49,20 @@ function NavbarHeader({ notif }) {
   const logOut = () => {
     dispatch(logout());
   };
+
+  const handleChangeInput = (e) => {
+    setInput(e.target.value);
+    console.log(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(input);
+    if (input.length > 0) {
+      dispatch(getListProducts({ search: `&search=${input}` }));
+    }
+  };
+
   return (
     <>
     <Navbar className="ms-auto navbar" bg="white" expand="lg">
@@ -55,14 +70,15 @@ function NavbarHeader({ notif }) {
         <Navbar.Brand href="../../" className="logo" />
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Form className="d-flex test">
+          <Form className="d-flex test" onSubmit={handleSubmit}>
             <input
               type="search"
               placeholder="Cari di sini..."
               className="me-2 searchBar"
               aria-label="Search"
+              onChange={handleChangeInput}
             />
-            <i className="searchIcon" type="button"><FaSearch /></i>
+            <i className="searchIcon" type="submit"><FaSearch className="me-2" /></i>
           </Form>
           <Nav className="flex-grow-1 justify-content-end nav">
             {user ? (

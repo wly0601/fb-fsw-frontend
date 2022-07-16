@@ -2,7 +2,9 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { getListNotifications } from '../redux/actions/getNotif';
+import { getSoldProductByID } from '../redux/actions/soldProduct';
 import TemplateHistorySeller from '../components/Templates/History/TemplateHistorySeller';
+import getUser from '../redux/services/getUser';
 
 function HistorySeller() {
   const token = localStorage.getItem('token');
@@ -11,13 +13,18 @@ function HistorySeller() {
   const [sellerName, setSellerName] = useState('');
   const [sellerPhoto, setSellerPhoto] = useState('');
   const [sellerCity, setSellerCity] = useState('');
+  const [sellerID, setSellerID] = useState(null);
+  const [soldProductSeller, setSoldProductSeller] = useState([]);
 
   const {
-    notifLoading,
     notifResult,
-    notifError,
   // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getListNotifications);
+
+  const {
+    soldProductResult,
+  // eslint-disable-next-line arrow-body-style
+  } = useSelector((state) => state.getSoldProductReducer);
 
   const fetchData = useCallback(async () => {
     await axios.get(
@@ -32,16 +39,27 @@ function HistorySeller() {
         setSellerName(res.data.name);
         setSellerCity(res.data.address);
         setSellerPhoto(res.data.photo);
+        setSellerID(res.data.id);
+        console.log(sellerID, res.data.id);
       });
   });
-
   useEffect(() => {
     fetchData();
+    console.log('2');
   }, []);
 
   useEffect(() => {
+    console.log('1');
     dispatch(getListNotifications());
+    dispatch(getSoldProductByID(4));
   }, [dispatch]);
+
+  console.log(soldProductResult);
+  useEffect(() => {
+    if (soldProductResult) {
+      setSoldProductSeller(soldProductResult);
+    }
+  }, [soldProductResult]);
 
   useEffect(() => {
     if (notifResult) {
@@ -56,6 +74,7 @@ function HistorySeller() {
         sellerName={sellerName}
         sellerCity={sellerCity}
         sellerPhoto={sellerPhoto}
+        soldProductSeller={soldProductSeller}
       />
     </div>
   );

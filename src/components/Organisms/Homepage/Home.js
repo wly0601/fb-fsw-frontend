@@ -17,8 +17,10 @@ import priceFormat from '../../../utils/priceFormat';
 import './Home.Module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function Home({ productAll, currentPage, meta }) {
-  console.log(meta);
+function Home({
+  productAll, currentPage, meta, productResult,
+}) {
+  console.log(productResult);
   // const [user, setUser] = useState('');
   const [userData, setUserData] = useState('');
 
@@ -66,6 +68,9 @@ function Home({ productAll, currentPage, meta }) {
         </div>
         <div className="row mt-3 mx-5">
           <ButtonCategory />
+        </div>
+        <div className="row mt-3 mx-5">
+          {productAll.length <= 0 && productResult && <p>Maaf Produk Tidak Ditemukan</p>}
         </div>
         <div className="row mt-3 mx-5">
           {(productAll && productAll).map((result) => {

@@ -6,12 +6,13 @@ import React, { useState, useEffect } from 'react';
 import {
   Modal, Button, Row, Col, Form, Container,
 } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTransactionProducts } from '../../../redux/actions/createTransaction';
 import TitleList from '../../Atoms/Title/Title';
 import InputList from '../../Atoms/Input/Input';
 import priceFormat from '../../../utils/priceFormat';
+import getUser from '../../../redux/services/getUser';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Modal.Module.css';
 
@@ -100,11 +101,36 @@ function VerticalModals(props) {
 function Modals({ productById }) {
   const [modalShow, setModalShow] = React.useState(false);
   console.log({ productById });
-  console.log(productById.images);
+  const getToken = localStorage.getItem('token');
+  const [isLoggedIn, setIsLoggedin] = useState(true);
+  const [profile, setProfile] = useState(true);
 
-  return (
+  const getUserData = async () => {
+    const user = await getUser();
+    console.log(user);
+    if (!user.data.cityId) {
+      setProfile(false);
+    }
+  };
+
+  const isLogin = () => {
+    if (!getToken) {
+      setIsLoggedin(false);
+    }
+  };
+
+  useEffect(() => {
+    isLogin();
+    getUserData();
+  }, []);
+
+  return isLoggedIn ? (
     <>
-      <Button variant="primary" className="mt-3 button-product" onClick={() => { return setModalShow(true); }}>
+      <Button
+        variant="primary"
+        className="mt-3 button-product"
+        onClick={() => { return setModalShow(true); }}
+      >
         Saya Tertarik dan Ingin Nego
       </Button>
       <VerticalModals
@@ -113,6 +139,8 @@ function Modals({ productById }) {
         onHide={() => { return setModalShow(false); }}
       />
     </>
+  ) : (
+    <Navigate to="/login" replace />
   );
 }
 

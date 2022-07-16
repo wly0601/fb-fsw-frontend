@@ -35,7 +35,7 @@ function Homepage() {
   } = useSelector((state) => state.getProductMetaReducer);
 
   useEffect(() => {
-    dispatch(getListProducts(2));
+    dispatch(getListProducts(1));
     dispatch(getListNotifications());
   }, [dispatch]);
 
@@ -68,12 +68,13 @@ function Homepage() {
             notif={notif}
             currentPage={currentPage}
             meta={meta}
+            productResult={productResult}
           />
           {/* <PaginatedItems /> */}
         </Container>
       </div>
       )}
-      {product.length === 0 && console.log('Masih Loading Bosq')}
+      {product.length <= 0 && console.log('Masih Loading Bosq')}
     </>
   );
 }

@@ -52,8 +52,8 @@ function LoginInput(props) {
       dispatch(login(email, password))
         .then((res) => {
           console.log(res);
-          props.history.push('/');
-          window.location.reload();
+          // props.history.push('/');
+          // window.location.reload();
         })
         .catch(() => {
           setLoading(false);

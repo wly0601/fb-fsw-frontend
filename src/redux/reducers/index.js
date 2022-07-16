@@ -12,6 +12,7 @@ import { getProductMetaReducer } from './productMeta';
 import { getTransactionByUserIdReducer } from './getTransactionByUserId';
 import { updateTransactionReducer } from './updateTransactionReducer';
 import { updateTransactionConfirmationReducer } from './updateTransactionConfirmation';
+import { getSoldProductReducer } from './soldProductReducer';
 
 export default combineReducers({
   auth,
@@ -27,4 +28,5 @@ export default combineReducers({
   getTransactionByUserIdReducer,
   updateTransactionReducer,
   updateTransactionConfirmationReducer,
+  getSoldProductReducer,
 });
