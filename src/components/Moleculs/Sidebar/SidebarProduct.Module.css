@@ -7,17 +7,26 @@
   border-radius: 20px;
 }
 
-.active {
-  color: #7126B5;
-}
-
 .text-decoration {
   text-decoration: none;
 }
 
-.link {
+.link-product {
   color: black;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  width: fit-content;
+}
 
+.link-product:hover {
+  color: #7126B5;
+}
+
+.link-product-click {
+  font-weight: bold;
+  color: #7126B5 !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
 }
 
 .li {

@@ -51,7 +51,7 @@ function HistorySeller() {
   useEffect(() => {
     console.log('1');
     dispatch(getListNotifications());
-    dispatch(getSoldProductByID(4));
+    dispatch(getSoldProductByID());
   }, [dispatch]);
 
   console.log(soldProductResult);

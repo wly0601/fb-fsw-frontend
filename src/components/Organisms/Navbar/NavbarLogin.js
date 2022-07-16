@@ -151,7 +151,7 @@ function NavbarLogin({ notif }) {
                 })}
                 <Link to="/list/notifications" style={{ textDecoration: 'none' }}>
                   <div className="d-grid gap-2">
-                    <Button variant="outline-success" size="lg" style={{ color: 'black' }}>
+                    <Button size="lg" style={{ color: 'white', backgroundColor: '#7126B5', borderColor: '#FFFFFF' }}>
                       Lihat Semua
                     </Button>
                   </div>

@@ -8,6 +8,7 @@ import Title from '../../Atoms/Title/Title';
 import CardSellerBtn from '../../Moleculs/Card/CardSellerBtn';
 import Sidebar from '../../Moleculs/Sidebar/SidebarProduct';
 import CardHistory from '../../Moleculs/Card/CardHistory';
+import priceFormat from '../../../utils/priceFormat';
 // import './Product.Module.css';
 
 function HistorySeller({
@@ -30,19 +31,19 @@ function HistorySeller({
         <Col>
           <Sidebar />
         </Col>
-        {Array.from({ length: 4 }).map((_, idx) => {
-          return (
-            <Col>
+        <Col>
+          {soldProductSeller.products && soldProductSeller.products.map((soldProduct) => {
+            console.log(soldProduct);
+            return (
               <CardHistory
-                title="Jam Tangan Casio"
-                type="Aksesoris"
-                description="SOLD"
-                image="https://placeimg.com/165/100/any"
-                imageAlt="Gambar jam tangan"
+                title={soldProduct.name}
+                type={priceFormat(soldProduct.price)}
+                description={soldProduct.description}
+                image={soldProduct.images[0]}
               />
-            </Col>
-          );
-        })}
+            );
+          })}
+        </Col>
       </Row>
     </Container>
   );
