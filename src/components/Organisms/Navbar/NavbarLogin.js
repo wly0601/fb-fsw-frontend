@@ -15,7 +15,7 @@ import {
   FaSearch, FaBell, FaRegUser, FaListUl,
 } from 'react-icons/fa';
 import { logout } from '../../../redux/actions/auth';
-import CardNotification from '../../Moleculs/Card/CardNotification';
+import CardToast from '../../Moleculs/Card/CardToast';
 import './Navigation.Module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -121,12 +121,12 @@ function NavbarLogin({ notif }) {
                     result2 = (
                       <Col xs={12}>
                         <Link to={`/seller/product/${result.productId}/preview`} style={{ textDecoration: 'none', color: 'black' }}>
-                          <CardNotification
+                          <CardToast
                             title={result.msg}
+                            time={result.time}
                             name={result.name}
                             price={result.price}
                             image={result.image}
-                            imageAlt="Gambar jam tangan"
                           />
                         </Link>
                       </Col>
@@ -135,13 +135,13 @@ function NavbarLogin({ notif }) {
                     result2 = (
                       <Col xs={12}>
                         <Link to={`/offering/${result.buyerId}/info`} style={{ textDecoration: 'none', color: 'black' }}>
-                          <CardNotification
+                          <CardToast
                             title={result.msg}
+                            time={result.time}
                             name={result.name}
                             price={result.price}
                             offering={`Ditawar ${result.bargainPrice}`}
                             image={result.image}
-                            imageAlt="Gambar jam tangan"
                           />
                         </Link>
                       </Col>

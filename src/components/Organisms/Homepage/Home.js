@@ -82,17 +82,19 @@ function Home({
             }
             // console.log(userData);
             return (
-              <Col key={result.id} md={2}>
-                <Link to={`${user}/product/${result.id}${preview}`} style={{ textDecoration: 'none', color: 'black' }}>
-                  <ItemCard
-                    title={result.name}
-                    type={result.category.name}
-                    price={priceFormat(result.price)}
-                    image={result.images[0]}
-                    imageAlt="Category of Different Pics"
-                  />
-                </Link>
-              </Col>
+              <>
+                <Col key={result.id} md={2}>
+                  <Link to={`${user}/product/${result.id}${preview}`} style={{ textDecoration: 'none', color: 'black' }}>
+                    <ItemCard
+                      title={result.name}
+                      type={result.category.name}
+                      price={priceFormat(result.price)}
+                      image={result.images[0]}
+                      imageAlt="Category of Different Pics"
+                    />
+                  </Link>
+                </Col>
+              </>
             );
           })}
           {/* {product.length === 0 && setProduct(productAll)} */}

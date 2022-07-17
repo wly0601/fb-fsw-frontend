@@ -3,7 +3,9 @@ import {
   Container,
   Row,
   Card,
+  Col,
 } from 'react-bootstrap';
+import { BsBookmark } from 'react-icons/bs';
 import VerticalModals from '../Modal/Modal';
 import priceFormat from '../../../utils/priceFormat';
 import './Card.Module.css';
@@ -14,7 +16,14 @@ function CardBargain({ productById, categoryName }) {
     <Container>
       <Card className="card-bargain">
         <Card.Body>
-          <h5 style={{ fontWeight: 'bold' }}>{productById.name}</h5>
+          <Row>
+            <Col xs={10}>
+              <h5 style={{ fontWeight: 'bold' }}>{productById.name}</h5>
+            </Col>
+            <Col xs={2}>
+              <BsBookmark />
+            </Col>
+          </Row>
           <p style={{ color: 'grey' }}>{categoryName.name}</p>
           <p>{priceFormat(productById.price)}</p>
           <Row>

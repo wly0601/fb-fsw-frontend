@@ -23,15 +23,8 @@ function CardNotification(props) {
             />
           </Col>
           <Col xs={8}>
-            <Card.Body style={{ height: '140px', width: '100%' }}>
-              <Row>
-                <Col xs={8}>
-                  <Card.Title style={{ fontSize: '10px', color: 'grey' }}>{title}</Card.Title>
-                </Col>
-                <Col xs={4}>
-                  <Card.Title style={{ fontSize: '10px', color: 'grey' }}>{time}</Card.Title>
-                </Col>
-              </Row>
+            <Card.Body style={{ height: '150px', width: '100%' }}>
+              <Card.Title style={{ fontSize: '10px', color: 'grey' }}>{title}</Card.Title>
               <Card.Title style={{ fontSize: '12px' }}>{name}</Card.Title>
               <Card.Text style={{ fontSize: '12px' }}>{price}</Card.Text>
               <Card.Text style={{ fontSize: '12px' }}>{offering}</Card.Text>
