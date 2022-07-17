@@ -140,7 +140,7 @@ function NavbarLogin({ notif }) {
                             time={result.time}
                             name={result.name}
                             price={result.price}
-                            offering={`Ditawar ${result.bargainPrice}`}
+                            offering={result.bargainPrice}
                             image={result.image}
                           />
                         </Link>

@@ -5,33 +5,39 @@ import {
   Col,
 } from 'react-bootstrap';
 import Title from '../../Atoms/Title/Title';
-import CardSellerBtn from '../../Moleculs/Card/CardSellerBtn';
+import CardBuyerBtn from '../../Moleculs/Card/CardBuyerBtn';
 import Sidebar from '../../Moleculs/Sidebar/SidebarProduct';
 import CardHistory from '../../Moleculs/Card/CardHistory';
 // import './Product.Module.css';
 
-function HistoryBuyer() {
+function HistoryBuyer({
+  history, buyerName, buyerCity, buyerPhoto,
+}) {
   return (
     <Container className="mt-5">
       <Row>
         <Title title="Riwayat Pembelian" />
       </Row>
       <Row>
-        <CardSellerBtn />
+        <CardBuyerBtn
+          buyerName={buyerName}
+          buyerCity={buyerCity}
+          buyerPhoto={buyerPhoto}
+        />
       </Row>
       <Row>
         <Col>
           <Sidebar />
         </Col>
-        {Array.from({ length: 4 }).map((_, idx) => {
+        {history && history.map((buyer) => {
+          console.log(buyer);
           return (
             <Col>
               <CardHistory
-                title="Jam Tangan Casio"
-                type="Aksesoris"
-                description="Sudah Dibeli"
-                image="https://placeimg.com/165/100/any"
-                imageAlt="Gambar jam tangan"
+                title={buyer.msg}
+                type={buyer.price}
+                description={buyer.bargainPrice}
+                image={buyer.image}
               />
             </Col>
           );

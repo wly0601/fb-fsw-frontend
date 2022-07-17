@@ -13,6 +13,7 @@ import { getTransactionByUserIdReducer } from './getTransactionByUserId';
 import { updateTransactionReducer } from './updateTransactionReducer';
 import { updateTransactionConfirmationReducer } from './updateTransactionConfirmation';
 import { getSoldProductReducer } from './soldProductReducer';
+import { getHistoryBuyerReducer } from './historyBuyer';
 
 export default combineReducers({
   auth,
@@ -29,4 +30,5 @@ export default combineReducers({
   updateTransactionReducer,
   updateTransactionConfirmationReducer,
   getSoldProductReducer,
+  getHistoryBuyerReducer,
 });

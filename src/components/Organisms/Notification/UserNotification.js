@@ -30,7 +30,6 @@ function UserNotification({ notif }) {
                     name={result.name}
                     price={result.price}
                     image={result.image}
-                    imageAlt="Gambar jam tangan"
                   />
                 </Link>
               </Col>
@@ -46,7 +45,6 @@ function UserNotification({ notif }) {
                     price={result.price}
                     offering={`Ditawar ${result.bargainPrice}`}
                     image={result.image}
-                    imageAlt="Gambar jam tangan"
                   />
                 </Link>
               </Col>

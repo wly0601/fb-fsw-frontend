@@ -23,6 +23,7 @@ function ProductInput({
   name, price, categoryId, description,
 }) {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [successful, setSuccessful] = useState(false);
   const [user, setUser] = useState({});
   const checkBtn = useRef();
 
@@ -47,6 +48,7 @@ function ProductInput({
       if (updateResponse.status) Navigate('/login');
     } catch (err) {
       console.log(err);
+      setSuccessful(false);
     }
   }
 
@@ -110,6 +112,14 @@ function ProductInput({
           />
         </Form.Group>
       </Form>
+      <div className="form-group">
+        <button className="btn btn-primary btn-block btn-register mt-4" type="submit" disabled={successful}>
+          {successful && (
+          <span className="spinner-border spinner-border-sm me-2" />
+          )}
+          <span>Daftar</span>
+        </button>
+      </div>
     </div>
   ) : (
     <Navigate to="/login" replace />
