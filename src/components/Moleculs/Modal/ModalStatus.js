@@ -62,16 +62,6 @@ function ModalStatus(props) {
                 isInvalid
               />
               <p style={{ marginLeft: '25px' }}>Kamu membatalkan transaksi produk ini dengan pembeli</p>
-              {/* <Form.Check id="radio1" value={1} label="Sold" name="sold-radio" checked="sold" onChange={() => { setConfirmation('sold'); console.log('awkoakowoak'); }}>
-                <Form.Check.Input type="radio" label="sold" isValid />
-                <Form.Check.Label>Berhasil Terjual</Form.Check.Label> */}
-              {/* <p>Kamu telah sepakat menjual produk ini kepada pembeli</p>
-              </Form.Check>
-              <Form.Check id="radio2" value={2} label="Cancel" name="cancel-radio" checked="cancel" onChange={() => { setConfirmation('cancel'); console.log('akwoakwo'); }}>
-                <Form.Check.Input type="radio" label="canceled" isInvalid />
-                {/* <Form.Check.Label>Batalkan Transaksi</Form.Check.Label> */}
-              {/* <p>Kamu membatalkan transaksi produk ini dengan pembeli</p> */}
-              {/* </Form.Check> */}
             </Form.Group>
           </div>
           <Row>

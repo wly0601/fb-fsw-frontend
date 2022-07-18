@@ -84,6 +84,7 @@ function TemplateProduct() {
       console.log(productResult);
     } else if (productError) {
       console.log(productError);
+      setLoading(false);
     }
   });
 
@@ -141,11 +142,11 @@ function TemplateProduct() {
                 </Link>
               </Col>
               <Col xs={6}>
-                <Button variant="primary" className="publish-button" type="submit">
-                  Terbitkan
+                <Button variant="primary" className="publish-button" type="submit" disabled={loading}>
                   {loading && (
-                    <span className="spinner-border spinner-border-sm me-5" />
+                  <span className="spinner-border spinner-border-sm me-2" />
                   )}
+                  <span>Terbitkan</span>
                 </Button>
               </Col>
             </Row>

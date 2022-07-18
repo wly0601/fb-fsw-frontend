@@ -20,8 +20,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function Home({
   productAll, currentPage, meta, productResult,
 }) {
-  console.log(productResult);
-  // const [user, setUser] = useState('');
   const [userData, setUserData] = useState('');
 
   const token = localStorage.getItem('token');
@@ -44,10 +42,6 @@ function Home({
     }
   };
 
-  // for (let i = 0; i < userData.data.length; i++) {
-  //   console.log(userData.data[i].id);
-  // }
-
   useEffect(() => {
     getUsers();
   }, []);
@@ -63,7 +57,6 @@ function Home({
         <div className="row mt-5 mx-5">
           <div className="col-12">
             <TitleList title="Telusuri Kategori" />
-            {/* <PaginatedItems /> */}
           </div>
         </div>
         <div className="row mt-3 mx-5">
@@ -80,7 +73,6 @@ function Home({
               user = 'seller';
               preview = '/preview';
             }
-            // console.log(userData);
             return (
               <>
                 <Col key={result.id} md={2}>
@@ -97,10 +89,8 @@ function Home({
               </>
             );
           })}
-          {/* {product.length === 0 && setProduct(productAll)} */}
         </div>
         <div className="row mb-5 mx-5">
-          {/* <BtnAddProduct /> */}
           <PaginatedItems currentPage={currentPage} meta={meta} />
         </div>
         <div className="row mt-5 mb-3 mx-5 button-sell">
