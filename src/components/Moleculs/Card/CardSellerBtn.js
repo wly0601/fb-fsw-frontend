@@ -17,9 +17,9 @@ function CardSellerBtn() {
         <Card.Body>
           <Row>
             <Col xs={2}>
-              <img src={`${process.env.PUBLIC_URL}/images/seller_pic.png`} style={{ width: '35%' }} alt="" />
+              <img src={`${process.env.PUBLIC_URL}/images/seller_pic.png`} className="seller-picture" alt="" />
             </Col>
-            <Col xs={8}>
+            <Col md={8} xs={7}>
               <h5 style={{ fontWeight: 'bold' }}>Safira</h5>
               <p>Jakarta</p>
             </Col>

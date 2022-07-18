@@ -190,7 +190,7 @@
 }
 
 .seller-picture {
-  width: 100%;
+  width: 30%;
   border-radius: 10px;
 }
 
@@ -276,10 +276,6 @@
     margin-top: 5%;
   }
 
-  .seller-picture {
-    width: 200%;
-  }
-
   .card-desc {
     top: -73px;
     width: 86%;
@@ -288,5 +284,9 @@
     border-radius: 16px;
     /* margin-top: 40px; */
     /* margin-left: 0%; */
+  }
+
+  .seller-picture {
+    width: 150%
   }
 }
