@@ -15,7 +15,7 @@ import {
   FaSearch, FaBell, FaRegUser, FaListUl,
 } from 'react-icons/fa';
 import { logout } from '../../../redux/actions/auth';
-import CardNotification from '../../Moleculs/Card/CardNotification';
+import CardToast from '../../Moleculs/Card/CardToast';
 import './Navigation.Module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -65,8 +65,8 @@ function NavbarLogin({ notif }) {
                   />
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item href="../../history/seller">History Seller</Dropdown.Item>
-                  <Dropdown.Item href="../../history/buyer">History Buyer</Dropdown.Item>
+                  <Dropdown.Item href="../../../history/seller">History Seller</Dropdown.Item>
+                  <Dropdown.Item href="../../../history/buyer">History Buyer</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
               <Button
@@ -92,7 +92,8 @@ function NavbarLogin({ notif }) {
                   <FaRegUser className="link" />
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item href="../profile">Profile</Dropdown.Item>
+                  <Dropdown.Item href="../../profile">Profile</Dropdown.Item>
+                  <Dropdown.Item href="../../../list/products">Daftar Jual Saya</Dropdown.Item>
                   <Dropdown.Item onClick={logOut}>Logout</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
@@ -119,26 +120,30 @@ function NavbarLogin({ notif }) {
                   if (result.msg === 'Berhasil Diterbitkan') {
                     result2 = (
                       <Col xs={12}>
-                        <CardNotification
-                          title={result.msg}
-                          name={result.name}
-                          price={result.price}
-                          image={result.image}
-                          imageAlt="Gambar jam tangan"
-                        />
+                        <Link to={`/seller/product/${result.productId}/preview`} style={{ textDecoration: 'none', color: 'black' }}>
+                          <CardToast
+                            title={result.msg}
+                            time={result.time}
+                            name={result.name}
+                            price={result.price}
+                            image={result.image}
+                          />
+                        </Link>
                       </Col>
                     );
                   } else if (result.msg === 'Penawaran Produk') {
                     result2 = (
                       <Col xs={12}>
-                        <CardNotification
-                          title={result.msg}
-                          name={result.name}
-                          price={result.price}
-                          offering={`Ditawar ${result.bargainPrice}`}
-                          image={result.image}
-                          imageAlt="Gambar jam tangan"
-                        />
+                        <Link to={`/offering/${result.buyerId}/info`} style={{ textDecoration: 'none', color: 'black' }}>
+                          <CardToast
+                            title={result.msg}
+                            time={result.time}
+                            name={result.name}
+                            price={result.price}
+                            offering={result.bargainPrice}
+                            image={result.image}
+                          />
+                        </Link>
                       </Col>
                     );
                   }
@@ -146,7 +151,7 @@ function NavbarLogin({ notif }) {
                 })}
                 <Link to="/list/notifications" style={{ textDecoration: 'none' }}>
                   <div className="d-grid gap-2">
-                    <Button variant="outline-success" size="lg" style={{ color: 'black' }}>
+                    <Button size="lg" style={{ color: 'white', backgroundColor: '#7126B5', borderColor: '#FFFFFF' }}>
                       Lihat Semua
                     </Button>
                   </div>

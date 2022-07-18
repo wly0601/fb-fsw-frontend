@@ -3,10 +3,10 @@ import axios from 'axios';
 // import { useDispatch } from 'react-redux';
 
 export const sellerProducts = 'sellerProducts';
+export const setProductsMeta = 'setProductsMeta';
 
-export const getSellerListProducts = () => {
+export const getSellerListProducts = ({ page }) => {
   return async (dispatch) => {
-  // const dispatch = useDispatch();
   // Loading
     await dispatch({
       type: sellerProducts,
@@ -25,7 +25,8 @@ export const getSellerListProducts = () => {
     })
       .then(async (result) => {
         console.log(result.data);
-        await axios.get(`https://second-hand-be.herokuapp.com/api/user/${result.data.id.toString()}/products`, {
+        const sellerID = result.data.id.toString();
+        await axios.get(`https://second-hand-be.herokuapp.com/api/user/${sellerID}/products?page=${page || 1}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -37,6 +38,14 @@ export const getSellerListProducts = () => {
               payload: {
                 loading: false,
                 result: await res.data.products,
+                error: false,
+              },
+            });
+            await dispatch({
+              type: await setProductsMeta,
+              payload: {
+                loading: false,
+                result: await res.data.meta,
                 error: false,
               },
             });

@@ -12,31 +12,16 @@ import ButtonCategory from '../../Atoms/Button/ButtonCategory';
 import ItemCard from '../../Moleculs/Card/ItemCard';
 import BtnAddProduct from '../../Atoms/Button/BtnAddProduct';
 import IMAGES from '../../../data/data';
+import PaginatedItems from '../../Moleculs/Pagination/Pagination';
+import priceFormat from '../../../utils/priceFormat';
 import IsMobile from '../../../styles/IsMobile';
 import './Home.Module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function Home({ productAll }) {
-  // const [user, setUser] = useState('');
+function Home({
+  productAll, currentPage, meta, productResult,
+}) {
   const [userData, setUserData] = useState('');
-  const priceFormat = (data) => {
-    const priceStr = data.toString();
-    let i = priceStr.length;
-    let renderPrice = '';
-    let counter = 0;
-
-    while (i > 0) {
-      renderPrice = priceStr[i - 1] + renderPrice;
-      i -= 1;
-      counter += 1;
-      if (counter === 3 && i !== 0) {
-        renderPrice = `.${renderPrice}`;
-        counter = 0;
-      }
-    }
-
-    return `Rp ${renderPrice}`;
-  };
   const token = localStorage.getItem('token');
 
   const getUsers = async () => {
@@ -56,10 +41,6 @@ function Home({ productAll }) {
       console.log(err);
     }
   };
-
-  // for (let i = 0; i < userData.data.length; i++) {
-  //   console.log(userData.data[i].id);
-  // }
 
   useEffect(() => {
     getUsers();
@@ -81,6 +62,9 @@ function Home({ productAll }) {
         <div className={`${IsMobile ? 'row mt-1' : 'row mt-1 mx-5'}`}>
           <ButtonCategory />
         </div>
+        <div className="row mt-3 mx-5">
+          {productAll.length <= 0 && productResult && <p>Maaf Produk Tidak Ditemukan</p>}
+        </div>
         <div className={`${IsMobile ? 'row mt-3' : 'row mt-3 mx-5'}`}>
           {(productAll && productAll).map((result) => {
             let user = 'buyer';
@@ -89,24 +73,27 @@ function Home({ productAll }) {
               user = 'seller';
               preview = '/preview';
             }
-            console.log(userData);
             return (
-              <Col key={result.id} md={2} xs={6}>
-                <Link to={`${user}/product/${result.id}${preview}`} style={{ textDecoration: 'none', color: 'black' }}>
-                  <ItemCard
-                    title={result.name}
-                    type={result.category.name}
-                    price={priceFormat(result.price)}
-                    image={result.images[0]}
-                    imageAlt="Category of Different Pics"
-                  />
-                </Link>
-              </Col>
+              <>
+                <Col key={result.id} md={2}>
+                  <Link to={`${user}/product/${result.id}${preview}`} style={{ textDecoration: 'none', color: 'black' }}>
+                    <ItemCard
+                      title={result.name}
+                      type={result.category.name}
+                      price={priceFormat(result.price)}
+                      image={result.images[0]}
+                      imageAlt="Category of Different Pics"
+                    />
+                  </Link>
+                </Col>
+              </>
             );
           })}
-          {/* {product.length === 0 && setProduct(productAll)} */}
         </div>
-        <div className="row mt-3 mb-3 mx-5">
+        <div className="row mb-5 mx-5">
+          <PaginatedItems currentPage={currentPage} meta={meta} />
+        </div>
+        <div className="row mt-5 mb-3 mx-5 button-sell">
           <BtnAddProduct />
         </div>
       </Container>

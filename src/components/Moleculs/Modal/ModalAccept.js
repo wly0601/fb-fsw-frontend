@@ -1,20 +1,38 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {
-  Modal,
-  Button,
-  Row,
-  Col,
-  Form,
-  Container,
+  Modal, Button, Row, Col, Container, Form,
 } from 'react-bootstrap';
 import {
   FaWhatsapp,
 } from 'react-icons/fa';
+import { updateTransactionByID } from '../../../redux/actions/updateTransaction';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Modal.Module.css';
+import priceFormat from '../../../utils/priceFormat';
 
 function VerticalModals(props) {
+  console.log(props);
+  const [offering, setOffering] = useState('');
+  const {
+    transactionLoading,
+    transactionResult,
+    transactionError,
+  } = useSelector((state) => { return state.updateTransactionReducer; });
+
+  async function handleSubmit(e) {
+    e.prevent.default();
+  }
+
+  useEffect(() => {
+    if (transactionResult) {
+      window.location.reload();
+    }
+  }, [offering]);
+
   return (
     <Modal
       {...props}
@@ -37,45 +55,56 @@ function VerticalModals(props) {
           </p>
           <Row>
             <Col xs={4}>
-              <img src={`${process.env.PUBLIC_URL}/images/seller_pic.png`} className="seller mb-3" alt="" />
+              <img src={props.buyerImg} className="seller mb-3" alt="" />
             </Col>
             <Col xs={8}>
-              <p style={{ fontWeight: 'bold' }}>Safira</p>
-              <p>Jakarta</p>
+              <p style={{ fontWeight: 'bold' }}>{props.buyerInfo}</p>
+              <p>{props.buyerCity}</p>
             </Col>
           </Row>
           <Row>
             <Col xs={4}>
-              <img src={`${process.env.PUBLIC_URL}/images/first_watch.png`} className="seller" alt="" />
+              <img src={props.buyerOrder.product.images[0]} className="seller" alt="" />
             </Col>
             <Col xs={8}>
-              <p style={{ fontWeight: 'bold' }}>Jam Tangan Casio</p>
-              <p style={{ textDecoration: 'line-through' }}>Rp.250.000</p>
-              <p>Ditawar Rp.200.000</p>
+              <p style={{ fontWeight: 'bold' }}>{props.buyerOrder.product.name}</p>
+              <p style={{ textDecoration: 'line-through' }}>{priceFormat(props.buyerOrder.product.price)}</p>
+              <p>{`Ditawar ${priceFormat(props.buyerOrder.bargainPrice)}`}</p>
             </Col>
           </Row>
         </Container>
         <Row>
-          <Button onClick={props.onHide} className="modal-button">
-            Hubungi via Whatsapp
-            {' '}
-            <FaWhatsapp />
-          </Button>
+          <Form onSubmit={handleSubmit}>
+            <Button href={`https://wa.me/${props.buyerNumber}`} onClick={props.onHide} className="modal-button">
+              Hubungi via Whatsapp
+              {' '}
+              <FaWhatsapp />
+            </Button>
+          </Form>
         </Row>
       </Modal.Body>
     </Modal>
   );
 }
 
-function Modals() {
+function Modals(props) {
   const [modalShow, setModalShow] = React.useState(false);
+  const dispatch = useDispatch();
 
+  async function handleAccept() {
+    await dispatch(updateTransactionByID(props.buyerOrder.id, true));
+  }
   return (
     <>
-      <Button variant="primary" className="mt-3 mb-3 ms-3 button-accept" onClick={() => { return setModalShow(true); }}>
+      <Button variant="primary" className="mt-3 mb-3 button-accept" onClick={(e) => { handleAccept(); return setModalShow(true); }}>
         Terima
       </Button>
       <VerticalModals
+        buyerInfo={props.buyerInfo}
+        buyerCity={props.buyerCity}
+        buyerImg={props.buyerImg}
+        buyerOrder={props.buyerOrder}
+        buyerNumber={props.buyerNumber}
         show={modalShow}
         onHide={() => { return setModalShow(false); }}
       />

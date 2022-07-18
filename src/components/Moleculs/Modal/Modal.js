@@ -1,24 +1,24 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable radix */
 /* eslint-disable array-callback-return */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useEffect } from 'react';
 import {
-  Modal,
-  Button,
-  Row,
-  Col,
-  Form,
-  Container,
+  Modal, Button, Row, Col, Form, Container,
 } from 'react-bootstrap';
+import { useParams, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { createTransaction } from '../../../redux/actions/createTransaction';
+import { getTransactionProducts } from '../../../redux/actions/createTransaction';
 import TitleList from '../../Atoms/Title/Title';
 import InputList from '../../Atoms/Input/Input';
+import priceFormat from '../../../utils/priceFormat';
+import getUser from '../../../redux/services/getUser';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Modal.Module.css';
 
 function VerticalModals(props) {
-  console.log(props.productById);
+  console.log(props.productById.id);
+  const params = useParams();
   const [inputBargain, setInputBargain] = useState('');
   const dispatch = useDispatch();
   const {
@@ -28,35 +28,28 @@ function VerticalModals(props) {
   } = useSelector((state) => { return state.getTransactionProductReducer; });
 
   async function handleSubmit(e) {
+    console.log('lewat 34');
     e.preventDefault();
     const body = {
+      productId: props.productById.id,
       inputBargain: parseInt(inputBargain),
     };
-    await dispatch(createTransaction(body));
+
+    console.log(body);
+    await dispatch(getTransactionProducts(body));
   }
 
-  const priceFormat = (data) => {
-    if (typeof data === 'undefined') {
-      return '';
-    }
-    const priceStr = data.toString();
-    let i = priceStr.length;
-    let renderPrice = '';
-    let counter = 0;
-
-    while (i > 0) {
-      renderPrice = priceStr[i - 1] + renderPrice;
-      i -= 1;
-      counter += 1;
-      if (counter === 3 && i !== 0) {
-        renderPrice = `.${renderPrice}`;
-        counter = 0;
-      }
-    }
-
-    // eslint-disable-next-line consistent-return
-    return `Rp ${renderPrice}`;
+  const handleChangeBargain = (e) => {
+    setInputBargain(parseInt(e));
   };
+
+  useEffect(() => {
+    if (productResult) {
+      window.location.reload();
+    }
+  }, [inputBargain]);
+  console.log(inputBargain);
+
   return (
     <Modal
       {...props}
@@ -74,11 +67,9 @@ function VerticalModals(props) {
         <Container className="product">
           <Row>
             <Col xs={4}>
-              {/* {(props.productById.images && props.productById.images).map((result) => {
-                return (
-                  <img src={result[0]} className="seller" alt="" />
-                );
-              })} */}
+              {props.productById.images && (
+                <img src={props.productById.images[0]} className="seller" alt="" />
+              )}
             </Col>
             <Col xs={8}>
               <p style={{ fontWeight: 'bold' }}>{props.productById.name}</p>
@@ -86,15 +77,22 @@ function VerticalModals(props) {
             </Col>
           </Row>
         </Container>
-        <Row>
-          <Form.Group className="mb-3" controlId="form">
-            <Form.Label className="label">Harga Tawar</Form.Label>
-            <InputList type="text" placeholder="Rp 0,00" />
-          </Form.Group>
-        </Row>
-        <Row>
-          <Button onClick={props.onClick} className="modal-button">Kirim</Button>
-        </Row>
+        <Form onSubmit={handleSubmit}>
+          <Row>
+            <Form.Group className="mb-3" controlId="form">
+              <Form.Label className="label">Harga Tawar</Form.Label>
+              <InputList
+                type="text"
+                placeholder="Masukkan harga tawarmu disini"
+                onChange={handleChangeBargain}
+                value={props.productById.price}
+              />
+            </Form.Group>
+          </Row>
+          <Row>
+            <Button className="modal-button" type="submit">Kirim</Button>
+          </Row>
+        </Form>
       </Modal.Body>
     </Modal>
   );
@@ -103,11 +101,36 @@ function VerticalModals(props) {
 function Modals({ productById }) {
   const [modalShow, setModalShow] = React.useState(false);
   console.log({ productById });
-  console.log(productById.images);
+  const getToken = localStorage.getItem('token');
+  const [isLoggedIn, setIsLoggedin] = useState(true);
+  const [profile, setProfile] = useState(true);
 
-  return (
+  const getUserData = async () => {
+    const user = await getUser();
+    console.log(user);
+    if (!user.data.cityId) {
+      setProfile(false);
+    }
+  };
+
+  const isLogin = () => {
+    if (!getToken) {
+      setIsLoggedin(false);
+    }
+  };
+
+  useEffect(() => {
+    isLogin();
+    getUserData();
+  }, []);
+
+  return isLoggedIn ? (
     <>
-      <Button variant="primary" className="mt-3 button-product" onClick={() => { return setModalShow(true); }}>
+      <Button
+        variant="primary"
+        className="mt-3 button-product"
+        onClick={() => { return setModalShow(true); }}
+      >
         Saya Tertarik dan Ingin Nego
       </Button>
       <VerticalModals
@@ -116,6 +139,8 @@ function Modals({ productById }) {
         onHide={() => { return setModalShow(false); }}
       />
     </>
+  ) : (
+    <Navigate to="/login" replace />
   );
 }
 

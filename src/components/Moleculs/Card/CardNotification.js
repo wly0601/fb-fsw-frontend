@@ -7,7 +7,7 @@ import './Card.Module.css';
 
 function CardNotification(props) {
   const {
-    title, name, price, image, imageAlt, offering,
+    title, time, name, price, image, imageAlt, offering,
   } = props;
 
   return (
@@ -23,8 +23,15 @@ function CardNotification(props) {
             />
           </Col>
           <Col xs={8}>
-            <Card.Body style={{ height: '140px' }}>
-              <Card.Title style={{ fontSize: '10px', color: 'grey' }}>{title}</Card.Title>
+            <Card.Body style={{ height: '140px', width: '100%' }}>
+              <Row>
+                <Col xs={8}>
+                  <Card.Title style={{ fontSize: '10px', color: 'grey' }}>{title}</Card.Title>
+                </Col>
+                <Col xs={4}>
+                  <Card.Title style={{ fontSize: '10px', color: 'grey' }}>{time}</Card.Title>
+                </Col>
+              </Row>
               <Card.Title style={{ fontSize: '12px' }}>{name}</Card.Title>
               <Card.Text style={{ fontSize: '12px' }}>{price}</Card.Text>
               <Card.Text style={{ fontSize: '12px', marginTop: '-16px' }}>{offering}</Card.Text>

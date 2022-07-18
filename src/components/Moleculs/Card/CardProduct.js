@@ -13,6 +13,7 @@ import {
   Button,
 } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import priceFormat from '../../../utils/priceFormat';
 import './Card.Module.css';
 
 function CardProduct(props) {
@@ -27,6 +28,7 @@ function CardProduct(props) {
     console.log(response.data.category);
     setProductById(response.data);
   });
+
   useEffect(() => {
     fetchData();
     document.title = 'Produk Pembeli';
@@ -39,7 +41,7 @@ function CardProduct(props) {
 					<h5 style={{ fontWeight: 'bold' }}>
             {productById.name}
           </h5>
-          <p>{productById.price}</p>
+          <p>{priceFormat(productById.price)}</p>
           <Row>
             <Link to="/list/products">
               <Button variant="primary" className="button-seller" style={{ borderRadius: '16px', backgroundColor: '#7126B5' }}>Terbitkan</Button>

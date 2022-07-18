@@ -7,6 +7,13 @@ import { updateProductReducer } from './updateProduct';
 import { getSellerProductReducer } from './sellerProduct';
 import { getTransactionProductReducer } from './createTransaction';
 import { getListNotifications } from './getNotif';
+import { getProductInterestReducer } from './productInterest';
+import { getProductMetaReducer } from './productMeta';
+import { getTransactionByUserIdReducer } from './getTransactionByUserId';
+import { updateTransactionReducer } from './updateTransactionReducer';
+import { updateTransactionConfirmationReducer } from './updateTransactionConfirmation';
+import { getSoldProductReducer } from './soldProductReducer';
+import { getHistoryBuyerReducer } from './historyBuyer';
 
 export default combineReducers({
   auth,
@@ -17,4 +24,11 @@ export default combineReducers({
   getSellerProductReducer,
   getTransactionProductReducer,
   getListNotifications,
+  getProductInterestReducer,
+  getProductMetaReducer,
+  getTransactionByUserIdReducer,
+  updateTransactionReducer,
+  updateTransactionConfirmationReducer,
+  getSoldProductReducer,
+  getHistoryBuyerReducer,
 });

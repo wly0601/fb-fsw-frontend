@@ -12,38 +12,45 @@ import Sidebar from '../../Moleculs/Sidebar/SidebarProduct';
 import ItemCard from '../../Moleculs/Card/ItemCard';
 import './Product.Module.css';
 
-function ProductInterest() {
+function ProductInterest({
+  sellerName, sellerCity, sellerPhoto, interest,
+}) {
+  console.log(interest);
+
   return (
     <Container className="mt-5">
       <Row>
         <Title title="Daftar Produk Yang Diminati" />
       </Row>
       <Row>
-        <CardSellerBtn />
+        <CardSellerBtn
+          sellerName={sellerName}
+          sellerCity={sellerCity}
+          sellerPhoto={sellerPhoto}
+        />
       </Row>
       <Row>
-        <BtnProductStatus />
-      </Row>
-      <Row>
-        <Col className="card-sidebar">
+        <Col xs={3}>
           <Sidebar />
         </Col>
-        {/* {Array.from({ length: 2 }).map((_, idx) => {
+        {!interest && (
+        <Col>
+          <img src={`${process.env.PUBLIC_URL}/images/best_interest.png`} style={{ width: '50%' }} alt="" />
+        </Col>
+        )}
+        {interest && interest.map((product) => {
+          console.log(product);
           return (
-            <Col>
+            <Col xs={3}>
               <ItemCard
-                title="Jam Tangan Casio"
-                type="Aksesoris"
-                price="Rp 250.000"
-                image="https://placeimg.com/165/100/any"
-                imageAlt="Gambar jam tangan"
+                title={product.name}
+                type={product.description}
+                price={product.price}
+                image={product.images[0]}
               />
             </Col>
           );
-        })} */}
-        <Col>
-          <img src={`${process.env.PUBLIC_URL}/images/best_interest.png`} className="image-best-interest" alt="" />
-        </Col>
+        })}
       </Row>
     </Container>
   );

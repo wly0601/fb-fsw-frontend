@@ -7,35 +7,44 @@ import {
 import Title from '../../Atoms/Title/Title';
 import BtnProductStatus from '../../Atoms/Button/BtnProductStatus';
 import CardSellerBtn from '../../Moleculs/Card/CardSellerBtn';
+import Sidebar from '../../Moleculs/Sidebar/SidebarProduct';
 import CardHistory from '../../Moleculs/Card/CardHistory';
+import priceFormat from '../../../utils/priceFormat';
 // import './Product.Module.css';
 
-function HistorySeller() {
+function HistorySeller({
+  sellerName, sellerCity, sellerPhoto, soldProductSeller,
+}) {
+  console.log(soldProductSeller);
   return (
     <Container className="mt-5">
       <Row>
         <Title title="Riwayat Penjualan" />
       </Row>
       <Row>
-        <CardSellerBtn />
+        <CardSellerBtn
+          sellerName={sellerName}
+          sellerCity={sellerCity}
+          sellerPhoto={sellerPhoto}
+        />
       </Row>
       <Row>
-        <BtnProductStatus />
-      </Row>
-      <Row>
-        {Array.from({ length: 4 }).map((_, idx) => {
-          return (
-            <Col>
+        <Col>
+          <Sidebar />
+        </Col>
+        <Col>
+          {soldProductSeller.products && soldProductSeller.products.map((soldProduct) => {
+            console.log(soldProduct);
+            return (
               <CardHistory
-                title="Jam Tangan Casio"
-                type="Aksesoris"
-                description="SOLD"
-                image="https://placeimg.com/165/100/any"
-                imageAlt="Gambar jam tangan"
+                title={soldProduct.name}
+                type={priceFormat(soldProduct.price)}
+                description={soldProduct.description}
+                image={soldProduct.images[0]}
               />
-            </Col>
-          );
-        })}
+            );
+          })}
+        </Col>
       </Row>
     </Container>
   );

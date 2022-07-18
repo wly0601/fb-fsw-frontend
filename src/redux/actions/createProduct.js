@@ -65,7 +65,7 @@ export const createListProduct = (image, body) => {
           },
         )
           .then(async (result) => {
-            console.log(result.data.name);
+            console.log(result.data);
             await dispatch({
               type: createProduct,
               payload: {

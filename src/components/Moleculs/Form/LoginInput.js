@@ -52,8 +52,8 @@ function LoginInput(props) {
       dispatch(login(email, password))
         .then((res) => {
           console.log(res);
-          props.history.push('/');
-          window.location.reload();
+          // props.history.push('/');
+          // window.location.reload();
         })
         .catch(() => {
           setLoading(false);
@@ -96,7 +96,7 @@ function LoginInput(props) {
         <div className="form-group">
           <button className="btn btn-primary btn-block btn-register mt-4" type="submit" disabled={loading}>
             {loading && (
-              <span className="spinner-border spinner-border-sm" />
+              <span className="spinner-border spinner-border-sm me-2" />
             )}
             <span>Login</span>
           </button>

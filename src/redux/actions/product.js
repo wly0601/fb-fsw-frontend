@@ -3,8 +3,10 @@ import axios from 'axios';
 // import { useDispatch } from 'react-redux';
 
 export const setProducts = 'setProducts';
+export const setProductsMeta = 'setProductsMeta';
 
-export const getListProducts = () => {
+export const getListProducts = ({ page, category, search }) => {
+  console.log({ page });
   return async (dispatch) => {
   // const dispatch = useDispatch();
   // Loading
@@ -17,7 +19,7 @@ export const getListProducts = () => {
       },
     });
     // GET API
-    await axios.get('https://second-hand-be.herokuapp.com/api/products')
+    await axios.get(`https://second-hand-be.herokuapp.com/api/products?page=${page || 1}${category || ''}${search || ''}`)
       .then(async (res) => {
         console.log(res.data.products);
         await dispatch({
@@ -25,6 +27,14 @@ export const getListProducts = () => {
           payload: {
             loading: false,
             result: await res.data.products,
+            error: false,
+          },
+        });
+        await dispatch({
+          type: await setProductsMeta,
+          payload: {
+            loading: false,
+            result: await res.data.meta,
             error: false,
           },
         });
