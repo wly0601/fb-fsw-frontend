@@ -3,7 +3,7 @@
   background: #FFFFFF;
   /* box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15); */
   border-radius: 10px;
-  margin-bottom: 3%;
+  margin-bottom: 2.5%;
   max-height: 300px;
 }
 
@@ -22,11 +22,8 @@
 }
 
 .card-product {
-  top: -30px;
   width: 430px;
   height: 300px;
-  border-radius: 20px;
-  z-index: 1;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
 }
 
@@ -62,8 +59,7 @@
 }
 
 .seller-offering {
-  height: 100px;
-  border-radius: 16px;
+  height: 10%;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
 }
 
@@ -72,7 +68,7 @@
   width: 45%;
   height: 100%;
   margin-left: 2%;
-  border-radius: 16px;
+  /* border-radius: 16px; */
   line-height: 20px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
 }
@@ -96,10 +92,8 @@
   width: 95%;
   height: 50px;
   margin: 10px;
-  background-color: #7126B5;
   border-color: #7126B5;
   color: white;
-  border-radius: 16px;
 }
 
 .button-seller:hover {
@@ -139,8 +133,11 @@
 }
 
 .image-offering {
-  width: 100%;
-  border-radius: 16px;
+  margin-left: 10%;
+}
+
+.image-accept-offering {
+  margin-left: 10%;
 }
 
 .card-body-offering {
@@ -167,6 +164,7 @@
   background-color: #7126B5;
   border-color: #7126B5;
   color: white;
+  font-size: 90%;
   border-radius: 16px;
   margin-right: 10px;
   margin-top: 16px;
@@ -197,15 +195,61 @@
   border-radius: 16px;
 }
 
+.seller-picture {
+  width: 30%;
+  border-radius: 10px;
+}
+
 @media (max-width:600px) {
   .card-product {
     margin: auto;
     width: 100%;
     height: auto;
     align-content: center;
-    top: -40px;
+    z-index: 1;
+    top: -30px;
+  }
+  
+  .card-desc {
+    top: -73px;
+    width: 100%;
+    height: 98%;
+    margin: auto;
+    /* margin-left: 0%; */
   }
 
+  .card-bargain {
+    margin: auto;
+    width: 100%;
+    height: auto;
+    align-content: center;
+    z-index: 1;
+    top: -30px;
+  }
+
+  .card-product-btn {
+    margin: auto;
+    width: 100%;
+    height: auto;
+    align-content: center;
+    z-index: 1;
+    top: -30px;
+  }
+
+  .image-card-seller {
+    height: 50%;
+  }
+
+  .image-offering {
+    height: 45%;
+    margin-left: 15%;
+  }
+
+  .image-accept-offering {
+    height: 40%;
+    margin-left: 15%;
+  }
+  
   .seller-card {
     width: 100%;
     height: auto;
@@ -213,6 +257,29 @@
     margin: auto;
     /* margin-left: -4%; */
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+    
+  }
+
+  .seller-offering {
+    height: auto;
+    width: 110%;
+  }
+
+  .button-align {
+    display: flex;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-right: 5%;
+  }
+
+  .button-deny {
+    margin-top: 15px;
+    margin-left: 5%;
+  }
+
+  .button-accept {
+    height: 43px;
+    margin-top: 5%;
   }
 
   .card-desc {
@@ -220,6 +287,8 @@
     width: 86%;
     height: 98%;
     margin: auto;
+    border-radius: 16px;
+    /* margin-top: 40px; */
     /* margin-left: 0%; */
   }
 
@@ -234,5 +303,8 @@
 
   .button-terima {
     margin-left: 5%;
+
+  .seller-picture {
+    width: 150%
   }
 }
