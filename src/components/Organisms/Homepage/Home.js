@@ -14,6 +14,7 @@ import BtnAddProduct from '../../Atoms/Button/BtnAddProduct';
 import IMAGES from '../../../data/data';
 import PaginatedItems from '../../Moleculs/Pagination/Pagination';
 import priceFormat from '../../../utils/priceFormat';
+import IsMobile from '../../../styles/IsMobile';
 import './Home.Module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -21,7 +22,6 @@ function Home({
   productAll, currentPage, meta, productResult,
 }) {
   const [userData, setUserData] = useState('');
-
   const token = localStorage.getItem('token');
 
   const getUsers = async () => {
@@ -54,18 +54,18 @@ function Home({
             <Carousel images={IMAGES} />
           </div>
         </div>
-        <div className="row mt-5 mx-5">
+        <div className={`${IsMobile ? 'row mt-2' : 'row mt-5 mx-5'}`}>
           <div className="col-12">
             <TitleList title="Telusuri Kategori" />
           </div>
         </div>
-        <div className="row mt-3 mx-5">
+        <div className={`${IsMobile ? 'row mt-1' : 'row mt-1 mx-5'}`}>
           <ButtonCategory />
         </div>
         <div className="row mt-3 mx-5">
           {productAll.length <= 0 && productResult && <p>Maaf Produk Tidak Ditemukan</p>}
         </div>
-        <div className="row mt-3 mx-5">
+        <div className={`${IsMobile ? 'row mt-3' : 'row mt-3 mx-5'}`}>
           {(productAll && productAll).map((result) => {
             let user = 'buyer';
             let preview = '';

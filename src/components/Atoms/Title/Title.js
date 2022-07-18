@@ -7,7 +7,7 @@ function TitleList(props) {
 
   return (
     <div className="mb-4 title-list">
-      <h5 style={{ fontWeight: 'bold' }}>{title}</h5>
+      <h5 style={{ fontSize: '18px', fontWeight: 'bold' }}>{title}</h5>
     </div>
   );
 }

@@ -17,14 +17,14 @@ function OfferingInfo({
   return (
     <Container>
       <Row>
-        <Col xs={2}>
+        <Col md={2}>
           <div style={{ paddingTop: '30px' }}>
             <Link to="/" style={{ color: 'black' }}>
               <FontAwesomeIcon icon={faArrowLeft} />
             </Link>
           </div>
         </Col>
-        <Col xs={10}>
+        <Col md={10}>
           <CardSellerOffering
             buyerInfo={buyerInfo}
             buyerCity={buyerCity}

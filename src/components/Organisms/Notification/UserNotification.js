@@ -16,7 +16,7 @@ function UserNotification({ notif }) {
       <Row>
         {/* <CardSeller /> */}
       </Row>
-      <Row md={2} className="g-2">
+      <Row md={3} className="">
         {notif && notif.map((result) => {
           console.log(result);
           let result2;
