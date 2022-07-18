@@ -1,14 +1,12 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import {
   Container, Card, Row, Col, Button,
 } from 'react-bootstrap';
 import {
   FaWhatsapp,
 } from 'react-icons/fa';
-import Title from '../../Atoms/Title/Title';
 import VerticalModals from '../Modal/ModalAccept';
 import ModalStatus from '../Modal/ModalStatus';
 import './Card.Module.css';
@@ -19,6 +17,7 @@ function CardHistory(props) {
   const [modalShow, setModalShow] = useState(false);
   const [btnAccReject, setBtnAccReject] = useState(false);
   const [btnStatus, setBtnStatus] = useState(false);
+  const [hiddenButton, setHiddenButton] = useState(false);
 
   const {
     title, name, price, image, imageAlt, offering,
@@ -47,9 +46,14 @@ function CardHistory(props) {
     }
   };
 
+  const handleHiddenButton = (e) => {
+    setHiddenButton(true);
+  };
+
   useEffect(() => {
     offeringCardBtnHandler();
-  }, []);
+    handleHiddenButton();
+  }, [hiddenButton]);
 
   return (
     <Container>

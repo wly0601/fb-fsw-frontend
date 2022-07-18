@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { Search } from 'react-bootstrap-icons';
+// import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
 import { getListProducts } from '../../../redux/actions/product';
-import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
 import './Button.Module.css';
 
 function Category() {
@@ -79,8 +79,6 @@ function Category() {
   return (
     <div align="left">
       <Button variant="secondary" className={btnAll} onClick={handleChangeAll}>
-    <div className="btn-category-scroll" align="left">
-      <Button variant="secondary" className="button-category">
         <Search className="me-2" />
         Semua
       </Button>
