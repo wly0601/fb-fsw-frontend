@@ -72,7 +72,7 @@ function Modals() {
 
   return (
     <>
-      <Button variant="primary" className="mt-3 mb-3 button-accept" onClick={() => { return setModalShow(true); }}>
+      <Button variant="primary" className="mt-3 mb-3 ms-3 button-accept" onClick={() => { return setModalShow(true); }}>
         Terima
       </Button>
       <VerticalModals

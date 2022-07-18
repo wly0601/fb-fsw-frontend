@@ -148,8 +148,10 @@
   background-color: white;
   border-color: #7126B5;
   color: black;
-  margin-right: 7px;
-  width: 155px;
+  border-radius: 16px;
+  margin-right: 10px;
+  margin-top: 16px;
+  width: 158px;
   height: fit-content;
 }
 
@@ -164,8 +166,10 @@
   color: white;
   font-size: 90%;
   border-radius: 16px;
-  margin-right: 7px;
-  width: 155px;
+  margin-right: 10px;
+  margin-top: 16px;
+  width: 158px;
+  height: fit-content;
 }
 
 .button-accept:hover {
@@ -174,8 +178,10 @@
 }
 
 .button-align {
-  text-align: right;
-  margin-bottom: 20px;
+  display: flex;
+  text-align: center;
+  margin-bottom: 10px;
+  margin-right: 5%;
 }
 
 .button-edit-preview {
@@ -203,7 +209,7 @@
     z-index: 1;
     top: -30px;
   }
-
+  
   .card-desc {
     top: -73px;
     width: 100%;
@@ -243,7 +249,7 @@
     height: 40%;
     margin-left: 15%;
   }
-
+  
   .seller-card {
     width: 100%;
     height: auto;
@@ -284,6 +290,19 @@
     border-radius: 16px;
     /* margin-top: 40px; */
     /* margin-left: 0%; */
+  }
+
+  .seller-offering {
+    border-radius: 16px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  }
+
+  .button-deny {
+    margin-left: 5%;
+  }
+
+  .button-terima {
+    margin-left: 5%;
   }
 
   .seller-picture {
