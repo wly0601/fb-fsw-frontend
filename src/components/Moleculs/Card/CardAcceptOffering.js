@@ -27,7 +27,7 @@ function CardHistory(props) {
           <Col xs={8}>
             <Card.Body>
               <Card.Title style={{ fontSize: '10px', color: 'grey' }}>{title}</Card.Title>
-              <Card.Title>{name}</Card.Title>
+              <Card.Title style={{ fontSize: '15px', fontWeight: 'bold' }}>{name}</Card.Title>
               <Card.Text>{price}</Card.Text>
               <Card.Text>{offering}</Card.Text>
             </Card.Body>
