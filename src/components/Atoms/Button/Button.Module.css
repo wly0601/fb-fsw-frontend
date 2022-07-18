@@ -27,37 +27,20 @@
   .btn-back-home {
     display: none;
   }
-
   
-
-  /* .horizontal-scrollable .row {
-    overflow-x: auto;
-    white-space: nowrap;
-}
-  
-.horizontal-scrollable .row .col {
-    display: inline-block;
-    float: none;
-} */
+  .btn-product-status {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 600px) {
-  /* .btn-category {
-    overflow-x: hidden;
-  } */
-
+  .btn-product-status {
+    overflow-x: scroll;
+    white-space: nowrap;
+  }
+  
   .btn-category-scroll {
     overflow-x: scroll;
     white-space: nowrap;
   }
-
-  /* .horizontal-scrollable .row {
-    overflow-x: auto;
-    white-space: nowrap;
-}
-  
-.horizontal-scrollable .row .col {
-    display: inline-block;
-    float: none;
-} */
 }
