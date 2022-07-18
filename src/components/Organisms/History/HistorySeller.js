@@ -5,6 +5,7 @@ import {
   Col,
 } from 'react-bootstrap';
 import Title from '../../Atoms/Title/Title';
+import BtnProductStatus from '../../Atoms/Button/BtnProductStatus';
 import CardSellerBtn from '../../Moleculs/Card/CardSellerBtn';
 import Sidebar from '../../Moleculs/Sidebar/SidebarProduct';
 import CardHistory from '../../Moleculs/Card/CardHistory';

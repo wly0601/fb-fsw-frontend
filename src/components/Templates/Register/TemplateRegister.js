@@ -6,19 +6,10 @@ import {
 import ImageHome from '../../Atoms/Image/ImageHome';
 import RegisterInput from '../../Moleculs/Form/RegisterInput';
 import BtnBackToHome from '../../Atoms/Button/BtnBackToHome';
+import IsMobile from '../../../styles/IsMobile';
 import './TemplateRegister.Module.css';
 
 function TemplateRegister() {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
-  useEffect(() => {
-    window.addEventListener('resize', () => {
-      const mobile = window.innerWidth < 600;
-      if (mobile !== isMobile) {
-        setIsMobile(mobile);
-      }
-    }, false);
-  }, [isMobile]);
-
   return (
     <div className="form-list">
       <Container fluid className="p-0">
@@ -26,10 +17,10 @@ function TemplateRegister() {
           <div className="col-6 image-home">
             <ImageHome />
           </div>
-          <div className={`${isMobile ? 'col-9' : 'col-5'}`}>
+          <div className={`${IsMobile ? 'col-9' : 'col-5'}`}>
             <BtnBackToHome />
             <RegisterInput />
-            <Form className={`${isMobile ? 'text-center fixed-bottom mb-5' : 'text-center'}`}>
+            <Form className={`${IsMobile ? 'text-center fixed-bottom mb-5' : 'text-center'}`}>
               <Form.Group className="my-3 mx-5">
                 <Form.Text>Sudah punya akun? </Form.Text>
                 <Link to="/login" style={{ textDecoration: 'none' }}><Form.Text style={{ color: '#7126B5', fontWeight: 'bold' }}>Masuk di sini</Form.Text></Link>

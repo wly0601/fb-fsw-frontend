@@ -14,7 +14,7 @@ function CardBargain({ productById, categoryName }) {
   const [modalShow, setModalShow] = React.useState(false);
   return (
     <Container>
-      <Card className="card-bargain">
+      <Card className="card-bargain" style={{ borderRadius: '16px' }}>
         <Card.Body>
           <Row>
             <Col xs={10}>

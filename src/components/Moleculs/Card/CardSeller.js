@@ -11,13 +11,13 @@ import './Card.Module.css';
 function CardSeller({ city, seller }) {
   return (
     <Container>
-      <Card className="mt-4 mb-5 seller-card">
+      <Card className="mt-4 mb-5 seller-card" style={{ borderRadius: '16px' }}>
         <Card.Body>
           <Row>
-            <Col xs={2}>
-              <img src={seller.photo} style={{ width: '100%' }} alt="" />
+            <Col md={2} xs={3}>
+              <img src={seller.photo} className="seller-picture" alt="" />
             </Col>
-            <Col xs={10}>
+            <Col md={10} xs={9}>
               <h5 style={{ fontWeight: 'bold' }}>{seller.name}</h5>
               <p>{city.name}</p>
             </Col>

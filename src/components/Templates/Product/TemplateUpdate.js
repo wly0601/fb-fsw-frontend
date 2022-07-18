@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateListProduct } from '../../../redux/actions/updateProduct';
 import NavbarProduct from '../../Organisms/Navbar/NavbarProduct';
 import UpdateProduct from '../../Moleculs/Form/updateProduct';
+import IsMobile from '../../../styles/IsMobile';
 import './TemplateProduct.Module.css';
 
 function TemplateUpdate() {
@@ -121,7 +122,7 @@ function TemplateUpdate() {
     <div>
       <NavbarProduct />
       <div>
-        <Container className="form-products">
+        <Container fluid className="form-products p-0">
           <form onSubmit={handleSubmit}>
             <Row>
               <Col>
@@ -136,7 +137,7 @@ function TemplateUpdate() {
                   categoryId={setCategoryId}
                   description={setDescription}
                 />
-                <Form.Group className="mx-5 mb-3" controlId="productPhoto">
+                <Form.Group className="mb-3" controlId="productPhoto">
                   <Form.Label>Foto Produk</Form.Label>
                   {image && image.map(({ images, index }) => {
                     return (
@@ -151,14 +152,14 @@ function TemplateUpdate() {
                     multiple
                   />
                   {message && (
-                  <div className="alert alert-danger" role="alert">
-                    You can upload maximum 4 images!
-                  </div>
+                    <div className="alert alert-danger" role="alert">
+                      You can upload maximum 4 images!
+                    </div>
                   )}
                 </Form.Group>
               </Col>
             </Row>
-            <Row className="mx-5 mb-5">
+            <Row className={`${IsMobile ? 'mb-1' : 'mx-5 mb-5'}`}>
               <Col xs={6}>
                 <Link to="/seller/product/:id">
                   <Button variant="primary" className="preview-button" type="submit">
