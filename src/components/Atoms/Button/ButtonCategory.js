@@ -77,7 +77,7 @@ function Category() {
   };
 
   return (
-    <div align="left">
+    <div className="btn-category-scroll" align="left">
       <Button variant="secondary" className={btnAll} onClick={handleChangeAll}>
         <Search className="me-2" />
         Semua

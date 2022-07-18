@@ -2,10 +2,11 @@
     width: 100%;
     list-style: outside none none;
     /* position: absolute; */
-    display: flex;
 }
 
-.pagination-position{
+.pagination-position {
     justify-content: center;
-    padding: 0px 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

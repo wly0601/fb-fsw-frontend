@@ -15,7 +15,7 @@ function PaginatedItems({ currentPage, meta }) {
     productLoading,
     productResult,
     productError,
-  // eslint-disable-next-line arrow-body-style
+    // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getProductReducer);
 
   const handleChangePage = (e) => {
@@ -35,14 +35,15 @@ function PaginatedItems({ currentPage, meta }) {
   }
   console.log(totalElements);
   return (
-    <div className="pagination-position">
+    <div>
       <Paginator
+        className="d-flex justify-content-center"
         pageSize={18}
         totalElements={totalElements}
-        className="paginate"
         onPageChangeCallback={(e) => { console.log(e); handleChangePage(e); }}
         pageBoxStyle={{
           marginLeft: '25px',
+          textAlign: 'center',
         }}
         activePageBoxStyle={{
           fontWeight: 'bolder',
