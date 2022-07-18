@@ -17,7 +17,7 @@ function CardNotification(props) {
           <Col xs={4}>
             <Card.Img
               src={image}
-              className="mt-4 mx-3 card-img-top"
+              className="mt-3 mx-3 card-img-top"
               alt={imageAlt}
               style={{ width: '100%', height: '100px' }}
             />
@@ -27,7 +27,7 @@ function CardNotification(props) {
               <Card.Title style={{ fontSize: '10px', color: 'grey' }}>{title}</Card.Title>
               <Card.Title style={{ fontSize: '12px' }}>{name}</Card.Title>
               <Card.Text style={{ fontSize: '12px' }}>{price}</Card.Text>
-              <Card.Text style={{ fontSize: '12px' }}>{offering}</Card.Text>
+              <Card.Text style={{ fontSize: '12px', marginTop: '-16px' }}>{offering}</Card.Text>
             </Card.Body>
           </Col>
         </Row>

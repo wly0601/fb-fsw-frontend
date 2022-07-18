@@ -27,7 +27,7 @@
   .btn-back-home {
     display: none;
   }
-
+  
   .btn-product-status {
     display: none;
   }
@@ -35,6 +35,11 @@
 
 @media only screen and (max-width: 600px) {
   .btn-product-status {
+    overflow-x: scroll;
+    white-space: nowrap;
+  }
+  
+  .btn-category-scroll {
     overflow-x: scroll;
     white-space: nowrap;
   }

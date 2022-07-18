@@ -18,7 +18,7 @@ function UserNotification({ notif }) {
       <Row>
         {/* <CardSeller /> */}
       </Row>
-      <Row md={3} className="g-2">
+      <Row md={3} className="">
         {notif && notif.map((result) => {
           let result2;
           if (result.msg === 'Berhasil Diterbitkan') {

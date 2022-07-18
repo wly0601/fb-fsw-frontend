@@ -4,7 +4,7 @@ import TemplateLogin from '../components/Templates/Login/TemplateLogin';
 function Login() {
   useEffect(() => {
     document.title = 'Masuk';
-    document.body.style.overflow = 'hidden';
+    // document.body.style.overflow = 'hidden';
   }, []);
 
   return (
