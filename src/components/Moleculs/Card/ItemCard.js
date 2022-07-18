@@ -17,7 +17,7 @@ function ItemCard(props) {
         <Card.Text className="item-card-type">{type}</Card.Text>
         <Row>
           <Col xs={9}>
-            <Card.Text style={{ fontWeight: '400' }}>{price}</Card.Text>
+            <Card.Text style={{ fontSize: '14px', fontWeight: 'bold' }}>{price}</Card.Text>
           </Col>
           <Col xs={3}>
             <BsBookmark />

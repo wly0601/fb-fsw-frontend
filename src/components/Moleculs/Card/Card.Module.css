@@ -120,6 +120,7 @@
 
 .seller-picture {
   width: 35%;
+  border-radius: 10px;
 }
 
 .seller-btn {
@@ -197,11 +198,6 @@
   border-color: #7126B5;
   color: black;
   border-radius: 16px;
-}
-
-.seller-picture {
-  width: 100%;
-  border-radius: 10px;
 }
 
 @media (max-width:600px) {
