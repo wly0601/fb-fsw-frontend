@@ -12,11 +12,11 @@ import ButtonCategory from '../../Atoms/Button/ButtonCategory';
 import ItemCard from '../../Moleculs/Card/ItemCard';
 import BtnAddProduct from '../../Atoms/Button/BtnAddProduct';
 import IMAGES from '../../../data/data';
+import IsMobile from '../../../styles/IsMobile';
 import './Home.Module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Home({ productAll }) {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
   // const [user, setUser] = useState('');
   const [userData, setUserData] = useState('');
   const priceFormat = (data) => {
@@ -37,15 +37,6 @@ function Home({ productAll }) {
 
     return `Rp ${renderPrice}`;
   };
-
-  useEffect(() => {
-    window.addEventListener('resize', () => {
-      const mobile = window.innerWidth < 600;
-      if (mobile !== isMobile) {
-        setIsMobile(mobile);
-      }
-    }, false);
-  }, [isMobile]);
   const token = localStorage.getItem('token');
 
   const getUsers = async () => {
@@ -82,15 +73,15 @@ function Home({ productAll }) {
             <Carousel images={IMAGES} />
           </div>
         </div>
-        <div className={`${isMobile ? 'row mt-2' : 'row mt-5 mx-5'}`}>
+        <div className={`${IsMobile ? 'row mt-2' : 'row mt-5 mx-5'}`}>
           <div className="col-12">
             <TitleList title="Telusuri Kategori" />
           </div>
         </div>
-        <div className={`${isMobile ? 'row mt-1' : 'row mt-1 mx-5'}`}>
+        <div className={`${IsMobile ? 'row mt-1' : 'row mt-1 mx-5'}`}>
           <ButtonCategory />
         </div>
-        <div className={`${isMobile ? 'row mt-3' : 'row mt-3 mx-5'}`}>
+        <div className={`${IsMobile ? 'row mt-3' : 'row mt-3 mx-5'}`}>
           {(productAll && productAll).map((result) => {
             let user = 'buyer';
             let preview = '';
