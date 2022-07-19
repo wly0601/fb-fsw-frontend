@@ -11,6 +11,7 @@ export const getListNotifications = () => {
       // GET API USER
       const getUserById = await getUser();
       const getNotifications = await getNotif(getUserById.data.id);
+      console.log(getNotifications.data.data);
       await dispatch({
         type: GET_NOTIFICATION,
         payload: {

@@ -11,9 +11,7 @@ function Homepage() {
   const [product, setProduct] = useState([]);
   const [notif, setNotif] = useState([]);
   const {
-    notifLoading,
     notifResult,
-    notifError,
   // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getListNotifications);
   const {
@@ -25,23 +23,15 @@ function Homepage() {
 
   useEffect(() => {
     dispatch(getListProducts());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (productResult) {
-      setProduct(productResult);
-    }
-  }, [productResult]);
-
-  useEffect(() => {
     dispatch(getListNotifications());
   }, [dispatch]);
 
   useEffect(() => {
-    if (notifResult) {
+    if (productResult && notifResult) {
+      setProduct(productResult);
       setNotif(notifResult);
     }
-  }, [notifResult]);
+  }, [productResult, notifResult]);
 
   return (
     <>

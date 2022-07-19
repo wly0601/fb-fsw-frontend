@@ -7,15 +7,12 @@ function ProductInterest() {
   const dispatch = useDispatch();
   const [notif, setNotif] = useState([]);
   const {
-    notifLoading,
     notifResult,
-    notifError,
   // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getListNotifications);
   useEffect(() => {
     dispatch(getListNotifications());
   }, [dispatch]);
-
   useEffect(() => {
     if (notifResult) {
       setNotif(notifResult);

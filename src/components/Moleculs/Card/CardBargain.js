@@ -8,7 +8,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import VerticalModals from '../Modal/Modal';
 import './Card.Module.css';
 
-function CardBargain({ productById, categoryName }) {
+function CardBargain({ oneProduct }) {
+  console.log(oneProduct.name);
   const priceFormat = (data) => {
     if (typeof data === 'undefined') {
       return '';
@@ -36,12 +37,15 @@ function CardBargain({ productById, categoryName }) {
     <Container>
       <Card className="card-bargain">
         <Card.Body>
-          <h5 style={{ fontWeight: 'bold' }}>{productById.name}</h5>
-          <p style={{ color: 'grey' }}>{categoryName.name}</p>
-          <p>{priceFormat(productById.price)}</p>
+          <h5 style={{ fontWeight: 'bold' }}>{oneProduct.name}</h5>
+          {oneProduct.category && (
+            <p style={{ color: 'grey' }}>{oneProduct.category.name}</p>
+          )}
+          {/* <p style={{ color: 'grey' }}>{categoryName.name}</p> */}
+          <p>{priceFormat(oneProduct.price)}</p>
           <Row>
             <VerticalModals
-              productById={productById}
+              oneProduct={oneProduct}
               show={modalShow}
               onHide={() => { return setModalShow(false); }}
             />

@@ -90,7 +90,6 @@ function Home({ productAll }) {
               user = 'seller';
               preview = '/preview';
             }
-            console.log(userData);
             return (
               <Col key={result.id} md={2}>
                 <Link to={`${user}/product/${result.id}${preview}`} style={{ textDecoration: 'none', color: 'black' }}>

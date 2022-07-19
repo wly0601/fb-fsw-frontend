@@ -18,7 +18,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Modal.Module.css';
 
 function VerticalModals(props) {
-  console.log(props.productById);
   const [inputBargain, setInputBargain] = useState('');
   const dispatch = useDispatch();
   const {
@@ -81,8 +80,8 @@ function VerticalModals(props) {
               })} */}
             </Col>
             <Col xs={8}>
-              <p style={{ fontWeight: 'bold' }}>{props.productById.name}</p>
-              <p>{priceFormat(props.productById.price)}</p>
+              <p style={{ fontWeight: 'bold' }}>{props.oneProduct.name}</p>
+              <p>{priceFormat(props.oneProduct.price)}</p>
             </Col>
           </Row>
         </Container>
@@ -100,10 +99,8 @@ function VerticalModals(props) {
   );
 }
 
-function Modals({ productById }) {
+function Modals({ oneProduct }) {
   const [modalShow, setModalShow] = React.useState(false);
-  console.log({ productById });
-  console.log(productById.images);
 
   return (
     <>
@@ -111,7 +108,7 @@ function Modals({ productById }) {
         Saya Tertarik dan Ingin Nego
       </Button>
       <VerticalModals
-        productById={productById}
+        oneProduct={oneProduct}
         show={modalShow}
         onHide={() => { return setModalShow(false); }}
       />
