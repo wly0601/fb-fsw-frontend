@@ -18,7 +18,6 @@ function TemplateRegister() {
       }
     }, false);
   }, [isMobile]);
-
   return (
     <div className="form-list">
       <Container fluid className="p-0">

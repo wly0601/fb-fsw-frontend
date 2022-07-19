@@ -69,6 +69,7 @@ p,
 .link {
     border-color: #151515;
     z-index: 1;
+    color: black;
 }
 
 .link-list {

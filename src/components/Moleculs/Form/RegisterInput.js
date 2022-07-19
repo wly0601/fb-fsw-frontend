@@ -140,7 +140,7 @@ function RegisterInput(props) {
             <div className="form-group">
               <button className="btn btn-primary btn-block btn-register mt-4" type="submit" disabled={loading}>
                 {loading && (
-                <span className="spinner-border spinner-border-sm me-5" />
+                <span className="spinner-border spinner-border-sm me-2" />
                 )}
                 <span>Daftar</span>
               </button>

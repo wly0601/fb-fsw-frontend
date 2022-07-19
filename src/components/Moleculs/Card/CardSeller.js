@@ -12,7 +12,7 @@ function CardSeller({ oneProductSeller }) {
   console.log(oneProductSeller.seller);
   return (
     <Container>
-      <Card className="mt-4 mb-5 seller-card">
+      <Card className="mt-4 mb-5 seller-card" style={{ borderRadius: '16px' }}>
         <Card.Body>
           <Row>
             { oneProductSeller.seller && (

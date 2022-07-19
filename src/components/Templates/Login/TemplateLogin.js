@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import {
   Container, Form,
 } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import ImageHome from '../../Atoms/Image/ImageHome';
 import LoginInput from '../../Moleculs/Form/LoginInput';
 import BtnBackToHome from '../../Atoms/Button/BtnBackToHome';
@@ -20,7 +18,6 @@ function TemplateLogin() {
       }
     }, false);
   }, [isMobile]);
-
   return (
     <div className="form-list">
       <Container fluid className="p-0">

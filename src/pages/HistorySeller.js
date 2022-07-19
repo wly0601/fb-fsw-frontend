@@ -1,17 +1,57 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
 import { getListNotifications } from '../redux/actions/getNotif';
+import { getSoldProductByID } from '../redux/actions/soldProduct';
 import TemplateHistorySeller from '../components/Templates/History/TemplateHistorySeller';
+import getUser from '../redux/services/getUser';
 
 function HistorySeller() {
+  const token = localStorage.getItem('token');
   const dispatch = useDispatch();
   const [notif, setNotif] = useState([]);
+  const [sellerName, setSellerName] = useState('');
+  const [sellerPhoto, setSellerPhoto] = useState('');
+  const [sellerCity, setSellerCity] = useState('');
+  const [sellerID, setSellerID] = useState(null);
+  const [soldProductSeller, setSoldProductSeller] = useState([]);
+
   const {
     notifResult,
   // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getListNotifications);
+
+  const {
+    soldProductResult,
+  // eslint-disable-next-line arrow-body-style
+  } = useSelector((state) => state.getSoldProductReducer);
+
+  const fetchData = useCallback(async () => {
+    await axios.get(
+      'https://second-hand-be.herokuapp.com/api/who-am-i',
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    )
+      .then(async (res) => {
+        setSellerName(res.data.name);
+        setSellerCity(res.data.address);
+        setSellerPhoto(res.data.photo);
+        setSellerID(res.data.id);
+        console.log(sellerID, res.data.id);
+      });
+  });
   useEffect(() => {
+    fetchData();
+    console.log('2');
+  }, []);
+
+  useEffect(() => {
+    console.log('1');
     dispatch(getListNotifications());
+    dispatch(getSoldProductByID());
   }, [dispatch]);
   useEffect(() => {
     if (notifResult) {
@@ -21,7 +61,13 @@ function HistorySeller() {
 
   return (
     <div>
-      <TemplateHistorySeller notif={notif} />
+      <TemplateHistorySeller
+        notif={notif}
+        sellerName={sellerName}
+        sellerCity={sellerCity}
+        sellerPhoto={sellerPhoto}
+        soldProductSeller={soldProductSeller}
+      />
     </div>
   );
 }

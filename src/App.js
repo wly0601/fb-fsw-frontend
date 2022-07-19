@@ -21,6 +21,7 @@ import OfferingInfo from './pages/OfferingInfo';
 import OfferingAccept from './pages/OfferingAccept';
 import ProductInterest from './pages/ProductInterest';
 import Notification from './pages/Notification';
+import ListBookmark from './pages/ListBookmark';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -42,8 +43,9 @@ function App() {
           <Route path="/list/notifications" element={<Notification />} />
           <Route path="/history/seller" element={<HistorySeller />} />
           <Route path="/history/buyer" element={<HistoryBuyer />} />
-          <Route path="/offering/info" element={<OfferingInfo />} />
-          <Route path="/offering/accept" element={<OfferingAccept />} />
+          <Route path="/offering/:buyerId/info" element={<OfferingInfo />} />
+          {/* <Route path="/offering/accept" element={<OfferingAccept />} /> */}
+          <Route path="/list/bookmark" element={<ListBookmark />} />
         </Routes>
       </BrowserRouter>
     </Provider>

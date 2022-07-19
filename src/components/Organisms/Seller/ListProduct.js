@@ -7,40 +7,34 @@ import {
 } from 'react-bootstrap';
 import { FaPlus } from 'react-icons/fa';
 import Title from '../../Atoms/Title/Title';
+import BtnProductStatus from '../../Atoms/Button/BtnProductStatus';
 import CardSellerBtn from '../../Moleculs/Card/CardSellerBtn';
 import Sidebar from '../../Moleculs/Sidebar/SidebarProduct';
 import ItemCard from '../../Moleculs/Card/ItemCard';
+import PaginatedSeller from '../../Moleculs/Pagination/PaginationSeller';
+import priceFormat from '../../../utils/priceFormat';
 import './Product.Module.css';
 
-function ListProduct({ dataProducts }) {
-  const priceFormat = (data) => {
-    const priceStr = data.toString();
-    let i = priceStr.length;
-    let renderPrice = '';
-    let counter = 0;
-
-    while (i > 0) {
-      renderPrice = priceStr[i - 1] + renderPrice;
-      i -= 1;
-      counter += 1;
-      if (counter === 3 && i !== 0) {
-        renderPrice = `.${renderPrice}`;
-        counter = 0;
-      }
-    }
-
-    return `Rp ${renderPrice}`;
-  };
+function ListProduct({
+  dataProducts, sellerName, sellerCity, sellerPhoto, currentPage, meta,
+}) {
   return (
     <Container className="mt-5">
       <Row>
         <Title title="Daftar Jual Saya" />
       </Row>
       <Row>
-        <CardSellerBtn />
+        <CardSellerBtn
+          sellerName={sellerName}
+          sellerCity={sellerCity}
+          sellerPhoto={sellerPhoto}
+        />
       </Row>
       <Row>
-        <Col>
+        <BtnProductStatus />
+      </Row>
+      <Row>
+        <Col className="card-sidebar">
           <Sidebar />
         </Col>
         <Col>
@@ -55,11 +49,16 @@ function ListProduct({ dataProducts }) {
             </Link>
           </div>
         </Col>
+        {dataProducts.length <= 0 && (
+        <Col>
+          <p> </p>
+        </Col>
+        )}
         {dataProducts && dataProducts.map(({
           id, name, description, price, images,
         }) => {
           return (
-            <Col key={id} md={3}>
+            <Col key={id} md={3} xs={6}>
               <Link to={`../seller/product/${id}`} style={{ textDecoration: 'none', color: 'black' }}>
                 <ItemCard
                   title={name}
@@ -73,6 +72,7 @@ function ListProduct({ dataProducts }) {
           );
         })}
       </Row>
+      <PaginatedSeller currentPage={currentPage} meta={meta} />
     </Container>
   );
 }

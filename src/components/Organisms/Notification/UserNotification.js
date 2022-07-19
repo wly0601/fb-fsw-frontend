@@ -1,7 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { Container, Row, Col } from 'react-bootstrap';
 import Title from '../../Atoms/Title/Title';
 import CardSeller from '../../Moleculs/Card/CardSeller';
@@ -18,32 +16,37 @@ function UserNotification({ notif }) {
       <Row>
         {/* <CardSeller /> */}
       </Row>
-      <Row md={3} className="g-2">
+      <Row md={3} className="">
         {notif && notif.map((result) => {
+          console.log(result);
           let result2;
           if (result.msg === 'Berhasil Diterbitkan') {
             result2 = (
               <Col xs={12}>
-                <CardNotification
-                  title={result.msg}
-                  name={result.name}
-                  price={result.price}
-                  image={result.image}
-                  imageAlt="Gambar jam tangan"
-                />
+                <Link to={`/seller/product/${result.productId}/preview`} style={{ textDecoration: 'none', color: 'black' }}>
+                  <CardNotification
+                    title={result.msg}
+                    time={result.time}
+                    name={result.name}
+                    price={result.price}
+                    image={result.image}
+                  />
+                </Link>
               </Col>
             );
           } else if (result.msg === 'Penawaran Produk') {
             result2 = (
               <Col xs={12}>
-                <CardNotification
-                  title={result.msg}
-                  name={result.name}
-                  price={result.price}
-                  offering={`Ditawar ${result.bargainPrice}`}
-                  image={result.image}
-                  imageAlt="Gambar jam tangan"
-                />
+                <Link to={`/offering/${result.buyerId}/info`} style={{ textDecoration: 'none', color: 'black' }}>
+                  <CardNotification
+                    title={result.msg}
+                    time={result.time}
+                    name={result.name}
+                    price={result.price}
+                    offering={`Ditawar ${result.bargainPrice}`}
+                    image={result.image}
+                  />
+                </Link>
               </Col>
             );
           }

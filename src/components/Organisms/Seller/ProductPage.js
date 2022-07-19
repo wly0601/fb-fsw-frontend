@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Container,
   Row,
@@ -8,11 +8,12 @@ import CarouselProduct from '../../Moleculs/Carousel/CarouselProduct';
 import CardProduct from '../../Moleculs/Card/CardProduct';
 import CardSeller from '../../Moleculs/Card/CardSeller';
 import CardDescription from '../../Moleculs/Card/CardDescription';
+import IsMobile from '../../../styles/IsMobile';
 // import './Input.Module.css';
 
 function ProductPage({ oneProduct }) {
   return (
-    <Container className="mt-5">
+    <Container className={`${IsMobile ? 'mt-2' : 'mt-5'}`}>
       <Row>
         <Col xs={6}>
           <CarouselProduct oneProduct={oneProduct} />

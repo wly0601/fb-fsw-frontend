@@ -3,39 +3,19 @@ import {
   Container,
   Row,
   Card,
+  Col,
 } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { BsBookmark } from 'react-icons/bs';
 import VerticalModals from '../Modal/Modal';
+import priceFormat from '../../../utils/priceFormat';
 import './Card.Module.css';
 
 function CardBargain({ oneProduct }) {
   console.log(oneProduct.name);
-  const priceFormat = (data) => {
-    if (typeof data === 'undefined') {
-      return '';
-    }
-    const priceStr = data.toString();
-    let i = priceStr.length;
-    let renderPrice = '';
-    let counter = 0;
-
-    while (i > 0) {
-      renderPrice = priceStr[i - 1] + renderPrice;
-      i -= 1;
-      counter += 1;
-      if (counter === 3 && i !== 0) {
-        renderPrice = `.${renderPrice}`;
-        counter = 0;
-      }
-    }
-
-    // eslint-disable-next-line consistent-return
-    return `Rp ${renderPrice}`;
-  };
   const [modalShow, setModalShow] = React.useState(false);
   return (
     <Container>
-      <Card className="card-bargain">
+      <Card className="card-bargain" style={{ borderRadius: '16px' }}>
         <Card.Body>
           <h5 style={{ fontWeight: 'bold' }}>{oneProduct.name}</h5>
           {oneProduct.category && (

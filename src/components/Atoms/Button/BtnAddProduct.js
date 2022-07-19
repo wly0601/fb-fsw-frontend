@@ -7,7 +7,7 @@ import { Plus } from 'react-bootstrap-icons';
 function BtnAddProduct() {
   return (
     // eslint-disable-next-line react/react-in-jsx-scope
-    <div className="fixed-bottom mb-3" align="center">
+    <div className="fixed-bottom mb-3 mt-5" align="center">
       <a href="/seller/sell">
         <Button className="text-center" variant="secondary" style={{ backgroundColor: '#7126B5', height: '100%' }}>
           <Plus />

@@ -23,6 +23,7 @@ function ProductInput({
   name, price, categoryId, description,
 }) {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [successful, setSuccessful] = useState(false);
   const [user, setUser] = useState({});
   const checkBtn = useRef();
 
@@ -47,6 +48,7 @@ function ProductInput({
       if (updateResponse.status) Navigate('/login');
     } catch (err) {
       console.log(err);
+      setSuccessful(false);
     }
   }
 
