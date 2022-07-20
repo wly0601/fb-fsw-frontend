@@ -22,6 +22,7 @@ function Home({
   productAll, currentPage, meta, productResult,
 }) {
   const [userData, setUserData] = useState('');
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
   const token = localStorage.getItem('token');
 
   const getUsers = async () => {
@@ -43,6 +44,15 @@ function Home({
   };
 
   useEffect(() => {
+    window.addEventListener('resize', () => {
+      const mobile = window.innerWidth < 600;
+      if (mobile !== isMobile) {
+        setIsMobile(mobile);
+      }
+    }, false);
+  }, [isMobile]);
+
+  useEffect(() => {
     getUsers();
   }, []);
 
@@ -54,18 +64,18 @@ function Home({
             <Carousel images={IMAGES} />
           </div>
         </div>
-        <div className={`${IsMobile ? 'row mt-2' : 'row mt-5 mx-5'}`}>
+        <div className="row mt-2">
           <div className="col-12">
             <TitleList title="Telusuri Kategori" />
           </div>
         </div>
-        <div className={`${IsMobile ? 'row mt-1' : 'row mt-1 mx-5'}`}>
+        <div className="row mt-2">
           <ButtonCategory />
         </div>
         <div className="row mt-3 mx-5">
           {productAll.length <= 0 && productResult && <p>Maaf Produk Tidak Ditemukan</p>}
         </div>
-        <div className={`${IsMobile ? 'row mt-3' : 'row mt-3 mx-5'}`}>
+        <div className="row mt-2">
           {(productAll && productAll).map((result) => {
             let user = 'buyer';
             let preview = '';
@@ -75,7 +85,7 @@ function Home({
             }
             return (
               <>
-                <Col key={result.id} md={2}>
+                <Col key={result.id} md={2} xs={6}>
                   <Link to={`${user}/product/${result.id}${preview}`} style={{ textDecoration: 'none', color: 'black' }}>
                     <ItemCard
                       title={result.name}
@@ -90,10 +100,10 @@ function Home({
             );
           })}
         </div>
-        <div className="row mb-5 mx-5">
+        <div className={`${isMobile ? 'row mb-5 mx-5' : 'row mb-5'}`}>
           <PaginatedItems currentPage={currentPage} meta={meta} />
         </div>
-        <div className="row mt-5 mb-3 mx-5 button-sell">
+        <div className="row mt-5 mb-3">
           <BtnAddProduct />
         </div>
       </Container>

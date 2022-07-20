@@ -17,24 +17,15 @@ function CardSellerBtn({ sellerName, sellerCity, sellerPhoto }) {
         <Card.Body>
           <Row>
             <Col xs={2}>
-              <img src={sellerPhoto} style={{ width: '30%', borderRadius: '10px' }} alt="" />
+              <img src={sellerPhoto} className="seller-picture" alt="" />
             </Col>
-            <Col xs={8}>
+            <Col md={8} xs={7}>
               <h5 style={{ fontWeight: 'bold' }}>{sellerName}</h5>
               <p>{sellerCity}</p>
             </Col>
             <Col xs={2}>
               <Link to="/profile">
-                <Button
-                  variant="primary"
-                  style={{
-                    backgroundColor: 'white',
-                    borderColor: '7126B5',
-                    color: 'black',
-                    borderRadius: '12px',
-                    marginTop: '10px',
-                  }}
-                >
+                <Button className="seller-btn" variant="primary">
                   Edit
                 </Button>
               </Link>
