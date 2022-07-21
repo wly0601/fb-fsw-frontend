@@ -8,19 +8,24 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Card.Module.css';
 
-function CardSeller() {
+function CardSeller({ oneProductSeller }) {
+  console.log(oneProductSeller.seller);
   return (
     <Container>
-      <Card className="mt-4 mb-5 seller-card">
+      <Card className="mt-4 mb-5 seller-card" style={{ borderRadius: '16px' }}>
         <Card.Body>
           <Row>
-            <Col xs={2}>
-              <img src={`${process.env.PUBLIC_URL}/images/seller_pic.png`} style={{ width: '100%' }} alt="" />
-            </Col>
-            <Col xs={10}>
-              <h5 style={{ fontWeight: 'bold' }}>Safira</h5>
-              <p>Jakarta</p>
-            </Col>
+            { oneProductSeller.seller && (
+              <>
+                <Col xs={2}>
+                  <img src={oneProductSeller.seller.photo} style={{ width: '100%' }} alt="" />
+                </Col>
+                <Col xs={10}>
+                  <h5 style={{ fontWeight: 'bold' }}>{oneProductSeller.seller.name}</h5>
+                  <p>{oneProductSeller.seller.name}</p>
+                </Col>
+              </>
+            )}
           </Row>
         </Card.Body>
       </Card>

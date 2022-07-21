@@ -1,71 +1,131 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import AvatarImageCropper from 'react-avatar-image-cropper';
+/* eslint-disable radix */
+import React, { useState, useEffect } from 'react';
+import { Link, Navigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import {
-  Container,
-  Row,
-  Col,
-  Button,
-  Modal,
+  Container, Row, Col, Button,
 } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateListProfile } from '../../../redux/actions/profile';
 import NavbarProfile from '../../Organisms/Navbar/NavbarProfile';
 import ProfileInput from '../../Moleculs/Form/ProfileInput';
-// import ButtonList from '../../Atoms/Button/ButtonList';
 import './TemplateProfile.Module.css';
 
 function TemplateProfile() {
-  // Modal Pop Up (Error)
-  const [show, setShow] = useState(false);
-  const handleClose = () => { return setShow(false); };
-  const handleShow = () => { return setShow(true); };
+  // Data Input Profile
+  const [inputName, setInputName] = useState('');
+  const [cityId, setCityId] = useState('');
+  const [address, setAddress] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const setImage = (file) => {
-    console.log(file);
+  // Upload Image
+  const [image, setImage] = useState(null);
+  const [uploadedFileURL, setUploadedFileURL] = useState(null);
+  const dispatch = useDispatch();
+
+  const {
+    profileLoading,
+    profileResult,
+    profileError,
+  } = useSelector((state) => { return state.getProfileReducer; });
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const body = {
+      name: inputName,
+      phoneNumber,
+      address,
+      cityId: parseInt(cityId),
+    };
+    await dispatch(updateListProfile(image, body));
+  }
+
+  const handleChangeImage = (e) => {
+    setImage(e.target.files[0]);
   };
 
-  const actions = [
-    <Button variant="info" key={0}>Apply</Button>,
-    <Button variant="dark" key={1}>Cancel</Button>,
-  ];
+  useEffect(() => {
+    if (profileLoading) {
+      setLoading(true);
+    } else if (profileResult) {
+      setLoading(false);
+      window.location.reload();
+      console.log(profileResult);
+    } else if (profileError) {
+      console.log(profileError);
+    }
+    let fileReader = false;
+    let isCancel = false;
+    if (image) {
+      fileReader = new FileReader();
+      fileReader.onload = (e) => {
+        const { result } = e.target;
+        if (result && !isCancel) {
+          setUploadedFileURL(result);
+        }
+      };
+      fileReader.readAsDataURL(image);
+    }
+    return () => {
+      isCancel = true;
+      if (fileReader && fileReader.readyState === 1) {
+        fileReader.abort();
+      }
+    };
+  });
+
+  if (profileResult) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <>
       <NavbarProfile />
       <div>
-        <Container className="profile">
+        <Container fluid className="profile p-0">
           <Row>
             <Col>
               <div style={{ paddingTop: '30px' }}>
-                <Link to="/register" style={{ color: 'black' }}>
+                <Link to="/" style={{ color: 'black' }}>
                   <FontAwesomeIcon icon={faArrowLeft} />
                 </Link>
               </div>
-              <div className="avatar">
-                <AvatarImageCropper apply={setImage} actions={actions} className="avatar-image" />
-              </div>
-              <ProfileInput />
-              <Button className="mt-3 mb-3 mx-5 btn-profile" variant="custom" type="submit" onClick={handleShow} style={{ width: '85%' }}>
-                Simpan
-              </Button>
+              <form onSubmit={handleSubmit}>
+                {image && (
+                  <img src={image} alt="" />
+                )}
+                {uploadedFileURL
+                  ? (
+                    <img src={uploadedFileURL} alt="preview" className="img-preview-wrapper" />
+                  ) : null}
+                <div className="avatar">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleChangeImage}
+                    className="avatar-image"
+                  />
+                </div>
+                <ProfileInput
+                  name={setInputName}
+                  city={setCityId}
+                  phoneNumber={setPhoneNumber}
+                  address={setAddress}
+                />
+                <Button className="mt-3 mb-3 btn-profile" variant="custom" type="submit" style={{ width: '100%' }}>
+                  Simpan
+                  {loading && (
+                  <span className="spinner-border spinner-border-sm" />
+                  )}
+                </Button>
+              </form>
             </Col>
           </Row>
         </Container>
       </div>
-
-      <Modal show={show} onHide={handleClose} animation={false}>
-        <Modal.Body>You must filled all the empty columns!!!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="danger" onClick={handleClose}>
-            <Link to="/profile" style={{ color: 'white', textDecoration: 'none' }}>
-              OK
-            </Link>
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </>
   );
 }
-
 export default TemplateProfile;

@@ -1,24 +1,53 @@
 .button-list {
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
-    border-radius: 16px;
-    width: 50%;
-    height: 50%;
-    text-align: center;
-    align-items: center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+  width: 50%;
+  height: 50%;
+  text-align: center;
+  align-items: center;
 }
 
 .button-category {
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
-    border-radius: 12px;
-    margin-right: 10px;
-    background-color: #E2D4F0;
-    border-color: #E2D4F0;
-    color: black;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  margin-right: 10px;
+  background-color: #E2D4F0;
+  border-color: #7126B5;
+  color: black;
 }
 
 .button-category:hover {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  margin-right: 10px;
+  background-color: #7126B5;
+}
+
+.button-category-click {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
     border-radius: 12px;
     margin-right: 10px;
-    background-color: #7126B5;
+    background-color: #7126B5 !important;
+}
+
+@media only screen and (min-width: 600px) {
+  .btn-back-home {
+    display: none;
+  }
+  
+  .btn-product-status {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .btn-product-status {
+    overflow-x: scroll;
+    white-space: nowrap;
+  }
+  
+  .btn-category-scroll {
+    overflow-x: scroll;
+    white-space: nowrap;
+  }
 }

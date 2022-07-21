@@ -1,93 +1,113 @@
-import { Container, Row, Col } from 'react-bootstrap';
+/* eslint-disable no-plusplus */
+/* eslint-disable react/jsx-no-useless-fragment */
+/* eslint-disable array-callback-return */
+// import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { Container, Col } from 'react-bootstrap';
 import Carousel from '../../Moleculs/Carousel/CarouselHomepage';
+import TitleList from '../../Atoms/Title/Title';
 import ButtonCategory from '../../Atoms/Button/ButtonCategory';
 import ItemCard from '../../Moleculs/Card/ItemCard';
 import BtnAddProduct from '../../Atoms/Button/BtnAddProduct';
-// import ButtonList from '../../Atoms/Button/ButtonList';
 import IMAGES from '../../../data/data';
+import PaginatedItems from '../../Moleculs/Pagination/Pagination';
+import priceFormat from '../../../utils/priceFormat';
+import IsMobile from '../../../styles/IsMobile';
 import './Home.Module.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function Home() {
+function Home({
+  productAll, currentPage, meta, productResult,
+}) {
+  const [userData, setUserData] = useState('');
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
+  const token = localStorage.getItem('token');
+
+  const getUsers = async () => {
+    try {
+      const responseUsers = await axios.get(
+        'https://second-hand-be.herokuapp.com/api/who-am-i',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      const dataUsers = await responseUsers;
+      setUserData(dataUsers);
+      console.log(dataUsers.data.id, 'line 55');
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      const mobile = window.innerWidth < 600;
+      if (mobile !== isMobile) {
+        setIsMobile(mobile);
+      }
+    }, false);
+  }, [isMobile]);
+
+  useEffect(() => {
+    getUsers();
+  }, []);
+
   return (
-    <Container fluid>
-      <div className="row mt-3">
-        <div className="col">
-          <Carousel images={IMAGES} />
+    <>
+      <Container fluid>
+        <div className="row mt-3">
+          <div className="col">
+            <Carousel images={IMAGES} />
+          </div>
         </div>
-      </div>
-      <div className="row mt-5 mx-5">
-        <div className="col-12">
-          <h5 style={{ textAlign: 'left' }}>Telusuri Kategori</h5>
+        <div className="row mt-2">
+          <div className="col-12">
+            <TitleList title="Telusuri Kategori" />
+          </div>
         </div>
-      </div>
-      <div className="row mt-3 mx-5">
-        <ButtonCategory />
-      </div>
-      <div className="row mt-3 mx-5">
-        <div className="col-2">
-          <ItemCard
-            title="Jam Tangan Casio"
-            type="Aksesoris"
-            price="Rp 250.000"
-            image="https://placeimg.com/165/100/any"
-            imageAlt="Gambar jam tangan"
-          />
+        <div className="row mt-2">
+          <ButtonCategory />
         </div>
-        <div className="col-2">
-          <ItemCard
-            title="Jam Tangan Casio"
-            type="Aksesoris"
-            price="Rp 250.000"
-            image="https://placeimg.com/165/100/any"
-            imageAlt="Gambar jam tangan"
-          />
+        <div className="row mt-3 mx-5">
+          {productAll.length <= 0 && productResult && <p>Maaf Produk Tidak Ditemukan</p>}
         </div>
-        <div className="col-2">
-          <ItemCard
-            title="Jam Tangan Casio"
-            type="Aksesoris"
-            price="Rp 250.000"
-            image="https://placeimg.com/165/100/any"
-            imageAlt="Gambar jam tangan"
-          />
+        <div className="row mt-2">
+          {(productAll && productAll).map((result) => {
+            let user = 'buyer';
+            let preview = '';
+            if (!!userData && (userData.data.id.toString() === result.sellerId.toString())) {
+              user = 'seller';
+              preview = '/preview';
+            }
+            return (
+              <>
+                <Col key={result.id} md={2} xs={6}>
+                  <Link to={`${user}/product/${result.id}${preview}`} style={{ textDecoration: 'none', color: 'black' }}>
+                    <ItemCard
+                      title={result.name}
+                      type={result.category.name}
+                      price={priceFormat(result.price)}
+                      image={result.images[0]}
+                      imageAlt="Category of Different Pics"
+                    />
+                  </Link>
+                </Col>
+              </>
+            );
+          })}
         </div>
-        <div className="col-2">
-          <ItemCard
-            title="Jam Tangan Casio"
-            type="Aksesoris"
-            price="Rp 250.000"
-            image="https://placeimg.com/165/100/any"
-            imageAlt="Gambar jam tangan"
-          />
+        <div className={`${isMobile ? 'row mb-5 mx-5' : 'row mb-5'}`}>
+          <PaginatedItems currentPage={currentPage} meta={meta} />
         </div>
-        <div className="col-2">
-          <ItemCard
-            title="Jam Tangan Casio"
-            type="Aksesoris"
-            price="Rp 250.000"
-            image="https://placeimg.com/165/100/any"
-            imageAlt="Gambar jam tangan"
-          />
+        <div className="row mt-5 mb-3">
+          <BtnAddProduct />
         </div>
-        <div className="col-2">
-          <ItemCard
-            title="Jam Tangan Casio"
-            type="Aksesoris"
-            price="Rp 250.000"
-            image="https://placeimg.com/165/100/any"
-            imageAlt="Gambar jam tangan"
-          />
-        </div>
-      </div>
-      <div className="row mt-3 mb-3 mx-5">
-        <BtnAddProduct />
-      </div>
-
-      {/* <Row style={{ marginleft: 0}}>
-          <Col style={{ paddingleft: 0}}><ImageLoginRegis /></Col>
-          <Col><LoginForm /></Col>
-        </Row> */}
-    </Container>
+      </Container>
+    </>
   );
 }
 

@@ -10,18 +10,20 @@ import CardSeller from '../../Moleculs/Card/CardSeller';
 import CardDescription from '../../Moleculs/Card/CardDescription';
 // import './Input.Module.css';
 
-function ProductPage() {
+function ProductPage({
+  oneProduct,
+}) {
   return (
     <Container className="mt-5">
       <Row>
         <Col xs={6}>
-          <CarouselProduct />
+          <CarouselProduct oneProduct={oneProduct} />
         </Col>
         <Col xs={6}>
-          <CardBargain />
-          <CardSeller />
+          <CardBargain oneProduct={oneProduct} />
+          <CardSeller oneProductSeller={oneProduct} />
         </Col>
-        <CardDescription />
+        <CardDescription oneProduct={oneProduct} />
       </Row>
     </Container>
   );

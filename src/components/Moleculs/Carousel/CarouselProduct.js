@@ -1,3 +1,6 @@
+/* eslint-disable react/jsx-curly-newline */
+/* eslint-disable react/prop-types */
+/* eslint-disable array-callback-return */
 /* eslint-disable import/no-unresolved */
 import React from 'react';
 import {
@@ -16,7 +19,7 @@ import {
   Navigation, Pagination, Mousewheel, Keyboard,
 } from 'swiper';
 
-function CarouselProduct() {
+function CarouselProduct({ oneProduct }) {
   return (
     <Container>
       <Swiper
@@ -28,31 +31,20 @@ function CarouselProduct() {
         modules={[Navigation, Pagination, Mousewheel, Keyboard]}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <div className="card-carousel">
-            <img src={`${process.env.PUBLIC_URL}/images/img_watch_one.jpg`} style={{ width: '100%', borderRadius: '16px' }} alt="" />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="card-carousel">
-            <img src={`${process.env.PUBLIC_URL}/images/img_watch_two.jpg`} style={{ width: '100%', borderRadius: '16px' }} alt="" />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="card-carousel">
-            <img src={`${process.env.PUBLIC_URL}/images/img_watch_three.jpg`} style={{ width: '100%', borderRadius: '16px' }} alt="" />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="card-carousel">
-            <img src={`${process.env.PUBLIC_URL}/images/img_watch_four.jpg`} style={{ width: '100%', borderRadius: '16px' }} alt="" />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="card-carousel">
-            <img src={`${process.env.PUBLIC_URL}/images/img_watch_five.jpg`} style={{ width: '100%', borderRadius: '16px' }} alt="" />
-          </div>
-        </SwiperSlide>
+        <div>
+          {oneProduct.images
+              && oneProduct.images.map((result) => {
+                console.log(result);
+                return (
+                  <SwiperSlide>
+                    <div className="card-carousel">
+                      <img src={result} style={{ width: '100%', borderRadius: '16px' }} alt="" />
+                    </div>
+                  </SwiperSlide>
+                );
+              })
+              }
+        </div>
       </Swiper>
     </Container>
   );

@@ -1,19 +1,54 @@
+/* eslint-disable react/jsx-no-bind */
+/* eslint-disable radix */
+/* eslint-disable array-callback-return */
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-  Modal,
-  Button,
-  Row,
-  Col,
-  Form,
-  Container,
+  Modal, Button, Row, Col, Form, Container,
 } from 'react-bootstrap';
+import { useParams, Navigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { createTransaction } from '../../../redux/actions/createTransaction';
 import TitleList from '../../Atoms/Title/Title';
 import InputList from '../../Atoms/Input/Input';
+import priceFormat from '../../../utils/priceFormat';
+import getUser from '../../../redux/services/getUser';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Modal.Module.css';
 
 function VerticalModals(props) {
+  const params = useParams();
+  const [inputBargain, setInputBargain] = useState('');
+  const dispatch = useDispatch();
+  const {
+    productLoading,
+    productResult,
+    productError,
+  } = useSelector((state) => { return state.getTransactionProductReducer; });
+
+  async function handleSubmit(e) {
+    console.log('lewat 34');
+    e.preventDefault();
+    const body = {
+      productId: props.oneProduct.id,
+      inputBargain: parseInt(inputBargain),
+    };
+
+    console.log(body);
+    await dispatch(createTransaction(body));
+  }
+
+  const handleChangeBargain = (e) => {
+    setInputBargain(parseInt(e));
+  };
+
+  useEffect(() => {
+    if (productResult) {
+      window.location.reload();
+    }
+  }, [inputBargain]);
+  console.log(inputBargain);
+
   return (
     <Modal
       {...props}
@@ -31,41 +66,79 @@ function VerticalModals(props) {
         <Container className="product">
           <Row>
             <Col xs={4}>
-              <img src={`${process.env.PUBLIC_URL}/images/first_watch.png`} className="seller" alt="" />
+              {props.oneProduct.images && (
+                <img src={props.oneProduct.images[0]} className="seller" alt="" />
+              )}
             </Col>
             <Col xs={8}>
-              <p style={{ fontWeight: 'bold' }}>Jam Tangan Casio</p>
-              <p>Rp.250.000</p>
+              <p style={{ fontWeight: 'bold' }}>{props.oneProduct.name}</p>
+              <p>{priceFormat(props.oneProduct.price)}</p>
             </Col>
           </Row>
         </Container>
-        <Row>
-          <Form.Group className="mb-3" controlId="form">
-            <Form.Label className="label">Harga Tawar</Form.Label>
-            <InputList type="text" placeholder="Rp 0,00" />
-          </Form.Group>
-        </Row>
-        <Row>
-          <Button onClick={props.onHide} className="modal-button">Kirim</Button>
-        </Row>
+        <Form onSubmit={handleSubmit}>
+          <Row>
+            <Form.Group className="mb-3" controlId="form">
+              <Form.Label className="label">Harga Tawar</Form.Label>
+              <InputList
+                type="text"
+                placeholder="Masukkan harga tawarmu disini"
+                onChange={handleChangeBargain}
+                value={props.oneProduct.price}
+              />
+            </Form.Group>
+          </Row>
+          <Row>
+            <Button className="modal-button" type="submit">Kirim</Button>
+          </Row>
+        </Form>
       </Modal.Body>
     </Modal>
   );
 }
 
-function Modals() {
+function Modals({ oneProduct }) {
   const [modalShow, setModalShow] = React.useState(false);
+  const getToken = localStorage.getItem('token');
+  const [isLoggedIn, setIsLoggedin] = useState(true);
+  const [profile, setProfile] = useState(true);
 
-  return (
+  const getUserData = async () => {
+    const user = await getUser();
+    console.log(user);
+    if (!user.data.cityId) {
+      setProfile(false);
+    }
+  };
+
+  const isLogin = () => {
+    if (!getToken) {
+      setIsLoggedin(false);
+    }
+  };
+
+  useEffect(() => {
+    isLogin();
+    getUserData();
+  }, []);
+
+  return isLoggedIn ? (
     <>
-      <Button variant="primary" className="mt-3 button-product" onClick={() => { return setModalShow(true); }}>
+      <Button
+        variant="primary"
+        className="mt-3 button-product"
+        onClick={() => { return setModalShow(true); }}
+      >
         Saya Tertarik dan Ingin Nego
       </Button>
       <VerticalModals
+        oneProduct={oneProduct}
         show={modalShow}
         onHide={() => { return setModalShow(false); }}
       />
     </>
+  ) : (
+    <Navigate to="/login" replace />
   );
 }
 

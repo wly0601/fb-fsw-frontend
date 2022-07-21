@@ -1,0 +1,12 @@
+.paginate {
+    width: 100%;
+    list-style: outside none none;
+    /* position: absolute; */
+}
+
+.pagination-position {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
