@@ -17,10 +17,10 @@ function CardSeller({ oneProductSeller }) {
           <Row>
             { oneProductSeller.seller && (
               <>
-                <Col xs={2}>
-                  <img src={oneProductSeller.seller.photo} style={{ width: '100%' }} alt="" />
+                <Col md={2} xs={3}>
+                  <img src={oneProductSeller.seller.photo} className="seller-picture" alt="" />
                 </Col>
-                <Col xs={10}>
+                <Col md={10} xs={9}>
                   <h5 style={{ fontWeight: 'bold' }}>{oneProductSeller.seller.name}</h5>
                   <p>{oneProductSeller.seller.name}</p>
                 </Col>

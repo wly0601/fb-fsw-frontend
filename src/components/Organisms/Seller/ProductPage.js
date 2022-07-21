@@ -15,10 +15,10 @@ function ProductPage({ oneProduct }) {
   return (
     <Container className={`${IsMobile ? 'mt-2' : 'mt-5'}`}>
       <Row>
-        <Col xs={6}>
+        <Col md={6}>
           <CarouselProduct oneProduct={oneProduct} />
         </Col>
-        <Col xs={6}>
+        <Col md={6}>
           <CardProduct oneProduct={oneProduct} />
           <CardSeller oneProductSeller={oneProduct} />
         </Col>

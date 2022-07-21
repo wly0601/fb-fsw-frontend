@@ -24,7 +24,6 @@ function CardProduct({ oneProduct }) {
 					<h5 style={{ fontWeight: 'bold' }}>
             {oneProduct.name}
           </h5>
-          <p>{oneProduct.price}</p>
           <p>{priceFormat(oneProduct.price)}</p>
           <Row>
             <Link to="/list/products">
