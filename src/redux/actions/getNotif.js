@@ -1,69 +1,34 @@
-/* eslint-disable no-plusplus */
-/* eslint-disable no-loop-func */
-/* eslint-disable no-await-in-loop */
-/* eslint-disable no-undef */
-import axios from 'axios';
-
-export const getNotification = 'getNotification';
+/* eslint-disable import/prefer-default-export */
+import { GET_NOTIFICATION } from './types';
+import getUser from '../services/getUser';
+import getNotif from '../services/getNotif';
 
 export const getListNotifications = () => {
-  const url = [];
-  return async (dispatch) => {
-    // Loading
-    dispatch({
-      type: getNotification,
-      payload: {
-        loading: true,
-        result: false,
-        error: false,
-      },
-    });
-    // GET API USER
-    const token = localStorage.getItem('token');
-    await axios.get('https://second-hand-be.herokuapp.com/api/who-am-i', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then(async (resultUser) => {
-        console.log(resultUser);
-        await axios.get(`https://second-hand-be.herokuapp.com/api/user/${resultUser.data.id.toString()}/notifications`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-          .then(async (dataNotif) => {
-            console.log(dataNotif.data.data);
-            await dispatch({
-              type: getNotification,
-              payload: {
-                loading: false,
-                result: await dataNotif.data.data,
-                error: false,
-              },
-            });
-          })
-          .catch((err) => {
-            dispatch({
-              type: getNotification,
-              payload: {
-                loading: false,
-                result: false,
-                error: err.message,
-              },
-            });
-          });
-      })
-      .catch((err) => {
-        dispatch({
-          type: getNotification,
-          payload: {
-            loading: false,
-            result: false,
-            error: err.message,
-          },
-        });
+  return async (
+    dispatch,
+  ) => {
+    try {
+      // GET API USER
+      const getUserById = await getUser();
+      const getNotifications = await getNotif(getUserById.data.id);
+      console.log(getNotifications.data.data);
+      await dispatch({
+        type: GET_NOTIFICATION,
+        payload: {
+          loading: false,
+          result: await getNotifications.data.data,
+          error: false,
+        },
       });
-    console.log('line 112');
+    } catch (err) {
+      dispatch({
+        type: GET_NOTIFICATION,
+        payload: {
+          loading: false,
+          result: false,
+          error: err.message,
+        },
+      });
+    }
   };
 };

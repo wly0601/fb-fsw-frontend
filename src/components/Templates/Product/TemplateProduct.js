@@ -36,7 +36,7 @@ function TemplateProduct() {
     productLoading,
     productResult,
     productError,
-  } = useSelector((state) => { return state.getProductReducer; });
+  } = useSelector((state) => { return state.createProductReducer; });
 
   async function handleSubmit(e) {
     e.preventDefault();

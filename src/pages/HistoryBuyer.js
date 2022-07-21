@@ -47,7 +47,6 @@ function HistoryBuyer() {
     dispatch(getListNotifications());
     dispatch(getHistoryBuyer());
   }, [dispatch]);
-
   useEffect(() => {
     if (notifResult) {
       setNotif(notifResult);

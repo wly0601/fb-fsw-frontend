@@ -8,7 +8,7 @@ import {
 } from 'react-bootstrap';
 import { useParams, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTransactionProducts } from '../../../redux/actions/createTransaction';
+import { createTransaction } from '../../../redux/actions/createTransaction';
 import TitleList from '../../Atoms/Title/Title';
 import InputList from '../../Atoms/Input/Input';
 import priceFormat from '../../../utils/priceFormat';
@@ -17,7 +17,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Modal.Module.css';
 
 function VerticalModals(props) {
-  console.log(props.productById.id);
   const params = useParams();
   const [inputBargain, setInputBargain] = useState('');
   const dispatch = useDispatch();
@@ -31,12 +30,12 @@ function VerticalModals(props) {
     console.log('lewat 34');
     e.preventDefault();
     const body = {
-      productId: props.productById.id,
+      productId: props.oneProduct.id,
       inputBargain: parseInt(inputBargain),
     };
 
     console.log(body);
-    await dispatch(getTransactionProducts(body));
+    await dispatch(createTransaction(body));
   }
 
   const handleChangeBargain = (e) => {
@@ -67,13 +66,13 @@ function VerticalModals(props) {
         <Container className="product">
           <Row>
             <Col xs={4}>
-              {props.productById.images && (
-                <img src={props.productById.images[0]} className="seller" alt="" />
+              {props.oneProduct.images && (
+                <img src={props.oneProduct.images[0]} className="seller" alt="" />
               )}
             </Col>
             <Col xs={8}>
-              <p style={{ fontWeight: 'bold' }}>{props.productById.name}</p>
-              <p>{priceFormat(props.productById.price)}</p>
+              <p style={{ fontWeight: 'bold' }}>{props.oneProduct.name}</p>
+              <p>{priceFormat(props.oneProduct.price)}</p>
             </Col>
           </Row>
         </Container>
@@ -85,7 +84,7 @@ function VerticalModals(props) {
                 type="text"
                 placeholder="Masukkan harga tawarmu disini"
                 onChange={handleChangeBargain}
-                value={props.productById.price}
+                value={props.oneProduct.price}
               />
             </Form.Group>
           </Row>
@@ -98,9 +97,8 @@ function VerticalModals(props) {
   );
 }
 
-function Modals({ productById }) {
+function Modals({ oneProduct }) {
   const [modalShow, setModalShow] = React.useState(false);
-  console.log({ productById });
   const getToken = localStorage.getItem('token');
   const [isLoggedIn, setIsLoggedin] = useState(true);
   const [profile, setProfile] = useState(true);
@@ -134,7 +132,7 @@ function Modals({ productById }) {
         Saya Tertarik dan Ingin Nego
       </Button>
       <VerticalModals
-        productById={productById}
+        oneProduct={oneProduct}
         show={modalShow}
         onHide={() => { return setModalShow(false); }}
       />

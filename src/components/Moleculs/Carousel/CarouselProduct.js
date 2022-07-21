@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-curly-newline */
 /* eslint-disable react/prop-types */
 /* eslint-disable array-callback-return */
 /* eslint-disable import/no-unresolved */
@@ -18,18 +19,7 @@ import {
   Navigation, Pagination, Mousewheel, Keyboard,
 } from 'swiper';
 
-function CarouselProduct({ productImage }) {
-  const carouselImage = (productImage || []).map((images) => {
-    return (
-      <SwiperSlide style={{ width: '100%' }}>
-        <div className="card-carousel">
-          <img src={images} style={{ width: '100%', borderRadius: '16px' }} className="image-fluid" alt="" />
-        </div>
-      </SwiperSlide>
-      // console.log(images)
-    );
-  });
-
+function CarouselProduct({ oneProduct }) {
   return (
     <Container>
       <Swiper
@@ -42,7 +32,18 @@ function CarouselProduct({ productImage }) {
         className="mySwiper"
       >
         <div>
-          {carouselImage}
+          {oneProduct.images
+              && oneProduct.images.map((result) => {
+                console.log(result);
+                return (
+                  <SwiperSlide>
+                    <div className="card-carousel">
+                      <img src={result} style={{ width: '100%', borderRadius: '16px' }} alt="" />
+                    </div>
+                  </SwiperSlide>
+                );
+              })
+              }
         </div>
       </Swiper>
     </Container>

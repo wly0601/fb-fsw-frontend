@@ -3,18 +3,14 @@ import NavbarLogin from '../../Organisms/Navbar/NavbarLogin';
 import ProductPage from '../../Organisms/Seller/ProductPage';
 
 function TemplateSellerProduct({
-  productById, categoryName, productImage, seller, city, notif,
+  oneProduct, notif,
 }) {
   return (
     <>
       <NavbarLogin notif={notif} />
       <Container fluid>
         <ProductPage
-          productById={productById}
-          categoryName={categoryName}
-          productImage={productImage}
-          city={city}
-          seller={seller}
+          oneProduct={oneProduct}
         />
       </Container>
     </>

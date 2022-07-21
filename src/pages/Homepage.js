@@ -14,9 +14,7 @@ function Homepage() {
   const [meta, setMeta] = useState({});
 
   const {
-    notifLoading,
     notifResult,
-    notifError,
   // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getListNotifications);
 
@@ -35,21 +33,16 @@ function Homepage() {
   } = useSelector((state) => state.getProductMetaReducer);
 
   useEffect(() => {
-    dispatch(getListProducts(1));
+    dispatch(getListProducts());
     dispatch(getListNotifications());
   }, [dispatch]);
 
   useEffect(() => {
-    if (productResult) {
+    if (productResult && notifResult) {
       setProduct(productResult);
-    }
-  }, [productResult]);
-
-  useEffect(() => {
-    if (notifResult) {
       setNotif(notifResult);
     }
-  }, [notifResult]);
+  }, [productResult, notifResult]);
 
   useEffect(() => {
     if (productMetaResult) {

@@ -7,6 +7,7 @@ import { updateProductReducer } from './updateProduct';
 import { getSellerProductReducer } from './sellerProduct';
 import { getTransactionProductReducer } from './createTransaction';
 import { getListNotifications } from './getNotif';
+import { getProductByIdReducer } from './getProductById';
 import { getProductInterestReducer } from './productInterest';
 import { getProductMetaReducer } from './productMeta';
 import { getTransactionByUserIdReducer } from './getTransactionByUserId';
@@ -24,6 +25,7 @@ export default combineReducers({
   getSellerProductReducer,
   getTransactionProductReducer,
   getListNotifications,
+  getProductByIdReducer,
   getProductInterestReducer,
   getProductMetaReducer,
   getTransactionByUserIdReducer,

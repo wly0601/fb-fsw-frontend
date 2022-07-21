@@ -16,32 +16,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import priceFormat from '../../../utils/priceFormat';
 import './Card.Module.css';
 
-function CardProduct(props) {
-  const params = useParams();
-
-  const [productById, setProductById] = useState([]);
-
-  const fetchData = useCallback(async () => {
-    const productId = `https://second-hand-be.herokuapp.com/api/product/${params.id}`;
-
-    const response = await axios.get(productId);
-    console.log(response.data.category);
-    setProductById(response.data);
-  });
-
-  useEffect(() => {
-    fetchData();
-    document.title = 'Produk Pembeli';
-  }, []);
-
+function CardProduct({ oneProduct }) {
   return (
     <Container>
       <Card className="card-product" style={{ borderRadius: '16px' }}>
         <Card.Body>
 					<h5 style={{ fontWeight: 'bold' }}>
-            {productById.name}
+            {oneProduct.name}
           </h5>
-          <p>{priceFormat(productById.price)}</p>
+          <p>{oneProduct.price}</p>
+          <p>{priceFormat(oneProduct.price)}</p>
           <Row>
             <Link to="/list/products">
               <Button variant="primary" className="button-seller" style={{ borderRadius: '16px', backgroundColor: '#7126B5' }}>Terbitkan</Button>

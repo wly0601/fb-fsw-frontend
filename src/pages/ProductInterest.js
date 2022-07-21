@@ -14,9 +14,7 @@ function ProductInterest() {
   const [sellerPhoto, setSellerPhoto] = useState('');
   const [sellerCity, setSellerCity] = useState('');
   const {
-    notifLoading,
     notifResult,
-    notifError,
   // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getListNotifications);
 
@@ -50,7 +48,6 @@ function ProductInterest() {
   useEffect(() => {
     dispatch(getListNotifications());
   }, [dispatch]);
-
   useEffect(() => {
     console.log(notifResult);
     if (notifResult) {

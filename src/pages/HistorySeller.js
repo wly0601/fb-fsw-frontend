@@ -53,14 +53,6 @@ function HistorySeller() {
     dispatch(getListNotifications());
     dispatch(getSoldProductByID());
   }, [dispatch]);
-
-  console.log(soldProductResult);
-  useEffect(() => {
-    if (soldProductResult) {
-      setSoldProductSeller(soldProductResult);
-    }
-  }, [soldProductResult]);
-
   useEffect(() => {
     if (notifResult) {
       setNotif(notifResult);

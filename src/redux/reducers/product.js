@@ -1,5 +1,6 @@
 /* eslint-disable default-param-last */
 /* eslint-disable import/prefer-default-export */
+import { SET_PRODUCTS } from '../actions/types';
 
 const initialStateProduct = {
   productLoading: false,
@@ -9,7 +10,7 @@ const initialStateProduct = {
 
 export const getProductReducer = (state = initialStateProduct, action) => {
   switch (action.type) {
-    case 'setProducts':
+    case 'SET_PRODUCTS':
       return {
         ...state,
         productLoading: action.payload.loading,

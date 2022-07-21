@@ -11,20 +11,18 @@ import CardDescription from '../../Moleculs/Card/CardDescription';
 import IsMobile from '../../../styles/IsMobile';
 // import './Input.Module.css';
 
-function ProductPage({
-  productById, categoryName, productImage, seller, city,
-}) {
+function ProductPage({ oneProduct }) {
   return (
     <Container className={`${IsMobile ? 'mt-2' : 'mt-5'}`}>
       <Row>
-        <Col md={6}>
-          <CarouselProduct productImage={productImage} />
+        <Col xs={6}>
+          <CarouselProduct oneProduct={oneProduct} />
         </Col>
-        <Col md={6}>
-          <CardProduct productById={productById} categoryName={categoryName} />
-          <CardSeller seller={seller} city={city} />
+        <Col xs={6}>
+          <CardProduct oneProduct={oneProduct} />
+          <CardSeller oneProductSeller={oneProduct} />
         </Col>
-        <CardDescription productById={productById} />
+        <CardDescription oneProduct={oneProduct} />
       </Row>
     </Container>
   );

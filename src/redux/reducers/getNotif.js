@@ -1,6 +1,6 @@
 /* eslint-disable default-param-last */
 /* eslint-disable import/prefer-default-export */
-import { getNotification } from '../actions/getNotif';
+import { GET_NOTIFICATION } from '../actions/types';
 
 const initialState = {
   notifLoading: false,
@@ -10,7 +10,7 @@ const initialState = {
 
 export const getListNotifications = (state = initialState, action) => {
   switch (action.type) {
-    case 'getNotification':
+    case 'GET_NOTIFICATION':
       console.log(action.payload);
       return {
         ...state,

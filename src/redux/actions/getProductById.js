@@ -1,26 +1,26 @@
 /* eslint-disable import/prefer-default-export */
-import { SET_PRODUCTS } from './types';
-import getAllProduct from '../services/getProduct';
+import { GET_PRODUCTS_BY_ID } from './types';
+import getProductById from '../services/getProductById';
 
-export const getListProducts = () => {
+export const getOnlyOneProduct = (id) => {
   return async (
     dispatch,
   ) => {
     try {
       // GET API USER
-      const getProducts = await getAllProduct();
-      console.log(getProducts.data.products);
+      const getOneProduct = await getProductById(id);
+      console.log(getOneProduct.data);
       await dispatch({
-        type: SET_PRODUCTS,
+        type: GET_PRODUCTS_BY_ID,
         payload: {
           loading: false,
-          result: await getProducts.data.products,
+          result: await getOneProduct.data,
           error: false,
         },
       });
     } catch (err) {
       dispatch({
-        type: SET_PRODUCTS,
+        type: GET_PRODUCTS_BY_ID,
         payload: {
           loading: false,
           result: false,

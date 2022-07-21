@@ -18,16 +18,12 @@ function ListProduct() {
   const [meta, setMeta] = useState({});
 
   const {
-    notifLoading,
     notifResult,
-    notifError,
   // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getListNotifications);
 
   const {
-    productLoading,
     productResult,
-    productError,
   // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getSellerProductReducer);
 
@@ -55,28 +51,15 @@ function ListProduct() {
   });
 
   useEffect(() => {
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    dispatch(getSellerListProducts(2));
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (productResult) {
-      setProduct(productResult);
-    }
-  }, [productResult]);
-
-  useEffect(() => {
+    dispatch(getSellerListProducts());
     dispatch(getListNotifications());
   }, [dispatch]);
-
   useEffect(() => {
-    if (notifResult) {
+    if (productResult && notifResult) {
+      setProduct(productResult);
       setNotif(notifResult);
     }
-  }, [notifResult]);
+  }, [productResult, notifResult]);
 
   useEffect(() => {
     if (productMetaResult) {

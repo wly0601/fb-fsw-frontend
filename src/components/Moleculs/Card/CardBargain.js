@@ -10,25 +10,22 @@ import VerticalModals from '../Modal/Modal';
 import priceFormat from '../../../utils/priceFormat';
 import './Card.Module.css';
 
-function CardBargain({ productById, categoryName }) {
+function CardBargain({ oneProduct }) {
+  console.log(oneProduct.name);
   const [modalShow, setModalShow] = React.useState(false);
   return (
     <Container>
       <Card className="card-bargain" style={{ borderRadius: '16px' }}>
         <Card.Body>
-          <Row>
-            <Col xs={10}>
-              <h5 style={{ fontWeight: 'bold' }}>{productById.name}</h5>
-            </Col>
-            <Col xs={2}>
-              <BsBookmark />
-            </Col>
-          </Row>
-          <p style={{ color: 'grey' }}>{categoryName.name}</p>
-          <p>{priceFormat(productById.price)}</p>
+          <h5 style={{ fontWeight: 'bold' }}>{oneProduct.name}</h5>
+          {oneProduct.category && (
+            <p style={{ color: 'grey' }}>{oneProduct.category.name}</p>
+          )}
+          {/* <p style={{ color: 'grey' }}>{categoryName.name}</p> */}
+          <p>{priceFormat(oneProduct.price)}</p>
           <Row>
             <VerticalModals
-              productById={productById}
+              oneProduct={oneProduct}
               show={modalShow}
               onHide={() => { return setModalShow(false); }}
             />
