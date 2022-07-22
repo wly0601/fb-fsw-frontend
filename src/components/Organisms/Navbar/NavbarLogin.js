@@ -18,7 +18,6 @@ import {
   FaSearch, FaBell, FaRegUser,
 } from 'react-icons/fa';
 import { getListProducts } from '../../../redux/actions/product';
-import { getListNotifications } from '../../../redux/actions/getNotif';
 import { logout } from '../../../redux/actions/auth';
 import CardToast from '../../Moleculs/Card/CardToast';
 import './Navigation.Module.css';

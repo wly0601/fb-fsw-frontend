@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -8,6 +9,7 @@ import {
   Col,
   Button,
   Toast,
+  Alert,
 } from 'react-bootstrap';
 import { BsBookmark, BsTropicalStorm } from 'react-icons/bs';
 import { FaBookmark } from 'react-icons/fa';
@@ -20,6 +22,7 @@ function CardBargain({ productById, categoryName, active }) {
   const dispatch = useDispatch();
   const [modalShow, setModalShow] = useState(false);
   const [showBtn, setShowBtn] = useState(null);
+  const [show, setShow] = useState(false);
   const [add, setAdd] = useState(false);
   const [unassign, setUnassign] = useState(false);
 
@@ -34,15 +37,28 @@ function CardBargain({ productById, categoryName, active }) {
   const handleWhiteBookmark = (e) => {
     setShowBtn(true);
     dispatch(createWishlistBuyer(productById, false));
+    setShow(true);
+    setAdd(true);
   };
 
   const handleBlackBookmark = (e) => {
     setShowBtn(false);
     dispatch(createWishlistBuyer(productById, true));
+    setShow(true);
+    setAdd(false);
   };
 
   return (
     <>
+      {show && (add ? (
+        <Alert variant="success" onClose={() => setShow(false)} dismissible>
+          Berhasil Menambahkan Daftar Simpan
+        </Alert>
+      ) : (
+        <Alert variant="warning" onClose={() => setShow(false)} dismissible>
+          Berhasil Menghapus Daftar Simpan
+        </Alert>
+      ))}
       <Container>
         <Card className="card-bargain" style={{ borderRadius: '16px' }}>
           <Card.Body>
@@ -74,18 +90,6 @@ function CardBargain({ productById, categoryName, active }) {
           </Card.Body>
         </Card>
       </Container>
-      <Col md={6} className="mb-2">
-        <BsTropicalStorm>
-          <Row>
-            <Col>
-              <Toast.Body>Berhasil Menambahkan Daftar Simpan</Toast.Body>
-            </Col>
-            <Col>
-              <Link to="/">Lihat</Link>
-            </Col>
-          </Row>
-        </BsTropicalStorm>
-      </Col>
     </>
   );
 }

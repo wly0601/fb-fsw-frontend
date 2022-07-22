@@ -5,16 +5,16 @@ import { isExpired, decodeToken } from 'react-jwt';
 const token = localStorage.getItem('token');
 
 export default function getUser() {
-  const result = {
-    data: null,
-    toLogin: false,
-  };
-  const myDecodedToken = decodeToken(token);
+  const data = decodeToken(token);
   const isMyTokenExpired = isExpired(token);
 
+  let toLogin = false;
   if (!token || isMyTokenExpired) {
-    result.toLogin = true;
+    toLogin = true;
   }
 
-  return result;
+  return {
+    data,
+    toLogin,
+  };
 }
