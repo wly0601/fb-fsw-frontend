@@ -49,6 +49,11 @@ function ListProduct({
             </Link>
           </div>
         </Col>
+        {dataProducts.length <= 0 && (
+        <Col>
+          <p> </p>
+        </Col>
+        )}
         {dataProducts && dataProducts.map(({
           id, name, description, price, images,
         }) => {

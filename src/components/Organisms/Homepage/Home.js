@@ -5,7 +5,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { Container, Col } from 'react-bootstrap';
+import { Container, Col, Button } from 'react-bootstrap';
 import Carousel from '../../Moleculs/Carousel/CarouselHomepage';
 import TitleList from '../../Atoms/Title/Title';
 import ButtonCategory from '../../Atoms/Button/ButtonCategory';
@@ -22,7 +22,6 @@ function Home({
   productAll, currentPage, meta, productResult,
 }) {
   const [userData, setUserData] = useState('');
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
   const token = localStorage.getItem('token');
 
   const getUsers = async () => {
@@ -37,20 +36,10 @@ function Home({
       );
       const dataUsers = await responseUsers;
       setUserData(dataUsers);
-      console.log(dataUsers.data.id, 'line 55');
     } catch (err) {
       console.log(err);
     }
   };
-
-  useEffect(() => {
-    window.addEventListener('resize', () => {
-      const mobile = window.innerWidth < 600;
-      if (mobile !== isMobile) {
-        setIsMobile(mobile);
-      }
-    }, false);
-  }, [isMobile]);
 
   useEffect(() => {
     getUsers();
@@ -64,18 +53,18 @@ function Home({
             <Carousel images={IMAGES} />
           </div>
         </div>
-        <div className="row mt-2">
+        <div className={`${IsMobile ? 'row mt-2' : 'row mt-5 mx-5'}`}>
           <div className="col-12">
             <TitleList title="Telusuri Kategori" />
           </div>
         </div>
-        <div className="row mt-2">
+        <div className={`${IsMobile ? 'row mt-1' : 'row mt-1 mx-5'}`}>
           <ButtonCategory />
         </div>
         <div className="row mt-3 mx-5">
           {productAll.length <= 0 && productResult && <p>Maaf Produk Tidak Ditemukan</p>}
         </div>
-        <div className="row mt-2">
+        <div className={`${IsMobile ? 'row mt-3' : 'row mt-3 mx-5'}`}>
           {(productAll && productAll).map((result) => {
             let user = 'buyer';
             let preview = '';
@@ -93,17 +82,21 @@ function Home({
                       price={priceFormat(result.price)}
                       image={result.images[0]}
                       imageAlt="Category of Different Pics"
+                      active={result.markedByUser}
                     />
                   </Link>
+                  {/* <Button className="btn-bookmark">
+                    <BsBookmark style={{ zIndex: '2', color: 'black', paddingBottom: '2px' }} />
+                  </Button> */}
                 </Col>
               </>
             );
           })}
         </div>
-        <div className={`${isMobile ? 'row mb-5 mx-5' : 'row mb-5'}`}>
+        <div className="row mb-5 mx-5">
           <PaginatedItems currentPage={currentPage} meta={meta} />
         </div>
-        <div className="row mt-5 mb-3">
+        <div className="row mt-5 mb-3 mx-5 button-sell">
           <BtnAddProduct />
         </div>
       </Container>

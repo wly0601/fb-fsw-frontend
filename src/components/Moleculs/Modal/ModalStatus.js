@@ -19,6 +19,7 @@ function ModalStatus(props) {
   } = useSelector((state) => { return state.updateTransactionConfirmationReducer; });
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     console.log(confirmation);
     console.log(props.buyerOrder);
     await dispatch(updateConfirmation(props.buyerOrder.id, confirmation));
@@ -78,7 +79,7 @@ function ModalStatus(props) {
 function Modals(props) {
   console.log(props.buyerOrder);
   const [modalShow, setModalShow] = useState(false);
-
+  console.log('lewat 82');
   return (
     <>
       <Button variant="primary" className="mt-3 mb-3 me-2 button-status" onClick={() => { return setModalShow(true); }}>

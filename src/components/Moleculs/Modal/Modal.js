@@ -27,10 +27,9 @@ function VerticalModals(props) {
   } = useSelector((state) => { return state.getTransactionProductReducer; });
 
   async function handleSubmit(e) {
-    console.log('lewat 34');
     e.preventDefault();
     const body = {
-      productId: props.oneProduct.id,
+      productId: props.productById.id,
       inputBargain: parseInt(inputBargain),
     };
 
@@ -66,13 +65,13 @@ function VerticalModals(props) {
         <Container className="product">
           <Row>
             <Col xs={4}>
-              {props.oneProduct.images && (
-                <img src={props.oneProduct.images[0]} className="seller" alt="" />
+              {props.productById.images && (
+                <img src={props.productById.images[0]} className="seller" alt="" />
               )}
             </Col>
             <Col xs={8}>
-              <p style={{ fontWeight: 'bold' }}>{props.oneProduct.name}</p>
-              <p>{priceFormat(props.oneProduct.price)}</p>
+              <p style={{ fontWeight: 'bold' }}>{props.productById.name}</p>
+              <p>{priceFormat(props.productById.price)}</p>
             </Col>
           </Row>
         </Container>
@@ -84,7 +83,7 @@ function VerticalModals(props) {
                 type="text"
                 placeholder="Masukkan harga tawarmu disini"
                 onChange={handleChangeBargain}
-                value={props.oneProduct.price}
+                value={props.productById.price}
               />
             </Form.Group>
           </Row>
@@ -97,8 +96,9 @@ function VerticalModals(props) {
   );
 }
 
-function Modals({ oneProduct }) {
+function Modals({ productById }) {
   const [modalShow, setModalShow] = React.useState(false);
+  console.log({ productById });
   const getToken = localStorage.getItem('token');
   const [isLoggedIn, setIsLoggedin] = useState(true);
   const [profile, setProfile] = useState(true);
@@ -132,7 +132,7 @@ function Modals({ oneProduct }) {
         Saya Tertarik dan Ingin Nego
       </Button>
       <VerticalModals
-        oneProduct={oneProduct}
+        productById={productById}
         show={modalShow}
         onHide={() => { return setModalShow(false); }}
       />

@@ -10,6 +10,7 @@ export const getListNotifications = () => {
     try {
       // GET API USER
       const getUserById = await getUser();
+      console.log(getUserById);
       const getNotifications = await getNotif(getUserById.data.id);
       console.log(getNotifications.data.data);
       await dispatch({

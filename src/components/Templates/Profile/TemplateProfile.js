@@ -47,6 +47,7 @@ function TemplateProfile() {
   };
 
   useEffect(() => {
+    console.log(profileLoading, profileResult);
     if (profileLoading) {
       setLoading(true);
     } else if (profileResult) {
@@ -117,7 +118,7 @@ function TemplateProfile() {
                 <Button className="mt-3 mb-3 btn-profile" variant="custom" type="submit" style={{ width: '100%' }}>
                   Simpan
                   {loading && (
-                  <span className="spinner-border spinner-border-sm" />
+                  <span className="spinner-border spinner-border-sm me-2" />
                   )}
                 </Button>
               </form>

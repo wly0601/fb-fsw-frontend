@@ -8,7 +8,6 @@ import Home from '../../Organisms/Homepage/Home';
 function TemplateHome({
   product, notif, data, currentPage, meta, productResult,
 }) {
-  console.log(meta, 'line12');
   const [isLoggedIn, setIsLoggedin] = useState(true);
   const token = localStorage.getItem('token');
   const handleLogin = () => {

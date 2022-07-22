@@ -1,10 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 import { Container } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { getSellerListProducts } from '../redux/actions/sellerProduct';
 import { getListNotifications } from '../redux/actions/getNotif';
 import TemplateListProduct from '../components/Templates/Seller/TemplateListProduct';
+import getUser from '../utils/decodeToken';
 
 function ListProduct() {
   const token = localStorage.getItem('token');
@@ -17,13 +19,20 @@ function ListProduct() {
   const [currentPage, setCurrentPage] = useState(1);
   const [meta, setMeta] = useState({});
 
+  if (!token || getUser().toLogin) {
+    return (<Navigate to="/login" replace />);
+  }
   const {
+    notifLoading,
     notifResult,
+    notifError,
   // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getListNotifications);
 
   const {
+    productLoading,
     productResult,
+    productError,
   // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getSellerProductReducer);
 
@@ -51,15 +60,28 @@ function ListProduct() {
   });
 
   useEffect(() => {
-    dispatch(getSellerListProducts());
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    dispatch(getSellerListProducts(2));
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (productResult) {
+      setProduct(productResult);
+    }
+  }, [productResult]);
+
+  useEffect(() => {
     dispatch(getListNotifications());
   }, [dispatch]);
+
   useEffect(() => {
-    if (productResult && notifResult) {
-      setProduct(productResult);
+    if (notifResult) {
       setNotif(notifResult);
     }
-  }, [productResult, notifResult]);
+  }, [notifResult]);
 
   useEffect(() => {
     if (productMetaResult) {

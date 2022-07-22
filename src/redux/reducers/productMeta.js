@@ -9,7 +9,7 @@ const initialStateProduct = {
 
 export const getProductMetaReducer = (state = initialStateProduct, action) => {
   switch (action.type) {
-    case 'setProductsMeta':
+    case 'GET_PRODUCT_META':
       return {
         ...state,
         productMetaLoading: action.payload.loading,

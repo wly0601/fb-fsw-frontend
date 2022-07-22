@@ -5,15 +5,20 @@
 
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faList } from '@fortawesome/free-solid-svg-icons';
+import {
+  faList, faPenToSquare, faCartShopping, faRightFromBracket,
+  faBookmark, faHourglassStart, faHourglassEnd,
+} from '@fortawesome/free-solid-svg-icons';
 import {
   Navbar, Container, Nav, Form, Row, Col, Toast, Button, ToastContainer, Dropdown,
 } from 'react-bootstrap';
 import {
-  FaSearch, FaBell, FaRegUser, FaListUl,
+  FaSearch, FaBell, FaRegUser,
 } from 'react-icons/fa';
+import { getListProducts } from '../../../redux/actions/product';
+import { getListNotifications } from '../../../redux/actions/getNotif';
 import { logout } from '../../../redux/actions/auth';
 import CardToast from '../../Moleculs/Card/CardToast';
 import './Navigation.Module.css';
@@ -21,9 +26,33 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function NavbarLogin({ notif }) {
   const [show, setShow] = useState(false);
+  const [search, setSearch] = useState('');
+  const [user, setUser] = useState([]);
   const userLogin = useSelector((state) => { return state.auth; });
-  const { user } = userLogin;
   const dispatch = useDispatch();
+
+  const {
+    userResult,
+  // eslint-disable-next-line arrow-body-style
+  } = useSelector((state) => state.getListUserReducer);
+
+  useEffect(() => {
+    if (userResult) {
+      setUser(userResult);
+    }
+  }, [userResult]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(getListProducts({
+      buyer: userResult.id,
+      search: `&search=${search}`,
+    }));
+  };
+
+  const handleChangeSearch = (e) => {
+    setSearch(e.target.value);
+  };
 
   const logOut = () => {
     dispatch(logout());
@@ -37,14 +66,15 @@ function NavbarLogin({ notif }) {
           <Navbar.Brand href="../../../" className="logo" />
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Form className="d-flex test">
+            <Form className="d-flex test" onSubmit={handleSubmit}>
               <input
                 type="search"
                 placeholder="Cari di sini..."
                 className="me-2 searchBar"
                 aria-label="Search"
+                onChange={handleChangeSearch}
               />
-              <i className="searchIcon" type="button"><FaSearch /></i>
+              <Button className="searchIcon" type="submit"><FaSearch style={{ color: '#8A8A8A' }} /></Button>
             </Form>
             <Nav className="flex-grow-1 justify-content-end nav">
               <Dropdown className="mt-1">
@@ -64,9 +94,21 @@ function NavbarLogin({ notif }) {
                     }}
                   />
                 </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item href="../../../history/seller">History Seller</Dropdown.Item>
-                  <Dropdown.Item href="../../../history/buyer">History Buyer</Dropdown.Item>
+                <Dropdown.Menu style={{ width: '200px', borderRadius: '10px' }}>
+                  <Dropdown.Item href="../../../history/seller">
+                    <FontAwesomeIcon
+                      icon={faHourglassStart}
+                      style={{ color: '#7126B5', width: '40px' }}
+                    />
+                    History Seller
+                  </Dropdown.Item>
+                  <Dropdown.Item href="../../../history/buyer">
+                    <FontAwesomeIcon
+                      icon={faHourglassEnd}
+                      style={{ color: '#7126B5', width: '40px' }}
+                    />
+                    History Buyer
+                  </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
               <Button
@@ -91,10 +133,35 @@ function NavbarLogin({ notif }) {
                 >
                   <FaRegUser className="link" />
                 </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item href="../../profile">Profile</Dropdown.Item>
-                  <Dropdown.Item href="../../../list/products">Daftar Jual Saya</Dropdown.Item>
-                  <Dropdown.Item onClick={logOut}>Logout</Dropdown.Item>
+                <Dropdown.Menu style={{ width: '200px', borderRadius: '10px' }}>
+                  <Dropdown.Item href="../../profile">
+                    <FontAwesomeIcon
+                      icon={faPenToSquare}
+                      style={{ color: '#7126B5', width: '40px' }}
+                    />
+                    Profile
+                  </Dropdown.Item>
+                  <Dropdown.Item href="../../../list/products">
+                    <FontAwesomeIcon
+                      icon={faCartShopping}
+                      style={{ color: '#7126B5', width: '40px' }}
+                    />
+                    Daftar Jual
+                  </Dropdown.Item>
+                  <Dropdown.Item href="../../list/bookmark">
+                    <FontAwesomeIcon
+                      icon={faBookmark}
+                      style={{ color: '#7126B5', width: '40px' }}
+                    />
+                    Daftar Simpan
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={logOut}>
+                    <FontAwesomeIcon
+                      icon={faRightFromBracket}
+                      style={{ color: '#7126B5', width: '40px' }}
+                    />
+                    Logout
+                  </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </Nav>

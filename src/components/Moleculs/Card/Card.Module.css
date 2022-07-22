@@ -3,7 +3,7 @@
   background: #FFFFFF;
   /* box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15); */
   border-radius: 10px;
-  margin-bottom: 2.5%;
+  margin-bottom: 5%;
   max-height: 300px;
 }
 
@@ -200,6 +200,30 @@
   border-radius: 16px;
 }
 
+.btn-bookmark {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  z-index: 1;
+}
+
+.btn-bookmark-click {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  z-index: 1;
+}
+
+.icon-bookmark {
+  z-index: 2;
+  color: black;
+  padding-bottom: 2px;
+}
+
+.icon-bookmark-click {
+  z-index: 2;
+  color: #7126B5;
+  padding-bottom: 2px;
+}
+
 @media (max-width:600px) {
   .card-product {
     margin: auto;
@@ -312,5 +336,18 @@
     align-content: center;
     z-index: 1;
     top: -30px;
+  }
+
+  .item-card-title {
+    font-size: 15px !important; 
+  }
+
+  .item-card-type {
+    font-size: 15px !important; 
+  }
+
+  .item-card-price {
+    font-size: 12px !important;
+    font-weight: bold; 
   }
 }
