@@ -6,6 +6,7 @@ export const getListUser = () => {
   return async (dispatch) => {
     try {
       const getUserById = await getUser();
+      console.log(getUserById);
       await dispatch({
         type: GET_LIST_USER,
         payload: {

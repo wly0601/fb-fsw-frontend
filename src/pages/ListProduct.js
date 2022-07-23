@@ -1,8 +1,9 @@
-import React, { useCallback, useEffect, useState } from 'react';
+/* eslint-disable arrow-body-style */
+import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import axios from 'axios';
 import { Container } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
+import { getListUser } from '../redux/actions/listUser';
 import { getSellerListProducts } from '../redux/actions/sellerProduct';
 import { getListNotifications } from '../redux/actions/getNotif';
 import TemplateListProduct from '../components/Templates/Seller/TemplateListProduct';
@@ -13,82 +14,50 @@ function ListProduct() {
   const dispatch = useDispatch();
   const [product, setProduct] = useState([]);
   const [notif, setNotif] = useState([]);
-  const [sellerName, setSellerName] = useState('');
-  const [sellerPhoto, setSellerPhoto] = useState('');
-  const [sellerCity, setSellerCity] = useState('');
+  const [seller, setSeller] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [meta, setMeta] = useState({});
 
   if (!token || getUser().toLogin) {
     return (<Navigate to="/login" replace />);
   }
+
   const {
-    notifLoading,
+    userResult,
+  } = useSelector((state) => state.getListUserReducer);
+
+  const {
     notifResult,
-    notifError,
-  // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getListNotifications);
 
   const {
-    productLoading,
     productResult,
-    productError,
-  // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getSellerProductReducer);
 
   const {
-    productMetaLoading,
     productMetaResult,
-    productMetaError,
-  // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getProductMetaReducer);
 
-  const fetchData = useCallback(async () => {
-    await axios.get(
-      'https://second-hand-be.herokuapp.com/api/who-am-i',
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      },
-    )
-      .then(async (res) => {
-        setSellerName(res.data.name);
-        setSellerCity(res.data.address);
-        setSellerPhoto(res.data.photo);
-      });
-  });
-
   useEffect(() => {
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    dispatch(getSellerListProducts(2));
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (productResult) {
-      setProduct(productResult);
-    }
-  }, [productResult]);
-
-  useEffect(() => {
+    dispatch(getListUser());
+    dispatch(getSellerListProducts());
     dispatch(getListNotifications());
   }, [dispatch]);
 
   useEffect(() => {
+    if (userResult) {
+      setSeller(userResult);
+    }
+    if (productResult) {
+      setProduct(productResult);
+    }
     if (notifResult) {
       setNotif(notifResult);
     }
-  }, [notifResult]);
-
-  useEffect(() => {
     if (productMetaResult) {
       setMeta(productMetaResult);
-      console.log(meta);
     }
-  });
+  }, [userResult, productResult, notifResult, productMetaResult]);
 
   return (
     <>
@@ -98,9 +67,7 @@ function ListProduct() {
             <TemplateListProduct
               product={product}
               notif={notif}
-              sellerName={sellerName}
-              sellerCity={sellerCity}
-              sellerPhoto={sellerPhoto}
+              seller={seller}
               currentPage={currentPage}
               meta={meta}
             />

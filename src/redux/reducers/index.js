@@ -20,6 +20,7 @@ import { getWishlistReducer } from './wishlist';
 import { createWishlistReducer } from './createWishlist';
 import { getCategoryIdReducer } from './getCategoryId';
 import { getUserIdReducer } from './getUserId';
+import { getProductBySellerReducer } from './getProductBySeller';
 
 export default combineReducers({
   auth,
@@ -43,4 +44,5 @@ export default combineReducers({
   createWishlistReducer,
   getCategoryIdReducer,
   getUserIdReducer,
+  getProductBySellerReducer,
 });

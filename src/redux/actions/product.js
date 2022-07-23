@@ -10,7 +10,6 @@ export const getListProducts = ({
     dispatch,
   ) => {
     try {
-      // GET API USER
       const getProducts = await getAllProduct({
         page, category, search, buyer,
       });

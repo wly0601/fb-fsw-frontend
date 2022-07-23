@@ -1,10 +1,5 @@
-/* eslint-disable consistent-return */
-/* eslint-disable no-unused-expressions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -12,7 +7,8 @@ import {
   faBookmark, faHourglassStart, faHourglassEnd,
 } from '@fortawesome/free-solid-svg-icons';
 import {
-  Navbar, Container, Nav, Form, Row, Col, Toast, Button, ToastContainer, Dropdown,
+  Navbar, Container, Nav, Form, Row, Col,
+  Toast, Button, ToastContainer, Dropdown,
 } from 'react-bootstrap';
 import {
   FaSearch, FaBell, FaRegUser,
@@ -21,30 +17,16 @@ import { getListProducts } from '../../../redux/actions/product';
 import { logout } from '../../../redux/actions/auth';
 import CardToast from '../../Moleculs/Card/CardToast';
 import './Navigation.Module.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
-function NavbarLogin({ notif }) {
+function NavbarLogin({ notif, userData }) {
   const [show, setShow] = useState(false);
   const [search, setSearch] = useState('');
-  const [user, setUser] = useState([]);
-  const userLogin = useSelector((state) => { return state.auth; });
   const dispatch = useDispatch();
-
-  const {
-    userResult,
-  // eslint-disable-next-line arrow-body-style
-  } = useSelector((state) => state.getListUserReducer);
-
-  useEffect(() => {
-    if (userResult) {
-      setUser(userResult);
-    }
-  }, [userResult]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(getListProducts({
-      buyer: userResult.id,
+      buyer: userData.id,
       search: `&search=${search}`,
     }));
   };
@@ -178,7 +160,6 @@ function NavbarLogin({ notif }) {
                   alt=""
                   style={{ marginLeft: '220px', textAlign: 'right' }}
                 />
-                {/* <small>08 Jul, 20.04</small> */}
               </Toast.Header>
               <Toast.Body>
                 {notif && notif.slice(0, 3).map((result) => {

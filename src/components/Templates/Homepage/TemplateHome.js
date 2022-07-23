@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
 import NavbarHeader from '../../Organisms/Navbar/NavbarHeader';
 import NavbarLogin from '../../Organisms/Navbar/NavbarLogin';
 import Home from '../../Organisms/Homepage/Home';
 
 function TemplateHome({
-  product, notif, data, currentPage, meta, productResult,
+  product, notif, data, currentPage, meta, productResult, userData, userResult,
 }) {
   const [isLoggedIn, setIsLoggedin] = useState(true);
   const token = localStorage.getItem('token');
@@ -22,7 +21,7 @@ function TemplateHome({
 
   return isLoggedIn ? (
     <>
-      <NavbarLogin notif={notif} />
+      <NavbarLogin notif={notif} userData={userData} />
       <Container fluid>
         <Home
           productAll={product}
@@ -30,13 +29,13 @@ function TemplateHome({
           currentPage={currentPage}
           meta={meta}
           productResult={productResult}
+          userData={userData}
         />
-        {/* <PaginatedItems /> */}
       </Container>
     </>
   ) : (
     <>
-      <NavbarHeader notif={notif} />
+      <NavbarHeader />
       <Container fluid>
         <Home
           productAll={product}
@@ -44,8 +43,8 @@ function TemplateHome({
           currentPage={currentPage}
           meta={meta}
           productResult={productResult}
+          userData={userData}
         />
-        {/* <PaginatedItems /> */}
       </Container>
     </>
   );

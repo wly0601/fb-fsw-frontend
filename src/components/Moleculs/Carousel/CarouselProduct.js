@@ -18,16 +18,14 @@ import {
   Navigation, Pagination, Mousewheel, Keyboard,
 } from 'swiper';
 
-function CarouselProduct({ productImage }) {
-  console.log(productImage);
-  const carouselImage = (productImage || []).map((images) => {
+function CarouselProduct({ productById }) {
+  const carouselImage = (productById.images || []).map((images) => {
     return (
       <SwiperSlide style={{ width: '100%' }}>
         <div className="card-carousel">
           <img src={images} style={{ width: '100%', borderRadius: '16px' }} className="image-fluid" alt="" />
         </div>
       </SwiperSlide>
-      // console.log(images)
     );
   });
 

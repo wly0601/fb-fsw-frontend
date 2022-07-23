@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
@@ -7,33 +8,27 @@ import { getListUser } from '../redux/actions/listUser';
 import TemplateHome from '../components/Templates/Homepage/TemplateHome';
 
 function Homepage() {
-  const token = localStorage.getItem('token');
   const dispatch = useDispatch();
   const [product, setProduct] = useState([]);
   const [notif, setNotif] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [meta, setMeta] = useState({});
-  const [user, setUser] = useState([]);
-  const [active, setActive] = useState([]);
+  const [userData, setUserData] = useState([]);
 
   const {
     userResult,
-  // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getListUserReducer);
 
   const {
     notifResult,
-  // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getListNotifications);
 
   const {
     productResult,
-  // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getProductReducer);
 
   const {
     productMetaResult,
-  // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getProductMetaReducer);
 
   const getLoginUser = async () => {
@@ -53,7 +48,6 @@ function Homepage() {
   useEffect(() => {
     if (productResult) {
       setProduct(productResult);
-      console.log(product);
     }
   }, [productResult]);
 
@@ -64,13 +58,9 @@ function Homepage() {
   }, [notifResult]);
 
   useEffect(() => {
-    console.log(userResult);
     if (userResult) {
-      setUser(userResult);
+      setUserData(userResult);
     }
-    console.log(userResult.id);
-    console.log(meta);
-
     dispatch(getListProducts({
       buyer: userResult.id,
     }));
@@ -88,6 +78,7 @@ function Homepage() {
             currentPage={currentPage}
             meta={meta}
             productResult={productResult}
+            userData={userData}
           />
         </Container>
       </div>

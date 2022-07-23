@@ -3,12 +3,11 @@ import { SELLER_PRODUCTS } from './types';
 import getUser from '../services/getUser';
 import getProductByUserId from '../services/getProductByUserId';
 
-export const getSellerListProducts = () => {
+export const getSellerListProducts = (id) => {
   return async (
     dispatch,
   ) => {
     try {
-      // GET API USER
       const getUserById = await getUser();
       const getSellerProduct = await getProductByUserId(getUserById.data.id);
       await dispatch({

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   Container,
   Row,
@@ -9,21 +9,17 @@ import CardProductBtn from '../../Moleculs/Card/CardProductBtn';
 import CardSeller from '../../Moleculs/Card/CardSeller';
 import CardDescription from '../../Moleculs/Card/CardDescription';
 import IsMobile from '../../../styles/IsMobile';
-// import './Input.Module.css';
 
-function ProductPage({
-  productById, categoryName, productImage, seller, city,
-}) {
-  console.log(categoryName);
+function ProductPage({ productById }) {
   return (
     <Container className={`${IsMobile ? 'mt-2' : 'mt-5'}`}>
       <Row>
         <Col md={6}>
-          <CarouselProduct productImage={productImage} />
+          <CarouselProduct productById={productById} />
         </Col>
         <Col md={6}>
-          <CardProductBtn productById={productById} categoryName={categoryName} />
-          <CardSeller seller={seller} city={city} />
+          <CardProductBtn productById={productById} />
+          <CardSeller productById={productById} />
         </Col>
         <CardDescription productById={productById} />
       </Row>
