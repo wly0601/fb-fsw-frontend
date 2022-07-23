@@ -15,12 +15,12 @@ function BuyerProduct() {
 
   const {
     notifResult,
-  // eslint-disable-next-line arrow-body-style
+    // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getListNotifications);
 
   const {
     productByIdResult,
-  // eslint-disable-next-line arrow-body-style
+    // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getProductByIdReducer);
 
   useEffect(() => {
@@ -45,12 +45,10 @@ function BuyerProduct() {
   return (
     <>
       <div>
-        <Container fluid className="p-0">
-          <TemplateBuyerProduct
-            oneProduct={oneProduct}
-            notif={notif}
-          />
-        </Container>
+        <TemplateBuyerProduct
+          oneProduct={oneProduct}
+          notif={notif}
+        />
       </div>
     </>
   );

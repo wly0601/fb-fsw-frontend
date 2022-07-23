@@ -17,7 +17,14 @@ function CardBargain({ oneProduct }) {
     <Container>
       <Card className="card-bargain" style={{ borderRadius: '16px' }}>
         <Card.Body>
-          <h5 style={{ fontWeight: 'bold' }}>{oneProduct.name}</h5>
+          <Row>
+            <Col xs={10}>
+              <h5 style={{ fontWeight: 'bold' }}>{oneProduct.name}</h5>
+            </Col>
+            <Col xs={2}>
+              <BsBookmark />
+            </Col>
+          </Row>
           {oneProduct.category && (
             <p style={{ color: 'grey' }}>{oneProduct.category.name}</p>
           )}

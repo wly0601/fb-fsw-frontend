@@ -16,10 +16,10 @@ function ProductPage({
   return (
     <Container className="mt-5">
       <Row>
-        <Col xs={6}>
+        <Col md={6}>
           <CarouselProduct oneProduct={oneProduct} />
         </Col>
-        <Col xs={6}>
+        <Col md={6}>
           <CardBargain oneProduct={oneProduct} />
           <CardSeller oneProductSeller={oneProduct} />
         </Col>

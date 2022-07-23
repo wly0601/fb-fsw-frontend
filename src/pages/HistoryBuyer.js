@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
+import { Container } from 'react-bootstrap';
 import { getListNotifications } from '../redux/actions/getNotif';
 import { getHistoryBuyer } from '../redux/actions/historyBuyer';
 import TemplateHistoryBuyer from '../components/Templates/History/TemplateHistoryBuyer';
@@ -62,13 +63,15 @@ function HistoryBuyer() {
   console.log(history);
   return (
     <div>
-      <TemplateHistoryBuyer
-        buyerName={buyerName}
-        buyerCity={buyerCity}
-        buyerPhoto={buyerPhoto}
-        notif={notif}
-        history={history}
-      />
+      <Container fluid className="p-0">
+        <TemplateHistoryBuyer
+          buyerName={buyerName}
+          buyerCity={buyerCity}
+          buyerPhoto={buyerPhoto}
+          notif={notif}
+          history={history}
+        />
+      </Container>
     </div>
   );
 }
