@@ -3,7 +3,7 @@ import NavbarLogin from '../../Organisms/Navbar/NavbarLogin';
 import HistoryBuyer from '../../Organisms/History/HistoryBuyer';
 
 function TemplateHistoryBuyer({
-  notif, history, buyerName, buyerCity, buyerPhoto,
+  notif, history, buyer,
 }) {
   console.log(history);
   return (
@@ -11,9 +11,7 @@ function TemplateHistoryBuyer({
       <NavbarLogin notif={notif} />
       <Container fluid>
         <HistoryBuyer
-          buyerName={buyerName}
-          buyerCity={buyerCity}
-          buyerPhoto={buyerPhoto}
+          buyer={buyer}
           history={history}
         />
       </Container>

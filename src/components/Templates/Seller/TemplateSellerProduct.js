@@ -1,16 +1,14 @@
 import { Container } from 'react-bootstrap';
 import NavbarLogin from '../../Organisms/Navbar/NavbarLogin';
-import ProductPage from '../../Organisms/Seller/ProductPage';
+import ProductPageEdit from '../../Organisms/Seller/ProductPageEdit';
 
-function TemplateSellerProduct({
-  oneProduct, notif,
-}) {
+function TemplateSellerProduct({ productById, notif }) {
   return (
     <>
       <NavbarLogin notif={notif} />
       <Container fluid>
-        <ProductPage
-          oneProduct={oneProduct}
+        <ProductPageEdit
+          productById={productById}
         />
       </Container>
     </>

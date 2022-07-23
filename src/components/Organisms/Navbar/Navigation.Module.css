@@ -119,17 +119,6 @@ li {
   display: none !important;
 }
 
-/* .btn-notification {
-    background-color: transparent;
-    background-repeat: no-repeat;
-    border: none;
-    cursor: pointer;
-    overflow: hidden;
-    outline: none;
-} */
-
-
-
 @media only screen and (max-width: 600px) {
   .navbar-desktop {
     display: none;

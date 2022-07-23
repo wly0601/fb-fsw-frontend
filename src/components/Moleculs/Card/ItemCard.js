@@ -2,11 +2,12 @@
 import React from 'react';
 import { Card, Row, Col } from 'react-bootstrap';
 import { BsBookmark } from 'react-icons/bs';
+import { FaBookmark } from 'react-icons/fa';
 import './Card.Module.css';
 
 function ItemCard(props) {
   const {
-    title, type, price, image, imageAlt,
+    title, type, price, image, imageAlt, active,
   } = props;
 
   return (
@@ -17,10 +18,14 @@ function ItemCard(props) {
         <Card.Text className="item-card-type">{type}</Card.Text>
         <Row>
           <Col xs={9}>
-            <Card.Text style={{ fontSize: '14px', fontWeight: 'bold' }}>{price}</Card.Text>
+            <Card.Text className="item-card-price">{price}</Card.Text>
           </Col>
           <Col xs={3}>
-            <BsBookmark />
+            {!active ? (
+              <BsBookmark className="icon-bookmark" />
+            ) : (
+              <FaBookmark className="icon-bookmark" />
+            )}
           </Col>
         </Row>
       </Card.Body>

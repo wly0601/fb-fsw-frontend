@@ -1,10 +1,3 @@
-.image-home {
-  background: linear-gradient(360deg, #A06ECE 50%, rgba(160, 110, 206, 0) 100%);
-  opacity: 0.5;
-  padding: 0;
-  margin: 0;
-}
-
 @media only screen and (max-width: 600px) {
   .image-home {
     display: none;

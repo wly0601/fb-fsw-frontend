@@ -1,31 +1,35 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Button,
+  Container, Row, Col, Card, Button,
 } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './Card.Module.css';
 
-function CardSellerBtn({ sellerName, sellerCity, sellerPhoto }) {
+function CardSellerBtn({ seller }) {
   return (
     <Container>
       <Card className="mt-3 mb-5 card-seller">
         <Card.Body>
           <Row>
-            <Col md={1} xs={2}>
-              <img src={sellerPhoto} className="seller-picture" alt="" />
+            <Col xs={2} md={1}>
+              <img src={seller.photo} style={{ width: '30%', borderRadius: '10px' }} alt="" />
             </Col>
-            <Col md={9} xs={7}>
-              <h5 style={{ fontWeight: 'bold' }}>{sellerName}</h5>
-              <p>{sellerCity}</p>
+            <Col xs={7} md={9}>
+              <h5 style={{ fontWeight: 'bold' }}>{seller.name}</h5>
+              <p>{seller.address}</p>
             </Col>
             <Col xs={2}>
               <Link to="/profile">
-                <Button className="seller-btn" variant="primary">
+                <Button
+                  variant="primary"
+                  style={{
+                    backgroundColor: 'white',
+                    borderColor: '7126B5',
+                    color: 'black',
+                    borderRadius: '12px',
+                    marginTop: '10px',
+                  }}
+                >
                   Edit
                 </Button>
               </Link>

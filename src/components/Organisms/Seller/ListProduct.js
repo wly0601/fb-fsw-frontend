@@ -16,7 +16,7 @@ import priceFormat from '../../../utils/priceFormat';
 import './Product.Module.css';
 
 function ListProduct({
-  dataProducts, sellerName, sellerCity, sellerPhoto, currentPage, meta,
+  dataProducts, seller, currentPage, meta,
 }) {
   return (
     <Container className="mt-5">
@@ -25,9 +25,7 @@ function ListProduct({
       </Row>
       <Row>
         <CardSellerBtn
-          sellerName={sellerName}
-          sellerCity={sellerCity}
-          sellerPhoto={sellerPhoto}
+          seller={seller}
         />
       </Row>
       <Row>
@@ -49,6 +47,11 @@ function ListProduct({
             </Link>
           </div>
         </Col>
+        {dataProducts.length <= 0 && (
+        <Col>
+          <p> </p>
+        </Col>
+        )}
         {dataProducts && dataProducts.map(({
           id, name, description, price, images,
         }) => {

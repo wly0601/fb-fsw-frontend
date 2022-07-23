@@ -8,9 +8,7 @@ export const getListNotifications = () => {
     dispatch,
   ) => {
     try {
-      // GET API USER
-      const getUserById = await getUser();
-      const getNotifications = await getNotif(getUserById.data.id);
+      const getNotifications = await getNotif();
       console.log(getNotifications.data.data);
       await dispatch({
         type: GET_NOTIFICATION,

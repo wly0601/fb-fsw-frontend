@@ -1,34 +1,52 @@
-/* eslint-disable react/jsx-no-useless-fragment */
-import React, { useEffect, useState, useCallback } from 'react';
+/* eslint-disable arrow-body-style */
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { Container } from 'react-bootstrap';
-import { getListNotifications } from '../redux/actions/getNotif';
 import { getOnlyOneProduct } from '../redux/actions/getProductById';
+import { getListNotifications } from '../redux/actions/getNotif';
+import { getListUser } from '../redux/actions/listUser';
 import TemplateBuyerProduct from '../components/Templates/Buyer/TemplateBuyerProduct';
 
 function BuyerProduct() {
   const params = useParams();
   const dispatch = useDispatch();
+  const [productById, setProductById] = useState([]);
   const [notif, setNotif] = useState([]);
-  const [oneProduct, setOneProduct] = useState([]);
+  const [user, setUser] = useState('');
+  const [transaction, setTransaction] = useState([]);
 
   const {
-    notifResult,
-    // eslint-disable-next-line arrow-body-style
-  } = useSelector((state) => state.getListNotifications);
+    productResult,
+  } = useSelector((state) => state.getTransactionProductReducer);
 
   const {
     productByIdResult,
-    // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getProductByIdReducer);
 
+  const {
+    userResult,
+  } = useSelector((state) => state.getListUserReducer);
+
+  const {
+    notifResult,
+  } = useSelector((state) => state.getListNotifications);
+
   useEffect(() => {
-    const getId = params.id;
-    document.title = 'Produk Pembeli';
+    dispatch(getListUser());
     dispatch(getListNotifications());
-    dispatch(getOnlyOneProduct(getId));
   }, [dispatch]);
+
+  useEffect(() => {
+    if (productResult) {
+      setTransaction(productResult);
+    }
+  }, [productResult]);
+
+  useEffect(() => {
+    if (productByIdResult) {
+      setProductById(productByIdResult);
+    }
+  }, [productByIdResult]);
 
   useEffect(() => {
     if (notifResult) {
@@ -37,20 +55,27 @@ function BuyerProduct() {
   }, [notifResult]);
 
   useEffect(() => {
-    if (productByIdResult) {
-      setOneProduct(productByIdResult);
+    if (userResult) {
+      setUser(userResult);
     }
-  }, [productByIdResult]);
+  }, [userResult]);
+
+  useEffect(() => {
+    let buyer = '';
+    if (userResult.id) {
+      buyer = `?buyerId=${userResult.id}`;
+    }
+    dispatch(getOnlyOneProduct(params.id, buyer));
+  }, [dispatch]);
 
   return (
-    <>
-      <div>
-        <TemplateBuyerProduct
-          oneProduct={oneProduct}
-          notif={notif}
-        />
-      </div>
-    </>
+    <div>
+      <TemplateBuyerProduct
+        productById={productById}
+        notif={notif}
+        transaction={transaction}
+      />
+    </div>
   );
 }
 

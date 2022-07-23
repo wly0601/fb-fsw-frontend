@@ -1,33 +1,37 @@
-import React, { useState, useEffect, useCallback } from 'react';
+/* eslint-disable arrow-body-style */
+/* eslint-disable consistent-return */
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
+import { getOneProductBySeller } from '../redux/actions/getProductBySeller';
 import { getListNotifications } from '../redux/actions/getNotif';
-import { getOnlyOneProduct } from '../redux/actions/getProductById';
 import TemplateSellerProduct from '../components/Templates/Seller/TemplateSellerProduct';
+import decode from '../utils/decodeToken';
 
 function SellerProduct() {
   const params = useParams();
   const dispatch = useDispatch();
+  const [productById, setProductById] = useState([]);
   const [notif, setNotif] = useState([]);
-  const [oneProduct, setOneProduct] = useState([]);
+  const [toHomepage, setToHomepage] = useState(false);
 
   const {
     notifResult,
-  // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getListNotifications);
 
   const {
-    productByIdResult,
-  // eslint-disable-next-line arrow-body-style
-  } = useSelector((state) => state.getProductByIdReducer);
+    productBySellerResult,
+  } = useSelector((state) => state.getProductBySellerReducer);
 
   useEffect(() => {
-    const getId = params.id;
-    // console.log(getId);
-    document.title = 'Produk Penjual';
+    if (productBySellerResult) {
+      setProductById(productBySellerResult);
+    }
+  }, [productBySellerResult]);
+
+  useEffect(() => {
+    dispatch(getOneProductBySeller(params.id));
     dispatch(getListNotifications());
-    dispatch(getOnlyOneProduct(getId));
   }, [dispatch]);
 
   useEffect(() => {
@@ -37,15 +41,20 @@ function SellerProduct() {
   }, [notifResult]);
 
   useEffect(() => {
-    if (productByIdResult) {
-      setOneProduct(productByIdResult);
+    if (productById.length !== 0) {
+      setToHomepage(true);
     }
-  }, [productByIdResult]);
+  }, [productById]);
+
+  if (toHomepage && (decode().data.id !== productById.sellerId)) {
+    console.log(decode().data.id, productById, toHomepage);
+    return <Navigate to="/" replace />;
+  }
 
   return (
     <div>
       <TemplateSellerProduct
-        oneProduct={oneProduct}
+        productById={productById}
         notif={notif}
       />
     </div>

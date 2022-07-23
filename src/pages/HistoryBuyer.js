@@ -1,77 +1,61 @@
-import React, { useState, useEffect, useCallback } from 'react';
+/* eslint-disable arrow-body-style */
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
-import { Container } from 'react-bootstrap';
+import { Navigate } from 'react-router-dom';
+import { getListUser } from '../redux/actions/listUser';
 import { getListNotifications } from '../redux/actions/getNotif';
 import { getHistoryBuyer } from '../redux/actions/historyBuyer';
 import TemplateHistoryBuyer from '../components/Templates/History/TemplateHistoryBuyer';
+import getUser from '../utils/decodeToken';
 
 function HistoryBuyer() {
   const token = localStorage.getItem('token');
   const dispatch = useDispatch();
-  const [buyerName, setBuyerName] = useState('');
-  const [buyerPhoto, setBuyerPhoto] = useState('');
-  const [buyerCity, setBuyerCity] = useState('');
+  const [buyer, setBuyer] = useState([]);
   const [notif, setNotif] = useState([]);
   const [history, setHistory] = useState([]);
+
+  if (!token || getUser().toLogin) {
+    return (<Navigate to="/login" replace />);
+  }
+
+  const {
+    userResult,
+  } = useSelector((state) => state.getListUserReducer);
+
   const {
     notifResult,
-  // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getListNotifications);
 
   const {
     historyResult,
-  // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getHistoryBuyerReducer);
 
-  const fetchData = useCallback(async () => {
-    await axios.get(
-      'https://second-hand-be.herokuapp.com/api/who-am-i',
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      },
-    )
-      .then(async (res) => {
-        setBuyerName(res.data.name);
-        setBuyerCity(res.data.address);
-        setBuyerPhoto(res.data.photo);
-      });
-  });
-
   useEffect(() => {
-    fetchData();
-  }, []);
-
-  useEffect(() => {
+    dispatch(getListUser());
     dispatch(getListNotifications());
     dispatch(getHistoryBuyer());
   }, [dispatch]);
+
   useEffect(() => {
+    if (userResult) {
+      setBuyer(userResult);
+    }
     if (notifResult) {
       setNotif(notifResult);
     }
-  }, [notifResult]);
-
-  useEffect(() => {
     if (historyResult) {
       setHistory(historyResult);
     }
-  }, [historyResult]);
-  console.log(historyResult);
-  console.log(history);
+  }, [notifResult, historyResult, userResult]);
+
   return (
     <div>
-      <Container fluid className="p-0">
-        <TemplateHistoryBuyer
-          buyerName={buyerName}
-          buyerCity={buyerCity}
-          buyerPhoto={buyerPhoto}
-          notif={notif}
-          history={history}
-        />
-      </Container>
+      <TemplateHistoryBuyer
+        buyer={buyer}
+        notif={notif}
+        history={history}
+      />
     </div>
   );
 }

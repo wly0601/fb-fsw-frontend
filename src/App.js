@@ -23,6 +23,7 @@ import ProductInterest from './pages/ProductInterest';
 import Notification from './pages/Notification';
 import ListBookmark from './pages/ListBookmark';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '@fontsource/poppins';
 
 function App() {
   return (

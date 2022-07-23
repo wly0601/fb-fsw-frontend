@@ -19,6 +19,8 @@ import './Modal.Module.css';
 function VerticalModals(props) {
   const params = useParams();
   const [inputBargain, setInputBargain] = useState('');
+  const [add, setAdd] = useState(false);
+
   const dispatch = useDispatch();
   const {
     productLoading,
@@ -27,10 +29,9 @@ function VerticalModals(props) {
   } = useSelector((state) => { return state.getTransactionProductReducer; });
 
   async function handleSubmit(e) {
-    console.log('lewat 34');
     e.preventDefault();
     const body = {
-      productId: props.oneProduct.id,
+      productId: props.productById.id,
       inputBargain: parseInt(inputBargain),
     };
 
@@ -66,13 +67,13 @@ function VerticalModals(props) {
         <Container className="product">
           <Row>
             <Col xs={4}>
-              {props.oneProduct.images && (
-                <img src={props.oneProduct.images[0]} className="seller" alt="" />
+              {props.productById.images && (
+                <img src={props.productById.images[0]} className="seller" alt="" />
               )}
             </Col>
             <Col xs={8}>
-              <p style={{ fontWeight: 'bold' }}>{props.oneProduct.name}</p>
-              <p>{priceFormat(props.oneProduct.price)}</p>
+              <p style={{ fontWeight: 'bold' }}>{props.productById.name}</p>
+              <p>{priceFormat(props.productById.price)}</p>
             </Col>
           </Row>
         </Container>
@@ -84,7 +85,7 @@ function VerticalModals(props) {
                 type="text"
                 placeholder="Masukkan harga tawarmu disini"
                 onChange={handleChangeBargain}
-                value={props.oneProduct.price}
+                value={props.productById.price}
               />
             </Form.Group>
           </Row>
@@ -97,11 +98,13 @@ function VerticalModals(props) {
   );
 }
 
-function Modals({ oneProduct }) {
-  const [modalShow, setModalShow] = React.useState(false);
+function Modals({ productById }) {
+  const [modalShow, setModalShow] = useState(false);
+  console.log({ productById });
   const getToken = localStorage.getItem('token');
   const [isLoggedIn, setIsLoggedin] = useState(true);
   const [profile, setProfile] = useState(true);
+  const [isDisabled, setIsDisabled] = useState('');
 
   const getUserData = async () => {
     const user = await getUser();
@@ -122,17 +125,31 @@ function Modals({ oneProduct }) {
     getUserData();
   }, []);
 
+  console.log(productById);
+  const buttonActive = productById.disableButton;
+
   return isLoggedIn ? (
     <>
-      <Button
-        variant="primary"
-        className="mt-3 button-product"
-        onClick={() => { return setModalShow(true); }}
-      >
-        Saya Tertarik dan Ingin Nego
-      </Button>
+      {!buttonActive ? (
+        <Button
+          variant="primary"
+          className="mt-3 button-product"
+          onClick={() => { return setModalShow(true); }}
+        >
+          Saya Tertarik dan Ingin Nego
+        </Button>
+      ) : (
+        <Button
+          variant="secondary"
+          className="mt-3 button-product"
+          onClick={() => { return setModalShow(true); }}
+          disabled
+        >
+          Anda Sudah Menawar Barang Ini
+        </Button>
+      )}
       <VerticalModals
-        oneProduct={oneProduct}
+        productById={productById}
         show={modalShow}
         onHide={() => { return setModalShow(false); }}
       />

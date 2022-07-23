@@ -1,83 +1,54 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import axios from 'axios';
-import { Container } from 'react-bootstrap';
+/* eslint-disable arrow-body-style */
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { getListUser } from '../redux/actions/listUser';
 import { getListNotifications } from '../redux/actions/getNotif';
 import { getListProductInterest } from '../redux/actions/productInterest';
 import TemplateProductInterest from '../components/Templates/Seller/TemplateProductInterest';
 
 function ProductInterest() {
-  const token = localStorage.getItem('token');
   const dispatch = useDispatch();
   const [notif, setNotif] = useState([]);
   const [interest, setInterest] = useState([]);
-  const [sellerName, setSellerName] = useState('');
-  const [sellerPhoto, setSellerPhoto] = useState('');
-  const [sellerCity, setSellerCity] = useState('');
+  const [seller, setSeller] = useState([]);
+
+  const {
+    userResult,
+  } = useSelector((state) => state.getListUserReducer);
+
   const {
     notifResult,
-  // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getListNotifications);
 
   const {
-    interestLoading,
     interestResult,
-    interestError,
-  // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getProductInterestReducer);
 
-  const fetchData = useCallback(async () => {
-    await axios.get(
-      'https://second-hand-be.herokuapp.com/api/who-am-i',
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      },
-    )
-      .then(async (res) => {
-        setSellerName(res.data.name);
-        setSellerCity(res.data.address);
-        setSellerPhoto(res.data.photo);
-      });
-  });
-
   useEffect(() => {
-    fetchData();
-  }, []);
-
-  useEffect(() => {
+    dispatch(getListUser());
     dispatch(getListNotifications());
-  }, [dispatch]);
-  useEffect(() => {
-    console.log(notifResult);
-    if (notifResult) {
-      setNotif(notifResult);
-    }
-  }, [notifResult]);
-
-  useEffect(() => {
     dispatch(getListProductInterest());
   }, [dispatch]);
 
   useEffect(() => {
-    console.log(interestResult);
+    if (userResult) {
+      setSeller(userResult);
+    }
+    if (notifResult) {
+      setNotif(notifResult);
+    }
     if (interestResult) {
       setInterest(interestResult);
     }
-  }, [interestResult]);
+  }, [notifResult, interestResult, userResult]);
 
   return (
     <div>
-      <Container fluid className="p-0">
-        <TemplateProductInterest
-          notif={notif}
-          sellerName={sellerName}
-          sellerCity={sellerCity}
-          sellerPhoto={sellerPhoto}
-          interest={interest}
-        />
-      </Container>
+      <TemplateProductInterest
+        notif={notif}
+        seller={seller}
+        interest={interest}
+      />
     </div>
   );
 }

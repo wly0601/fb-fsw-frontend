@@ -8,7 +8,7 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Card.Module.css';
 
-function CardDescription({ oneProduct }) {
+function CardDescription({ productById }) {
   return (
     <Container>
       <Row>
@@ -17,7 +17,7 @@ function CardDescription({ oneProduct }) {
             <Card.Body>
               <h5 style={{ fontWeight: 'bold' }}>Deskripsi</h5>
               <p>
-                {oneProduct.description}
+                {productById.description}
               </p>
             </Card.Body>
           </Card>

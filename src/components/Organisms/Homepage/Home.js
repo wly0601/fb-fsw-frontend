@@ -1,9 +1,4 @@
-/* eslint-disable no-plusplus */
-/* eslint-disable react/jsx-no-useless-fragment */
-/* eslint-disable array-callback-return */
-// import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Col } from 'react-bootstrap';
 import Carousel from '../../Moleculs/Carousel/CarouselHomepage';
@@ -19,95 +14,57 @@ import './Home.Module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Home({
-  productAll, currentPage, meta, productResult,
+  productAll, currentPage, meta, productResult, userData,
 }) {
-  const [userData, setUserData] = useState('');
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
-  const token = localStorage.getItem('token');
-
-  const getUsers = async () => {
-    try {
-      const responseUsers = await axios.get(
-        'https://second-hand-be.herokuapp.com/api/who-am-i',
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      );
-      const dataUsers = await responseUsers;
-      setUserData(dataUsers);
-      console.log(dataUsers.data.id, 'line 55');
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('resize', () => {
-      const mobile = window.innerWidth < 600;
-      if (mobile !== isMobile) {
-        setIsMobile(mobile);
-      }
-    }, false);
-  }, [isMobile]);
-
-  useEffect(() => {
-    getUsers();
-  }, []);
-
   return (
-    <>
-      <Container fluid>
-        <div className="row mt-3">
-          <div className="col">
-            <Carousel images={IMAGES} />
-          </div>
+    <Container fluid>
+      <div className="row mt-3">
+        <div className="col">
+          <Carousel images={IMAGES} />
         </div>
-        <div className="row mt-2">
-          <div className="col-12">
-            <TitleList title="Telusuri Kategori" />
-          </div>
+      </div>
+      <div className={`${IsMobile ? 'row mt-2' : 'row mt-5 mx-5'}`}>
+        <div className="col-12">
+          <TitleList title="Telusuri Kategori" />
         </div>
-        <div className="row mt-2">
-          <ButtonCategory />
-        </div>
-        <div className="row mt-3 mx-5">
-          {productAll.length <= 0 && productResult && <p>Maaf Produk Tidak Ditemukan</p>}
-        </div>
-        <div className="row mt-2">
-          {(productAll && productAll).map((result) => {
-            let user = 'buyer';
-            let preview = '';
-            if (!!userData && (userData.data.id.toString() === result.sellerId.toString())) {
-              user = 'seller';
-              preview = '/preview';
-            }
-            return (
-              <>
-                <Col key={result.id} md={2} xs={6}>
-                  <Link to={`${user}/product/${result.id}${preview}`} style={{ textDecoration: 'none', color: 'black' }}>
-                    <ItemCard
-                      title={result.name}
-                      type={result.category.name}
-                      price={priceFormat(result.price)}
-                      image={result.images[0]}
-                      imageAlt="Category of Different Pics"
-                    />
-                  </Link>
-                </Col>
-              </>
-            );
-          })}
-        </div>
-        <div className={`${isMobile ? 'row mb-5 mx-5' : 'row mb-5'}`}>
-          <PaginatedItems currentPage={currentPage} meta={meta} />
-        </div>
-        <div className="row mt-5 mb-3">
-          <BtnAddProduct />
-        </div>
-      </Container>
-    </>
+      </div>
+      <div className={`${IsMobile ? 'row mt-1' : 'row mt-1 mx-5'}`}>
+        <ButtonCategory />
+      </div>
+      <div className="row mt-3">
+        {productAll.length <= 0 && productResult && <p>Maaf Produk Tidak Ditemukan</p>}
+      </div>
+      <div className={`${IsMobile ? 'row mt-3' : 'row mt-3 mx-5'}`}>
+        {(productAll && productAll).map((result) => {
+          let user = 'buyer';
+          let preview = '';
+          if (!!userData && (userData.id === result.sellerId)) {
+            user = 'seller';
+            preview = '/preview';
+          }
+          return (
+            <Col key={result.id} md={2} xs={6}>
+              <Link to={`${user}/product/${result.id}${preview}`} style={{ textDecoration: 'none', color: 'black' }}>
+                <ItemCard
+                  title={result.name}
+                  type={result.category.name}
+                  price={priceFormat(result.price)}
+                  image={result.images[0]}
+                  imageAlt="Category of Different Pics"
+                  active={result.markedByUser}
+                />
+              </Link>
+            </Col>
+          );
+        })}
+      </div>
+      <div className="row my-5 mx-5">
+        <PaginatedItems currentPage={currentPage} meta={meta} />
+      </div>
+      <div className="row mt-5 mb-3 mx-5 button-sell">
+        <BtnAddProduct />
+      </div>
+    </Container>
   );
 }
 

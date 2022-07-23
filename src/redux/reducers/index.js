@@ -15,6 +15,12 @@ import { updateTransactionReducer } from './updateTransactionReducer';
 import { updateTransactionConfirmationReducer } from './updateTransactionConfirmation';
 import { getSoldProductReducer } from './soldProductReducer';
 import { getHistoryBuyerReducer } from './historyBuyer';
+import { getListUserReducer } from './listUser';
+import { getWishlistReducer } from './wishlist';
+import { createWishlistReducer } from './createWishlist';
+import { getCategoryIdReducer } from './getCategoryId';
+import { getUserIdReducer } from './getUserId';
+import { getProductBySellerReducer } from './getProductBySeller';
 
 export default combineReducers({
   auth,
@@ -33,4 +39,10 @@ export default combineReducers({
   updateTransactionConfirmationReducer,
   getSoldProductReducer,
   getHistoryBuyerReducer,
+  getListUserReducer,
+  getWishlistReducer,
+  createWishlistReducer,
+  getCategoryIdReducer,
+  getUserIdReducer,
+  getProductBySellerReducer,
 });

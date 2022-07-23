@@ -4,7 +4,6 @@ import { Container, Row, Col } from 'react-bootstrap';
 import Title from '../../Atoms/Title/Title';
 import CardSeller from '../../Moleculs/Card/CardSeller';
 import CardNotification from '../../Moleculs/Card/CardNotification';
-// import './Input.Module.css';
 
 function UserNotification({ notif }) {
   console.log(notif);
@@ -16,7 +15,7 @@ function UserNotification({ notif }) {
       <Row>
         {/* <CardSeller /> */}
       </Row>
-      <Row md={3} className="">
+      <Row md={2} className="">
         {notif && notif.map((result) => {
           console.log(result);
           let result2;

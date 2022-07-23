@@ -1,8 +1,10 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
 /* eslint-disable radix */
-import React, { useState, useEffect, useRef } from 'react';
-import { Link, Navigate, useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, Navigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -10,13 +12,16 @@ import {
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { createListProduct } from '../../../redux/actions/createProduct';
+import { getUserId } from '../../../redux/actions/getUserId';
+import { getCategoryId } from '../../../redux/actions/getCategoryId';
 import NavbarProduct from '../../Organisms/Navbar/NavbarProduct';
 import ProductInput from '../../Moleculs/Form/ProductInput';
 import './TemplateProduct.Module.css';
+import ProductPage from '../../Organisms/Seller/ProductPage';
+import { getListUser } from '../../../redux/actions/listUser';
+import decode from '../../../utils/decodeToken';
 
 function TemplateProduct() {
-  const params = useParams();
-  console.log(`${params.id}`);
   // Data Input Product
   const [inputName, setInputName] = useState('');
   const [price, setPrice] = useState('');
@@ -24,6 +29,8 @@ function TemplateProduct() {
   const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(false);
+  const [preview, setPreview] = useState(false);
+  const [user, setUser] = useState([]);
 
   // Upload Image
   const [image, setImage] = useState([]);
@@ -33,10 +40,38 @@ function TemplateProduct() {
   let fileObj = [];
 
   const {
-    productLoading,
-    productResult,
-    productError,
-  } = useSelector((state) => { return state.createProductReducer; });
+    userResult,
+  // eslint-disable-next-line arrow-body-style
+  } = useSelector((state) => state.getListUserReducer);
+
+  const {
+    categoryLoading,
+    categoryResult,
+    categoryError,
+  } = useSelector((state) => { return state.getCategoryIdReducer; });
+
+  const {
+    userIDLoading,
+    userIDResult,
+    userIDError,
+  } = useSelector((state) => { return state.getUserIdReducer; });
+
+  const {
+    createProductLoading,
+    createProductResult,
+    createProductError,
+  } = useSelector((state) => { return state.getProductReducer; });
+
+  const handlePreview = (e) => {
+    setPreview(!(preview || false));
+  };
+
+  const getUser = () => {
+    dispatch(getListUser());
+  };
+  useEffect(() => {
+    getUser();
+  }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -49,6 +84,23 @@ function TemplateProduct() {
     console.log(body);
     await dispatch(createListProduct(image, body));
   }
+
+  const handleChangeName = (e) => {
+    setInputName(e);
+    console.log(inputName);
+  };
+
+  const handleChangePrice = (e) => {
+    setPrice(e);
+  };
+
+  const handleChangeCategory = (e) => {
+    setCategoryId(e);
+  };
+
+  const handleChangeDescription = (e) => {
+    setDescription(e);
+  };
 
   const handleChangeImage = (e) => {
     fileObj.push(e.target.files);
@@ -72,87 +124,138 @@ function TemplateProduct() {
     }
     console.log(fileObj);
     console.log(image);
-    // setImage(e.target.value);
+    let fileReader = false;
+    if (image) {
+      fileReader = new FileReader();
+      const temp = [];
+      for (let i = 0; i < image.length; i++) {
+        fileReader.onload = (event) => {
+          const { result } = event.target;
+          console.log(i);
+          if (result) {
+            temp.push(result);
+            setUploadedFileURL(temp);
+          }
+        };
+        fileReader.readAsDataURL(image[i]);
+      }
+    }
   };
 
   useEffect(() => {
-    if (productLoading) {
+    if (userResult) {
+      setUser(userResult);
+      dispatch(getUserId(userResult.id));
+    }
+  }, [userResult]);
+  console.log(userResult);
+
+  useEffect(() => {
+    if (categoryId) {
+      console.log(categoryId);
+      // setCategoryName(categoryResult);
+      dispatch(getCategoryId(parseInt(categoryId)));
+    }
+  }, [categoryId]);
+
+  if (decode().toLogin) {
+    return <Navigate to="/login" replace />;
+  }
+
+  useEffect(() => {
+    if (createProductLoading) {
       setLoading(true);
-    } else if (productResult) {
+      console.log('lewat sini');
+    } else if (createProductResult) {
       setLoading(false);
       window.location.reload();
-      console.log(productResult);
-    } else if (productError) {
-      console.log(productError);
-      setLoading(false);
+      console.log(createProductResult);
+    } else if (createProductError) {
+      console.log(createProductError);
     }
-  });
+  }, [createProductLoading]);
 
-  if (productResult) {
-    return <Navigate to="/" />;
+  if (createProductResult) {
+    return <Navigate to="/list/products" />;
   }
 
   return (
     <>
       <NavbarProduct />
-      <div>
-        <Container fluid className="form-products p-0">
-          <form onSubmit={handleSubmit}>
-            <Row>
-              <Col>
-                <div style={{ paddingTop: '30px' }}>
-                  <Link to="/" style={{ color: 'black' }}>
-                    <FontAwesomeIcon icon={faArrowLeft} />
-                  </Link>
-                </div>
-                <ProductInput
-                  name={setInputName}
-                  price={setPrice}
-                  categoryId={setCategoryId}
-                  description={setDescription}
-                />
-                <Form.Group className="mb-3" controlId="productPhoto">
-                  <Form.Label>Foto Produk</Form.Label>
-                  {image && image.map(({ images, index }) => {
-                    return (
-                      <img src={images} key={index} alt="" />
-                    );
-                  })}
-                  <Form.Control
-                    type="file"
-                    accept="image/*"
-                    onChange={handleChangeImage}
-                    className="upload-button"
-                    multiple
-                  />
-                  {message && (
-                  <div className="alert alert-danger" role="alert">
-                    Upload Maximum 4 Images!
+      {!preview ? (
+        <div>
+          <Container fluid className="form-products p-0">
+            <form onSubmit={handleSubmit}>
+              <Row>
+                <Col>
+                  <div style={{ paddingTop: '30px' }}>
+                    <Link to="/" style={{ color: 'black' }}>
+                      <FontAwesomeIcon icon={faArrowLeft} />
+                    </Link>
                   </div>
-                  )}
-                </Form.Group>
-              </Col>
-            </Row>
-            <Row className="mb-5">
-              <Col xs={6}>
-                <Link to={`/seller/product/${params.id}`}>
-                  <Button variant="primary" className="preview-button" type="submit">
+                  <ProductInput
+                    name={inputName}
+                    onChangeName={handleChangeName}
+                    price={price}
+                    onChangePrice={handleChangePrice}
+                    categoryId={setCategoryId}
+                    onChangeCategory={handleChangeCategory}
+                    description={description}
+                    onChangeDescription={handleChangeDescription}
+                  />
+                  <Form.Group className="mb-3" controlId="productPhoto">
+                    <Form.Label>Foto Produk</Form.Label>
+                    {image && image.map(({ images, index }) => {
+                      return (
+                        <img src={images} key={index} alt="" />
+                      );
+                    })}
+                    <Form.Control
+                      type="file"
+                      accept="image/*"
+                      onChange={handleChangeImage}
+                      className="upload-button"
+                      multiple
+                    />
+                    {message && (
+                    <div className="alert alert-danger" role="alert">
+                      Upload Maximum 4 Images!
+                    </div>
+                    )}
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row className="mb-5">
+                <Col xs={6}>
+                  <Button variant="primary" className="preview-button" onClick={handlePreview}>
                     Preview
                   </Button>
-                </Link>
-              </Col>
-              <Col xs={6}>
-                <Button variant="primary" className="publish-button" type="submit" disabled={loading}>
-                  {loading && (
-                  <span className="spinner-border spinner-border-sm me-2" />
-                  )}
-                  <span>Terbitkan</span>
-                </Button>
-              </Col>
-            </Row>
-          </form>
-        </Container>
-      </div>
+                </Col>
+                <Col xs={6}>
+                  <Button variant="primary" className="publish-button" type="submit">
+                    Terbitkan
+                    {loading && (
+                    <span className="spinner-border spinner-border-sm me-2" />
+                    )}
+                  </Button>
+                </Col>
+              </Row>
+            </form>
+          </Container>
+        </div>
+      ) : (
+        <ProductPage
+          productById={{
+            name: inputName,
+            price,
+            description,
+            categoryId,
+            images: { uploadedFileURL },
+          }}
+          onClick={handlePreview}
+          onPublish={handleSubmit}
+        />
+      ) }
     </>
   );
 }

@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 import { CREATE_TRANSACTION } from './types';
 import getUser from '../services/getUser';
-import createTransactionProduct from '../services/createTransactionProduct';
+import transaction from '../services/createTransaction';
 
 export const createTransaction = (body) => {
   return async (
@@ -15,12 +15,13 @@ export const createTransaction = (body) => {
         productId: body.productId,
         bargainPrice: body.inputBargain,
       };
-      const createNego = await createTransaction(bodyInput);
+      console.log(bodyInput);
+      const bargain = await transaction(bodyInput);
       await dispatch({
         type: await CREATE_TRANSACTION,
         payload: {
           loading: false,
-          result: await res.data,
+          result: await bargain.data,
           error: false,
         },
       });
