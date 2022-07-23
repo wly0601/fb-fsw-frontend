@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
@@ -127,12 +128,23 @@ function TemplateProduct() {
     }
     console.log(fileObj);
     console.log(image);
-    // setImage(e.target.value);
+    let fileReader = false;
+    if (image) {
+      fileReader = new FileReader();
+      const temp = [];
+      for (let i = 0; i < image.length; i++) {
+        fileReader.onload = (event) => {
+          const { result } = event.target;
+          console.log(i);
+          if (result) {
+            temp.push(result);
+            setUploadedFileURL(temp);
+          }
+        };
+        fileReader.readAsDataURL(image[i]);
+      }
+    }
   };
-
-  useEffect(() => {
-    setCarousel(image);
-  }, [image]);
 
   useEffect(() => {
     if (userResult) {
@@ -171,30 +183,11 @@ function TemplateProduct() {
     } else if (createProductError) {
       console.log(createProductError);
     }
-    // let fileReader = false;
-    // let isCancel = false;
-    // if (image) {
-    //   fileReader = new FileReader();
-    //   fileReader.onload = (e) => {
-    //     const { result } = e.target;
-    //     if (result && !isCancel) {
-    //       setUploadedFileURL(result);
-    //     }
-    //   };
-    //   fileReader.readAsDataURL(image);
-    // }
-    // return () => {
-    //   isCancel = true;
-    //   if (fileReader && fileReader.readyState === 1) {
-    //     fileReader.abort();
-    //   }
-    // };
   }, [createProductLoading]);
 
   if (createProductResult) {
     return <Navigate to="/list/products" />;
   }
-  console.log(inputName);
   // console.log(categoryResult, userResult, userIDResult, inputName, description, price);
   return (
     <>
@@ -211,7 +204,7 @@ function TemplateProduct() {
                     </Link>
                   </div>
                   <ProductInput
-                    name="Buku"
+                    name={inputName}
                     onChangeName={handleChangeName}
                     price={price}
                     onChangePrice={handleChangePrice}
@@ -268,7 +261,7 @@ function TemplateProduct() {
             description,
           }}
           categoryName={categoryResult.name}
-          productImage={[]}
+          productImage={uploadedFileURL}
           seller={userResult}
           city={userIDResult.city}
           onClick={handlePreview}

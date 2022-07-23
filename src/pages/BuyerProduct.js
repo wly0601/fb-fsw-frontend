@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -17,30 +18,34 @@ function BuyerProduct() {
   const [city, setCity] = useState([]);
   const [notif, setNotif] = useState([]);
   const [user, setUser] = useState('');
+  const [transaction, setTransaction] = useState([]);
+
+  const {
+    productResult,
+  } = useSelector((state) => state.getTransactionProductReducer);
 
   const {
     wishlistResult,
-  // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.createWishlistReducer);
 
   const {
-    userLoading,
     userResult,
-    userError,
-  // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getListUserReducer);
 
   const {
-    notifLoading,
     notifResult,
-    notifError,
-  // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getListNotifications);
 
   useEffect(() => {
     dispatch(getListUser());
     dispatch(getListNotifications());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (productResult) {
+      setTransaction(productResult);
+    }
+  }, [productResult]);
 
   useEffect(() => {
     if (notifResult) {
@@ -77,8 +82,8 @@ function BuyerProduct() {
 
   useEffect(() => {
     fetchData();
-    document.title = 'Produk Pembeli';
   }, [user]);
+
   console.log(productImage);
   return (
     <div>
@@ -90,6 +95,7 @@ function BuyerProduct() {
         city={city}
         notif={notif}
         active={active}
+        transaction={transaction}
       />
     </div>
   );

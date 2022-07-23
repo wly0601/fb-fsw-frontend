@@ -19,6 +19,7 @@ import {
 } from 'swiper';
 
 function CarouselProduct({ productImage }) {
+  console.log(productImage);
   const carouselImage = (productImage || []).map((images) => {
     return (
       <SwiperSlide style={{ width: '100%' }}>

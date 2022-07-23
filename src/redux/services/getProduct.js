@@ -4,7 +4,7 @@ import axios from 'axios';
 export default function getAllProduct({
   page, category, search, buyer,
 }) {
-  console.log(buyer);
+  console.log(buyer, page);
   let buyerRequest;
   if (buyer) {
     buyerRequest = `?buyerId=${buyer}&`;

@@ -19,6 +19,8 @@ import './Modal.Module.css';
 function VerticalModals(props) {
   const params = useParams();
   const [inputBargain, setInputBargain] = useState('');
+  const [add, setAdd] = useState(false);
+
   const dispatch = useDispatch();
   const {
     productLoading,
@@ -97,11 +99,12 @@ function VerticalModals(props) {
 }
 
 function Modals({ productById }) {
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalShow, setModalShow] = useState(false);
   console.log({ productById });
   const getToken = localStorage.getItem('token');
   const [isLoggedIn, setIsLoggedin] = useState(true);
   const [profile, setProfile] = useState(true);
+  const [isDisabled, setIsDisabled] = useState('');
 
   const getUserData = async () => {
     const user = await getUser();
@@ -122,15 +125,29 @@ function Modals({ productById }) {
     getUserData();
   }, []);
 
+  console.log(productById);
+  const buttonActive = productById.disableButton;
+
   return isLoggedIn ? (
     <>
-      <Button
-        variant="primary"
-        className="mt-3 button-product"
-        onClick={() => { return setModalShow(true); }}
-      >
-        Saya Tertarik dan Ingin Nego
-      </Button>
+      {!buttonActive ? (
+        <Button
+          variant="primary"
+          className="mt-3 button-product"
+          onClick={() => { return setModalShow(true); }}
+        >
+          Saya Tertarik dan Ingin Nego
+        </Button>
+      ) : (
+        <Button
+          variant="secondary"
+          className="mt-3 button-product"
+          onClick={() => { return setModalShow(true); }}
+          disabled
+        >
+          Anda Sudah Menawar Barang Ini
+        </Button>
+      )}
       <VerticalModals
         productById={productById}
         show={modalShow}

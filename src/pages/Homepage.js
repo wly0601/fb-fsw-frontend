@@ -7,6 +7,7 @@ import { getListUser } from '../redux/actions/listUser';
 import TemplateHome from '../components/Templates/Homepage/TemplateHome';
 
 function Homepage() {
+  const token = localStorage.getItem('token');
   const dispatch = useDispatch();
   const [product, setProduct] = useState([]);
   const [notif, setNotif] = useState([]);
@@ -40,26 +41,19 @@ function Homepage() {
   };
 
   useEffect(() => {
-    if (userResult) {
-      setUser(userResult);
-    }
-  }, [userResult]);
-
-  useEffect(() => {
     getLoginUser();
   }, []);
 
   useEffect(() => {
-    console.log(userResult.id);
-    dispatch(getListProducts({
-      buyer: userResult.id,
-    }));
-    dispatch(getListNotifications());
-  }, [userResult]);
+    if (productMetaResult) {
+      setMeta(productMetaResult);
+    }
+  }, [productMetaResult]);
 
   useEffect(() => {
     if (productResult) {
       setProduct(productResult);
+      console.log(product);
     }
   }, [productResult]);
 
@@ -70,11 +64,18 @@ function Homepage() {
   }, [notifResult]);
 
   useEffect(() => {
-    if (productMetaResult) {
-      setMeta(productMetaResult);
-      console.log(meta);
+    console.log(userResult);
+    if (userResult) {
+      setUser(userResult);
     }
-  });
+    console.log(userResult.id);
+    console.log(meta);
+
+    dispatch(getListProducts({
+      buyer: userResult.id,
+    }));
+    dispatch(getListNotifications());
+  }, [userResult]);
 
   return (
     <>

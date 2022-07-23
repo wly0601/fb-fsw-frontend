@@ -224,6 +224,13 @@
   padding-bottom: 2px;
 }
 
+.alert-wishlist {
+  width: 90%;
+  border-radius: 5px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  z-index: 0;
+}
+
 @media (max-width:600px) {
   .card-product {
     margin: auto;

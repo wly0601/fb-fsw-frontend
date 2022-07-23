@@ -12,28 +12,33 @@ function PaginatedItems({ currentPage, meta }) {
   const [product, setProduct] = useState([]);
 
   const {
-    productLoading,
     productResult,
-    productError,
   // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getProductReducer);
 
+  const {
+    userResult,
+  // eslint-disable-next-line arrow-body-style
+  } = useSelector((state) => state.getListUserReducer);
+
   const handleChangePage = (e) => {
-    dispatch(getListProducts({ page: e }));
+    console.log(userResult, e);
+    dispatch(getListProducts({
+      page: e,
+    }));
   };
 
   useEffect(() => {
     if (productResult) {
       setProduct(productResult);
-      console.log(product);
     }
-  }, [productResult]);
+  }, [productResult, userResult]);
 
   let totalElements = 1;
   if (Object.keys(meta).length !== 0) {
     totalElements = meta.pagination.count;
   }
-  console.log(totalElements);
+
   return (
     <div className="pagination-position">
       <Paginator

@@ -5,7 +5,7 @@ import getAllProduct from '../services/getProduct';
 export const getListProducts = ({
   page, category, search, buyer,
 }) => {
-  console.log(buyer);
+  console.log(buyer, page);
   return async (
     dispatch,
   ) => {
@@ -14,7 +14,7 @@ export const getListProducts = ({
       const getProducts = await getAllProduct({
         page, category, search, buyer,
       });
-      console.log(getProducts.data.products);
+
       await dispatch({
         type: SET_PRODUCTS,
         payload: {

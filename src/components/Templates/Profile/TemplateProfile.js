@@ -59,6 +59,7 @@ function TemplateProfile() {
     }
     let fileReader = false;
     let isCancel = false;
+    console.log(image);
     if (image) {
       fileReader = new FileReader();
       fileReader.onload = (e) => {

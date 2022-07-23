@@ -21,10 +21,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function Home({
   productAll, currentPage, meta, productResult,
 }) {
+  console.log(productAll);
   const [userData, setUserData] = useState('');
   const token = localStorage.getItem('token');
 
   const getUsers = async () => {
+    console.log(token, 'anys');
     try {
       const responseUsers = await axios.get(
         'https://second-hand-be.herokuapp.com/api/who-am-i',
@@ -61,7 +63,7 @@ function Home({
         <div className={`${IsMobile ? 'row mt-1' : 'row mt-1 mx-5'}`}>
           <ButtonCategory />
         </div>
-        <div className="row mt-3 mx-5">
+        <div className="row mt-3">
           {productAll.length <= 0 && productResult && <p>Maaf Produk Tidak Ditemukan</p>}
         </div>
         <div className={`${IsMobile ? 'row mt-3' : 'row mt-3 mx-5'}`}>
@@ -93,7 +95,7 @@ function Home({
             );
           })}
         </div>
-        <div className="row mb-5 mx-5">
+        <div className="row my-5 mx-5">
           <PaginatedItems currentPage={currentPage} meta={meta} />
         </div>
         <div className="row mt-5 mb-3 mx-5 button-sell">
