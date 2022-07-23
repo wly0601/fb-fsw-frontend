@@ -1,57 +1,44 @@
-import React, { useState, useEffect, useCallback } from 'react';
+/* eslint-disable arrow-body-style */
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { getOneProductBySeller } from '../redux/actions/getProductBySeller';
 import { getListNotifications } from '../redux/actions/getNotif';
 import TemplateSellerProductEdit from '../components/Templates/Seller/TemplateSellerProductEdit';
 
 function SellerProductEdit() {
-  const dispatch = useDispatch();
   const params = useParams();
-  const [productImage, setProductImage] = useState([]);
+  const dispatch = useDispatch();
   const [productById, setProductById] = useState([]);
-  const [categoryName, setCategoryName] = useState([]);
-  const [seller, setSeller] = useState([]);
-  const [city, setCity] = useState([]);
   const [notif, setNotif] = useState([]);
+
   const {
-    notifLoading,
+    productBySellerResult,
+  } = useSelector((state) => state.getProductBySellerReducer);
+
+  const {
     notifResult,
-    notifError,
-  // eslint-disable-next-line arrow-body-style
   } = useSelector((state) => state.getListNotifications);
 
-  const fetchData = useCallback(async () => {
-    const productId = `https://second-hand-be.herokuapp.com/api/product/${params.id}`;
-
-    const response = await axios.get(productId);
-    console.log(response.data);
-    setProductById(response.data);
-    setCategoryName(response.data.category);
-    setProductImage(response.data.images);
-    setSeller(response.data.seller);
-    setCity(response.data.seller.city);
-  });
-
   useEffect(() => {
+    dispatch(getOneProductBySeller(params.id));
     dispatch(getListNotifications());
   }, [dispatch]);
 
   useEffect(() => {
-    fetchData();
+    if (productBySellerResult) {
+      setProductById(productBySellerResult);
+    }
     if (notifResult) {
       setNotif(notifResult);
     }
-  }, [notifResult]);
+  }, [notifResult, productBySellerResult]);
 
+  console.log(productById);
   return (
     <div>
       <TemplateSellerProductEdit
         productById={productById}
-        categoryName={categoryName}
-        productImage={productImage}
-        seller={seller}
-        city={city}
         notif={notif}
       />
     </div>

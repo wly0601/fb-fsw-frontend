@@ -12,9 +12,7 @@ import Sidebar from '../../Moleculs/Sidebar/SidebarProduct';
 import ItemCard from '../../Moleculs/Card/ItemCard';
 import './Product.Module.css';
 
-function ProductInterest({
-  sellerName, sellerCity, sellerPhoto, interest,
-}) {
+function ProductInterest({ seller, interest }) {
   console.log(interest);
 
   return (
@@ -24,9 +22,7 @@ function ProductInterest({
       </Row>
       <Row>
         <CardSellerBtn
-          sellerName={sellerName}
-          sellerCity={sellerCity}
-          sellerPhoto={sellerPhoto}
+          seller={seller}
         />
       </Row>
       <Row>

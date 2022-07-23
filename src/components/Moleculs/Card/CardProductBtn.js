@@ -1,10 +1,7 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import {
-  Container,
-  Row,
-  Card,
-  Button,
+  Container, Row, Card, Button,
 } from 'react-bootstrap';
 import priceFormat from '../../../utils/priceFormat';
 import './Card.Module.css';

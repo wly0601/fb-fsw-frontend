@@ -3,7 +3,7 @@
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
 /* eslint-disable radix */
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
@@ -27,7 +27,6 @@ function TemplateProduct() {
   const [price, setPrice] = useState('');
   const [categoryId, setCategoryId] = useState('');
   const [description, setDescription] = useState('');
-  const [carousel, setCarousel] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(false);
   const [preview, setPreview] = useState(false);
@@ -64,15 +63,12 @@ function TemplateProduct() {
   } = useSelector((state) => { return state.getProductReducer; });
 
   const handlePreview = (e) => {
-    console.log(preview, 'duluan');
     setPreview(!(preview || false));
-    console.log(preview, 'lewat bosku');
   };
 
   const getUser = () => {
     dispatch(getListUser());
   };
-  console.log(inputName);
   useEffect(() => {
     getUser();
   }, []);
@@ -166,13 +162,7 @@ function TemplateProduct() {
     return <Navigate to="/login" replace />;
   }
 
-  console.log(!userResult.cityId);
-  // if (!userResult.cityId) {
-  //   return <Navigate to="/profile" replace />;
-  // }
-
   useEffect(() => {
-    console.log(createProductLoading, createProductResult);
     if (createProductLoading) {
       setLoading(true);
       console.log('lewat sini');
@@ -188,7 +178,7 @@ function TemplateProduct() {
   if (createProductResult) {
     return <Navigate to="/list/products" />;
   }
-  // console.log(categoryResult, userResult, userIDResult, inputName, description, price);
+
   return (
     <>
       <NavbarProduct />
@@ -259,11 +249,9 @@ function TemplateProduct() {
             name: inputName,
             price,
             description,
+            categoryId,
+            images: { uploadedFileURL },
           }}
-          categoryName={categoryResult.name}
-          productImage={uploadedFileURL}
-          seller={userResult}
-          city={userIDResult.city}
           onClick={handlePreview}
           onPublish={handleSubmit}
         />
