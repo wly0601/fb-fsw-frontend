@@ -1,5 +1,5 @@
 import React from 'react';
-import UpdateProduct from '../../Moleculs/Form/UpdateProduct';
+import UpdateProduct from '../../Moleculs/Form/updateProduct';
 // import './Input.Module.css';
 
 function FormUpdate({
