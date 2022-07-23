@@ -13,10 +13,13 @@ function Notification() {
 
   useEffect(() => {
     dispatch(getListNotifications());
+  }, [dispatch]);
+
+  useEffect(() => {
     if (notifResult) {
       setNotif(notifResult);
     }
-  }, [dispatch, notifResult]);
+  }, [notifResult]);
 
   return (
     <div>

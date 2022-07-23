@@ -7,13 +7,12 @@ import Title from '../../Atoms/Title/Title';
 import CardSellerOffering from '../../Moleculs/Card/CardSellerOffering';
 import CardOffering from '../../Moleculs/Card/CardOffering';
 import priceFormat from '../../../utils/priceFormat';
+import messageDetail from '../../../utils/messageDetail';
 // import './Input.Module.css';
 
 function OfferingInfo({
   buyerInfo, buyerCity, buyerImg, buyerOrder, buyerNumber,
 }) {
-  console.log(buyerOrder);
-  const msg = 'Penawaran Produk';
   return (
     <Container>
       <Row>
@@ -41,7 +40,7 @@ function OfferingInfo({
           {buyerOrder && buyerOrder.map((order) => {
             return (
               <CardOffering
-                title={msg}
+                title={messageDetail(order).message}
                 name={order.product.name}
                 price={priceFormat(order.product.price)}
                 offering={`Ditawar ${priceFormat(order.bargainPrice)}`}

@@ -3,7 +3,7 @@
 import { UPDATE_PRODUCTS } from './types';
 import getUser from '../services/getUser';
 import updateProductCloudinary from '../services/updateProductCloudinary';
-import getProductById from '../services/getProductById';
+import getProductBySeller from '../services/getProductBySeller';
 import updateProductDetail from '../services/updateProductDetail';
 
 const url = [];
@@ -34,7 +34,7 @@ export const updateListProduct = (image, body, id) => {
         description: body.description,
         categoryId: body.categoryId,
       };
-      const getProductId = await getProductById(id);
+      const getProductId = await getProductBySeller(id);
       const updateProductDetails = await updateProductDetail(getProductId.data.id, bodyProduct);
       console.log(getProductId.data.id);
       await dispatch({

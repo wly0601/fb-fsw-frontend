@@ -26,7 +26,7 @@ function CardBargain({
 
   useEffect(() => {
     activeButton();
-  }, []);
+  }, [productById]);
 
   const handleWhiteBookmark = (e) => {
     setShowBtn(true);

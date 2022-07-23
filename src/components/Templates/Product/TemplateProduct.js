@@ -249,9 +249,11 @@ function TemplateProduct() {
             name: inputName,
             price,
             description,
-            categoryId,
-            images: { uploadedFileURL },
+            categoryId: categoryResult.name,
           }}
+          productImage={uploadedFileURL}
+          seller={userResult}
+          city={userIDResult.city}
           onClick={handlePreview}
           onPublish={handleSubmit}
         />
