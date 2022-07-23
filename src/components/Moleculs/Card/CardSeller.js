@@ -17,7 +17,7 @@ function CardSeller({ productById }) {
             {productById.seller && (
               <>
                 <Col md={4} xs={3}>
-                  <img src={productById.seller.photo} className="seller-picture" alt="" />
+                  <img src={productById.seller.photo} className="seller-pict" alt="" />
                 </Col>
                 <Col md={8} xs={9}>
                   <h5 style={{ fontWeight: 'bold' }}>{productById.seller.name}</h5>

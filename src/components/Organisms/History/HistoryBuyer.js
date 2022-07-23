@@ -26,7 +26,8 @@ function HistoryBuyer({ history, buyer }) {
           return (
             <Col md={3} xs={6}>
               <CardHistory
-                title={historyBuyer.msg}
+                msg={historyBuyer.msg}
+                title={historyBuyer.name}
                 type={historyBuyer.price}
                 description={historyBuyer.bargainPrice}
                 image={historyBuyer.image}

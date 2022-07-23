@@ -90,10 +90,14 @@ function VerticalModals(props) {
 function Modals(props) {
   const [modalShow, setModalShow] = React.useState(false);
   const dispatch = useDispatch();
+  console.log(props);
+  async function handleAccept() {
+    await dispatch(updateTransactionByID(props.buyerOrder.id, true));
+  }
 
   return (
     <>
-      <Button variant="primary" className="mt-3 mb-3 button-accept" onClick={(e) => { props.onClickAccept; return setModalShow(true); }}>
+      <Button variant="primary" className="mt-3 mb-3 button-accept" onClick={(e) => { handleAccept(); return setModalShow(true); }}>
         Terima
       </Button>
       <VerticalModals

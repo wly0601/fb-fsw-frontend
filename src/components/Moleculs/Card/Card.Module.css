@@ -119,7 +119,12 @@
 }
 
 .seller-picture {
-  width: 35%;
+  width: 80%;
+  border-radius: 10px;
+}
+
+.seller-pict {
+  width: 50%;
   border-radius: 10px;
 }
 

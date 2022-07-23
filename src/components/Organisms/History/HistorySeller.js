@@ -20,7 +20,7 @@ function HistorySeller({ seller, soldProductSeller }) {
         />
       </Row>
       <Row>
-        <Col>
+        <Col md={3} xs={6}>
           <Sidebar />
         </Col>
         <Col>
