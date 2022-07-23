@@ -3,16 +3,17 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faList, faPenToSquare, faCartShopping, faRightFromBracket,
-  faBookmark, faHourglassStart, faHourglassEnd,
-} from '@fortawesome/free-solid-svg-icons';
-import {
-  Navbar, Container, Nav, Form, Row, Col,
-  Toast, Button, ToastContainer, Dropdown,
+  Navbar, Container, Nav, Form, Row, Col, Toast,
+  Button, ToastContainer, Dropdown, Offcanvas,
 } from 'react-bootstrap';
 import {
   FaSearch, FaBell, FaRegUser,
 } from 'react-icons/fa';
+import {
+  faList, faHourglassStart, faHourglassEnd,
+  faPenToSquare, faCartShopping, faBookmark, faRightFromBracket,
+
+} from '@fortawesome/free-solid-svg-icons';
 import { getListProducts } from '../../../redux/actions/product';
 import { logout } from '../../../redux/actions/auth';
 import CardToast from '../../Moleculs/Card/CardToast';
@@ -44,10 +45,19 @@ function NavbarLogin({ notif, userData }) {
     <>
       <Navbar className="ms-auto navbar" bg="white" expand="lg">
         <Container fluid className="me-3">
-          <Navbar.Brand href="../../../" className="logo" />
+          <Navbar.Brand href="../../../" className="navbar-desktop logo" />
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Form className="d-flex test" onSubmit={handleSubmit}>
+          <Form className="d-flex test">
+            <input
+              type="search"
+              placeholder="Cari di sini..."
+              className="me-2 searchBar searchbar-desktop"
+              aria-label="Search"
+            />
+            <i className="searchIcon searchicon-desktop" type="button"><FaSearch /></i>
+          </Form>
+          <Navbar.Collapse className="navbar-desktop" id="basic-navbar-nav">
+            <Form className="d-flex test">
               <input
                 type="search"
                 placeholder="Cari di sini..."
@@ -147,6 +157,22 @@ function NavbarLogin({ notif, userData }) {
               </Dropdown>
             </Nav>
           </Navbar.Collapse>
+          <div className="navbar-mobile">
+            <Navbar.Offcanvas style={{ width: '250px' }} id="basic-navbar-nav">
+              <Offcanvas.Header closeButton>
+                <Offcanvas.Title>
+                  SecondHand
+                </Offcanvas.Title>
+              </Offcanvas.Header>
+              <Offcanvas.Body>
+                <Nav className="flex justify-content-end nav">
+                  <Nav.Link href="../../../list/notifications">Notifikasi</Nav.Link>
+                  <Nav.Link href="../../../list/products">Daftar Jual</Nav.Link>
+                  <Nav.Link href="../../profile">Akun Saya</Nav.Link>
+                </Nav>
+              </Offcanvas.Body>
+            </Navbar.Offcanvas>
+          </div>
         </Container>
       </Navbar>
       <Row>

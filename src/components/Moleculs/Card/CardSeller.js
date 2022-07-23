@@ -16,10 +16,10 @@ function CardSeller({ productById }) {
           <Row>
             {productById.seller && (
               <>
-                <Col md={4} xs={3}>
+                <Col md={2} xs={3}>
                   <img src={productById.seller.photo} className="seller-picture" alt="" />
                 </Col>
-                <Col md={8} xs={9}>
+                <Col md={10} xs={9}>
                   <h5 style={{ fontWeight: 'bold' }}>{productById.seller.name}</h5>
                   <p>{productById.seller.city.name}</p>
                 </Col>
