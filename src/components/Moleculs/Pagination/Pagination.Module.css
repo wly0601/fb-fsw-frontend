@@ -1,0 +1,23 @@
+.paginate {
+    width: 100%;
+    list-style: outside none none;
+    /* position: absolute; */
+}
+
+.pagination-position {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0% 40% 2.5% 40%;
+}
+
+@media only screen and (max-width: 600px) {
+    .pagination-position {
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: -10px;
+    }
+}

@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable array-callback-return */
 /* eslint-disable import/no-unresolved */
 import React from 'react';
 import {
@@ -16,7 +18,17 @@ import {
   Navigation, Pagination, Mousewheel, Keyboard,
 } from 'swiper';
 
-function CarouselProduct() {
+function CarouselProduct({ productById }) {
+  const carouselImage = (productById.images || []).map((images) => {
+    return (
+      <SwiperSlide style={{ width: '100%' }}>
+        <div className="card-carousel">
+          <img src={images} style={{ width: '100%', borderRadius: '16px' }} className="image-fluid" alt="" />
+        </div>
+      </SwiperSlide>
+    );
+  });
+
   return (
     <Container>
       <Swiper
@@ -28,31 +40,9 @@ function CarouselProduct() {
         modules={[Navigation, Pagination, Mousewheel, Keyboard]}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <div className="card-carousel">
-            <img src={`${process.env.PUBLIC_URL}/images/img_watch_one.jpg`} style={{ width: '100%', borderRadius: '16px' }} alt="" />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="card-carousel">
-            <img src={`${process.env.PUBLIC_URL}/images/img_watch_two.jpg`} style={{ width: '100%', borderRadius: '16px' }} alt="" />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="card-carousel">
-            <img src={`${process.env.PUBLIC_URL}/images/img_watch_three.jpg`} style={{ width: '100%', borderRadius: '16px' }} alt="" />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="card-carousel">
-            <img src={`${process.env.PUBLIC_URL}/images/img_watch_four.jpg`} style={{ width: '100%', borderRadius: '16px' }} alt="" />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="card-carousel">
-            <img src={`${process.env.PUBLIC_URL}/images/img_watch_five.jpg`} style={{ width: '100%', borderRadius: '16px' }} alt="" />
-          </div>
-        </SwiperSlide>
+        <div>
+          {carouselImage}
+        </div>
       </Swiper>
     </Container>
   );

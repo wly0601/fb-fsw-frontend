@@ -1,48 +1,262 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+/* eslint-disable no-plusplus */
+/* eslint-disable react/jsx-no-bind */
+/* eslint-disable consistent-return */
+/* eslint-disable array-callback-return */
+/* eslint-disable radix */
+import React, { useState, useEffect } from 'react';
+import { Link, Navigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import {
   Container, Row, Col, Button, Form,
 } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { createListProduct } from '../../../redux/actions/createProduct';
+import { getUserId } from '../../../redux/actions/getUserId';
+import { getCategoryId } from '../../../redux/actions/getCategoryId';
 import NavbarProduct from '../../Organisms/Navbar/NavbarProduct';
 import ProductInput from '../../Moleculs/Form/ProductInput';
-// import ButtonList from '../../Atoms/Button/ButtonList';
 import './TemplateProduct.Module.css';
+import ProductPage from '../../Organisms/Seller/ProductPage';
+import { getListUser } from '../../../redux/actions/listUser';
+import decode from '../../../utils/decodeToken';
 
 function TemplateProduct() {
+  // Data Input Product
+  const [inputName, setInputName] = useState('');
+  const [price, setPrice] = useState('');
+  const [categoryId, setCategoryId] = useState('');
+  const [description, setDescription] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState(false);
+  const [preview, setPreview] = useState(false);
+  const [user, setUser] = useState([]);
+
+  // Upload Image
+  const [image, setImage] = useState([]);
+  const [uploadedFileURL, setUploadedFileURL] = useState([]);
+  const dispatch = useDispatch();
+
+  let fileObj = [];
+
+  const {
+    userResult,
+  // eslint-disable-next-line arrow-body-style
+  } = useSelector((state) => state.getListUserReducer);
+
+  const {
+    categoryLoading,
+    categoryResult,
+    categoryError,
+  } = useSelector((state) => { return state.getCategoryIdReducer; });
+
+  const {
+    userIDLoading,
+    userIDResult,
+    userIDError,
+  } = useSelector((state) => { return state.getUserIdReducer; });
+
+  const {
+    createProductLoading,
+    createProductResult,
+    createProductError,
+  } = useSelector((state) => { return state.getProductReducer; });
+
+  const handlePreview = (e) => {
+    setPreview(!(preview || false));
+  };
+
+  const getUser = () => {
+    dispatch(getListUser());
+  };
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const body = {
+      name: inputName,
+      price: parseInt(price),
+      description,
+      categoryId: parseInt(categoryId),
+    };
+    console.log(body);
+    await dispatch(createListProduct(image, body));
+  }
+
+  const handleChangeName = (e) => {
+    setInputName(e);
+    console.log(inputName);
+  };
+
+  const handleChangePrice = (e) => {
+    setPrice(e);
+  };
+
+  const handleChangeCategory = (e) => {
+    setCategoryId(e);
+  };
+
+  const handleChangeDescription = (e) => {
+    setDescription(e);
+  };
+
+  const handleChangeImage = (e) => {
+    fileObj.push(e.target.files);
+    setMessage(false);
+    let sum = 0;
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < fileObj.length; i++) {
+      sum += fileObj[i].length;
+    }
+
+    if (sum > 4) {
+      setMessage(true);
+      fileObj = [];
+      setImage([]);
+    } else {
+      // eslint-disable-next-line no-plusplus
+      for (let i = 0; i < fileObj[0].length; i++) {
+        image.push(fileObj[0][i]);
+      }
+      setImage(image);
+    }
+    console.log(fileObj);
+    console.log(image);
+    let fileReader = false;
+    if (image) {
+      fileReader = new FileReader();
+      const temp = [];
+      for (let i = 0; i < image.length; i++) {
+        fileReader.onload = (event) => {
+          const { result } = event.target;
+          console.log(i);
+          if (result) {
+            temp.push(result);
+            setUploadedFileURL(temp);
+          }
+        };
+        fileReader.readAsDataURL(image[i]);
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (userResult) {
+      setUser(userResult);
+      dispatch(getUserId(userResult.id));
+    }
+  }, [userResult]);
+  console.log(userResult);
+
+  useEffect(() => {
+    if (categoryId) {
+      console.log(categoryId);
+      // setCategoryName(categoryResult);
+      dispatch(getCategoryId(parseInt(categoryId)));
+    }
+  }, [categoryId]);
+
+  if (decode().toLogin) {
+    return <Navigate to="/login" replace />;
+  }
+
+  useEffect(() => {
+    if (createProductLoading) {
+      setLoading(true);
+      console.log('lewat sini');
+    } else if (createProductResult) {
+      setLoading(false);
+      window.location.reload();
+      console.log(createProductResult);
+    } else if (createProductError) {
+      console.log(createProductError);
+    }
+  }, [createProductLoading]);
+
+  if (createProductResult) {
+    return <Navigate to="/list/products" />;
+  }
+
   return (
-    <div>
+    <>
       <NavbarProduct />
-      <Container className="form-products">
-        <Row>
-          <Col>
-            <div style={{ paddingTop: '30px' }}>
-              <Link to="/register" style={{ color: 'black' }}>
-                <FontAwesomeIcon icon={faArrowLeft} />
-              </Link>
-            </div>
-            <ProductInput />
-          </Col>
-        </Row>
-        <Row className="mx-5 mb-5">
-          <Col xs={6}>
-            <Link to="/seller/product/:id">
-              <Button variant="primary" className="preview-button" type="submit">
-                Preview
-              </Button>
-            </Link>
-          </Col>
-          <Col xs={6}>
-            <Link to="/side">
-              <Button variant="primary" className="publish-button" type="submit">
-                Terbitkan
-              </Button>
-            </Link>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+      {!preview ? (
+        <div>
+          <Container fluid className="form-products p-0">
+            <form onSubmit={handleSubmit}>
+              <Row>
+                <Col>
+                  <div style={{ paddingTop: '30px' }}>
+                    <Link to="/" style={{ color: 'black' }}>
+                      <FontAwesomeIcon icon={faArrowLeft} />
+                    </Link>
+                  </div>
+                  <ProductInput
+                    name={inputName}
+                    onChangeName={handleChangeName}
+                    price={price}
+                    onChangePrice={handleChangePrice}
+                    categoryId={setCategoryId}
+                    onChangeCategory={handleChangeCategory}
+                    description={description}
+                    onChangeDescription={handleChangeDescription}
+                  />
+                  <Form.Group className="mb-3" controlId="productPhoto">
+                    <Form.Label>Foto Produk</Form.Label>
+                    {image && image.map(({ images, index }) => {
+                      return (
+                        <img src={images} key={index} alt="" />
+                      );
+                    })}
+                    <Form.Control
+                      type="file"
+                      accept="image/*"
+                      onChange={handleChangeImage}
+                      className="upload-button"
+                      multiple
+                    />
+                    {message && (
+                    <div className="alert alert-danger" role="alert">
+                      Upload Maximum 4 Images!
+                    </div>
+                    )}
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row className="mb-5">
+                <Col xs={6}>
+                  <Button variant="primary" className="preview-button" onClick={handlePreview}>
+                    Preview
+                  </Button>
+                </Col>
+                <Col xs={6}>
+                  <Button variant="primary" className="publish-button" type="submit">
+                    Terbitkan
+                    {loading && (
+                    <span className="spinner-border spinner-border-sm me-2" />
+                    )}
+                  </Button>
+                </Col>
+              </Row>
+            </form>
+          </Container>
+        </div>
+      ) : (
+        <ProductPage
+          productById={{
+            name: inputName,
+            price,
+            description,
+            categoryId,
+            images: { uploadedFileURL },
+          }}
+          onClick={handlePreview}
+          onPublish={handleSubmit}
+        />
+      ) }
+    </>
   );
 }
 

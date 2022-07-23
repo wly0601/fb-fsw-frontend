@@ -8,20 +8,26 @@ import CarouselProduct from '../../Moleculs/Carousel/CarouselProduct';
 import CardBargain from '../../Moleculs/Card/CardBargain';
 import CardSeller from '../../Moleculs/Card/CardSeller';
 import CardDescription from '../../Moleculs/Card/CardDescription';
-// import './Input.Module.css';
 
-function ProductPage() {
+function ProductPage({
+  productById, transaction,
+}) {
   return (
     <Container className="mt-5">
       <Row>
-        <Col xs={6}>
-          <CarouselProduct />
+        <Col md={6}>
+          <CarouselProduct productById={productById} />
         </Col>
-        <Col xs={6}>
-          <CardBargain />
-          <CardSeller />
+        <Col md={6}>
+          <CardBargain
+            productById={productById}
+            transaction={transaction}
+          />
+          <CardSeller
+            productById={productById}
+          />
         </Col>
-        <CardDescription />
+        <CardDescription productById={productById} />
       </Row>
     </Container>
   );

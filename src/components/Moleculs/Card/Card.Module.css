@@ -1,23 +1,38 @@
-.card-items {
+.card-items,
+.card-items-offering {
   background: #FFFFFF;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
-  margin-bottom: 10%;
+  /* box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15); */
+  border-radius: 10px;
+  margin-bottom: 5%;
+  max-height: 300px;
+}
+
+.card.items-offering {
+  border-bottom: 1 px solid #E5E5E5;
+  border: none;
 }
 
 .card-img-top {
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: 10px;
   margin-top: 5%;
-  width: 90%;
+  max-width: 90%;
+  max-height: 130px;
   text-align: center;
 }
 
 .card-product {
-  top: 10px;
   width: 430px;
   height: 300px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card-product-btn {
+  top: 10px;
+  width: 430px;
+  height: 220px;
   border-radius: 16px;
+  z-index: 1;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
 }
 
@@ -31,7 +46,7 @@
 
 .card-seller {
   width: 100%;
-  height: 50%;
+  height: 55%;
   border-radius: 16px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
 }
@@ -43,14 +58,33 @@
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
 }
 
+.seller-offering {
+  height: 10%;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+}
+
 .card-desc {
   top: 30px;
-  width: 90%;
+  width: 45%;
   height: 100%;
-  margin-left: 5%;
-  border-radius: 16px;
+  margin-left: 2%;
+  /* border-radius: 16px; */
   line-height: 20px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+}
+
+.item-card-title {
+  font-weight: bold;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.item-card-type {
+  color: gray;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .button-seller {
@@ -58,10 +92,8 @@
   width: 95%;
   height: 50px;
   margin: 10px;
-  background-color: #7126B5;
   border-color: #7126B5;
   color: white;
-  border-radius: 16px;
 }
 
 .button-seller:hover {
@@ -86,6 +118,11 @@
   border-color: #7126B5;
 }
 
+.seller-picture {
+  width: 60%;
+  border-radius: 10px;
+}
+
 .seller-btn {
   background-color: white;
   border-color: #7126B5;
@@ -98,4 +135,226 @@
   background-color: #7126B5;
   border-color: #7126B5;
   color: white;
+}
+
+.image-offering {
+  margin-left: 10%;
+}
+
+.image-accept-offering {
+  margin-left: 10%;
+}
+
+.card-body-offering {
+  width: 50%;
+}
+
+.button-deny {
+  background-color: white;
+  border-color: #7126B5;
+  color: black;
+  border-radius: 16px;
+  margin-right: 10px;
+  margin-top: 16px;
+  width: 158px;
+  height: fit-content;
+}
+
+.button-deny:hover {
+  background-color: white;
+  color: black;
+}
+
+.button-accept {
+  background-color: #7126B5;
+  border-color: #7126B5;
+  color: white;
+  font-size: 90%;
+  border-radius: 16px;
+  margin-right: 10px;
+  margin-top: 16px;
+  width: 158px;
+  height: fit-content;
+}
+
+.button-accept:hover {
+  background-color: #7126B5;
+  color: white;
+}
+
+.button-align {
+  display: flex;
+  text-align: center;
+  margin-bottom: 10px;
+  margin-right: 5%;
+}
+
+.button-edit-preview {
+  justify-content: center;
+  width: 95%;
+  height: 50px;
+  margin: 10px;
+  background-color: #7126B5;
+  border-color: #7126B5;
+  color: black;
+  border-radius: 16px;
+}
+
+.btn-bookmark {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  z-index: 1;
+}
+
+.btn-bookmark-click {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  z-index: 1;
+}
+
+.icon-bookmark {
+  z-index: 2;
+  color: black;
+  padding-bottom: 2px;
+}
+
+.icon-bookmark-click {
+  z-index: 2;
+  color: #7126B5;
+  padding-bottom: 2px;
+}
+
+.alert-wishlist {
+  width: 90%;
+  border-radius: 5px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  z-index: 0;
+}
+
+@media (max-width:600px) {
+  .card-product {
+    margin: auto;
+    width: 100%;
+    height: auto;
+    align-content: center;
+    z-index: 1;
+    top: -30px;
+  }
+  
+  .card-desc {
+    top: -73px;
+    width: 100%;
+    height: 98%;
+    margin: auto;
+  }
+
+  .card-bargain {
+    margin: auto;
+    width: 100%;
+    height: auto;
+    align-content: center;
+    z-index: 1;
+    top: -30px;
+  }
+
+  .card-product-btn {
+    margin: auto;
+    width: 100%;
+    height: auto;
+    align-content: center;
+    z-index: 1;
+    top: -30px;
+  }
+
+  .image-card-seller {
+    height: 50%;
+  }
+
+  .image-offering {
+    height: 45%;
+    margin-left: 15%;
+  }
+
+  .image-accept-offering {
+    height: 40%;
+    margin-left: 15%;
+  }
+  
+  .seller-card {
+    width: 100%;
+    height: auto;
+    top: -40px;
+    margin: auto;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+    
+  }
+
+  .seller-offering {
+    height: auto;
+    width: 110%;
+  }
+
+  .button-align {
+    display: flex;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-right: 5%;
+  }
+
+  .button-deny {
+    margin-top: 15px;
+    margin-left: 5%;
+  }
+
+  .button-accept {
+    height: 43px;
+    margin-top: 5%;
+  }
+
+  .card-desc {
+    top: -73px;
+    width: 86%;
+    height: 98%;
+    margin: auto;
+    border-radius: 16px;
+  }
+
+  .seller-offering {
+    border-radius: 16px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  }
+
+  .button-deny {
+    margin-left: 5%;
+  }
+
+  .button-terima {
+    margin-left: 5%;
+  }
+
+  .seller-picture {
+    width: 150%
+  }
+
+  .card-product-btn {
+    margin: auto;
+    width: 100%;
+    height: auto;
+    align-content: center;
+    z-index: 1;
+    top: -30px;
+  }
+
+  .item-card-title {
+    font-size: 15px !important; 
+  }
+
+  .item-card-type {
+    font-size: 15px !important; 
+  }
+
+  .item-card-price {
+    font-size: 12px !important;
+    font-weight: bold; 
+  }
 }

@@ -1,36 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Container, Row, Col, Button, Form,
+  Container, Form,
 } from 'react-bootstrap';
 import ImageHome from '../../Atoms/Image/ImageHome';
 import RegisterInput from '../../Moleculs/Form/RegisterInput';
-// import ButtonList from '../../Atoms/Button/ButtonList';
+import BtnBackToHome from '../../Atoms/Button/BtnBackToHome';
 import './TemplateRegister.Module.css';
 
 function TemplateRegister() {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      const mobile = window.innerWidth < 600;
+      if (mobile !== isMobile) {
+        setIsMobile(mobile);
+      }
+    }, false);
+  }, [isMobile]);
   return (
     <div className="form-list">
-      <Container>
-        <Row>
-          <Col>
+      <Container fluid className="p-0">
+        <div className="row">
+          <div className="col-6 image-home">
             <ImageHome />
-          </Col>
-          <Col>
+          </div>
+          <div className={`${isMobile ? 'col-9' : 'col-5'}`}>
+            <BtnBackToHome />
             <RegisterInput />
-            <Link to="/">
-              <Button className="mb-3 mx-5 btn-register" variant="custom" type="submit">
-                Daftar
-              </Button>
-            </Link>
-            <Form className="text-center">
+            <Form className={`${isMobile ? 'text-center fixed-bottom mb-5' : 'text-center'}`}>
               <Form.Group className="my-3 mx-5">
-                <Form.Text style={{ marginLeft: '50px' }}>Sudah punya akun? </Form.Text>
+                <Form.Text>Sudah punya akun? </Form.Text>
                 <Link to="/login" style={{ textDecoration: 'none' }}><Form.Text style={{ color: '#7126B5', fontWeight: 'bold' }}>Masuk di sini</Form.Text></Link>
               </Form.Group>
             </Form>
-          </Col>
-        </Row>
+          </div>
+        </div>
       </Container>
     </div>
   );
