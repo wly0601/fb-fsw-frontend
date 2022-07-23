@@ -12,6 +12,7 @@ function CardBuyerBtn({ buyer }) {
       <Card className="mt-3 mb-5 card-seller">
         <Card.Body>
           <Row>
+
             <Col md={1} xs={2}>
               <img src={buyer.photo} className="seller-picture" alt="" />
             </Col>

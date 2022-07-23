@@ -12,9 +12,9 @@ function CardSellerBtn({ seller }) {
         <Card.Body>
           <Row>
             <Col xs={2} md={1}>
-              <img src={seller.photo} style={{ width: '30%', borderRadius: '10px' }} alt="" />
+              <img src={seller.photo} className="seller-picture" alt="" />
             </Col>
-            <Col xs={7} md={9}>
+            <Col xs={8} md={9}>
               <h5 style={{ fontWeight: 'bold' }}>{seller.name}</h5>
               <p>{seller.address}</p>
             </Col>

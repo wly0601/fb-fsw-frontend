@@ -38,12 +38,6 @@ function CardHistory(props) {
     // window.location.reload();
   };
 
-  async function handleAccept() {
-    setBtnAccReject(false);
-    setBtnStatus(true);
-    await dispatch(updateTransactionByID(props.buyerOrder.id, true));
-  }
-
   const offeringCardBtnHandler = () => {
     const setBtn = offeringCardLayout(props.buyerOrder);
     if (setBtn.btnAccReject) {
@@ -96,7 +90,6 @@ function CardHistory(props) {
                     buyerCity={props.buyerCity}
                     buyerImg={props.buyerImg}
                     show={modalShow}
-                    onClickAccept={handleAccept}
                     buyerNumber={buyerNumber}
                     onHide={() => { return setModalShow(false); }}
                   />
