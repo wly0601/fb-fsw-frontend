@@ -37,7 +37,7 @@ function CardProduct(props) {
 					<h5 style={{ fontWeight: 'bold' }}>
             {props.productById.name}
           </h5>
-          <p>{props.categoryName}</p>
+          <p>{props.productById.categoryId}</p>
           <p>{priceFormat(props.productById.price)}</p>
           <Row>
             <Button variant="primary" className="button-seller" style={{ borderRadius: '16px', backgroundColor: '#7126B5', width: '90%' }} onClick={props.onPublish}>Terbitkan</Button>

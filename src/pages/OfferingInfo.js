@@ -1,6 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import axios from 'axios';
-import { Container } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import TemplateOfferingInfo from '../components/Templates/Offering/TemplateOffering';
 
@@ -41,14 +40,7 @@ function OfferingInfo() {
         });
         console.log(response.data);
       });
-
-    // const response = await axios.get(transactionId);
-    // console.log(response.data);
   });
-
-  console.log(orderBuyer);
-  console.log(buyerName);
-
   useEffect(() => {
     getTransaction();
   }, []);
