@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+# Second Hand - Frontend 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository is the Front-End part from Final Project of Independent Study at Binar Academy X Kampus Merdeka - Fullstack Web Course.
 
-## Available Scripts
+Secondhand is website application that provide a convenient platform for people who want to sell or find used goods. This repository contains design of pages which includes components folder (Atomic Design), pages, and State Management (Redux) for API integration. 
+# Getting Started
 
-In the project directory, you can run:
+Before you run the website, you can read more from [react](https://reactjs.org/docs/getting-started.html) to read more about react documentation. Also, if you want to create react app from the scratch, you can use this :
 
-### `npm start`
+```bash
+npx create-react-app-foldername
+```
+First of all, install all the node modules with :
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+npm install
+```
+You can run the server with :
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+npm run start
+```
+# Website Screenshoot
+![Screenshot (396)](https://user-images.githubusercontent.com/99469476/180653647-1afc14ed-72ca-41b9-b7c3-18ba93d0cc32.png)
+![Screenshot (397)](https://user-images.githubusercontent.com/99469476/180653649-f6320d6c-d9a3-485f-97c9-2513fe3fac15.png)
+![Screenshot (398)](https://user-images.githubusercontent.com/99469476/180653651-9fdcc2ec-0b6a-4319-80a3-0f7bbcefa42e.png)
+![Screenshot (399)](https://user-images.githubusercontent.com/99469476/180653652-1ff16278-40c0-47f3-99a1-e053fb0c32e3.png)
+![Screenshot (400)](https://user-images.githubusercontent.com/99469476/180653671-e3b0c3c7-911a-4fc5-9228-69a8e2ba395b.png)
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Application Deployment URL
+Deployment: [Second Hand Frontend Application](https://second-hand-front-end.vercel.app/)
