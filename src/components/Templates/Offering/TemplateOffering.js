@@ -5,7 +5,6 @@ import OfferingInfo from '../../Organisms/Offering/OfferingInfo';
 function TemplateOfferingInfo({
   buyerInfo, buyerCity, buyerImg, buyerOrder, buyerNumber,
 }) {
-  console.log(buyerOrder);
   return (
     <>
       <NavbarOffering />

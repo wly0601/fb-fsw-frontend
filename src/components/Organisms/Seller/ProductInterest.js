@@ -4,6 +4,7 @@ import {
   Row,
   Col,
 } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { FaPlus } from 'react-icons/fa';
 import Title from '../../Atoms/Title/Title';
 import BtnProductStatus from '../../Atoms/Button/BtnProductStatus';

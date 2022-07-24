@@ -4,6 +4,7 @@ import axios from 'axios';
 const token = localStorage.getItem('token');
 
 export default function updateProductDetail(id, bodyUser) {
+  console.log(id);
   return axios
   // eslint-disable-next-line prefer-template
     .put(

@@ -26,7 +26,6 @@ function ListBookmark() {
       setWishlist(wishlistResult);
     }
   }, [wishlistResult]);
-  console.log(wishlistResult);
   return (
     <div>
       <TemplateBookmark wishlist={wishlist} />

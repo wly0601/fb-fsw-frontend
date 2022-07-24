@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useEffect } from 'react';
@@ -89,10 +90,11 @@ function VerticalModals(props) {
 function Modals(props) {
   const [modalShow, setModalShow] = React.useState(false);
   const dispatch = useDispatch();
-
+  console.log(props);
   async function handleAccept() {
     await dispatch(updateTransactionByID(props.buyerOrder.id, true));
   }
+
   return (
     <>
       <Button variant="primary" className="mt-3 mb-3 button-accept" onClick={(e) => { handleAccept(); return setModalShow(true); }}>

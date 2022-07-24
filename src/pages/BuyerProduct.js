@@ -58,15 +58,13 @@ function BuyerProduct() {
     if (userResult) {
       setUser(userResult);
     }
-  }, [userResult]);
-
-  useEffect(() => {
     let buyer = '';
     if (userResult.id) {
       buyer = `?buyerId=${userResult.id}`;
     }
+    console.log(userResult);
     dispatch(getOnlyOneProduct(params.id, buyer));
-  }, [dispatch]);
+  }, [userResult]);
 
   return (
     <div>

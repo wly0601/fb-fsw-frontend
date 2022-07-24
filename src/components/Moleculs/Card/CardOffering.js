@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,6 +13,7 @@ import ModalStatus from '../Modal/ModalStatus';
 import './Card.Module.css';
 import { updateTransactionByID } from '../../../redux/actions/updateTransaction';
 import offeringCardLayout from '../../../utils/offeringCardLayout';
+import messageDetail from '../../../utils/messageDetail';
 
 function CardHistory(props) {
   const [modalShow, setModalShow] = useState(false);
@@ -22,6 +24,7 @@ function CardHistory(props) {
     title, name, price, image, imageAlt, offering, buyerNumber,
   } = props;
   const dispatch = useDispatch();
+  const getInformation = messageDetail(props.buyerOrder);
 
   const {
     transactionLoading,
@@ -30,6 +33,7 @@ function CardHistory(props) {
   } = useSelector((state) => { return state.updateTransactionReducer; });
 
   const handleRejected = async (e) => {
+    setBtnAccReject(false);
     await dispatch(updateTransactionByID(props.buyerOrder.id, false));
     // window.location.reload();
   };
@@ -44,7 +48,7 @@ function CardHistory(props) {
       setBtnStatus(true);
     }
   };
-
+  console.log(name);
   useEffect(() => {
     offeringCardBtnHandler();
   }, []);
@@ -60,8 +64,8 @@ function CardHistory(props) {
             <Card.Body>
               <Card.Title style={{ fontSize: '10px', color: 'grey' }}>{title}</Card.Title>
               <Card.Title>{name}</Card.Title>
-              <Card.Text className="mb-2">{price}</Card.Text>
-              <Card.Text>{offering}</Card.Text>
+              <Card.Text className="mb-2" style={{ textDecoration: getInformation.strikeLinePrice }}>{price}</Card.Text>
+              <Card.Text style={{ textDecoration: getInformation.strikeLineOffering }}>{offering}</Card.Text>
             </Card.Body>
             <div className="justify-content-end button-align">
               {btnAccReject && (

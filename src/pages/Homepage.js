@@ -31,31 +31,21 @@ function Homepage() {
     productMetaResult,
   } = useSelector((state) => state.getProductMetaReducer);
 
-  const getLoginUser = async () => {
+  useEffect(() => {
     dispatch(getListUser());
-  };
-
-  useEffect(() => {
-    getLoginUser();
   }, []);
-
-  useEffect(() => {
-    if (productMetaResult) {
-      setMeta(productMetaResult);
-    }
-  }, [productMetaResult]);
 
   useEffect(() => {
     if (productResult) {
       setProduct(productResult);
     }
-  }, [productResult]);
-
-  useEffect(() => {
     if (notifResult) {
       setNotif(notifResult);
     }
-  }, [notifResult]);
+    if (productMetaResult) {
+      setMeta(productMetaResult);
+    }
+  }, [productResult, notifResult, productMetaResult]);
 
   useEffect(() => {
     if (userResult) {
