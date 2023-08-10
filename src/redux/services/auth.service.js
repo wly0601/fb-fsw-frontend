@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://second-hand-be.herokuapp.com/api/';
+const API_URL = 'https://fp-fsw-backend.vercel.app/api/';
 const register = (name, email, password) => {
   return axios
   // eslint-disable-next-line prefer-template

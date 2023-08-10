@@ -5,7 +5,7 @@ const token = localStorage.getItem('token');
 export default function getNotif(id) {
   return axios
     // eslint-disable-next-line prefer-template
-    .get('https://second-hand-be.herokuapp.com/api/notifications', {
+    .get('https://fp-fsw-backend.vercel.app/api/notifications', {
       headers: {
         Authorization: `Bearer ${token}`,
       },

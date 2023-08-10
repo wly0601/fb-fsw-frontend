@@ -11,5 +11,5 @@ export default function getAllProduct({
   }
   return axios
     // eslint-disable-next-line prefer-template
-    .get(`https://second-hand-be.herokuapp.com/api/products${buyerRequest || ''}?page=${page || 1}${category || ''}${search || ''}`);
+    .get(`https://fp-fsw-backend.vercel.app/api/products${buyerRequest || ''}?page=${page || 1}${category || ''}${search || ''}`);
 }

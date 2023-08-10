@@ -22,7 +22,7 @@ function Bookmark({ wishlist }) {
   const getUsers = async () => {
     try {
       const responseUsers = await axios.get(
-        'https://second-hand-be.herokuapp.com/api/who-am-i',
+        'https://fp-fsw-backend.vercel.app/api/who-am-i',
         {
           headers: {
             Authorization: `Bearer ${token}`,

@@ -7,7 +7,7 @@ export default function updateProductCloudinary(id, cloudinaryUpload) {
   return axios
   // eslint-disable-next-line prefer-template
     .put(
-      `https://second-hand-be.herokuapp.com/api/product/picture/${id.toString()}/cloudinary`,
+      `https://fp-fsw-backend.vercel.app/api/product/picture/${id.toString()}/cloudinary`,
       cloudinaryUpload,
       {
         headers: {

@@ -35,7 +35,7 @@ function ProfileInput({
     try {
       const userToUpdatePayload = new FormData();
       const updateRequest = await axios.put(
-        `https://second-hand-be.herokuapp.com/api/users/${data.id.toString()}/detail`,
+        `https://fp-fsw-backend.vercel.app/api/users/${data.id.toString()}/detail`,
         userToUpdatePayload,
         {
           headers: {
@@ -55,7 +55,7 @@ function ProfileInput({
     const fetchData = async () => {
       try {
         const currentUserRequest = await axios.get(
-          'https://second-hand-be.herokuapp.com/api/who-am-i',
+          'https://fp-fsw-backend.vercel.app/api/who-am-i',
           {
             headers: {
               Authorization: `Bearer ${token}`,

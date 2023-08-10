@@ -19,7 +19,7 @@ function InputCity({ inputCity }) {
     message: '',
   });
 
-  axios.get('https://second-hand-be.herokuapp.com/api/cities', {
+  axios.get('https://fp-fsw-backend.vercel.app/api/cities', {
     headers: {
       Authorization: `Bearer ${token}`,
     },

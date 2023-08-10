@@ -10,7 +10,7 @@ export default function updateTransaction(id, request) {
   return axios
     // eslint-disable-next-line prefer-template
     .put(
-      `https://second-hand-be.herokuapp.com/api/transaction/${id}`,
+      `https://fp-fsw-backend.vercel.app/api/transaction/${id}`,
       requestBody,
       {
         headers: {

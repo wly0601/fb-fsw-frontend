@@ -14,7 +14,7 @@ function OfferingInfo() {
 
   const getTransaction = useCallback(async () => {
     await axios.get(
-      'https://second-hand-be.herokuapp.com/api/who-am-i',
+      'https://fp-fsw-backend.vercel.app/api/who-am-i',
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -23,7 +23,7 @@ function OfferingInfo() {
     )
       .then(async (response) => {
         await axios.get(
-          `https://second-hand-be.herokuapp.com/api/buyer/${params.buyerId}/transaction`,
+          `https://fp-fsw-backend.vercel.app/api/buyer/${params.buyerId}/transaction`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

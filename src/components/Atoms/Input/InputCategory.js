@@ -19,7 +19,7 @@ function InputCategory({ inputCategory }) {
   const token = localStorage.getItem('token');
 
   axios.get(
-    'https://second-hand-be.herokuapp.com/api/categories',
+    'https://fp-fsw-backend.vercel.app/api/categories',
     {
       headers: {
         Authorization: `Bearer ${token}`,

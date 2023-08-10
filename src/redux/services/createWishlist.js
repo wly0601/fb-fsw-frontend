@@ -12,7 +12,7 @@ export default function createWishlist(productById, condition) {
   return axios
     // eslint-disable-next-line prefer-template
     .post(
-      'https://second-hand-be.herokuapp.com/api/wishlist',
+      'https://fp-fsw-backend.vercel.app/api/wishlist',
       requestBody,
       {
         headers: {

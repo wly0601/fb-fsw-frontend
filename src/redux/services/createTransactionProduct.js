@@ -6,7 +6,7 @@ export default function createTransactionProduct(bodyInput) {
   return axios
     // eslint-disable-next-line prefer-template
     .post(
-      'https://second-hand-be.herokuapp.com/api/transaction',
+      'https://fp-fsw-backend.vercel.app/api/transaction',
       bodyInput,
       {
         headers: {

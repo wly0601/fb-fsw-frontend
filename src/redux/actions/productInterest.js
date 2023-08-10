@@ -18,7 +18,7 @@ export const getListProductInterest = () => {
     });
     // GET API
     const token = localStorage.getItem('token');
-    await axios.get('https://second-hand-be.herokuapp.com/api/who-am-i', {
+    await axios.get('https://fp-fsw-backend.vercel.app/api/who-am-i', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -26,7 +26,7 @@ export const getListProductInterest = () => {
       .then(async (resultUser) => {
         console.log(resultUser.data);
         const id = resultUser.data.id.toString();
-        const test = await axios.get(`https://second-hand-be.herokuapp.com/api/user/${id}/products?filterByStatusId=2`, {
+        const test = await axios.get(`https://fp-fsw-backend.vercel.app/api/user/${id}/products?filterByStatusId=2`, {
           headers: {
             'Content-Type': 'multipart/form-data',
             Authorization: `Bearer ${token}`,

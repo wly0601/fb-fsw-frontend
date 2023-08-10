@@ -4,5 +4,5 @@ import axios from 'axios';
 export default function getProductBySeller(id) {
   return axios
     // eslint-disable-next-line prefer-template
-    .get(`https://second-hand-be.herokuapp.com/api/product/${id}`);
+    .get(`https://fp-fsw-backend.vercel.app/api/product/${id}`);
 }

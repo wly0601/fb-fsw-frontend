@@ -7,7 +7,7 @@ export default function updateUserDetail(id, bodyUser) {
   return axios
   // eslint-disable-next-line prefer-template
     .put(
-      `https://second-hand-be.herokuapp.com/api/users/${id.toString()}/detail`,
+      `https://fp-fsw-backend.vercel.app/api/users/${id.toString()}/detail`,
       bodyUser,
       {
         headers: {

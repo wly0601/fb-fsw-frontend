@@ -40,7 +40,7 @@ function ProductInput({
     try {
       const userToUpdatePayload = new FormData();
       const createRequest = await axios.post(
-        'https://second-hand-be.herokuapp.com/api/products',
+        'https://fp-fsw-backend.vercel.app/api/products',
         userToUpdatePayload,
         {
           headers: {
@@ -61,7 +61,7 @@ function ProductInput({
     const fetchData = async () => {
       try {
         const currentUserRequest = await axios.get(
-          'https://second-hand-be.herokuapp.com/api/who-am-i',
+          'https://fp-fsw-backend.vercel.app/api/who-am-i',
           {
             headers: {
               Authorization: `Bearer ${token}`,

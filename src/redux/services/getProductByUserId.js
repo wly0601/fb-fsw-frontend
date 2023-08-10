@@ -5,7 +5,7 @@ const token = localStorage.getItem('token');
 export default function getProductByUserId(id) {
   return axios
     // eslint-disable-next-line prefer-template
-    .get(`https://second-hand-be.herokuapp.com/api/user/${id}/products`, {
+    .get(`https://fp-fsw-backend.vercel.app/api/user/${id}/products`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

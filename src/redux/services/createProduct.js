@@ -6,7 +6,7 @@ export default function createProduct(bodyProduct) {
   return axios
     // eslint-disable-next-line prefer-template
     .post(
-      'https://second-hand-be.herokuapp.com/api/products',
+      'https://fp-fsw-backend.vercel.app/api/products',
       bodyProduct,
       {
         headers: {

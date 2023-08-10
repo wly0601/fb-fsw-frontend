@@ -10,7 +10,7 @@ export default function updateTransactionConfirmation(id, request) {
   return axios
     // eslint-disable-next-line prefer-template
     .put(
-      `https://second-hand-be.herokuapp.com/api/transaction/${id}/confirmation`,
+      `https://fp-fsw-backend.vercel.app/api/transaction/${id}/confirmation`,
       requestBody,
       {
         headers: {

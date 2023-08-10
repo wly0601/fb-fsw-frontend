@@ -8,7 +8,7 @@ export default function updateProductDetail(id, bodyUser) {
   return axios
   // eslint-disable-next-line prefer-template
     .put(
-      `https://second-hand-be.herokuapp.com/api/product/${id}`,
+      `https://fp-fsw-backend.vercel.app/api/product/${id}`,
       bodyUser,
       {
         headers: {

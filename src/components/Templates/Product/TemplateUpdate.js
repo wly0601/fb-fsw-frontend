@@ -44,7 +44,7 @@ function TemplateUpdate() {
       console.log(inputName);
       const token = localStorage.getItem('token');
       const getResponse = await axios.get(
-        `https://second-hand-be.herokuapp.com/api/product/${params.id}`,
+        `https://fp-fsw-backend.vercel.app/api/product/${params.id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
